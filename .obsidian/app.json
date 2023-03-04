@@ -1,0 +1,22 @@
+{
+  "livePreview": false,
+  "readableLineLength": false,
+  "showFrontmatter": true,
+  "showLineNumber": true,
+  "useTab": false,
+  "vimMode": true,
+  "userIgnoreFilters": null,
+  "alwaysUpdateLinks": true,
+  "pdfExportSettings": {
+    "includeName": true,
+    "pageSize": "Letter",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  },
+  "spellcheck": true,
+  "spellcheckLanguages": [
+    "en-US",
+    "en-GB"
+  ]
+}
