@@ -9,5 +9,4 @@ tlmgr install libertine
 tlmgr install doublestroke
 ```
 
-### List of notes
-- [Machine Learning](./machine_learning/main.pdf)
+### List of study notes
