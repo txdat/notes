@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       c4d4eba3-eff2-4fb6-8f8f-c2cc42901aa7
+:END:
+#+title: english
+[[id:ff859e2a-807c-4b2d-98b3-1557ff57b833][grammar]]

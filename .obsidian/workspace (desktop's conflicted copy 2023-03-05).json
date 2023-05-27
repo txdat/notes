@@ -4,15 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "90186856db8c25f1",
+        "id": "9bc6749ee8f28b40",
         "type": "tabs",
         "children": [
           {
-            "id": "fbef51a29670711b",
+            "id": "c63900740fe86bae",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "misc/2023.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": true
+              }
             }
           }
         ]
@@ -81,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "misc/2023.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "misc/2023.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "misc/2023.md"
+              }
             }
           }
         ]
@@ -142,43 +151,42 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "fbef51a29670711b",
+  "active": "c63900740fe86bae",
   "lastOpenFiles": [
-    "misc/2023.md",
-    "english/tenses.md",
-    "misc/reading tracker.md",
-    "engineering/webdev/mern - deno",
-    "engineering/webdev",
-    "machine learning/Untitled.md",
-    "computer science/algorithms & data structures",
-    "computer science/computer & operating system",
-    "english/modal verbs.md",
-    "assets/Drawing 2023-03-13 22.14.09.excalidraw.md",
-    "computer science/algorithms - data structures/get prime factors.md",
-    "computer science/algorithms - data structures/aho-corasick.md",
-    "computer science/algorithms - data structures/rerooting tree.md",
     "computer science/algorithms - data structures/kmp.md",
-    "machine learning/deep learning/word embedding.md",
+    "computer science/algorithms - data structures/aho-corasick.md",
+    "misc/2023.md",
+    "misc/reading.md",
+    "engineering/python/concurrency.md",
+    "english/tenses.md",
     "machine learning/deep learning/attention.md",
     "machine learning/deep learning/large language models.md",
-    "misc/reading.md",
-    "interviews/System design.md",
-    "interviews/Machine learning - Data science.md",
-    "interviews/Engineering.md",
-    "interviews/CS fundamental.md",
-    "engineering/design patterns.md",
-    "engineering/python/concurrency.md",
-    "[[concurrency]].md",
-    "interviews",
     "english",
     "assets/Drawing 2023-03-04 14.50.45.excalidraw.md",
     "machine learning/deep learning",
     "computer science/algorithms - data structures",
     "mathematics",
     "machine learning",
+    "computer science",
+    "assets",
+    "engineering/python",
+    "engineering",
+    "misc",
     "computer science/algorithms/segment tree.md",
     "engineering/python/async-await.md",
     "machine learning - data science/papers.md",
-    "assets/dbms_join.png"
+    "computer science/algorithms/aho-corasick.md",
+    "computer science/data structures/lru-lfu cache.md",
+    "misc/BE interview.md",
+    "assets/dbms_join.png",
+    "misc/something-to-buy.md",
+    "english/grammars/tenses.md",
+    "machine learning - data science/fundamental/normalization.md",
+    "machine learning - data science/papers/1409.0473.md",
+    "machine learning - data science/papers/1706.03762.md",
+    "machine learning - data science/papers/1810.04805.md",
+    "machine learning - data science/papers/icml_2006.md",
+    "machine learning - data science/fundamental/regularization.md",
+    "Connectionist.md"
   ]
 }

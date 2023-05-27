@@ -1,0 +1,65 @@
+%!TEX TS-program = pdflatex biber
+%!TEX encoding = UTF-8 Unicode
+\documentclass{../mathbook}
+
+\input{glossaries.tex}
+\addbibresource{reference.bib}
+
+\begin{document}
+
+\title{\bf \huge {{Template}} Study Notes}
+\author{Dat Xuan Tran}
+\date{Update on \today}
+\maketitle
+\setcounter{tocdepth}{2}
+\setcounter{minitocdepth}{1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \frontmatter
+
+\begin{multicols}{2}
+    \dominitoc% Initialization
+    \adjustmtc[2]% chp number shift for mini-toc
+    \tableofcontents
+    \label{toc-contents}
+\end{multicols}
+
+	\listoffigures
+	\listoftables
+\begin{multicols}{2}
+	\listoftheorems[ignoreall, show={theorem}]
+\end{multicols}
+
+	\renewcommand{\listtheoremname}{List of Definitions}
+\begin{multicols}{2}
+	\listoftheorems[ignoreall, show={definition}]
+\end{multicols}
+
+	% \printglossaries
+	% \printglossary[type=\acronymtype]
+	\printglossary
+	% \printglossary[title=List of terms, toctitle=List of terms]
+
+	% bib2gls
+	% \printunsrtglossaries % print all types
+	% \printunsrtglossary[type={abbreviations},title=List of Abbreviations,style=listgroup]
+	% \printunsrtglossary[type={abbreviations},title=List of Abbreviations,style=listhypergroup] % doesn't work
+	% \printunsrtglossary[type={symbols},title=List of Symbols,style=listgroup]
+	% \printunsrtglossary % main entry
+
+% \mainmatter
+
+%%%%%%%%%%%%%%%%%%%%Contents%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{appendices}
+\end{appendices}
+
+\backmatter
+
+\printbibliography[heading=bibintoc]
+\printindex
+
+\end{document}
