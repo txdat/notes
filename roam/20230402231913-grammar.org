@@ -1,4 +1,0 @@
-:PROPERTIES:
-:ID:       ff859e2a-807c-4b2d-98b3-1557ff57b833
-:END:
-#+title: grammar

@@ -1,4 +1,0 @@
-:PROPERTIES:
-:ID:       a5bc6848-5696-4dc1-8c63-74c026bdc2cb
-:END:
-#+title: math_and_machine_learning

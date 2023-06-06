@@ -1,4 +1,0 @@
-:PROPERTIES:
-:ID:       0ba243bb-bdf7-45b2-a9ef-d94b943d3436
-:END:
-#+title: computer_science
