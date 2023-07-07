@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       96476f16-8044-4917-b794-53e8572d68f7
+:END:
+#+title: algo-data-structure
+
+* algorithm
+[[id:231e9143-82a2-4d13-968f-216279447f12][bits-manipulation]]
+
+* data structure
+[[id:0f42f7e3-222e-4a53-a981-e53aee300f68][deque]]

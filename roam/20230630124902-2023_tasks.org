@@ -1,0 +1,29 @@
+:PROPERTIES:
+:ID:       afe6843b-98fd-4707-becc-a97576a64106
+:END:
+#+title: 2023-tasks
+
+* goals
+- [ ] full-time job at one of 1st rank companies: /WorldQuant/, /DytechLab/, /Anduin Transaction/, /Axon/
+- [ ] IELTS certificate 6.5 (no band under 6.0)
+- [ ] leetcode contest ratings at top 2%, 2000 solved problems
+- [ ] codeforces at candidate master
+- [ ] deep knowledge of
+  - [ ] C/C++/Clang/CUDA
+  - [ ] Python
+  - [ ] Java/Scala
+  - [ ] Go
+  - [ ] Javascript/Typescript
+
+* reading books
+- [ ] computer science
+  - [ ] introduction to algorithms
+  - [ ] operating system internals and design principles
+  - [ ] computer systems: a programmer perspective
+  - [ ] designing data-intensive applications
+- [ ] machine learning and data science
+  - [ ] probability and statistics
+  - [ ] the elements of statistical learning
+  - [ ] pattern recognition and machine learning
+  - [ ] probabilistic machine learning (introduction + advanced)
+  - [ ] deep learning (with understanding)
