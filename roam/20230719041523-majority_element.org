@@ -1,0 +1,42 @@
+:PROPERTIES:
+:ID:       a753702f-0d63-432d-8d36-3dbfca0596be
+:END:
+#+title: majority-element
+
+* Boyer-Moore voting
+
+#+begin_src C++
+// find majority element (n_count >= 1/2 array'size)
+int findMajority(vector<int> &nums) {
+  int n = nums.size(), c = 0, ans = -1;
+  for (int &d : nums) {
+    if (c == 0) ans = d;
+    d == ans ? c++ : c--;
+  }
+  // verify?
+  c = 0;
+  for (int &d : nums) c += d == ans;
+  return (c << 1) > n ? ans : -1;
+}
+#+end_src
+
+** [[https://leetcode.com/problems/minimum-index-of-a-valid-split][minimum index of a valid split]]
+#+begin_src C++
+int minimumIndex(vector<int> &nums) {
+  // find majority element
+  int c = 0, v = -1;
+  for (int &d : nums) {
+    if (c == 0) v = d;
+    d == v ? c++ : c--;
+  }
+  c = 0;
+  for (int &d : nums) c += d == v;
+  int n = nums.size(), cc = 0;
+  for (int i = 0; i < n; i++) {
+    cc += nums[i] == v;
+    // check v is majority element of both left and right splits
+    if ((cc << 1) > (i + 1) && ((c - cc) << 1) > (n - i - 1)) return i;
+  }
+  return -1;
+}
+#+end_src
