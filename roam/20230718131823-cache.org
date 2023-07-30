@@ -9,7 +9,6 @@ struct Node {
   int key, value;
   list<int>::const_iterator it;
 
-  // TODO: copy constructor?
   Node() = default;
   explicit Node(int key, int value, list<int>::const_iterator it) : key(key), value(value), it(it) {}
 };
@@ -17,11 +16,10 @@ struct Node {
 struct LRU {
   int capacity;
   unordered_map<int,Node> m;
-  list<int> q;
+  list<int> q; // list of node's key
 
   LRU(int capacity) : capacity(capacity) {}
 
-  // TODO: copy constructor if Node doesn't have explicit constructor
   Node& __touch(Node& p) {
     // update position
     q.erase(p.it);
@@ -54,3 +52,49 @@ struct LRU {
 #+end_src
 
 * lfu
+#+begin_src C++
+struct Node {
+  int key, value, freq = 0;
+  list<int>::const_iterator it;
+
+  Node() = default;
+  explicit Node(int key, int value, list<int>::const_iterator it) : key(key), value(value), it(it) {}
+};
+
+struct LFU {
+  int capacity, min_freq = 0;
+  unordered_map<int,Node> m;
+  unordered_map<int,list<int>> freqm; // list of node's key
+
+  LFU(int capacity) : capacity(capacity) {}
+
+  Node& __touch(Node& node) {
+    // remove node from current freq list
+    freqm[node.freq++].erase(node.it);
+    if (freqm[min_freq].empty()) min_freq++;
+    // push node to next freq list
+    freqm[node.freq].push_front(node.key);
+    node.it = freqm[node.freq].cbegin();
+    return node;
+  }
+
+  int get(int key) {
+    return m.find(key) == m.end() ? -1 : __touch(m[key]).value;
+  }
+
+  void put(int key, int value) {
+    if (m.find(key) == m.end()) {
+      if (m.size() == capacity) {
+        // remove least frequently and least recently element
+        m.erase(freqm[min_freq].back());
+        freqm[min_freq].pop_back();
+      }
+      freqm[0].push_front(key);
+      m[key] = Node(key, value, freqm[0].cbegin());
+      min_freq = 0;
+      return;
+    }
+    __touch(m[key]).value = value;
+  }
+};
+#+end_src

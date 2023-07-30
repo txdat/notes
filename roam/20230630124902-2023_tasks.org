@@ -6,23 +6,24 @@
 * goals
 - [ ] full-time job at one of 1st rank companies: /WorldQuant/, /DytechLab/, /Anduin Transaction/, /Axon/
 - [ ] IELTS certificate 6.5 (no band under 6.0)
-- [ ] leetcode contest ratings at top 2%, 2000 solved problems
-- [ ] codeforces at candidate master
+- [ ] leetcode contest rating (guardian badge), 2000 solved problems
+- [ ] /codeforces at candidate master/
 - [ ] deep knowledge of
   - [ ] C/C++/Clang/CUDA
   - [ ] Python
-  - [ ] Java/Scala
 
 * reading books
-- [ ] computer science
-  - [ ] introduction to algorithms
-  - [ ] the algorithm design manual
+- [-] computer science
+  - [X] introduction to algorithms
+  - [ ] [[https://cp-algorithms.com/][algorithms for competitive programming]]
+  - [ ][[https://en.algorithmica.org/hpc/][ algorithms for modern hardware]]
   - [ ] operating system internals and design principles
-  - [ ] computer systems: a programmer perspective
-  - [ ] designing data-intensive applications
-- [ ] machine learning and data science
-  - [ ] probability and statistics
-  - [ ] the elements of statistical learning
-  - [ ] pattern recognition and machine learning
-  - [ ] probabilistic machine learning (2012 version + introduction + advanced)
+  - [X] computer systems: a programmer perspective
+- [-] machine learning and data science
+  - [X] probability and statistics
+  - [X] the elements of statistical learning
+  - [-] probabilistic machine learning
+    - [X] 2012 version
+    - [ ] introduction
+    - [ ] advanced
   - [ ] deep learning (with understanding)

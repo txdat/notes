@@ -4,8 +4,12 @@
 #+title: algo-data-structure
 
 * algorithm
+** misc
 [[id:231e9143-82a2-4d13-968f-216279447f12][bits-manipulation]]
+** array
 [[id:a753702f-0d63-432d-8d36-3dbfca0596be][majority-element]]
+** string
+[[id:0678b67f-def9-4685-aee6-3e15c5231119][string]]
 
 * data structure
 [[id:0f42f7e3-222e-4a53-a981-e53aee300f68][deque]]
