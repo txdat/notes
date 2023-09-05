@@ -10,7 +10,12 @@
 [[id:a753702f-0d63-432d-8d36-3dbfca0596be][majority-element]]
 ** string
 [[id:0678b67f-def9-4685-aee6-3e15c5231119][string]]
+** graph
+[[id:de8c6b97-4b79-4747-9762-3a7b472c1639][topo-sort]]
+[[id:d3f9662e-240f-4ad5-bcbe-80adb205058a][minimum-spanning-tree]]
 
 * data structure
 [[id:0f42f7e3-222e-4a53-a981-e53aee300f68][deque]]
 [[id:f12f8b17-0d81-4950-a475-ec8c572ec770][cache]]
+[[id:5ca96713-0063-4276-a5eb-ad62df0daba8][linked-list]]
+[[id:88138464-e510-4549-8741-0f8d67179d81][red-black-avl-tree]]
