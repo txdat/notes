@@ -4,13 +4,16 @@
 #+title: 2023-tasks
 
 * goals
-- [ ] full-time job at one of 1st rank companies: /WorldQuant/, /DytechLab/, /Anduin Transaction/, /Axon/
+- [ ] full-time job at one of 1st rank companies: /WorldQuant/, /DytechLab/, /Employment Hero/, /Nab/, /Anduin Transaction/, and /Axon/
 - [ ] IELTS certificate 6.5 (no band under 6.0)
-- [ ] leetcode contest rating (guardian badge), 2000 solved problems
-- [ ] /codeforces at candidate master/
+- [ ] leetcode contest rating (top 2%), 2000 solved problems
+- [ ] codeforces at candidate master
 - [ ] deep knowledge of
   - [ ] C/C++/Clang/CUDA
+  - [ ] Java/Scala
   - [ ] Python
+  - [ ] computer system and operating system
+  - [ ] machine learning
 
 * reading books
 - [-] computer science
@@ -22,6 +25,7 @@
 - [-] machine learning and data science
   - [X] probability and statistics
   - [X] the elements of statistical learning
+  - [ ] pattern recognition and machine learning
   - [-] probabilistic machine learning
     - [X] 2012 version
     - [ ] introduction
