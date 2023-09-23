@@ -1,4 +1,0 @@
-:PROPERTIES:
-:ID:       88138464-e510-4549-8741-0f8d67179d81
-:END:
-#+title: red-black-avl-tree

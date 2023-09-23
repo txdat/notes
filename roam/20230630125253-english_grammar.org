@@ -1,4 +1,0 @@
-:PROPERTIES:
-:ID:       3db1e163-4116-4cd0-a8a9-eadb1f200548
-:END:
-#+title: english-grammar
