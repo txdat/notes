@@ -1,0 +1,10 @@
+{
+  "accentColor": "",
+  "interfaceFontFamily": "JetBrainsMono Nerd Font Mono",
+  "textFontFamily": "JetBrainsMono Nerd Font Mono",
+  "monospaceFontFamily": "JetBrainsMono Nerd Font Mono",
+  "baseFontSize": 12,
+  "nativeMenus": true,
+  "theme": "obsidian",
+  "cssTheme": "Minimal"
+}

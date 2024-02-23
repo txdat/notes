@@ -1,0 +1,14 @@
+{
+  "showLineNumber": true,
+  "spellcheck": false,
+  "vimMode": true,
+  "readableLineLength": false,
+  "pdfExportSettings": {
+    "includeName": true,
+    "pageSize": "Letter",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  },
+  "attachmentFolderPath": "attachments"
+}
