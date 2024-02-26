@@ -41,12 +41,28 @@ public:
     }
 };
 ```
-2. check a number is prime
+2. check a number is prime, prime factorization (split number into prime factors)
 ```cpp
 bool checkPrime(int n) {
     if (n < 2) return false;
-    if (n > 2 && n%2 == 0) return false;
-    for (int i = 3; i <= sqrt(n); i += 2) if (n % i == 0) return false;
+    if (n == 2) return true;
+    if (n%2 == 0) return false;
+    for (int i = 3; i <= sqrt(n); i += 2) if (n%i == 0) return false;
     return true;
+}
+
+// prime factorization
+bool factorizeDiv(int &n, int i) {
+	int t = n;
+	while (n%i == 0) n/=i;
+	return n < t;
+}
+
+vector<int> factorizeNum(int n) {
+	vector<int> f;
+	if (factorizeDiv(n,2)) f.push_back(2);
+	for (int i = 3; i <= sqrt(n); i += 2) if (factorizeDiv(n,i)) f.push_back(i);
+	if (n > 1) f.push_back(n); // n is prime number
+	return f;
 }
 ```

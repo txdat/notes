@@ -67,7 +67,7 @@
 			- container runtime interface: for create, delete, ... containers, pull container images, ...
 4.. pod and deployment
 	1. Pod
-		- co-located group of containers - basic building block of k8s (all pod's containers run on same node)
+		- co-located group of containers - basic building block of k8s (all pod's containers run on same node) -> group of cohesive containers
 		- all pod's containers share same ip address and port space
 		- all pods can access other pods by their ip address (flat inter-pod network)
 		- pods are managed by labels
@@ -77,6 +77,7 @@
 		- k8s checks if pod is alive by `liveness probe` (send HTTP request, TCP socket, execute command, ...) -> restart unhealthy pods automatically
 		- k8s checks if pod is able to receive user's request or not (not restart pods)
 		- ![[Pasted image 20231228214750.png | 600]]
+		- ![[Pasted image 20240226160524.png | 600]]
 		- **Static pod**
 			- managed directly by kubelet on a specific node, without the api server (from control plane like deployment) observing them (always bound to one kubelet)
 			- kubelet creates a mirror pod on api server for each static pod, all pods are visible from api server (but cannot control static pods from here)
