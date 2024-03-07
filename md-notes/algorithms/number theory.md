@@ -66,3 +66,31 @@ vector<int> factorizeNum(int n) {
 	return f;
 }
 ```
+3. find smallest/largest of positive modulo (> 0) between 2 elements in array - [D. Turtle Tenacity: Continual Mods](https://codeforces.com/contest/1933/problem/D)
+```cpp
+bool continualMods(vector<int> &a) {
+	sort(a.begin(),a.end());
+    if (a[1] > a[0]) {
+        // cout << "yes\n";
+        return true;
+    }
+    for (int i = 0; i < n; i++) {
+        int t = a[i];
+        while (t < a[n-1]) {
+            auto it = upper_bound(all(a), t);
+            if (it == a.end()) {
+                // cout << "no\n";
+                return false;
+            }
+            int r = *it%a[i];
+            if (r && r < a[0]) {
+                // cout << "yes\n";
+                return true;
+            }
+            t = *it - r + a[i];
+        }
+    }
+    //cout << "no\n";
+    return false;
+}
+```

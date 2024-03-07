@@ -94,9 +94,12 @@
 		 - keep packets' source, destination ip addresses, protocol, ...
 		 - connections are terminated at backend services, and responses come go directely to clients, not back through LB
 			 ![[Pasted image 20231229031245.png | 600]]
-- proxy-only subnet for LB
+- proxy-only subnet for LB (regional internal/external load balancers)
 	- requires reserved exclusively ip addresses for LB
 	- client -> LB -> proxies (use internal ip addresses) -> backend services
+- container-native load balancer through ingress
+	- send requests from load balancer to services directly (through network endpoint groups - NEG), without using instances group and IP tables -> faster (without extra hops)
+[[GCP - Network endpoint group]]
 # Cloud DNS
 - domain name system service publishes domain to global DNS
 - distributed database stores ip addresses, other data and look up by name

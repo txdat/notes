@@ -65,7 +65,7 @@
 				- ![[Pasted image 20240209220742.png | 600]]
 			- container storage interface
 			- container runtime interface: for create, delete, ... containers, pull container images, ...
-4.. pod and deployment
+4. pod and deployment
 	1. Pod
 		- co-located group of containers - basic building block of k8s (all pod's containers run on same node) -> group of cohesive containers
 		- all pod's containers share same ip address and port space
@@ -100,6 +100,9 @@
 		![[Pasted image 20231228211829.png | 600]]
 	- Graceful termination
 		![[Pasted image 20231228220015.png | 600]]
+	- stateful application
+		- stateful pods are initialized sequentially, based on their indices
+		- scaling statefulset relates to increase/decrease number of replicas
 5. service
 	- pods are ephemeral, pods' ip addresses are assigned after pods have been scheduled to nodes, and many pods may provide same service
 	- service is k8s resource to make single, constant entry to a group of pods providing same service (using pods selector)
