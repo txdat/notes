@@ -15,10 +15,10 @@
 	- availability: always get data even one or more servers are down
 	- partition tolerance: the system continues to operate despite network partitions (disconnection between network's components)
 	-> in distributed system, partitions cannot be avoided, and we have to choose between consistency and availability
-		if choose CP system (eg. bank, ...):
+		if choose cp system (eg. bank, ...):
 			- reject all write operations (which cause data inconsistency)
 			- return error before inconsistency is resolved (system is unavailable)
-		if choose AP system:
+		if choose ap system:
 			- accept write operations to running servers
 			- sync new data to new servers after partition is resolved
 # system components

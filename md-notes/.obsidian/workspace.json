@@ -4,35 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "d5d377b2e5257ed8",
+        "id": "473265b5c2b3b204",
         "type": "tabs",
         "children": [
           {
-            "id": "2e96fccfa10831be",
+            "id": "0ac061e3ec12f8a9",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "engineering/devops/gcp.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "f45e651ea8874972",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "algorithms/string.md",
+                "file": "engineering/interview questions/database.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -98,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "algorithms/string.md",
+                "file": "engineering/interview questions/database.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "algorithms/string.md",
+                "file": "engineering/interview questions/database.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "algorithms/string.md"
+                "file": "engineering/interview questions/database.md"
               }
             }
           }
@@ -151,38 +138,43 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": true,
       "templates:Insert template": true,
-      "command-palette:Open command palette": true,
-      "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-excalidraw-plugin:Create new drawing": false
+      "command-palette:Open command palette": true
     }
   },
-  "active": "f45e651ea8874972",
+  "active": "0ac061e3ec12f8a9",
   "lastOpenFiles": [
-    "algorithms/union find.md",
-    "engineering/lang/js.md",
+    "engineering/design system/key-value store.md",
+    "engineering/interview questions/database.md",
+    "engineering/cs fundamentals/distributed system/introduction.md",
+    "engineering/interview questions/networking.md",
+    "engineering/database/mongodb.md",
+    "engineering/interview questions/oop.md",
+    "engineering/interview questions/operating system.md",
     "engineering/devops/gcp.md",
     "Excalidraw/GCP - Network endpoint group.md",
     "engineering/devops/k8s.md",
+    "algorithms/string.md",
+    "algorithms/union find.md",
     "algorithms/policy-based data structure.md",
     "engineering/cs fundamentals/oop",
     "algorithms/graph.md",
     "algorithms/number theory.md",
     "algorithms/queue.md",
-    "engineering/cs fundamentals/distributed system/introduction.md",
     "algorithms/binary search.md",
     "attachments/Pasted image 20240226160524.png",
     "attachments/Pasted image 20231228214750.png",
     "attachments/Pasted image 20231228203731.png",
-    "engineering/lang",
+    "engineering/interview questions",
     "algorithms/segment tree.md",
     "algorithms/stack.md",
     "algorithms/arrays.md",
     "algorithms/template.md",
-    "algorithms/string.md",
     "algorithms/bits.md",
     "engineering/cs fundamentals/distributed system",
     "engineering/cs fundamentals/networking",
@@ -191,11 +183,6 @@
     "engineering/design system/chat system.md",
     "engineering/devops/zookeeper.md",
     "algorithms/trie.md",
-    "algorithms/tree.md",
-    "engineering/design system/key-value store.md",
-    "engineering/design system/search autocomplete - incremental search.md",
-    "engineering/devops/kafka.md",
-    "engineering/design system/url shortener.md",
     "attachments/Pasted image 20240209220742.png",
     "attachments/Pasted image 20240209220243.png",
     "attachments/Pasted image 20240209212825.png",
