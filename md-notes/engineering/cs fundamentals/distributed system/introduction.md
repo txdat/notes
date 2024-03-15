@@ -21,5 +21,16 @@
 	- components from system A can work on system B (having same interfaces)
 - scalable (for system)
 	- size: add more users and resources without any noticeable loss of performance
+		- limit by computation bound (eg. real-time, ...), IO bound (eg. data querying, ...), or networking (eg. data transfer)
 	- geographical: users and resources may lie far apart, but the communication delays are hardly noticed
 	- administrative: for more organizations
+	- scaling techniques:
+		- scaling up: add more CPUs, memory, ...
+		- scaling out:
+			- hiding communication latencies:
+				- try to avoid waiting the response from remote-server -> asynchronous communication, often be used in batch-processing or parallel applications
+			- partitioning and distribution:
+				- take a component and split it into smaller parts, and spreading them across system
+			- replication/caching
+				- increase availability and balance the load between components -> better performance
+				- can cause consistency problems

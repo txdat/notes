@@ -7,9 +7,9 @@
 		- store data in more free froms, compared to SQL
 		- some main types:
 			- key-value: redis, memcache,
-				- different between redis and memcache?
+				- different between redis and memcached?
 					- redis: use single thread, supports more data structures
-					- memcache: support multiple processing/threading, store data in string format
+					- memcached: support multiple processing/threading, store data in string format
 			- document: mongodb
 			- columnar: cassandra
 			- graph: neo4j
@@ -27,7 +27,7 @@
 2. What is a transaction in SQL? When is a transaction considered successful?
 	- a transaction is unit of work, contains one or more operations. an executed transaction changes database from current state to another state.
 	- when a transaction is successful, all its operations have to run completely, without any error. if any operation is failed, a transaction is failed
-1. ACID
+3. ACID
 	- are properties of transaction
 	- A - atomicity
 		- all of transaction's operations must be executed or not together, this ensure that no transaction is completed partially -> transaction is single unit
@@ -38,7 +38,7 @@
 		- 2 transactions must not interfere with each other (use same data at the same time)
 	- D - durability
 		- the changes made by a completed transaction is permanent. it ensures that the consistent state after executing transaction can be recovered after any system failure or crash
-1. CAP
+4. CAP
 	- consistency: all clients see same the data at the same time no matter which server is connected
 	- availability: always get data even one or more servers are down
 	- partition tolerance: the system continues to operate despite network partitions (disconnection between network's components)
@@ -49,11 +49,18 @@
 		if choose ap system:
 			- accept write operations to running servers
 			- sync new data to new servers after partition is resolved
-3. SQL normalizations - 4 common types of normalization
+5. SQL normalizations - 4 common types of normalization
+[doc](https://opentextbc.ca/dbdesign01/chapter/chapter-12-normalization/)
+	- set of specific rules for improving design of database
 	- 1st
-		- 
+		- each attribute (table's cell) contains only one (singular) value -> eliminate duplicated data and simplify queries
 	- 2nd
+		- non-key attributes must be fully dependent on entire primary-key (not partial dependency)
 	- 3rd
+		- there is not transitive dependencies between attributes, a non-key attribute is not functionally dependent on another non-key attribute
 	- boyte-codd (3rd+)
-1. Data sharding
-2. Indexing, b-tree
+		- every determinant (a attribute can be used to determine value of other attributes) is a candidate key (uniquely identify rows)
+7. Data sharding
+8. Indexing
+	- requires own disk space and holds a copy of data -> redundant data
+	- creating index does not change data
