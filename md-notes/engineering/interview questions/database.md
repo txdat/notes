@@ -38,6 +38,7 @@
 		- 2 transactions must not interfere with each other (use same data at the same time)
 	- D - durability
 		- the changes made by a completed transaction is permanent. it ensures that the consistent state after executing transaction can be recovered after any system failure or crash
+- ![[Pasted image 20240317220741.png | 600]]
 4. CAP
 	- consistency: all clients see same the data at the same time no matter which server is connected
 	- availability: always get data even one or more servers are down
