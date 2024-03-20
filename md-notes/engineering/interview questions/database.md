@@ -65,3 +65,13 @@
 8. Indexing
 	- requires own disk space and holds a copy of data -> redundant data
 	- creating index does not change data
+9. Database models
+- flat model
+	- store data in table (row - record/entity, column - attribute) -> lack of ability to handle relationship between entities
+- hierarchical model
+	- store data in tree-like data structure -> struggles with many-to-many relationsips
+- relational model
+	- represents data in tables (relations) -> support data integrity, avoid redundancy, support many-to-many relationships, and complex queries and transactions
+- star schema
+- snowflake model
+- network model

@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "f0e7cfd355e658b5",
+        "id": "8f8e4ae3b352c1bb",
         "type": "tabs",
         "children": [
           {
-            "id": "f79fffe2cd72d919",
+            "id": "6458a91226cee1c3",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "engineering/interview questions/database.md",
+                "file": "algorithms/dynamic programming.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "engineering/interview questions/database.md",
+                "file": "algorithms/dynamic programming.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "engineering/interview questions/database.md",
+                "file": "algorithms/dynamic programming.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "engineering/interview questions/database.md"
+                "file": "algorithms/dynamic programming.md"
               }
             }
           }
@@ -147,17 +147,18 @@
       "command-palette:Open command palette": true
     }
   },
-  "active": "f79fffe2cd72d919",
+  "active": "6458a91226cee1c3",
   "lastOpenFiles": [
+    "algorithms/dynamic programming.md",
+    "engineering/interview questions/oop.md",
+    "engineering/interview questions/networking.md",
+    "engineering/interview questions/database.md",
     "attachments/Pasted image 20240317220741.png",
     "engineering/cs fundamentals/distributed system/introduction.md",
     "engineering/lang/javascript-typescript-nodejs.md",
     "algorithms/greedy.md",
     "engineering/lang",
     "engineering/design system/system-design-primer",
-    "engineering/interview questions/oop.md",
-    "engineering/interview questions/networking.md",
-    "engineering/interview questions/database.md",
     "algorithms/sliding window.md",
     "engineering/design system/key-value store.md",
     "engineering/database/mongodb.md",
@@ -191,7 +192,6 @@
     "attachments/Pasted image 20240209212820.png",
     "attachments/Pasted image 20240209211648.png",
     "attachments/Pasted image 20240209211121.png",
-    "attachments/Pasted image 20240209210714.png",
     "Excalidraw",
     "engineering/misc",
     "machine learning",
