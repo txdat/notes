@@ -20,3 +20,14 @@
 	- HTTPS = HTTP + TLS for data encryption
 4. Socket?
 	- is an endpoint for sending/receiving data between processes and machines
+5. DNS?
+	- convert a hostname to ip address (given to each device on internet)
+	- get from: browser's cache -> OS' cach -> DNS resolver (sends request to domain name server)
+	- DNS uses UDP protocol (fast, request's data is small)
+6. Connection pool?
+	- group of database connections, can be reused for new connections (opening/closing a new connection is costly)
+	- cons:
+		- manage pool's configuration: pool's size and max connections
+		- resource allocation: inefficient use -> resource contention
+1. TCP proxy/ reversed proxy?
+	- proxy server acts as an intermediary between clients and servers. proxy hides clients on internet (server only knows requests come from proxy, not clients), and reversed proxy hides servers (client only knows response come from reversed proxy, not servers)

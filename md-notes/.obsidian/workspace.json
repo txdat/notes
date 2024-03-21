@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "8f8e4ae3b352c1bb",
+        "id": "249f76771820d3b3",
         "type": "tabs",
         "children": [
           {
-            "id": "6458a91226cee1c3",
+            "id": "de5fe84b74b5221b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "algorithms/dynamic programming.md",
+                "file": "engineering/interview questions/operating system.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "algorithms/dynamic programming.md",
+                "file": "engineering/interview questions/operating system.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "algorithms/dynamic programming.md",
+                "file": "engineering/interview questions/operating system.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "algorithms/dynamic programming.md"
+                "file": "engineering/interview questions/operating system.md"
               }
             }
           }
@@ -147,12 +147,13 @@
       "command-palette:Open command palette": true
     }
   },
-  "active": "6458a91226cee1c3",
+  "active": "de5fe84b74b5221b",
   "lastOpenFiles": [
-    "algorithms/dynamic programming.md",
-    "engineering/interview questions/oop.md",
-    "engineering/interview questions/networking.md",
     "engineering/interview questions/database.md",
+    "engineering/interview questions/networking.md",
+    "engineering/interview questions/oop.md",
+    "engineering/interview questions/operating system.md",
+    "algorithms/dynamic programming.md",
     "attachments/Pasted image 20240317220741.png",
     "engineering/cs fundamentals/distributed system/introduction.md",
     "engineering/lang/javascript-typescript-nodejs.md",
@@ -162,7 +163,6 @@
     "algorithms/sliding window.md",
     "engineering/design system/key-value store.md",
     "engineering/database/mongodb.md",
-    "engineering/interview questions/operating system.md",
     "engineering/devops/gcp.md",
     "Excalidraw/GCP - Network endpoint group.md",
     "engineering/devops/k8s.md",
