@@ -213,3 +213,61 @@ public:
     }
 };
 ```
+- count frequencies of all elements - O(n) time complexity, O(1) space complexity
+	- count frequencies of n-length array elements, whose elements are between 1-n -> use element as an index and store their count at the index (negative number)
+	- [solution](https://www.geeksforgeeks.org/count-frequencies-elements-array-o1-extra-space-time/)
+```cpp
+unordered_map<int,int> count1(vector<int> &a) { // use a[a[i]] to store counts of a[i]
+	int n = a.size();
+	a.push_back(0); // for value n
+
+	for (int i = 0; i < n; i++) {
+		if (a[i] <= 0) continue;
+		if (a[i] > i && a[a[i]] > 0) {
+			// keep larger and not visited element
+			int t = a[i];
+			a[i] = a[t];
+			a[t] = -1;
+			i--; // keep current i
+		} else {
+			a[a[i]] = min(-1, a[a[i]]-1); // -1 for visited element before
+		}
+	}
+
+	unordered_map<int,int> m;
+	for (int i = 1; i <= n; i++) {
+		if (a[i] < 0) m[i] = -a[i]; // count of i is stored as negative
+	}
+	return m;
+}
+
+unordered_map<int,int> count2(vector<int> &a) { // use a[a]
+}
+```
+
+- [find all duplicates in an array](https://leetcode.com/problems/find-all-duplicates-in-an-array)
+```cpp
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        int n = nums.size();
+        nums.push_back(0);
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] <= 0) continue;
+            if (nums[i] > i && nums[nums[i]] > 0) {
+                int t = nums[i];
+                nums[i] = nums[t];
+                nums[t] = -1;
+                i--;
+            } else {
+                nums[nums[i]] = min(-1, nums[nums[i]]-1);
+            }
+        }
+
+        vector<int> ans;
+        for (int i = 1; i <= n; i++) if (nums[i] == -2) ans.push_back(i);
+        return ans;
+    }
+};
+```
