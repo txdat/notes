@@ -16,13 +16,13 @@
 		- manage concurrent execution
 2. concurrency vs parallelism vs multi-threading?
 - [concurrency-parallelism](https://jenkov.com/tutorials/java-concurrency/concurrency-vs-parallelism.html)
-- concurrency
+- concurrency: tasks can start, run, and complete in overlapping time periods -> lead to race condition
 	- make progress on more than 1 task at the same time. if computer has 1 cpu, cpu switches between the different tasks during execution
 - parallel execution
 	- cpus (more than 1 cpu) make progress on more than 1 task simultaneously. parallel execution != parallelism
 - parallel concurrent execution
 	- make progress tasks on cpus simultaneously (parallel), multi tasks on each cpu (concurrency)
-- parallelism
+- parallelism: multiple threads/processes working on same task using multiple CPUs
 	- application splits its tasks into smaller subtasks, which can be processed parallel at the same time -> != parallel (concurrent) execution
 	- have more than 1 thread and each thread must run on seperate cpus
 	-> concurrency refers to how a single cpu make progress multiple tasks seemingly at the same time
@@ -36,6 +36,28 @@
 	- race condition:
 		- not control order and number of executions of threads/processes
 4. locking mechanism?
-	- 
-5. virtual memory & paging?
-6. 
+	- threads have independent execution context (similar to processes), but they ==share same memory space==
+	- lock variable protects critical section -> all threads competing for critical section share same lock -> only one thread acquires lock at a time, and other threads have to wait
+	- concurrency - [MIT_6.005](https://web.mit.edu/6.005/www/fa15/classes/19-concurrency/)
+		- means multiple computations happening at the same time
+		- 2 models
+			- shared memory: concurrency modules interact by reading/writing shared objects in memory
+			- message passing: concurrency modules interact by sending messages to each other through communication channel
+		- processes, threads, and time-slicing
+			- process:
+				- an instance of a running program, and ==is isolated from other processes== -> has its own private section of memory, and cannot access to other processes' memory
+			- thread:
+				- a locus of control inside a running program (at least 1 thread - main thread in each process)
+				- ready for shared memory -> can read all other threads' memory in same a process
+			- time-slicing:
+				- concurrency simulation -> cpu switches between threads ==unpredictably and nondeterministically==
+		- race condition:
+			- the correctness of a program
+			- thread safe strategies:
+				- confinement: dont give other threads the abilitiy to read/write data directly
+				- use imutable references and data types
+				- use thread safe data types
+				- synchronization: prevent threads (except one?) access shared data at the same time (implemeted in thread safe data types?)
+					- use 'lock' -> 2 actions: acquire/release
+					- deadlock: threads wait others forever (circular dependency)
+1. virtual memory & paging?

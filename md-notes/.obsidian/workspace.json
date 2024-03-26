@@ -4,17 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "8969e9f2ff3966d0",
+        "id": "72d00dc1458d8a47",
         "type": "tabs",
         "children": [
           {
-            "id": "64d5da1c1eb38eb5",
+            "id": "1044810d0bce81b6",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Excalidraw/AWS VPC.md"
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -83,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Excalidraw/AWS VPC.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Excalidraw/AWS VPC.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -122,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Excalidraw/AWS VPC.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -145,15 +139,15 @@
       "command-palette:Open command palette": true
     }
   },
-  "active": "64d5da1c1eb38eb5",
+  "active": "1044810d0bce81b6",
   "lastOpenFiles": [
-    "engineering/devops/aws.md",
+    "engineering/interview questions/operating system.md",
     "Excalidraw/AWS VPC.md",
+    "engineering/devops/aws.md",
     "algorithms/arrays.md",
     "engineering/devops/gcp.md",
     "engineering/devops/gke - helm chart.md",
     "english/vocab.md",
-    "engineering/interview questions/operating system.md",
     "engineering/interview questions/database.md",
     "engineering/interview questions/networking.md",
     "engineering/interview questions/oop.md",
@@ -176,7 +170,6 @@
     "algorithms/graph.md",
     "algorithms/number theory.md",
     "algorithms/queue.md",
-    "algorithms/binary search.md",
     "attachments/Pasted image 20240226160524.png",
     "attachments/Pasted image 20231228214750.png",
     "attachments/Pasted image 20231228203731.png",
