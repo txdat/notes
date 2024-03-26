@@ -271,3 +271,37 @@ public:
     }
 };
 ```
+- [find first missing positive](https://leetcode.com/problems/first-missing-positive/description/)
+```cpp
+// find all numbers disappeared in array - leetcode 448
+class Solution_LC448 {
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+        int n = nums.size();
+        nums.push_back(0);
+        for (int i = 0; i < n; i++) {
+            // use nums[i] to store i if i is met
+            while (nums[i] != nums[nums[i]]) swap(nums[i],nums[nums[i]]);
+        }
+        vector<int> ans;
+        for (int i = 1; i <= n; i++) if (nums[i] != i) ans.push_back(i);
+        return ans;
+    }
+};
+
+// O(n) time complexity - O(1) space complexity
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        int n = nums.size();
+        nums.push_back(0);
+        for (int i = 0; i < n; i++) {
+	        // ignore non-positive or larger than n integers (missing positive in [1..n+1])
+	        // use nums[i] to store i if i is met
+            while (nums[i] > 0 && nums[i] <= n && nums[nums[i]] != nums[i]) swap(nums[i], nums[nums[i]]);
+        }
+        for (int i = 1; i <= n; i++) if (nums[i] != i) return i;
+        return n+1;
+    }
+};
+```
