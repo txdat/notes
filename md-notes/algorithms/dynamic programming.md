@@ -60,3 +60,32 @@ public:
     }
 };
 ```
+3. [maximum number of points with cost](https://leetcode.com/problems/maximum-number-of-points-with-cost/)
+```cpp
+using ll = long long;
+
+class Solution {
+public:
+    long long maxPoints(vector<vector<int>>& points) {
+        int m = points.size(), n = points[0].size();
+        vector<vector<ll>> dp(2,vector<ll>(n,0));
+        vector<int> fw(n), bw(n); // forward/backward index
+        fw[0] = 0;
+        bw[n-1] = n-1;
+        for (int j = 0; j < n; j++) dp[0][j] = points[0][j];
+        for (int i = 1; i < m; i++) {
+            int i0 = i%2, i1 = 1 - i0;
+            for (int j = 1; j < n; j++) {
+                fw[j] = dp[i1][j] >= dp[i1][fw[j-1]] - abs(j-fw[j-1]) ? j : fw[j-1];
+            }
+            for (int j = n-2; j >= 0; j--) {
+                bw[j] = dp[i1][j] >= dp[i1][bw[j+1]] - abs(j-bw[j+1]) ? j : bw[j+1];
+            }
+            for (int j = 0; j < n; j++) {
+                dp[i0][j] = max(dp[i1][bw[j]] - abs(j-bw[j]), dp[i1][fw[j]] - abs(j-fw[j])) + points[i][j];
+            }
+        }
+        return *max_element(dp[1-m%2].begin(),dp[1-m%2].end());
+    }
+};
+```

@@ -305,3 +305,73 @@ public:
     }
 };
 ```
+- [minimize manhattan distance](https://leetcode.com/problems/minimize-manhattan-distances/)
+	- [compute maximum manhattan distance between 2 points from n points](https://www.geeksforgeeks.org/maximum-manhattan-distance-between-a-distinct-pair-from-n-coordinates/)
+```cpp
+int get_max_distance(vector<vector<int>> &points) {
+	int n = points.size();
+	int min_s, max_s, min_d, max_d;
+	min_s = max_s = points[0][0] + points[0][1];
+	min_d = max_d = points[0][0] - points[0][1];
+	for (int i = 1; i < n; i++) {
+		int s = points[i][0] + points[i][1], d = points[i][0] - points[i][1];
+		if (s < min_s) {
+			min_s = s;
+		} else if (s > max_s) {
+			max_s = s;
+		}
+		if (d < min_d) {
+			min_d = d;
+		} else if (d > max_d) {
+			max_d = d;
+		}
+	}
+	return max(max_s-min_s,max_d-min_d);
+}
+```
+```cpp
+class Solution {
+public:
+	// get max manhattan distance with index of 2 points having maximum distance
+    vector<int> get_max_distance(vector<vector<int>> &points, int ignore=-1) {
+        int n = points.size();
+        int i0 = ignore == 0;
+        int min_s, max_s, min_d, max_d;
+        min_s = max_s = points[i0][0] + points[i0][1];
+        min_d = max_d = points[i0][0] - points[i0][1];
+        int min_si = i0, max_si = i0, min_di = i0, max_di = i0;
+        for (int i = i0+1; i < n; i++) {
+            if (i == ignore) continue;
+            int s = points[i][0] + points[i][1], d = points[i][0] - points[i][1];
+            if (s < min_s) {
+                min_s = s;
+                min_si = i;
+            } else if (s > max_s) {
+                max_s = s;
+                max_si = i;
+            }
+            if (d < min_d) {
+                min_d = d;
+                min_di = i;
+            } else if (d > max_d) {
+                max_d = d;
+                max_di = i;
+            }
+        }
+        int ds = max_s - min_s, dd = max_d - min_d;
+        if (ds > dd) {
+            return {ds, min_si, max_si};
+        }
+        return {dd, min_di, max_di};
+    }
+    
+    int minimumDistance(vector<vector<int>>& points) {
+        int n = points.size();
+        auto v = get_max(points);
+        // ignore 2 points that create maximum manhattan distance
+        auto v1 = get_max(points,v[1]);
+        auto v2 = get_max(points,v[2]);
+        return min(v[0],min(v1[0],v2[0]));
+    }
+};
+```

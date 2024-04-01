@@ -46,3 +46,10 @@ public:
     }
 };
 ```
+2. [maximum xor of two numbers in an array](https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/)
+```cpp
+```
+3. [maximum genetic difference query](https://leetcode.com/problems/maximum-genetic-difference-query/)
+```cpp
+
+```
