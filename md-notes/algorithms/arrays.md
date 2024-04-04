@@ -366,7 +366,6 @@ public:
     }
     
     int minimumDistance(vector<vector<int>>& points) {
-        int n = points.size();
         auto v = get_max(points);
         // ignore 2 points that create maximum manhattan distance
         auto v1 = get_max(points,v[1]);

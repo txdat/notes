@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "algorithms/arrays.md",
+                "file": "algorithms/trie.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "algorithms/arrays.md",
+                "file": "algorithms/trie.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "algorithms/arrays.md",
+                "file": "algorithms/trie.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "algorithms/arrays.md"
+                "file": "algorithms/trie.md"
               }
             }
           }
@@ -149,7 +149,18 @@
   },
   "active": "d58849ed389c92e7",
   "lastOpenFiles": [
+    "algorithms/arrays.md",
     "algorithms/trie.md",
+    "algorithms/stack.md",
+    "algorithms/binary search.md",
+    "algorithms/tree.md",
+    "algorithms/template.md",
+    "algorithms/sorting.md",
+    "algorithms/number theory.md",
+    "algorithms/misc.md",
+    "algorithms/dynamic programming.md",
+    "engineering/design system/system-design-primer/README.md",
+    "algorithms/graph.md",
     "engineering/design system/design data-intensive applications",
     "engineering/design system/distributed system/introduction.md",
     "engineering/interview questions/operating system.md",
@@ -158,12 +169,8 @@
     "engineering/design system/alex-xu",
     "engineering/devops/k8s.md",
     "algorithms/sliding window.md",
-    "algorithms/dynamic programming.md",
-    "algorithms/graph.md",
-    "algorithms/number theory.md",
     "algorithms/policy-based data structure.md",
     "algorithms/segment tree.md",
-    "algorithms/stack.md",
     "algorithms/union find.md",
     "engineering/devops/aws.md",
     "Excalidraw/Drawing 2024-03-28 22.12.31.excalidraw.md",
@@ -171,12 +178,6 @@
     "engineering/devops/gcp.md",
     "engineering/devops/kafka.md",
     "Excalidraw/AWS VPC.md",
-    "algorithms/arrays.md",
-    "engineering/devops/gke - helm chart.md",
-    "english/vocab.md",
-    "engineering/interview questions/database.md",
-    "engineering/interview questions/networking.md",
-    "engineering/interview questions/oop.md",
     "attachments/Pasted image 20240317220741.png",
     "engineering/lang",
     "engineering/design system/system-design-primer",

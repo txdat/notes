@@ -52,3 +52,34 @@ public:
     }
 };
 ```
+- [longest valid parentheses](https://leetcode.com/problems/longest-valid-parentheses/)
+```cpp
+class Solution {
+public:
+    int longestValidParentheses(string s) {
+        int n = s.length();
+        int ans = 0;
+        // from left to right
+        for (int i = 0, j = -1, c = 0; i < n; i++) {
+            c += s[i] == '(' ? 1 : -1;
+            if (c < 0) {
+                c = 0;
+                j = i;
+            } else if (c == 0 && i-j > ans) {
+                ans = i-j;
+            }
+        }
+        // from right to left
+        for (int i = n-1, j = n, c = 0; i >= 0; i--) {
+            c += s[i] == ')' ? 1 : -1;
+            if (c < 0) {
+                c = 0;
+                j = i;
+            } else if (c == 0 && j-i > ans) {
+                ans = j-i;
+            }
+        }
+        return ans;
+    }
+};
+```
