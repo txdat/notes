@@ -72,3 +72,30 @@ public:
     }
 };
 ```
+- [D. Inaccurate Subsequence Search](https://codeforces.com/contest/1955/problem/D)
+```cpp
+void __solve(int __test_case = 1) {
+    int n, m, k;
+    cin >> n >> m >> k;
+    vector<int> a(n), b(m);
+    cin >> a >> b;
+    unordered_map<int,int> am, bm;
+    for (int &d : b) bm[d]++;
+ 
+    int ans = 0;
+    int c = 0;
+    for (int i = 0; i < m-1; i++) {
+        am[a[i]]++;
+        if (am[a[i]] <= bm[a[i]]) c++;
+    }
+    for (int i = 0, j = m-1; j < n; j++) {
+        am[a[j]]++;
+        if (am[a[j]] <= bm[a[j]]) c++;
+        if (c >= k) ans++;
+        am[a[i]]--;
+        if (am[a[i]] < bm[a[i]]) c--;
+        i++;
+    }
+    cout << ans << endl;
+}
+```

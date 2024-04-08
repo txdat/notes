@@ -97,3 +97,43 @@ public:
     }
 };
 ```
+- [minimum cost walk in weighted graph](https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/)
+```cpp
+class Solution {
+public:
+    int find_parent(vector<int> &p, int i) {
+        int j = i;
+        while (p[i] != -1) i = p[i];
+        if (j != i) p[j] = i;
+        return i;
+    }
+    
+    vector<int> minimumCost(int n, vector<vector<int>>& edges, vector<vector<int>>& query) {
+        vector<int> p(n,-1);
+        vector<int> m(n,INT_MAX);
+        for (auto &e : edges) {
+            int p0 = find_parent(p, e[0]), p1 = find_parent(p, e[1]);
+            if (p0 != p1) {
+                p[p1] = p0;
+                m[p0] &= m[p1];
+            }
+            m[p0] &= e[2];
+        }
+        
+        vector<int> ans;
+        for (auto &e : query) {
+            if (e[0] == e[1]) {
+                ans.push_back(0);
+                continue;
+            }
+            int p0 = find_parent(p, e[0]), p1 = find_parent(p, e[1]);
+            if (p0 != p1) {
+                ans.push_back(-1);
+            } else {
+                ans.push_back(m[p0]);
+            }
+        }
+        return ans;
+    }
+};
+```
