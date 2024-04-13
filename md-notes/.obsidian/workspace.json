@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "algorithms/sliding window.md",
+                "file": "algorithms/union find.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "algorithms/sliding window.md",
+                "file": "algorithms/union find.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "algorithms/sliding window.md",
+                "file": "algorithms/union find.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "algorithms/sliding window.md"
+                "file": "algorithms/union find.md"
               }
             }
           }
@@ -149,22 +149,24 @@
   },
   "active": "edc6451542897c51",
   "lastOpenFiles": [
+    "algorithms/graph.md",
+    "algorithms/union find.md",
+    "algorithms/binary search.md",
+    "algorithms/number theory.md",
+    "algorithms/misc.md",
+    "algorithms/stack.md",
+    "algorithms/arrays.md",
+    "algorithms/string.md",
+    "algorithms/sliding window.md",
     "engineering/courses/database/CMU 15-445.md",
     "engineering/courses/database",
     "engineering/courses",
     "engineering/design system/system-design-primer/README.md",
-    "algorithms/union find.md",
     "algorithms/trie.md",
-    "algorithms/arrays.md",
-    "algorithms/stack.md",
-    "algorithms/binary search.md",
     "algorithms/tree.md",
     "algorithms/template.md",
     "algorithms/sorting.md",
-    "algorithms/number theory.md",
-    "algorithms/misc.md",
     "algorithms/dynamic programming.md",
-    "algorithms/graph.md",
     "engineering/design system/design data-intensive applications",
     "engineering/design system/distributed system/introduction.md",
     "engineering/interview questions/operating system.md",
@@ -172,14 +174,12 @@
     "engineering/design system/alex-xu/chat system.md",
     "engineering/design system/alex-xu",
     "engineering/devops/k8s.md",
-    "algorithms/sliding window.md",
     "algorithms/policy-based data structure.md",
     "algorithms/segment tree.md",
     "engineering/devops/aws.md",
     "Excalidraw/Drawing 2024-03-28 22.12.31.excalidraw.md",
     "attachments/Pasted Image 20240328221431_758.png",
     "engineering/devops/gcp.md",
-    "engineering/devops/kafka.md",
     "attachments/Pasted image 20240317220741.png",
     "engineering/lang",
     "engineering/design system/system-design-primer",

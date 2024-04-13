@@ -71,3 +71,24 @@ public:
     }
 };
 ```
+- [time needed to rearrange a binary string](https://leetcode.com/problems/time-needed-to-rearrange-a-binary-string/description/)
+```cpp
+class Solution {
+public:
+    int secondsToRemoveOccurrences(string s) {
+        int i = 0, n = s.length()-1;
+        while (i < s.length() && s[i] == '1') i++;
+        while (n >=0 && s[n] == '0') n--;
+        int cnt = 0, z = -1, lz = 0;
+        for (; i <= n; i++) {
+            if (s[i] == '1') {
+                cnt++; // count number of '1' -> move '1' to leftward
+                z--; // number of zeros before '1', counted by cnt -> can swap multiple '01' at the same time
+            } else {
+                lz = max(lz, ++z); // maximum leading zeros before '1'
+            }
+        }
+        return cnt + lz;
+    }
+};
+```

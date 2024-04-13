@@ -137,3 +137,52 @@ public:
     }
 };
 ```
+- [find all people with secret](https://leetcode.com/problems/find-all-people-with-secret/)
+```cpp
+using pii = pair<int,int>;
+
+class Solution {
+public:
+    int find_parent(vector<int> &p, vector<bool> &check, int i) {
+        int j = i;
+        while (!check[i] && p[i] != -1) i = p[i];
+        if (j != i) p[j] = i;
+        return i;
+    }
+
+    vector<int> findAllPeople(int n, vector<vector<int>>& meetings, int firstPerson) {
+        map<int,vector<pii>> m;
+        for (auto &e : meetings) {
+            m[e[2]].push_back({e[0],e[1]});
+        }
+
+        vector<int> p(n,-1);
+        vector<bool> check(n,false); // have secret or not
+        check[0] = check[firstPerson] = true;
+
+        for (auto &v : m) {
+            for (auto [i,j] : v.second) {
+                int pi = find_parent(p,check,i), pj = find_parent(p,check,j);
+                // sharing secret instantaneously
+                check[i] = check[j] = check[pi] = check[pj] = (check[i] || check[j] || check[pi] || check[pj]);
+                if (pi != pj) {
+                    p[pi] = pj;
+                }
+            }
+            for (auto [i,j] : v.second) {
+                int pi = find_parent(p,check,i), pj = find_parent(p,check,j);
+                // sharing secret instantaneously
+                check[i] = check[j] = check[pi] = check[pj] = (check[i] || check[j] || check[pi] || check[pj]);
+                // ignore previous meetings if not be shared secret
+                if (!check[i]) {
+                    p[i] = p[j] = -1;
+                }
+            }
+        }
+
+        vector<int> ans;
+        for (int i = 0; i < n; i++) if (check[i]) ans.push_back(i);
+        return ans;
+    }
+};
+```

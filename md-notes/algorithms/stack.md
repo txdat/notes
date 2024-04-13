@@ -1,4 +1,5 @@
 1. monotonic stack
+**find maximum element -> decreasing monotonic stack. find minimum element -> increasing monotonic stack**
 - [sum of subarrays' minimum](https://leetcode.com/problems/sum-of-subarray-minimums/description)
 ```cpp
 using ll = long long;
@@ -78,6 +79,67 @@ public:
             } else if (c == 0 && j-i > ans) {
                 ans = j-i;
             }
+        }
+        return ans;
+    }
+};
+```
+- [largest rectangle in histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/description/)
+```cpp
+// using strictly increasing monotonic stack
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        int n = heights.size();
+        int ans = 0;
+        stack<int> q;
+        for (int i = 0; i < n; i++) {
+            while (!q.empty() && heights[q.top()] >= heights[i]) {
+                int j = q.top(); q.pop();
+                ans = max(ans, heights[j]*(i - (q.empty() ? -1 : q.top()) - 1)); // heights[j] is minimum height in [heights[q.top()+1]...heights[i-1]]
+            }
+            q.push(i);
+        }
+        while (!q.empty()) {
+            int j = q.top(); q.pop();
+            ans = max(ans, heights[j]*(n - (q.empty() ? -1 : q.top()) - 1)); // heights[j] is minimum height in [heights[q.top()+1]...heights[n-1]]
+        }
+        return ans;
+    }
+};
+```
+- [find number of subarrays where boundary elements are maximum](https://leetcode.com/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/)
+```cpp
+using ll = long long;
+
+class Solution {
+public:
+    long long numberOfSubarrays(vector<int>& nums) {
+        int n = nums.size();
+        unordered_map<int,vector<int>> m;
+        for (int i = 0; i < n; i++) {
+            m[nums[i]].push_back(i);
+        }
+        ll ans = 0;
+        stack<int> q;
+        for (int i = 0; i < n; i++) {
+            while (!q.empty() && nums[q.top()] <= nums[i]) {
+                int j = q.top(); q.pop();
+                int l = q.empty() ? 0 : q.top() + 1; // nums[j] is maximum element in range [l,i)
+                auto &r = m[nums[j]];
+                // find all indices between [l,i)
+                auto il = lower_bound(r.begin(),r.end(),l), ir = lower_bound(r.begin(),r.end(),i);
+                ans += ir - il;
+            }
+            q.push(i);
+        }
+        while (!q.empty()) {
+            int j = q.top(); q.pop();
+            int l = q.empty() ? 0 : q.top() + 1; // nums[j] is maximum element in range [l,n)
+            auto &r = m[nums[j]];
+            // find all indices between [l,i)
+            auto il = lower_bound(r.begin(),r.end(),l);
+            ans += r.end() - il;
         }
         return ans;
     }

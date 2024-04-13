@@ -134,6 +134,3 @@ public:
     }
 };
 ```
-5. [find all people with secret](https://leetcode.com/problems/find-all-people-with-secret/) - bfs/djikstra
-```cpp
-```
