@@ -14,6 +14,10 @@
 		- registry: stores docker images (eg. dockerhub, ECR, ...)
 		- container: created from docker images, is isolated process on host machine
 ![[Pasted image 20231228202624.png | 800]]
+- debug crashed containers by ephemeral debug container
+```bash
+kubectl debug <target-container-name> --image=<debug-container-image> --target=<target-pod-name>
+```
 3. architecture of k8s
 ![[Pasted image 20231228203156.png | 800]]
 	 - cluster may be public (all k8s's vm have external IPs) or private (only internal IPs, only accessible inside subnet)
@@ -149,3 +153,11 @@
 		- horizontal scaling: increase/decrease number of pods
 			- use stablization window for scaling (short for scale up, long for scale down)
 			![[Pasted image 20231229031657.png | 600]]
+8. kubernetes event driven autoscaling (KEDA)
+	- usually use HPA for pod scaling in k8s with limited predefined metrics (like CPU, memory, ...) -> KDEA supports custom metrics
+	- KEDA is custom resource definition (CRD) extends HPA
+	- key roles:
+		- activates/deactivates deployments to scale from/to 0 on no event (different from HPA)
+		- acts as k8s metrics server, exposes event data to HPA to drive scale out
+		- validates resource change to prevent misconfiguration
+9. service mesh
