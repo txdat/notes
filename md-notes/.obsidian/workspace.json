@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "aa67a4571a8f780a",
+        "id": "131cee924b151c2b",
         "type": "tabs",
         "children": [
           {
-            "id": "ac2a10f7d804a0f4",
+            "id": "c2cb3b1e2d40dc75",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "engineering/devops/k8s.md",
+                "file": "engineering/interview questions/database.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "engineering/devops/k8s.md",
+                "file": "engineering/interview questions/database.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "engineering/devops/k8s.md",
+                "file": "engineering/interview questions/database.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "engineering/devops/k8s.md"
+                "file": "engineering/interview questions/database.md"
               }
             }
           }
@@ -147,12 +147,19 @@
       "command-palette:Open command palette": true
     }
   },
-  "active": "ac2a10f7d804a0f4",
+  "active": "c2cb3b1e2d40dc75",
   "lastOpenFiles": [
+    "engineering/courses/database/CMU 15-445.md",
+    "engineering/interview questions/database.md",
+    "attachments/Pasted image 20240420222927.png",
+    "attachments/Pasted image 20240420222123.png",
+    "attachments/Pasted image 20240420221351.png",
+    "attachments/Pasted image 20240420170839.png",
+    "attachments/Pasted image 20240420170332.png",
+    "engineering/interview questions/networking.md",
+    "engineering/lang/javascript-typescript-nodejs.md",
     "engineering/devops/kafka.md",
     "engineering/devops/k8s.md",
-    "engineering/lang/javascript-typescript-nodejs.md",
-    "engineering/courses/database/CMU 15-445.md",
     "algorithms/union find.md",
     "algorithms/graph.md",
     "algorithms/binary search.md",
@@ -177,8 +184,6 @@
     "engineering/design system/alex-xu/chat system.md",
     "engineering/design system/alex-xu",
     "algorithms/policy-based data structure.md",
-    "algorithms/segment tree.md",
-    "engineering/devops/aws.md",
     "attachments/Pasted Image 20240328221431_758.png",
     "attachments/Pasted image 20240317220741.png",
     "engineering/lang",
@@ -190,11 +195,6 @@
     "engineering/interview questions",
     "engineering/design system/distributed system",
     "engineering/cs fundamentals/networking",
-    "attachments/Pasted image 20240209220742.png",
-    "attachments/Pasted image 20240209220243.png",
-    "attachments/Pasted image 20240209212825.png",
-    "attachments/Pasted image 20240209212820.png",
-    "attachments/Pasted image 20240209211648.png",
     "Untitled.canvas"
   ]
 }

@@ -29,5 +29,7 @@
 	- cons:
 		- manage pool's configuration: pool's size and max connections
 		- resource allocation: inefficient use -> resource contention
-1. TCP proxy/ reversed proxy?
+7. TCP proxy/ reversed proxy?
 	- proxy server acts as an intermediary between clients and servers. proxy hides clients on internet (server only knows requests come from proxy, not clients), and reversed proxy hides servers (client only knows response come from reversed proxy, not servers)
+8. REST vs RPC vs GraphQL?
+9. Event-driven architecture (EDA) vs request/response (RR)?
