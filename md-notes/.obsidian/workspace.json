@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "engineering/interview questions/database.md",
+                "file": "engineering/courses/database/CMU 15-445.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "engineering/interview questions/database.md",
+                "file": "engineering/courses/database/CMU 15-445.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "engineering/interview questions/database.md",
+                "file": "engineering/courses/database/CMU 15-445.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "engineering/interview questions/database.md"
+                "file": "engineering/courses/database/CMU 15-445.md"
               }
             }
           }
@@ -149,8 +149,8 @@
   },
   "active": "c2cb3b1e2d40dc75",
   "lastOpenFiles": [
-    "engineering/courses/database/CMU 15-445.md",
     "engineering/interview questions/database.md",
+    "engineering/courses/database/CMU 15-445.md",
     "attachments/Pasted image 20240420222927.png",
     "attachments/Pasted image 20240420222123.png",
     "attachments/Pasted image 20240420221351.png",
