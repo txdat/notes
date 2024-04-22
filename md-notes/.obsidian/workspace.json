@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "engineering/courses/database/CMU 15-445.md",
+                "file": "engineering/design system/cache.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "engineering/courses/database/CMU 15-445.md",
+                "file": "engineering/design system/cache.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "engineering/courses/database/CMU 15-445.md",
+                "file": "engineering/design system/cache.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "engineering/courses/database/CMU 15-445.md"
+                "file": "engineering/design system/cache.md"
               }
             }
           }
@@ -149,7 +149,10 @@
   },
   "active": "c2cb3b1e2d40dc75",
   "lastOpenFiles": [
+    "Excalidraw/cache-data-inconsistency.md",
+    "engineering/design system/cache.md",
     "engineering/interview questions/database.md",
+    "engineering/interview questions/operating system.md",
     "engineering/courses/database/CMU 15-445.md",
     "attachments/Pasted image 20240420222927.png",
     "attachments/Pasted image 20240420222123.png",
@@ -179,11 +182,8 @@
     "algorithms/dynamic programming.md",
     "engineering/design system/design data-intensive applications",
     "engineering/design system/distributed system/introduction.md",
-    "engineering/interview questions/operating system.md",
     "engineering/design system/alex-xu/consistent hashing.md",
-    "engineering/design system/alex-xu/chat system.md",
     "engineering/design system/alex-xu",
-    "algorithms/policy-based data structure.md",
     "attachments/Pasted Image 20240328221431_758.png",
     "attachments/Pasted image 20240317220741.png",
     "engineering/lang",
