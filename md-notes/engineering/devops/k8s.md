@@ -107,6 +107,11 @@ kubectl debug <target-container-name> --image=<debug-container-image> --target=<
 	- stateful application
 		- stateful pods are initialized sequentially, based on their indices
 		- scaling statefulset relates to increase/decrease number of replicas
+	- restart pod, deployment, ...
+	```bash
+kubectl delete pods <pod> --grace-period=0 --force
+kubectl patch pod <pod> -p '{"metadata":{"finalizers":null}}' # if hitting wall :(
+```
 5. service
 	- pods are ephemeral, pods' ip addresses are assigned after pods have been scheduled to nodes, and many pods may provide same service
 	- service is k8s resource to make single, constant entry to a group of pods providing same service (using pods selector)
