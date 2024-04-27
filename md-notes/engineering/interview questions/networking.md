@@ -18,6 +18,11 @@
 	- is application protocol (on L7 layer), uses TCP protocol
 	- is stateless connection because each request is executed independently -> high scalability
 	- HTTPS = HTTP + TLS for data encryption
+	- TLS handshake
+		- HTTPs handshake
+			- client -> SYN -> server
+			- server -> ACK/SYN -> client
+			- client -> ACK -> server
 4. Socket?
 	- is an endpoint for sending/receiving data between processes and machines
 5. DNS?
@@ -33,3 +38,4 @@
 	- proxy server acts as an intermediary between clients and servers. proxy hides clients on internet (server only knows requests come from proxy, not clients), and reversed proxy hides servers (client only knows response come from reversed proxy, not servers)
 8. REST vs RPC vs GraphQL?
 9. Event-driven architecture (EDA) vs request/response (RR)?
+ 

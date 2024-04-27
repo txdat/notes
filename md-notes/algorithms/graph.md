@@ -134,3 +134,40 @@ public:
     }
 };
 ```
+- [minimum height trees](https://leetcode.com/problems/minimum-height-trees/description/)
+```cpp
+class Solution {
+public:
+    vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
+        if (n == 1) return {0};
+
+        vector<vector<int>> g(n,vector<int>());
+        for (auto &e : edges) {
+            g[e[0]].push_back(e[1]);
+            g[e[1]].push_back(e[0]);
+        }
+
+        vector<int> deg(n);
+        for (int i = 0; i < n; i++) deg[i] = g[i].size();
+
+		// bfs from outside (increasing of vertex's degree)
+        queue<int> q;
+        for (int i = 0; i < n; i++) if (deg[i] == 1) q.push(i);
+
+        vector<int> ans(n); // vertices with highest degree?
+        int k;
+        while (!q.empty()) {
+            int sz = q.size();
+            k = 0;
+            while (sz--) {
+                int i = q.front(); q.pop();
+                ans[k++] = i;
+                for (int &j : g[i]) if (deg[j] && --deg[j] == 1) q.push(j);
+            }
+        }
+
+        ans.resize(k);
+        return ans;
+    }
+};
+```
