@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "engineering/interview questions/networking.md",
+                "file": "algorithms/graph.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "engineering/interview questions/networking.md",
+                "file": "algorithms/graph.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "engineering/interview questions/networking.md",
+                "file": "algorithms/graph.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "engineering/interview questions/networking.md"
+                "file": "algorithms/graph.md"
               }
             }
           }
@@ -149,6 +149,7 @@
   },
   "active": "a807a5af3ddf2d17",
   "lastOpenFiles": [
+    "algorithms/bits.md",
     "algorithms/graph.md",
     "engineering/interview questions/networking.md",
     "engineering/design system/system-design-primer/README.md",
@@ -181,7 +182,6 @@
     "algorithms/tree.md",
     "algorithms/template.md",
     "algorithms/sorting.md",
-    "algorithms/dynamic programming.md",
     "engineering/design system/design data-intensive applications",
     "engineering/design system/alex-xu",
     "attachments/Pasted Image 20240328221431_758.png",

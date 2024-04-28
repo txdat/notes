@@ -171,3 +171,42 @@ public:
     }
 };
 ```
+- [sum of distances in tree](https://leetcode.com/problems/sum-of-distances-in-tree/description/) -> 2-time dfs (with moving root)
+```cpp
+class Solution {
+public:
+	// count number of nodes in subtree root i
+    int dfs1(vector<vector<int>> &g, vector<int> &dist, vector<int> &cnt, int i, int p = -1) {
+        int c = 1;
+        for (int &j : g[i]) {
+            if (j == p) continue;
+            int cj = dfs1(g, dist, cnt, j, i);
+            dist[i] += dist[j] + cj;
+            c += cj;
+        }
+        return cnt[i] = c;
+    }
+
+    void dfs2(vector<vector<int>> &g, vector<int> &dist, vector<int> &cnt, int n, int i, int p = -1) {
+        for (int &j : g[i]) {
+            if (j == p) continue;
+            // moving root to j
+            dist[j] += dist[i] - dist[j] - cnt[j] + n - cnt[j];
+            dfs2(g, dist, cnt, n, j, i);
+        }
+    }
+
+    vector<int> sumOfDistancesInTree(int n, vector<vector<int>>& edges) {
+        vector<vector<int>> g(n,vector<int>());
+        for (auto &e : edges) {
+            g[e[0]].push_back(e[1]);
+            g[e[1]].push_back(e[0]);
+        }
+        vector<int> dist(n,0), cnt(n,0); // dist[i] is total distances of (sub)tree root i
+        dfs1(g, dist, cnt, 0);
+        dfs2(g, dist, cnt, n, 0);
+
+        return dist;
+    }
+};
+```

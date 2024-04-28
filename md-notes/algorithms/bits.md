@@ -49,3 +49,33 @@ public:
     }
 };
 ```
+- [minimum array end](https://leetcode.com/problems/minimum-array-end/description/)
+```cpp
+using ll = long long;
+
+class Solution {
+public:
+//	long long minEnd(int n, int x) { // O(n)
+//        ll ans = x;
+//        while (--n) {
+//            ans = (ans+1)|x;
+//        }
+//        return ans;
+//	}
+
+
+	// we can ignore x's set bits -> fill remaining bits with set bits of n-1
+    long long minEnd(int n, int x) {
+        n--; // 1st element is x
+        ll ans = x;
+        for (ll i = 1; n > 0; i <<= 1) {
+            if ((i&x) == 0) {
+                // fill to i-th bit
+                if (n&1) ans |= i;
+                n >>= 1;
+            }
+        }
+        return ans;
+    }
+};
+```
