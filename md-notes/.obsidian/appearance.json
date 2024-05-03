@@ -1,11 +1,11 @@
 {
   "accentColor": "",
-  "interfaceFontFamily": "JetBrainsMono Nerd Font Mono",
-  "textFontFamily": "JetBrainsMono Nerd Font Mono",
-  "monospaceFontFamily": "JetBrainsMono Nerd Font Mono",
+  "interfaceFontFamily": "CaskaydiaMono Nerd Font Mono,JetBrainsMono Nerd Font Mono",
+  "textFontFamily": "CaskaydiaMono Nerd Font Mono,JetBrainsMono Nerd Font Mono",
+  "monospaceFontFamily": "CaskaydiaMono Nerd Font Mono,JetBrainsMono Nerd Font Mono",
   "baseFontSize": 12,
   "nativeMenus": true,
   "theme": "obsidian",
-  "cssTheme": "Minimal",
+  "cssTheme": "Obsidian gruvbox",
   "baseFontSizeAction": true
 }
