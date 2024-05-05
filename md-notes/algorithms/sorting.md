@@ -20,3 +20,25 @@ public:
     }
 };
 ```
+- [maximum gap - O(n)](https://leetcode.com/problems/maximum-gap/description/)
+```cpp
+// bucket sort?
+class Solution {
+public:
+    void _sort(vector<int> &nums, int l, int r, int i) {
+        if (l >= r || i < 0) return;
+        int m = 1<<i, t = l;
+        for (int j = l; j <= r; j++) if ((nums[j]&m) == 0) swap(nums[j],nums[t++]);
+        _sort(nums, l, t-1, --i);
+        _sort(nums, t, r, i);
+    }
+
+    int maximumGap(vector<int>& nums) {
+        int mx = *max_element(nums.begin(),nums.end());
+        _sort(nums, 0, nums.size()-1, 31-__builtin_clz(mx));
+        int ans = 0;
+        for (int i = 1; i < nums.size(); i++) ans = max(ans, nums[i]-nums[i-1]);
+        return ans;
+    }
+};
+```

@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "f70b4c229e7f9d55",
+        "id": "d5b20da3e585c39a",
         "type": "tabs",
         "children": [
           {
-            "id": "63f8986a14aacbac",
+            "id": "bd854ba897caf0f2",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "engineering/courses/database/CMU 15-445.md",
+                "file": "algorithms/binary search.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "engineering/courses/database/CMU 15-445.md",
+                "file": "algorithms/binary search.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "engineering/courses/database/CMU 15-445.md",
+                "file": "algorithms/binary search.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "engineering/courses/database/CMU 15-445.md"
+                "file": "algorithms/binary search.md"
               }
             }
           }
@@ -147,8 +147,14 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "63f8986a14aacbac",
+  "active": "bd854ba897caf0f2",
   "lastOpenFiles": [
+    "algorithms/sorting.md",
+    "algorithms/string.md",
+    "algorithms/arrays.md",
+    "engineering/courses/database/CMU 15-445.md",
+    "attachments/Pasted image 20240504012018.png",
+    "engineering/design system/alex-xu/chat system.md",
     "attachments/Pasted image 20240503001425.png",
     "engineering/interview questions/database.md",
     "algorithms/graph.md",
@@ -161,7 +167,6 @@
     "engineering/devops/k8s.md",
     "Excalidraw/cache-data-inconsistency.md",
     "engineering/interview questions/operating system.md",
-    "engineering/courses/database/CMU 15-445.md",
     "attachments/Pasted image 20240420222927.png",
     "attachments/Pasted image 20240420222123.png",
     "attachments/Pasted image 20240420221351.png",
@@ -174,14 +179,11 @@
     "algorithms/number theory.md",
     "algorithms/misc.md",
     "algorithms/stack.md",
-    "algorithms/arrays.md",
-    "algorithms/string.md",
     "algorithms/sliding window.md",
     "engineering/courses/database",
     "engineering/courses",
     "algorithms/trie.md",
     "algorithms/tree.md",
-    "algorithms/template.md",
     "engineering/design system/design data-intensive applications",
     "engineering/design system/alex-xu",
     "attachments/Pasted Image 20240328221431_758.png",
@@ -190,8 +192,6 @@
     "engineering/design system/system-design-primer",
     "engineering/cs fundamentals/oop",
     "attachments/Pasted image 20240226160524.png",
-    "attachments/Pasted image 20231228214750.png",
-    "attachments/Pasted image 20231228203731.png",
     "engineering/interview questions",
     "engineering/design system/distributed system",
     "engineering/cs fundamentals/networking",

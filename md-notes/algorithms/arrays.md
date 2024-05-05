@@ -374,3 +374,39 @@ public:
     }
 };
 ```
+- [longest consecutive sequence - O(n)](https://leetcode.com/problems/longest-consecutive-sequence/description/)
+```cpp
+// using union-find
+class Solution {
+public:
+    int find_parent(unordered_map<int,int> &p, int i) {
+        int j = i;
+        while (p[i] != INT_MIN) i = p[i];
+        if (j != i) p[j] = i;
+        return i;
+    }
+
+    int longestConsecutive(vector<int>& nums) {
+        int n = nums.size();
+        int ans = 0;
+        unordered_map<int,int> p, m;
+        for (int &d : nums) {
+            if (p.find(d) != p.end()) continue;
+            p[d] = INT_MIN;
+            m[d] = 1;
+            if (p.find(d+1) != p.end()) {
+                int t = find_parent(p,d+1);
+                p[t] = d;
+                m[d] += m[t];
+            }
+            ans = max(ans, m[d]);
+            if (p.find(d-1) != p.end()) {
+                int t = find_parent(p,d-1);
+                p[d] = t;
+                ans = max(ans, m[t] += m[d]);
+            }
+        }
+        return ans;
+    }
+};
+```

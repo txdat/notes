@@ -87,3 +87,64 @@ public:
     }
 };
 ```
+- [find the median of the uniqueness array](https://leetcode.com/problems/find-the-median-of-the-uniqueness-array/description/) 
+	- similar question: [subarrays with k different integers](https://leetcode.com/problems/subarrays-with-k-different-integers/) -> at-most technique
+```cpp
+class Solution {
+public:
+    int count(vector<int> &nums, int k) {
+        int n = nums.size();
+        vector<int> cnt(n+1,0);
+        int ans = 0;
+        for (int i = 0, j = 0, c = 0; j < n; j++) {
+            if (cnt[nums[j]]++ == 0) c++;
+            while (c > k) if (--cnt[nums[i++]] == 0) c--;
+            ans += j-i+1;
+        }
+        return ans;
+    }
+
+    int subarraysWithKDistinct(vector<int>& nums, int k) {
+        return count(nums,k) - (k ? count(nums,k-1) : 0);
+    }
+};
+```
+
+```cpp
+using ll = long long;
+
+class Solution {
+public:
+    ll count(vector<int> &nums, int m) {
+        int n = nums.size();
+        ll ans = 0;
+        unordered_map<int,int> cnt;
+        for (int i = 0, j = 0; j < n; j++) {
+            cnt[nums[j]]++;
+            while (cnt.size() > m) {
+                if (--cnt[nums[i]] == 0) cnt.erase(nums[i]);
+                i++;
+            }
+            ans += j-i+1;
+        }
+        return ans;
+    }
+
+    int medianOfUniquenessArray(vector<int>& nums) {
+        int n = nums.size();
+        ll t = ll(n)*(n+1)/2; // t subarrays
+        t = t/2 + (t&1); // +1 for counting
+        int l = 1, r = n, m;
+        while (l < r) {
+            m = (l+r)/2;
+            ll c = count(nums, m); // subarrays having number of distinct integers <= m
+            if (c < t) {
+                l = m+1;
+            } else {
+                r = m;
+            }
+        }
+        return l;
+    }
+};
+```
