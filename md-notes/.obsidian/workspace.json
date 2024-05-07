@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "algorithms/binary search.md",
+                "file": "engineering/design system/alex-xu/bytebytego posts.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "algorithms/binary search.md",
+                "file": "engineering/design system/alex-xu/bytebytego posts.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "algorithms/binary search.md",
+                "file": "engineering/design system/alex-xu/bytebytego posts.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "algorithms/binary search.md"
+                "file": "engineering/design system/alex-xu/bytebytego posts.md"
               }
             }
           }
@@ -149,6 +149,19 @@
   },
   "active": "bd854ba897caf0f2",
   "lastOpenFiles": [
+    "data structures/database/skiplist.md",
+    "engineering/design system/alex-xu/bytebytego posts.md",
+    "data structures/database",
+    "data structures",
+    "attachments/Pasted image 20240508005647.png",
+    "attachments/Pasted image 20240508005248.png",
+    "attachments/Pasted image 20240508004952.png",
+    "attachments/Pasted image 20240508004805.png",
+    "attachments/Pasted image 20240508004410.png",
+    "attachments/Pasted image 20240508004245.png",
+    "engineering/design system/alex-xu/web server.md",
+    "engineering/design system/system-design-primer/README.md",
+    "algorithms/binary search.md",
     "algorithms/sorting.md",
     "algorithms/string.md",
     "algorithms/arrays.md",
@@ -160,7 +173,6 @@
     "algorithms/graph.md",
     "algorithms/bits.md",
     "engineering/interview questions/networking.md",
-    "engineering/design system/system-design-primer/README.md",
     "engineering/design system/alex-xu/url shortener.md",
     "engineering/design system/distributed system/introduction.md",
     "engineering/design system/cache.md",
@@ -169,32 +181,20 @@
     "engineering/interview questions/operating system.md",
     "attachments/Pasted image 20240420222927.png",
     "attachments/Pasted image 20240420222123.png",
-    "attachments/Pasted image 20240420221351.png",
-    "attachments/Pasted image 20240420170839.png",
-    "attachments/Pasted image 20240420170332.png",
     "engineering/lang/javascript-typescript-nodejs.md",
     "engineering/devops/kafka.md",
     "algorithms/union find.md",
-    "algorithms/binary search.md",
     "algorithms/number theory.md",
     "algorithms/misc.md",
     "algorithms/stack.md",
-    "algorithms/sliding window.md",
     "engineering/courses/database",
     "engineering/courses",
-    "algorithms/trie.md",
-    "algorithms/tree.md",
     "engineering/design system/design data-intensive applications",
     "engineering/design system/alex-xu",
-    "attachments/Pasted Image 20240328221431_758.png",
-    "attachments/Pasted image 20240317220741.png",
     "engineering/lang",
     "engineering/design system/system-design-primer",
     "engineering/cs fundamentals/oop",
-    "attachments/Pasted image 20240226160524.png",
     "engineering/interview questions",
-    "engineering/design system/distributed system",
-    "engineering/cs fundamentals/networking",
     "Untitled.canvas"
   ]
 }
