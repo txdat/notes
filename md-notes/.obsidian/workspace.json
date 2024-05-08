@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "engineering/design system/alex-xu/bytebytego posts.md",
+                "file": "algorithms/dynamic programming.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "engineering/design system/alex-xu/bytebytego posts.md",
+                "file": "algorithms/dynamic programming.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "engineering/design system/alex-xu/bytebytego posts.md",
+                "file": "algorithms/dynamic programming.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "engineering/design system/alex-xu/bytebytego posts.md"
+                "file": "algorithms/dynamic programming.md"
               }
             }
           }
@@ -149,8 +149,8 @@
   },
   "active": "bd854ba897caf0f2",
   "lastOpenFiles": [
-    "data structures/database/skiplist.md",
     "engineering/design system/alex-xu/bytebytego posts.md",
+    "data structures/database/skiplist.md",
     "data structures/database",
     "data structures",
     "attachments/Pasted image 20240508005647.png",

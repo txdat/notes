@@ -89,3 +89,48 @@ public:
     }
 };
 ```
+- [length of the longest subsequence that sums to target](https://leetcode.com/problems/length-of-the-longest-subsequence-that-sums-to-target/)
+```cpp
+class Solution {
+public:
+    int lengthOfLongestSubsequence(vector<int>& nums, int target) {
+        vector<int> dp(target+1,-1e9);
+        dp[0] = 0;
+        for (int &d : nums) {
+            for (int i = target; i >= d; i--) dp[i] = max(dp[i], dp[i-d]+1);
+        }
+        return max(-1, dp[target]);
+    }
+};
+```
+- length of the shortest subsequence that sums to target
+```cpp
+class Solution {
+public:
+	vector<int> backtrack(vector<int> &trace, int target) {
+		vector<int> ans;
+		while (target) {
+			ans.push_back(target-trace[target]);
+			target = trace[target];
+		}
+		return ans;
+	}
+
+	vector<int> shortestSubsequence(vector<int> &nums, int target) {
+		vector<int> ans;
+		vector<int> dp(target+1,1e9), trace(target+1,0);
+		dp[0] = 0;
+		for (int &d : nums) {
+			for (int i = target; i >= d; i--) {
+				if (dp[i-d]+1<dp[i]) {
+					dp[i] = dp[i-d]+1;
+					trace[i] = i-d;
+					if (i == target) ans = backtrack(trace,target); // backtracking after forloop can cause wrong results
+				}
+			}
+		}
+		if (dp[target] == 1e9) return {};
+		return ans;
+	}
+};
+```
