@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "d5b20da3e585c39a",
+        "id": "4739ffaa49ee9d18",
         "type": "tabs",
         "children": [
           {
-            "id": "bd854ba897caf0f2",
+            "id": "ff2981b6ab8b9d7d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "algorithms/dynamic programming.md",
+                "file": "engineering/lang/javascript-typescript/javascript-info.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "algorithms/dynamic programming.md",
+                "file": "engineering/lang/javascript-typescript/javascript-info.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "algorithms/dynamic programming.md",
+                "file": "engineering/lang/javascript-typescript/javascript-info.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "algorithms/dynamic programming.md"
+                "file": "engineering/lang/javascript-typescript/javascript-info.md"
               }
             }
           }
@@ -147,10 +147,23 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "bd854ba897caf0f2",
+  "active": "ff2981b6ab8b9d7d",
   "lastOpenFiles": [
+    "engineering/lang/javascript-typescript/event loop.md",
+    "engineering/lang/javascript-typescript/javascript-info.md",
+    "engineering/lang/javascript-typescript/distributed lock.md",
+    "engineering/dependency-injection.md",
+    "engineering/lang/javascript-typescript",
+    "engineering/design system/cache.md",
+    "engineering/design system/distributed system/introduction.md",
+    "engineering/design system/alex-xu/url shortener.md",
+    "engineering/design system/alex-xu/search autocomplete - incremental search.md",
+    "engineering/design system/alex-xu/rate limiter.md",
     "engineering/design system/alex-xu/bytebytego posts.md",
+    "engineering/courses/database/CMU 15-445.md",
     "data structures/database/skiplist.md",
+    "algorithms/priority queue - heap.md",
+    "algorithms/dynamic programming.md",
     "data structures/database",
     "data structures",
     "attachments/Pasted image 20240508005647.png",
@@ -165,7 +178,6 @@
     "algorithms/sorting.md",
     "algorithms/string.md",
     "algorithms/arrays.md",
-    "engineering/courses/database/CMU 15-445.md",
     "attachments/Pasted image 20240504012018.png",
     "engineering/design system/alex-xu/chat system.md",
     "attachments/Pasted image 20240503001425.png",
@@ -173,20 +185,9 @@
     "algorithms/graph.md",
     "algorithms/bits.md",
     "engineering/interview questions/networking.md",
-    "engineering/design system/alex-xu/url shortener.md",
-    "engineering/design system/distributed system/introduction.md",
-    "engineering/design system/cache.md",
     "engineering/devops/k8s.md",
-    "Excalidraw/cache-data-inconsistency.md",
-    "engineering/interview questions/operating system.md",
     "attachments/Pasted image 20240420222927.png",
     "attachments/Pasted image 20240420222123.png",
-    "engineering/lang/javascript-typescript-nodejs.md",
-    "engineering/devops/kafka.md",
-    "algorithms/union find.md",
-    "algorithms/number theory.md",
-    "algorithms/misc.md",
-    "algorithms/stack.md",
     "engineering/courses/database",
     "engineering/courses",
     "engineering/design system/design data-intensive applications",
@@ -194,7 +195,6 @@
     "engineering/lang",
     "engineering/design system/system-design-primer",
     "engineering/cs fundamentals/oop",
-    "engineering/interview questions",
     "Untitled.canvas"
   ]
 }
