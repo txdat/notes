@@ -55,6 +55,16 @@ const user2 = {
 	[id]: 1, // not 'id': 1
 };
 ```
+
+- bracket `[]` as key of object
+```javascript
+const k = 'hello';
+const map = {
+	[k]: 'world',
+};
+
+console.log(map['hello']); // "world!"
+```
 # prototypes, inheritance
 - prototypal inheritance
 - update/delete operations work with the object directly (not its prototypes)
