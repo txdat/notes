@@ -1,7 +1,57 @@
 [github](https://github.com/donnemartin/system-design-primer)
-
-1. high level trade-offs
-	1. performance vs scalability
-	2. latency vs throughput
-	3. availability vs consistency
 # topics
+### review
+- performance vs scalability
+	- scalable: performance is increased in the manner proportional to resources added -> serving more units of work
+	- problems
+		- performance: slow for single user
+		- scalability: fast for single user, but slow under heavy load
+- latency vs throughput
+	- latency: the time to perform action to get result
+	- througput: the number of actions performed per unit of time
+	-> maximum throughput with acceptance latency
+- availability vs consistency
+	- CAP theorem
+		- consistency: all clients see same data at the same time, no matter which server is connected
+		- availability: able to get data when one or more servers (not all) are down
+		- partition tolerance: the system continues to operate despite network partition (some of network's components are disconnected)
+	-> network is not reliable, have to support network partitioning -> select between
+		- CP: consistency & partition tolerance
+			- waiting for a response from partitioned node may cause timeout error -> business requires atomic read/write
+		- AP: availability & partition tolerance
+			- return most reliable data (might not be latest). write operations may need time to propagate when the partition is resolved -> business requires eventual consistency or have to continue working despite errors
+	- consistency patterns
+		- sync multiple copies of data to make clients have a consistent view of data
+		- weak consistency
+			- after a write, read operations may/maynot see it, works well in real-time use cases
+			- seen in systems such as memcached
+		- eventual consistency
+			- after a write, all read operations will **eventually** see it -> data is replicated asynchronously, works well on high availability systems
+			- seen in systems such as mail, ...
+		- strong consistency
+			- after a write, all read operations will see it -> data is replicated synchronously
+			- seen in systems such as file systems and RDBMs (systems require transaction)
+	- availability patterns
+		- failover
+			- active-active
+				- multiple instances of application are running and serving clients' requests simultaneously -> provide high availability and scalability, allow system to distribute workload to all servers
+				- provides redundant resources and failover capability -> the system continues working even if one or more servers are down
+			- active-passive
+				- one instance of application is running (active) and other instances are idle (passive) -> provide failover capability and efficient resource utilization (but high latency during failover)
+				- simplicity and cost-effective
+		- replication
+- domain name system (DNS)
+- content delivery network (CDN)
+- load balancer & proxy
+- database
+	- relational database
+	- nosql
+	- cache
+- asynchronism
+	- message queue
+- networking
+	- TCP
+	- UDP
+	- HTTP
+	- REST
+	- RPC

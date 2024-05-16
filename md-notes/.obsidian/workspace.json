@@ -4,22 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "c0b926d15f9f5429",
+        "id": "0ff7a0213da63679",
         "type": "tabs",
         "children": [
           {
-            "id": "15f78c7ad5e32293",
+            "id": "91e1a4978aeaeca0",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "engineering/lang/javascript-typescript/distributed lock.md",
+                "file": "engineering/design system/system-design-primer/README.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "a623d81ca409253d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "engineering/design system/alex-xu/key-value store.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "engineering/lang/javascript-typescript/distributed lock.md",
+                "file": "engineering/design system/alex-xu/key-value store.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "engineering/lang/javascript-typescript/distributed lock.md",
+                "file": "engineering/design system/alex-xu/key-value store.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "engineering/lang/javascript-typescript/distributed lock.md"
+                "file": "engineering/design system/alex-xu/key-value store.md"
               }
             }
           }
@@ -147,25 +160,37 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "15f78c7ad5e32293",
+  "active": "a623d81ca409253d",
   "lastOpenFiles": [
-    "engineering/lang/javascript-typescript/event loop.md",
-    "engineering/lang/javascript-typescript/typescript-fundamental.md",
-    "engineering/lang/javascript-typescript/javascript-info.md",
-    "engineering/devops/k8s.md",
-    "engineering/lang/javascript-typescript/distributed lock.md",
+    "engineering/design system/system-design-primer/README.md",
+    "engineering/design system/alex-xu/rate limiter.md",
     "engineering/dependency-injection.md",
-    "engineering/lang/javascript-typescript",
-    "engineering/design system/cache.md",
-    "engineering/design system/distributed system/introduction.md",
+    "engineering/interview questions/operating system.md",
+    "engineering/interview questions/oop.md",
+    "engineering/interview questions/networking.md",
+    "engineering/interview questions/database.md",
+    "engineering/design system/alex-xu/web server.md",
     "engineering/design system/alex-xu/url shortener.md",
     "engineering/design system/alex-xu/search autocomplete - incremental search.md",
-    "engineering/design system/alex-xu/rate limiter.md",
+    "engineering/design system/alex-xu/key-value store.md",
+    "engineering/design system/alex-xu/consistent hashing.md",
+    "engineering/design system/alex-xu/chat system.md",
     "engineering/design system/alex-xu/bytebytego posts.md",
-    "engineering/courses/database/CMU 15-445.md",
-    "data structures/database/skiplist.md",
-    "algorithms/priority queue - heap.md",
-    "algorithms/dynamic programming.md",
+    "engineering/design system/distributed system/introduction.md",
+    "engineering/devops/gcp.md",
+    "engineering/devops/aws.md",
+    "engineering/design system/design data intensive applications",
+    "engineering/design system/system-design-primer/cache.md",
+    "engineering/design system/misc",
+    "engineering/design system/system-design-primer/hashmap.md",
+    "engineering/design system/system-design-primer/chat server.md",
+    "engineering/design system/system-design-primer/aws webserver.md",
+    "engineering/design system/system-design-primer/amazon sale ranking by category.md",
+    "engineering/design system/system-design-primer/key-value storage for search engine.md",
+    "engineering/design system/system-design-primer/data structure for social network.md",
+    "engineering/design system/system-design-primer/twitter timeline & search.md",
+    "engineering/design system/system-design-primer/web crawler.md",
+    "engineering/lang/javascript-typescript",
     "data structures/database",
     "data structures",
     "attachments/Pasted image 20240508005647.png",
@@ -174,18 +199,8 @@
     "attachments/Pasted image 20240508004805.png",
     "attachments/Pasted image 20240508004410.png",
     "attachments/Pasted image 20240508004245.png",
-    "engineering/design system/alex-xu/web server.md",
-    "engineering/design system/system-design-primer/README.md",
-    "algorithms/binary search.md",
-    "algorithms/sorting.md",
-    "algorithms/string.md",
-    "algorithms/arrays.md",
     "attachments/Pasted image 20240504012018.png",
-    "engineering/design system/alex-xu/chat system.md",
     "attachments/Pasted image 20240503001425.png",
-    "engineering/interview questions/database.md",
-    "algorithms/graph.md",
-    "algorithms/bits.md",
     "attachments/Pasted image 20240420222927.png",
     "attachments/Pasted image 20240420222123.png",
     "engineering/courses/database",
@@ -193,8 +208,6 @@
     "engineering/design system/design data-intensive applications",
     "engineering/design system/alex-xu",
     "engineering/lang",
-    "engineering/design system/system-design-primer",
-    "engineering/cs fundamentals/oop",
     "Untitled.canvas"
   ]
 }
