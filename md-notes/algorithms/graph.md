@@ -210,3 +210,16 @@ public:
     }
 };
 ```
+- [distribute coins in binary tree](https://leetcode.com/problems/distribute-coins-in-binary-tree/)
+```cpp
+class Solution {
+public:
+    int distributeCoins(TreeNode* root, TreeNode *prev = nullptr) {
+        if (!root) return 0;
+        // number of move from node's children to root
+        int ans = distributeCoins(root->left,root) + distributeCoins(root->right,root), v = root->val-1;
+        if (prev) prev->val += v; // move v coins from root to prev (may be negative - move coins from prev to root)
+        return ans + abs(v);
+    }
+};
+```

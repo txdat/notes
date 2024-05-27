@@ -41,8 +41,22 @@
 				- simplicity and cost-effective
 		- replication
 - domain name system (DNS)
+	- hierarchical system, with some authoritative servers -> ip lookup
 - content delivery network (CDN)
-- load balancer & proxy
+	- global distributed network of proxy servers -> serving contents from locations closer to user for static or multimedia files
+	- 2 types
+		- push cdn: receive new content when changes are made on server -> full responsibility for providing content, upload and rewrite url
+		- pull cdn: grab new content when the first user requests them -> may delay request, create redundant traffic
+- load balancer & reverse proxy
+	- distribute incomming requests to computing resources, and return responses to clients
+	- prevent requests comming to unhealty resources, overloading resources, ssl termination and keep session persistence (session affinity)
+	- support horizontal scaling (usually managed by cloud provider)
+	- load balancer can be a bottleneck in system if it's not well designed
+	- 2 types of load balancer
+		- L4 (network load balancer) -> for UDP/TCP/... -> for gateway
+		- L7 (application load balancer) -> for HTTP/HTTPs, support SSL natively -> for business services
+	- reverse proxy is internal service to provide unifined interface to public (hide servers from client) -> increase complexity of system
+	- load balancer is more efficient than reverse proxy if having multiple servers
 - database
 	- relational database
 	- nosql

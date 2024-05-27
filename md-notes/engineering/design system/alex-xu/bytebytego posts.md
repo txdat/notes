@@ -10,3 +10,5 @@
 ![[Pasted image 20240508005248.png | 600]]
 - cloud messaging patterns
 ![[Pasted image 20240508005647.png | 600]]
+- elastic search use cases
+![[Pasted image 20240517115450.png | 600]]

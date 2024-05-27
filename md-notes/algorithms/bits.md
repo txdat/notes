@@ -79,3 +79,23 @@ public:
     }
 };
 ```
+- [find the maximum sum of node values](https://leetcode.com/problems/find-the-maximum-sum-of-node-values/)
+```cpp
+using ll = long long;
+
+class Solution {
+public:
+    long long maximumValueSum(vector<int>& nums, int k, vector<vector<int>>& edges) {
+        ll ans = 0;
+        int m = INT_MAX, c = 0; // min diff and number of changable nodes
+        // needn't care about edges
+        for (int &d : nums) {
+            int t = d^k;
+            ans += max(t,d);
+            m = min(m, abs(t-d));
+            if (t>d) c++;
+        }
+        return ans - (c&1)*m;
+    }
+};
+```

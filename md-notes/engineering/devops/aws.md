@@ -11,7 +11,11 @@
 	- security group
 		- SG is assigned to EC2 instances ==at instance level==, acts as virtual firewall
 	- route table
-	- (optional) internet gateway
+	- internet gateway - NAT gateway
+- public/private subnets
+	- public subnet refers to (public) subnet whose routing table has a next hop via internet gateway, private subnet has internet routes via NAT gateway
+	- NAT gateway (decouple NAT from gateway?) is internet gateway with NAT for private subnets to access internet
+	![[Pasted image 20240523161443.png | 600]]
 # EC2
 # ECS
 # EKS
