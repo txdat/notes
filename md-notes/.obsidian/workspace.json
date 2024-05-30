@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "b78305d915d59996",
+        "id": "4d39f7088d69eab7",
         "type": "tabs",
         "children": [
           {
-            "id": "cda035b8cd9d315d",
+            "id": "641710b6ba251889",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "engineering/design system/design data intensive applications/book/ch1. thinking about data systems.md",
+                "file": "algorithms/number theory.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "engineering/design system/design data intensive applications/book/ch1. thinking about data systems.md",
+                "file": "algorithms/number theory.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "engineering/design system/design data intensive applications/book/ch1. thinking about data systems.md",
+                "file": "algorithms/number theory.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "engineering/design system/design data intensive applications/book/ch1. thinking about data systems.md"
+                "file": "algorithms/number theory.md"
               }
             }
           }
@@ -139,24 +139,25 @@
   "left-ribbon": {
     "hiddenItems": {
       "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": true,
       "templates:Insert template": true,
-      "command-palette:Open command palette": true,
-      "obsidian-excalidraw-plugin:Create new drawing": false
+      "command-palette:Open command palette": true
     }
   },
-  "active": "cda035b8cd9d315d",
+  "active": "641710b6ba251889",
   "lastOpenFiles": [
+    "algorithms/number theory.md",
+    "algorithms/dynamic programming.md",
+    "engineering/design system/design data intensive applications/book/ch1. thinking about data systems.md",
     "engineering/design system/distributed system/ch1. introduction.md",
     "algorithms/graph.md",
-    "engineering/design system/design data intensive applications/book/ch1. thinking about data systems.md",
     "engineering/design system/system-design-primer/amazon sale ranking by category.md",
     "engineering/design system/system-design-primer/data structure for social network.md",
     "engineering/database/postgres.md",
     "engineering/design system/design data intensive applications/book",
-    "algorithms/number theory.md",
     "algorithms/segment tree.md",
     "engineering/design system/system-design-primer/README.md",
     "engineering/devops/aws.md",
@@ -166,7 +167,6 @@
     "algorithms/arrays.md",
     "algorithms/greedy.md",
     "algorithms/binary search.md",
-    "algorithms/dynamic programming.md",
     "engineering/design system/design data intensive applications/blog posts/redlock - distributed lock.md",
     "engineering/design system/alex-xu/key-value store.md",
     "engineering/design system/design data intensive applications/blog posts/CAP.md",

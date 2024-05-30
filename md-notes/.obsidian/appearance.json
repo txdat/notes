@@ -1,8 +1,8 @@
 {
   "accentColor": "",
-  "interfaceFontFamily": "CaskaydiaMono Nerd Font Mono,JetBrainsMono Nerd Font Mono",
-  "textFontFamily": "CaskaydiaMono Nerd Font Mono,JetBrainsMono Nerd Font Mono",
-  "monospaceFontFamily": "CaskaydiaMono Nerd Font Mono,JetBrainsMono Nerd Font Mono",
+  "interfaceFontFamily": "Maple Mono SC NF",
+  "textFontFamily": "Maple Mono SC NF",
+  "monospaceFontFamily": "Maple Mono SC NF",
   "baseFontSize": 12,
   "nativeMenus": true,
   "theme": "obsidian",

@@ -94,3 +94,24 @@ bool continualMods(vector<int> &a) {
     return false;
 }
 ```
+- [count array pairs divisible by k](https://leetcode.com/problems/count-array-pairs-divisible-by-k/description/)
+**important property
+- if $$(a*b)\%k=0 \leftrightarrow (gcd(a,k)*gcd(b,k))\%k=0$$
+```cpp
+using ll = long long;
+
+class Solution {
+public:
+	long long countPairs(vector<int> &nums, int k) {
+		unordered_map<int,ll> m;
+		for (int &d : nums) m[gcd(d,k)]++;
+		ll ans = 0;
+		for (auto &[a, ca] : m) {
+			for (auto &[b, cb] : m) {
+				if ((ll(a)*b)%k == 0) ans += ca*cb - (a == b ? ca : 0);
+			}
+		}
+		return ans/2;
+	}
+};
+```
