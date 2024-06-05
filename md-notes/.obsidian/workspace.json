@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "4d39f7088d69eab7",
+        "id": "9f0c117b12e03a5c",
         "type": "tabs",
         "children": [
           {
-            "id": "641710b6ba251889",
+            "id": "188a45d82904c96e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "algorithms/number theory.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "algorithms/number theory.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "algorithms/number theory.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "algorithms/number theory.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -147,10 +139,11 @@
       "command-palette:Open command palette": true
     }
   },
-  "active": "641710b6ba251889",
+  "active": "188a45d82904c96e",
   "lastOpenFiles": [
-    "algorithms/number theory.md",
     "algorithms/dynamic programming.md",
+    "algorithms/bits.md",
+    "algorithms/number theory.md",
     "engineering/design system/design data intensive applications/book/ch1. thinking about data systems.md",
     "engineering/design system/distributed system/ch1. introduction.md",
     "algorithms/graph.md",
@@ -162,7 +155,6 @@
     "engineering/design system/system-design-primer/README.md",
     "engineering/devops/aws.md",
     "attachments/Pasted image 20240523161443.png",
-    "algorithms/bits.md",
     "algorithms/prefix sum.md",
     "algorithms/arrays.md",
     "algorithms/greedy.md",

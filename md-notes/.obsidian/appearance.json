@@ -6,6 +6,6 @@
   "baseFontSize": 12,
   "nativeMenus": true,
   "theme": "obsidian",
-  "cssTheme": "Minimal",
+  "cssTheme": "",
   "baseFontSizeAction": true
 }

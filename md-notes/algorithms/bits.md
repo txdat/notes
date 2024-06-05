@@ -99,3 +99,69 @@ public:
     }
 };
 ```
+- [single number ii](https://leetcode.com/problems/single-number-ii/description/)
+```cpp
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int c[32] = {0};
+        for (int &d : nums) {
+            if (d == INT_MIN) {
+                for (int i = 0; i < 32; i++) c[i]++;
+                continue;
+            }
+            if (d < 0) {
+                d = -d;
+                c[31]++;
+            }
+            int i = 0;
+            while (d) {
+                c[i++] += d&1;
+                d >>= 1;
+            }
+        }
+        int s = 0;
+        for (int i = 0; i < 32; i++) s += c[i]%=3;
+        if (s == 32) return INT_MIN;
+        int ans = 0;
+        for (int i = 30; i >= 0; i--) {
+            ans <<= 1;
+            ans += c[i];
+        }
+        return c[31] ? -ans : ans;
+    }
+};
+```
+- [single number iii](https://leetcode.com/problems/single-number-iii/description/)
+```cpp
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        long x = 0;
+        for (int &d : nums) x ^= d;
+        // x ^= x&(x-1);
+        x = 1<<__builtin_ctzl(x); // select one of bits
+        int a = 0, b = 0;
+        for (int &d : nums) {
+            if (x&d) {
+                a ^= d;
+            } else {
+                b ^= d;
+            }
+        }
+        return {a,b};
+    }
+};
+```
+- [find xor-beauty of array](https://leetcode.com/problems/find-xor-beauty-of-array/description/)
+	- [explaination](https://leetcode.com/problems/find-xor-beauty-of-array/solutions/3015014/why-just-xor-of-all-numbers-works/)
+```cpp
+class Solution {
+public:
+    int xorBeauty(vector<int>& nums) {
+        int ans = 0;
+        for (int &d : nums) ans ^= d;
+        return ans;
+    }
+};
+```
