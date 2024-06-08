@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "9f0c117b12e03a5c",
+        "id": "c7dd34534561d265",
         "type": "tabs",
         "children": [
           {
-            "id": "188a45d82904c96e",
+            "id": "4451f2e632b3f266",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "algorithms/binary search.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "algorithms/binary search.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "algorithms/binary search.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "algorithms/binary search.md"
+              }
             }
           }
         ]
@@ -139,25 +147,27 @@
       "command-palette:Open command palette": true
     }
   },
-  "active": "188a45d82904c96e",
+  "active": "4451f2e632b3f266",
   "lastOpenFiles": [
-    "algorithms/dynamic programming.md",
     "algorithms/bits.md",
+    "algorithms/dynamic programming.md",
+    "algorithms/greedy.md",
+    "algorithms/graph.md",
+    "engineering/devops/aws.md",
+    "algorithms/sorting.md",
+    "algorithms/string.md",
     "algorithms/number theory.md",
     "engineering/design system/design data intensive applications/book/ch1. thinking about data systems.md",
     "engineering/design system/distributed system/ch1. introduction.md",
-    "algorithms/graph.md",
     "engineering/design system/system-design-primer/amazon sale ranking by category.md",
     "engineering/design system/system-design-primer/data structure for social network.md",
     "engineering/database/postgres.md",
     "engineering/design system/design data intensive applications/book",
     "algorithms/segment tree.md",
     "engineering/design system/system-design-primer/README.md",
-    "engineering/devops/aws.md",
     "attachments/Pasted image 20240523161443.png",
     "algorithms/prefix sum.md",
     "algorithms/arrays.md",
-    "algorithms/greedy.md",
     "algorithms/binary search.md",
     "engineering/design system/design data intensive applications/blog posts/redlock - distributed lock.md",
     "engineering/design system/alex-xu/key-value store.md",
@@ -170,8 +180,6 @@
     "engineering/design system/alex-xu/rate limiter.md",
     "engineering/dependency-injection.md",
     "engineering/interview questions/operating system.md",
-    "engineering/interview questions/oop.md",
-    "engineering/interview questions/networking.md",
     "engineering/design system/design data intensive applications",
     "engineering/design system/misc",
     "engineering/lang/javascript-typescript",

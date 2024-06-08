@@ -1,6 +1,4 @@
 {
-  "minimal-style@@active-line-on": true,
-  "minimal-style@@bg1@@dark": "#080808",
-  "minimal-style@@tx1@@dark": "#BDBDBD",
-  "minimal-style@@base@@dark": "#080808"
+  "minimal-advanced@@font-ui-small": 12,
+  "minimal-advanced@@font-ui-smaller": 10
 }

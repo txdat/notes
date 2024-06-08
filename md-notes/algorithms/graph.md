@@ -1,4 +1,3 @@
-# shortest path in a directed weighted graph
 1. dijkstra
 ```cpp
 // g: {i: [{cost_ij, j},...]}
