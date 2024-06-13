@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "c7dd34534561d265",
+        "id": "3c6754358587fd29",
         "type": "tabs",
         "children": [
           {
-            "id": "4451f2e632b3f266",
+            "id": "e8be57dedc3b5046",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "algorithms/binary search.md",
+                "file": "engineering/devops/helm.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "algorithms/binary search.md",
+                "file": "engineering/devops/helm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "algorithms/binary search.md",
+                "file": "engineering/devops/helm.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "algorithms/binary search.md"
+                "file": "engineering/devops/helm.md"
               }
             }
           }
@@ -147,54 +147,54 @@
       "command-palette:Open command palette": true
     }
   },
-  "active": "4451f2e632b3f266",
+  "active": "e8be57dedc3b5046",
   "lastOpenFiles": [
-    "algorithms/bits.md",
+    "engineering/devops/gcp.md",
+    "engineering/devops/aws.md",
+    "engineering/interview questions/networking.md",
+    "engineering/design system/system-design-primer/README.md",
+    "engineering/design system/system-design-primer/web crawler.md",
+    "engineering/interview questions/misc/nodejs - asynchronous task runner.md",
+    "attachments/Pasted image 20240613230858.png",
+    "engineering/devops/helm.md",
+    "attachments/Pasted image 20240613230738.png",
+    "attachments/Pasted image 20240613230646.png",
+    "attachments/Pasted image 20240613230644.png",
+    "attachments/Pasted image 20240613230632.png",
+    "attachments/Pasted image 20240613230627.png",
+    "engineering/interview questions/misc",
+    "engineering/design system/system-design-primer/amazon sale ranking by category.md",
+    "engineering/design system/system-design-primer/cache.md",
+    "engineering/design system/distributed system/ch1. introduction.md",
+    "engineering/design system/design data intensive applications/book/ch1. thinking about data systems.md",
+    "engineering/dependency-injection.md",
+    "algorithms/number theory.md",
+    "data structures/skiplist.md",
+    "Untitled",
+    "engineering/devops/kafka.md",
+    "algorithms/prefix sum.md",
+    "engineering/devops/k8s.md",
     "algorithms/dynamic programming.md",
+    "engineering/database/mongodb.md",
+    "algorithms/binary search.md",
+    "algorithms/bits.md",
     "algorithms/greedy.md",
     "algorithms/graph.md",
-    "engineering/devops/aws.md",
     "algorithms/sorting.md",
     "algorithms/string.md",
-    "algorithms/number theory.md",
-    "engineering/design system/design data intensive applications/book/ch1. thinking about data systems.md",
-    "engineering/design system/distributed system/ch1. introduction.md",
-    "engineering/design system/system-design-primer/amazon sale ranking by category.md",
     "engineering/design system/system-design-primer/data structure for social network.md",
-    "engineering/database/postgres.md",
     "engineering/design system/design data intensive applications/book",
-    "algorithms/segment tree.md",
-    "engineering/design system/system-design-primer/README.md",
     "attachments/Pasted image 20240523161443.png",
-    "algorithms/prefix sum.md",
-    "algorithms/arrays.md",
-    "algorithms/binary search.md",
-    "engineering/design system/design data intensive applications/blog posts/redlock - distributed lock.md",
-    "engineering/design system/alex-xu/key-value store.md",
-    "engineering/design system/design data intensive applications/blog posts/CAP.md",
     "attachments/Pasted image 20240517150725.png",
-    "engineering/design system/alex-xu/bytebytego posts.md",
     "attachments/Pasted image 20240517115450.png",
     "engineering/design system/design data intensive applications/blog posts",
-    "engineering/lang/javascript-typescript/event loop.md",
-    "engineering/design system/alex-xu/rate limiter.md",
-    "engineering/dependency-injection.md",
-    "engineering/interview questions/operating system.md",
     "engineering/design system/design data intensive applications",
     "engineering/design system/misc",
-    "engineering/lang/javascript-typescript",
+    "engineering/programming languages/javascript-typescript",
     "data structures/database",
     "data structures",
     "attachments/Pasted image 20240508005647.png",
-    "attachments/Pasted image 20240508005248.png",
-    "attachments/Pasted image 20240508004952.png",
-    "attachments/Pasted image 20240508004805.png",
-    "attachments/Pasted image 20240508004410.png",
-    "attachments/Pasted image 20240508004245.png",
-    "attachments/Pasted image 20240504012018.png",
     "engineering/courses/database",
-    "engineering/courses",
-    "engineering/design system/design data-intensive applications",
     "Untitled.canvas"
   ]
 }

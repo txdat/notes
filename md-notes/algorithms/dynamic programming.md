@@ -134,3 +134,50 @@ public:
 	}
 };
 ```
+- [maximum total reward using operations i](https://leetcode.com/problems/maximum-total-reward-using-operations-i/)
+```cpp
+int dp[2001][4002];
+
+class Solution {
+public:
+	// pick/notpick solution (slow but not TLE)
+    int solve(vector<int> &values, int i = 0, int m = 0) {
+        if (i == values.size()) return 0;
+        if (dp[i][m] != -1) return dp[i][m];
+        int ans = solve(values, i+1, m);
+        if (values[i] > m) ans = max(ans, solve(values, i+1, m+values[i]) + values[i]);
+        return dp[i][m] = ans;
+    }
+
+    int maxTotalReward(vector<int>& values) {
+        memset(dp, -1, sizeof(dp));
+        sort(values.begin(),values.end());
+        // remove duplicated values
+        int n = 1; // new size of values
+		for (int i = 1; i < values.size(); i++) if (values[i] != values[i-1]) swap(values[i], values[n++]);
+		values.resize(n);
+        return solve(values);
+    }
+
+	int maxTotalRewardBetter(vector<int>& values) {
+        sort(values.begin(),values.end());
+        // remove duplicated values
+        int n = 1; // new size of values
+		for (int i = 1; i < values.size(); i++) if (values[i] != values[i-1]) swap(values[i], values[n++]);
+		values.resize(n);
+
+		int dp[4002] = {0}; // dp[v] is max total reward taken from values[i..] after receiving v reward
+		int m = values[n-1]*2;
+		for (int i = n-1; i >= 0; i--) {
+			for (int v = 0; v < m; v++) {
+				if (v < values[i]) dp[v] = max(dp[v], values[i] + dp[v+values[i]]);
+			}
+		}
+		return dp[0];
+	}
+};
+```
+- [maximum total reward using operations ii](https://leetcode.com/problems/maximum-total-reward-using-operations-ii/description/)
+```cpp
+
+```

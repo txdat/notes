@@ -1,6 +1,8 @@
 [github](https://github.com/donnemartin/system-design-primer)
-# topics
-### review
+# some useful articles
+- https://cloudncode.blog/2016/07/22/msa-getting-started/
+- https://lethain.com/introduction-to-architecting-systems-for-scale/
+# review
 - performance vs scalability
 	- scalable: performance is increased in the manner proportional to resources added -> serving more units of work
 	- problems
@@ -58,10 +60,49 @@
 	- reverse proxy is internal service to provide unifined interface to public (hide servers from client) -> increase complexity of system
 	- load balancer is more efficient than reverse proxy if having multiple servers
 - database
-	- relational database
+	- relational database (RDBMs)
+		- collection of data items organized in tables
+		- ACID: set of properties of RDBMs
+			- atomic: a transaction's operations must be executed all or nothing
+			- consistency: a transaction brings system from consistent state to another consistent state
+			- isolation: each transaction is executed independently from other transactions
+			- durability: each transation is executed, and then stored
+		- scaling
+			- replication
+				- master (read+write) - slaves (read only), if master is down, one of slaves is promoted as next master, and new slave is created
+				- master - master
+					- need load balancing, or logic to select server to write (system uses consistent hashing?)
+					- may violate ACID properties
+					- have to solve conflicts
+			- federation - functional partitioning
+				- not effective if schema/logic requires many functions, table joining
+				- hardware complexity
+			- sharding
+				- distribute data across databases (manage a subset of data) -> less read/write traffic, replication, ...
+				- system is availabilty (continue working if some shards are down)
+				- parallel writing operations
+				- add more complexity to logic, table joining
+				- need to rebalance data (resharding)
+		- denormalization
+			- keep redundant data to reduce expensive joins
+			- data is duplicated, worse performance for heavy write operations
 	- nosql
+		- data is represented in key-value, document, wide column, or graph
+		- data is duplicated
+		- violate ACID properties
+		- eventual consistentcy: reach consistent state after a period of time
+		- key-value
+			- read/write operations in O(1), backed by memory or SSD
+			- high performance, mostly use for temporal data and caching
+		- document
+			- data is store in document format (XML, json, ...)
+			- documents are organized by collections, tags, ...
+		- wide-column
+		- graph
+			- each node stores a record of data, and each arc stores the relationship between nodes
+			- optimized for representing complex relationships
 	- cache
-- asynchronism
+- asynchronism - non-blocking system
 	- message queue
 - networking
 	- TCP

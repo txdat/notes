@@ -470,6 +470,10 @@ spec:
 ```bash
 helm upgrade --install mmenu-api ./mmenu-api --namespace mmenu-prod --set image.repository=asia-southeast1-docker.pkg.dev`/mmenu-api-prod/docker/mmenu-api --set image.tag=latest
 ```
-7. add **A record** to DNS for gateway load balancer's ip address (if using gateway) or ingress load balancer's ip address (if using ingress)
-8. Some useful kubectl commands
+ - better way to update a running deployment
+```bash
+kubectl set image deployment/<deployment-name> -n <namespace> <deployment-name>=<image>:<tag>  # changed by tag
+```
+1. add **A record** to DNS for gateway load balancer's ip address (if using gateway) or ingress load balancer's ip address (if using ingress)
+2. Some useful kubectl commands
 	see more at [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

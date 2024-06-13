@@ -4,7 +4,7 @@
   "lightScheme": "minimal-flexoki-light",
   "darkScheme": "minimal-flexoki-dark",
   "editorFont": "Maple Mono SC NF",
-  "lineHeight": 1,
+  "lineHeight": 1.5,
   "lineWidth": 40,
   "lineWidthWide": 50,
   "maxWidth": 88,
