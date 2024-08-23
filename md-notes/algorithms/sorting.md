@@ -42,3 +42,31 @@ public:
     }
 };
 ```
+- [sort an array - radix sort](https://leetcode.com/problems/sort-an-array/description/)
+```cpp
+class Solution {
+public:
+    void sort01(vector<int> &a, int l, int r, int m) {
+        if (l >= r || m == 0) return;
+        int j = r;
+        for (int i = l; i <= j;) {
+            if (a[i]&m) {
+                swap(a[i],a[j--]);
+            } else {
+                i++;
+            }
+        }
+        m>>=1;
+        sort01(a,l,j,m);
+        sort01(a,j+1,r,m);
+    }
+
+    vector<int> sortArray(vector<int>& nums) {
+        int t = 5*10e4;
+        for (int &d : nums) d += t;
+        sort01(nums,0,nums.size()-1,1<<30);
+        for (int &d : nums) d -= t;
+        return nums;
+    }
+};
+```

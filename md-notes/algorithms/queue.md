@@ -43,6 +43,26 @@ public:
         }
         return n-j;
     }
+	int longestSubarray2(vector<int>& nums, int limit) {
+		int n = nums.size();
+        deque<int> minq, maxq;
+        int ans = 0;
+        for (int i = 0, j = 0; j < n;) {
+            while (!minq.empty() && minq.front() < i) minq.pop_front();
+            while (!maxq.empty() && maxq.front() < i) maxq.pop_front();
+            while (!minq.empty() && nums[minq.back()] > nums[j]) minq.pop_back();
+            minq.push_back(j);
+            while (!maxq.empty() && nums[maxq.back()] < nums[j]) maxq.pop_back();
+            maxq.push_back(j);
+            if (nums[maxq.front()]-nums[minq.front()] > limit) {
+                i++;
+                continue;
+            }
+            ans = max(ans, j-i+1);
+            j++;
+        }
+        return ans;
+	}
 };
 ```
 - [constrained subsequence sum](https://leetcode.com/problems/constrained-subsequence-sum/)

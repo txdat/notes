@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "3c6754358587fd29",
+        "id": "9b9193731df82e39",
         "type": "tabs",
         "children": [
           {
-            "id": "e8be57dedc3b5046",
+            "id": "70ad2ff2ae460f06",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "engineering/devops/helm.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "engineering/devops/helm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "engineering/devops/helm.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,11 +119,20 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "engineering/devops/helm.md"
+                "file": "my schedule 2024.md"
               }
             }
+          },
+          {
+            "id": "b413fd4eaf05329f",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -139,62 +142,63 @@
   "left-ribbon": {
     "hiddenItems": {
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-excalidraw-plugin:Create new drawing": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": true,
       "templates:Insert template": true,
-      "command-palette:Open command palette": true
+      "command-palette:Open command palette": true,
+      "obsidian-excalidraw-plugin:Create new drawing": false,
+      "obsidian-kanban:Create new board": false
     }
   },
-  "active": "e8be57dedc3b5046",
+  "active": "61a29ac0d3d1ca10",
   "lastOpenFiles": [
-    "engineering/devops/gcp.md",
-    "engineering/devops/aws.md",
-    "engineering/interview questions/networking.md",
-    "engineering/design system/system-design-primer/README.md",
-    "engineering/design system/system-design-primer/web crawler.md",
-    "engineering/interview questions/misc/nodejs - asynchronous task runner.md",
-    "attachments/Pasted image 20240613230858.png",
-    "engineering/devops/helm.md",
-    "attachments/Pasted image 20240613230738.png",
-    "attachments/Pasted image 20240613230646.png",
-    "attachments/Pasted image 20240613230644.png",
-    "attachments/Pasted image 20240613230632.png",
-    "attachments/Pasted image 20240613230627.png",
-    "engineering/interview questions/misc",
-    "engineering/design system/system-design-primer/amazon sale ranking by category.md",
-    "engineering/design system/system-design-primer/cache.md",
-    "engineering/design system/distributed system/ch1. introduction.md",
-    "engineering/design system/design data intensive applications/book/ch1. thinking about data systems.md",
-    "engineering/dependency-injection.md",
-    "algorithms/number theory.md",
-    "data structures/skiplist.md",
-    "Untitled",
-    "engineering/devops/kafka.md",
-    "algorithms/prefix sum.md",
-    "engineering/devops/k8s.md",
+    "engineering/design system/topics/facebook - memcached.md",
+    "engineering/design system/alex-xu/consistent hashing.md",
+    "attachments/Pasted image 20240823154815.png",
+    "attachments/Pasted image 20240823154803.png",
+    "attachments/Pasted image 20240823154656.png",
+    "attachments/Pasted image 20240823153645.png",
+    "attachments/Pasted image 20240823153631.png",
     "algorithms/dynamic programming.md",
-    "engineering/database/mongodb.md",
+    "engineering/design system/alex-xu/cache.md",
+    "engineering/design system/misc/consistent hashing.md",
+    "Excalidraw/consitent hashing.excalidraw.md",
+    "engineering/design system/design data intensive applications/book/part 1. foundations.md",
+    "engineering/design system/design data intensive applications/book/part 2. distributed data.md",
+    "engineering/design system/design data intensive applications/book/part 3. derived data.md",
+    "attachments/Pasted image 20240815221711.png",
     "algorithms/binary search.md",
-    "algorithms/bits.md",
-    "algorithms/greedy.md",
+    "engineering/shell scripts.md",
+    "attachments/Pasted image 20240813223647.png",
+    "attachments/Pasted image 20240813223622.png",
+    "my schedule 2024.md",
+    "data structures/AVL tree.md",
+    "attachments/Pasted image 20240813221121.png",
+    "engineering/database/kafka.md",
+    "engineering/database/redis.md",
+    "engineering/database/postgres.md",
+    "engineering/database/mongodb.md",
+    "engineering/database/nosql.md",
+    "schedule notes/engineering - redis+kafka deep dive.md",
+    "schedule notes",
+    "engineering/linux.md",
+    "algorithms/priority queue - heap.md",
     "algorithms/graph.md",
-    "algorithms/sorting.md",
-    "algorithms/string.md",
-    "engineering/design system/system-design-primer/data structure for social network.md",
+    "algorithms/arrays.md",
+    "engineering/design system/alex-xu/key-value store.md",
+    "engineering/design system/system-design-primer/key-value storage for search engine.md",
+    "engineering/interview questions/networking.md",
+    "attachments/Pasted image 20240730132017.png",
+    "engineering/web",
+    "engineering/shell scripts",
+    "engineering/interview questions/misc",
     "engineering/design system/design data intensive applications/book",
-    "attachments/Pasted image 20240523161443.png",
-    "attachments/Pasted image 20240517150725.png",
-    "attachments/Pasted image 20240517115450.png",
     "engineering/design system/design data intensive applications/blog posts",
     "engineering/design system/design data intensive applications",
-    "engineering/design system/misc",
+    "engineering/design system/topics",
     "engineering/programming languages/javascript-typescript",
     "data structures/database",
-    "data structures",
-    "attachments/Pasted image 20240508005647.png",
-    "engineering/courses/database",
     "Untitled.canvas"
   ]
 }

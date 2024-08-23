@@ -102,11 +102,37 @@
 			- each node stores a record of data, and each arc stores the relationship between nodes
 			- optimized for representing complex relationships
 	- cache
+		- reduce the load and improve the performance in servers and databases
+		- many types of caching
+			- client
+			- CDN
+			- web server, reverse proxies
+			- database
+			- application (memory caching)
+		- when to update cache/cache validation [[engineering/design system/alex-xu/cache|cache]]
 - asynchronism - non-blocking system
+	- reduce request time for expensive operations, doing time-consuming works in advance, such as periodic aggregation of data
 	- message queue
+		- application publishes a job to queue, a worker receives, processes and sets job's status to complete (in the background)
+	- task queue
+			- a worker receives job and its data, and delivers its result
+		- support scheduling and run computationally-intensive jobs in the background
+	- message queue vs task queue? #TODO need to verify
+		- message queue is the low-level building block of the concept
+		- task queue is the implementation of message queue to achieve task orchestration - wrapper over message queue
 - networking
 	- TCP
+		- is a connection-oriented protocol over IP network, established and terminated using handshake
+		- all packets sent are guaranteed to reach the destination in original order without corruption
+		- support congestion control
 	- UDP
+		- is a connectionless
+		- packets sent might reach to the destination out of order and not at all
+		- not support congestion control (prevent network overload and ensure smooth data flow -> manage traffic, similar to rate limiter?)
+		- less reliable but works well in real time use case
 	- HTTP
+		- is request/response protocol to encoding and transporting data between client and server
+		- self-contained -> flow through intermediate routers, and servers that perform load balancing, caching, encryption, ...
+		- 5 verbs: GET, POST, PATCH, DELETE, PUT
 	- REST
 	- RPC

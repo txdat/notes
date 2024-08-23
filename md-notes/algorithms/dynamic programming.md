@@ -1,4 +1,4 @@
-1. [minimum moves to pick k ones](https://leetcode.com/problems/minimum-moves-to-pick-k-ones/description/)
+						1. [minimum moves to pick k ones](https://leetcode.com/problems/minimum-moves-to-pick-k-ones/description/)
 ```cpp
 using ll = long long;
 constexpr int MOD = 1e9+7;
@@ -117,12 +117,13 @@ public:
 	}
 
 	vector<int> shortestSubsequence(vector<int> &nums, int target) {
+		sort(nums.begin(),nums.end(),greater<int>());
 		vector<int> ans;
-		vector<int> dp(target+1,1e9), trace(target+1,0);
+		vector<int> dp(target+1,1e9), trace(target+1);
 		dp[0] = 0;
 		for (int &d : nums) {
 			for (int i = target; i >= d; i--) {
-				if (dp[i-d]+1<dp[i]) {
+				if (dp[i-d] != 1e9 && dp[i-d]+1<dp[i]) {
 					dp[i] = dp[i-d]+1;
 					trace[i] = i-d;
 					if (i == target) ans = backtrack(trace,target); // backtracking after forloop can cause wrong results
@@ -133,6 +134,12 @@ public:
 		return ans;
 	}
 };
+
+// failed with simple test case
+// int totalAmount = 12345;
+// vector<pii> denominationList{
+// {1, 100},   {5, 100},    {10, 100},   {50, 100},   {100, 1},
+// {500, 100}, {1000, 100}, {2000, 100}, {5000, 100}, {10000, 100}};
 ```
 - [maximum total reward using operations i](https://leetcode.com/problems/maximum-total-reward-using-operations-i/)
 ```cpp
@@ -180,4 +187,88 @@ public:
 - [maximum total reward using operations ii](https://leetcode.com/problems/maximum-total-reward-using-operations-ii/description/)
 ```cpp
 
+```
+- [shortest distance after road addition queries i](https://leetcode.com/problems/shortest-distance-after-road-addition-queries-i/description/)
+```cpp
+class Solution {
+public:
+    vector<int> shortestDistanceAfterQueries(int n, vector<vector<int>>& queries) {
+        vector<int> dist(n); // dist[i] is distance from 0 to i
+        iota(dist.rbegin(),dist.rend(),0);
+        vector<int> ans;
+        vector<vector<int>> next(n,vector<int>());
+        for (auto &q : queries) {
+            next[q[0]].push_back(q[1]);
+            // dist from q[1] to n-1 is unchanged, all dist from [0..q[0]] to q[1] are changed because there is dist from i to i+1
+            for (int i = q[0]; i >= 0; i--) {
+                dist[i] = min(dist[i], dist[i+1]+1);
+                for (int &j : next[i]) dist[i] = min(dist[i], dist[j]+1);
+            }
+            ans.push_back(dist[0]);
+        }
+        return ans;
+    }
+};
+```
+- [maximum number of points with cost](https://leetcode.com/problems/maximum-number-of-points-with-cost/)
+```cpp
+using ll = long long;
+
+class Solution {
+public:
+    long long maxPoints(vector<vector<int>>& points) {
+        int m = points.size(), n = points[0].size();
+        vector<vector<ll>> dp(2, vector<ll>(n)); // dp[i][j] is maximum points after taking points[i][j]
+        vector<int> fw(n), bw(n); // fw[j] (forward: left-to-right), bw[j] (backward: right-to-left) is best column index of previous row that maximize dp[i][j]
+        for (int j = 0; j < n; j++) dp[0][j] = points[0][j];
+        for (int i = 1; i < m; i++) {
+            int i0 = i&1, i1 = 1-i0;
+            fw[0] = 0;
+            for (int j = 1; j < n; j++) {
+                fw[j] = dp[i1][j] >= dp[i1][fw[j-1]] - abs(j-fw[j-1]) ? j : fw[j-1];
+            }
+            bw[n-1] = n-1;
+            for (int j = n-2; j >= 0; j--) {
+                bw[j] = dp[i1][j] >= dp[i1][bw[j+1]] - abs(j-bw[j+1]) ? j : bw[j+1];
+            }
+            for (int j = 0; j < n; j++) {
+                dp[i0][j] = max(dp[i1][fw[j]] - abs(j-fw[j]), dp[i1][bw[j]] - abs(j-bw[j])) + points[i][j];
+            }
+        }
+        m = 1 - (m&1); // index of row m-1
+        return *max_element(dp[m].begin(),dp[m].end());
+    }
+};
+```
+- [strange printer](https://leetcode.com/problems/strange-printer/)
+```cpp
+class Solution {
+public:
+    // minimum steps to make s[i..j]
+    int solve(string &s, vector<vector<int>> &dp, int i, int j) {
+        if (i > j) return 0;
+        if (dp[i][j] != -1) return dp[i][j];
+        if (s[i] == s[j]) return dp[i][j] = solve(s, dp, i, j-1); // make s[i..j] = a..a, and update s[i..j)
+        int ans = solve(s, dp, i, j-1) + 1; // update s[i..j) and insert s[j]
+        for (int k = i+1; k < j; k++) {
+            if (s[k] == s[j]) {
+                // solve(s, dp, i, k-1): solve s[i..k)
+                // solve(s, dp, k, j-1): make s[k..j] = 'a..a', and update s[k..j)
+                ans = min(ans, solve(s, dp, i, k-1) + solve(s, dp, k, j-1));
+            }
+        }
+        return dp[i][j] = ans;
+    }
+
+    int strangePrinter(string s) {
+        // remove duplicate consecutive characters
+        int n = 0;
+        for (char &c : s) if (c != s[n]) s[++n] = c;
+        s.resize(++n);
+
+        vector<vector<int>> dp(n,vector<int>(n,-1));
+        for (int i = 0; i < n; i++) dp[i][i] = 1;
+        return solve(s, dp, 0, n-1);
+    }
+};
 ```

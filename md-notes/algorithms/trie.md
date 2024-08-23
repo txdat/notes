@@ -196,3 +196,7 @@ public:
     }
 };
 ```
+- [construct string with minimum cost](https://leetcode.com/problems/construct-string-with-minimum-cost/) -> aho-corasick
+```cpp
+
+```

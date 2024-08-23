@@ -410,3 +410,47 @@ public:
     }
 };
 ```
+- [minimum number of flips to make binary grid palindromic ii](https://leetcode.com/problems/minimum-number-of-flips-to-make-binary-grid-palindromic-ii/description/) -> greedy
+```cpp
+class Solution {
+public:
+    int minFlips(vector<vector<int>>& grid) {
+        int m = grid.size(), n = grid[0].size(), m1 = m/2, n1 = n/2;
+        int ans = 0;
+        for (int i = 0; i < m1; i++) {
+            for (int j = 0; j < n1; j++) {
+                int i1 = m-1-i, j1 = n-1-j;
+                int s = grid[i][j] + grid[i][j1] + grid[i1][j] + grid[i1][j1];
+                ans += min(s, 4-s);
+            }
+        }
+
+        if ((m&1) && (n&1) && grid[m1][n1]) ans++;
+
+        int c = 0, t = 0;
+        if (m&1) {
+            for (int j = 0; j < n1; j++) {
+                if (grid[m1][j] != grid[m1][n-1-j]) {
+                    ans++;
+                    t++;
+                } else if (grid[m1][j]) {
+                    c += 2;
+                }
+            }
+        }
+        
+        if (n&1) {
+            for (int i = 0; i < m1; i++) {
+                if (grid[i][n1] != grid[m-1-i][n1]) {
+                    ans++;
+                    t++;
+                } else if (grid[i][n1]) {
+                    c += 2;
+                }
+            }
+        }
+
+        return t ? ans : ans + c%4;
+    }
+};
+```

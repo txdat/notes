@@ -64,7 +64,7 @@
 				- 2 peer VPN endpoints (2 customer gateways)
 				- 4 tunnels, 2 tunnels from 1 VPN gateway inteface to peer endpoint (with 2 ip addresses)
 				- Create HA-VPN between GCP and AWS step by step [tech.deriv's blog](https://tech.deriv.com/aws-gcp-ha-site-to-site-vpn/)
-# Google kubernetes engine [[k8s]]
+# Google kubernetes engine [[engineering/devops/k8s]]
 # Cloud load balancing
 [GCP doc](https://cloud.google.com/load-balancing/docs/load-balancing-overview)
 - distributes user traffic across multiple services, instances, ... (load balancing backend services) -> reduce risk

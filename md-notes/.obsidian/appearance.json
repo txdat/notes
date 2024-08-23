@@ -1,8 +1,8 @@
 {
-  "accentColor": "#b2ceee",
-  "interfaceFontFamily": "Maple Mono SC NF",
-  "textFontFamily": "Maple Mono SC NF",
-  "monospaceFontFamily": "Maple Mono SC NF",
+  "accentColor": "#c5accf",
+  "interfaceFontFamily": "Maple Mono NF CN",
+  "textFontFamily": "Maple Mono NF CN",
+  "monospaceFontFamily": "Maple Mono NF CN",
   "baseFontSize": 12,
   "nativeMenus": true,
   "theme": "obsidian",

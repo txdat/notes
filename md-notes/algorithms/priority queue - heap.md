@@ -62,3 +62,6 @@ public:
     }
 };
 ```
+- get k-th element
+	- minimum -> max-heap priority queue
+	- maximum -> min-heap priority queue

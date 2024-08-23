@@ -222,3 +222,130 @@ public:
     }
 };
 ```
+- [all ancestors of a node in a DAG](https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/)
+```cpp
+class Solution {
+public:
+    void dfs(vector<vector<int>> &g, int &i, int &i0, vector<vector<int>> &ans) {
+        for (int &j : g[i]) {
+            if (ans[j].empty() || ans[j].back() != i0) {
+                ans[j].push_back(i0);
+                dfs(g, j, i0, ans); // neednt go deeper if ans[j] is not change
+            }
+        }
+    }
+
+    vector<vector<int>> getAncestors(int n, vector<vector<int>>& edges) {
+        vector<vector<int>> g(n,vector<int>());
+        for (auto &e : edges) g[e[0]].push_back(e[1]);
+
+        vector<vector<int>> ans(n,vector<int>());
+        for (int i = 0; i < n; i++) dfs(g, i, i, ans);
+        return ans;
+    }
+};
+
+// backward - too slow
+// class Solution {
+// public:
+//     void dfs(vector<vector<int>> &g, int i, vector<bool> &visited, vector<unordered_set<int>> &a) {
+//         visited[i] = true;
+//         for (int &j : g[i]) {
+//             a[i].insert(j);
+//             if (!visited[j]) dfs(g, j, visited, a);
+//             for (int t : a[j]) a[i].insert(t);
+//         }
+//     }
+// 
+//     vector<vector<int>> getAncestors(int n, vector<vector<int>>& edges) {
+//         vector<vector<int>> g(n,vector<int>());
+//         for (auto &e : edges) g[e[1]].push_back(e[0]);
+// 
+//         vector<vector<int>> ans;
+//         vector<unordered_set<int>> a(n,unordered_set<int>());
+//         vector<bool> visited(n,false);
+//         for (int i = 0; i < n; i++) {
+//             if (!visited[i]) dfs(g, i, visited, a);
+//             vector<int> q(a[i].begin(),a[i].end());
+//             sort(q.begin(),q.end());
+//             ans.push_back(move(q));
+//         }
+//         return ans;
+//     }
+// };
+```
+- [find minimum diameter after merging two trees](https://leetcode.com/problems/find-minimum-diameter-after-merging-two-trees/)
+- [second minimum time to reach destination](https://leetcode.com/problems/second-minimum-time-to-reach-destination)
+```cpp
+using pii = pair<int,int>;
+
+class Solution {
+public:
+		// modified dijkstra -> slow
+    int secondMinimum(int n, vector<vector<int>>& edges, int time, int change) {
+        vector<vector<int>> g(n+1,vector<int>());
+        for (auto &e : edges) {
+            g[e[0]].push_back(e[1]);
+            g[e[1]].push_back(e[0]);
+        }
+
+        priority_queue<pii,vector<pii>,greater<pii>> q;
+        q.push({0,1});
+        vector<int> visited(n+1,0), last(n+1,-1);
+        int t0 = -1;
+        while (!q.empty()) {
+            auto [t,i] = q.top(); q.pop();
+            if (t == last[i] || visited[i] == 2) continue; // dont reach with same value or more than 2 times
+            visited[i]++;
+            last[i] = t;
+            if (i == n) {
+                if (t0 != -1 && t > t0) return t;
+                t0 = t;
+            }
+            if ((t/change)&1) t = (t/change+1)*change;
+            t += time;
+            for (int &j : g[i]) if (visited[j] < 2 && last[j] != t) q.push({t,j});
+        }
+        return t0;
+    }
+};
+```
+- [regions cut by slashes](https://leetcode.com/problems/regions-cut-by-slashes/description/)
+```cpp
+class Solution {
+public:
+    void dfs(vector<vector<int>> &g, int n, int i, int j) {
+        g[i][j] = 0;
+        if (i > 0 && g[i-1][j]) dfs(g, n, i-1, j);
+        if (j > 0 && g[i][j-1]) dfs(g, n, i, j-1);
+        if (i < n-1 && g[i+1][j]) dfs(g, n, i+1, j);
+        if (j < n-1 && g[i][j+1]) dfs(g, n, i, j+1);
+    }
+
+    int regionsBySlashes(vector<string>& grid) {
+        int n = grid.size();
+        // x3 grid
+        vector<vector<int>> g(n*3,vector<int>(n*3,1));
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < grid[i].size(); j++) {
+                if (grid[i][j] ==  '/') {
+                    g[3*i][3*j+2] = g[3*i+1][3*j+1] = g[3*i+2][3*j] = 0;
+                } else if (grid[i][j] == '\\') {
+                    g[3*i][3*j] = g[3*i+1][3*j+1] = g[3*i+2][3*j+2] = 0;
+                }
+            }
+        }
+        n *= 3;
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (g[i][j]) {
+                    ans++;
+                    dfs(g, n, i, j);
+                }
+            }
+        }
+        return ans;
+    }
+};
+```

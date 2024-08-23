@@ -1,4 +1,4 @@
-nnoremap <silent> D "_dd
+nnoremap <silent> DD "_dd
 
 nnoremap <silent> H ^
 nnoremap <silent> L $

@@ -165,3 +165,59 @@ public:
     }
 };
 ```
+- [patching array](https://leetcode.com/problems/patching-array/)
+```cpp
+using ll = long long;
+
+class Solution {
+public:
+    int minPatches(vector<int>& nums, int n) {
+        int ans = 0;
+        ll m = 1; // can cover [1,m)
+        for (int &d : nums) {
+            if (d > n || m > n) break;
+            while (m < d) {
+                ans++; // patch m (2^x) to array
+                m <<= 1ll;
+            }
+            m += d;
+        }
+        while (m <= n) {
+            ans++;
+            m <<= 1ll;
+        }
+        return ans;
+    }
+};
+```
+- [minimum number of K consecutive bit flips](https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/description/)
+```cpp
+class Solution {
+public:
+    int minKBitFlips(vector<int>& nums, int k) {
+        int n = nums.size();
+        vector<int> q;
+        int ans = 0, f = 0, j = 0;
+        for (int i = 0; i <= n-k; i++) {
+            if (j < q.size() && q[j] == i) {
+                f--;
+                j++;
+            }
+            if (f&1) nums[i] ^= 1;
+            if (nums[i]) continue;
+            ans++;
+            f++;
+            q.push_back(i+k);
+        }
+        for (int i = n-k+1; i < n; i++) {
+            if (j < q.size() && q[j] == i) {
+                f--;
+                j++;
+            }
+            if (f&1) nums[i] ^= 1;
+            if (nums[i] == 0) return -1;
+        }
+        return ans;
+    }
+};
+```

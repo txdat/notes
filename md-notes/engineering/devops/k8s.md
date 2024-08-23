@@ -1,4 +1,4 @@
-- [kubenetes architecture - devopcube](https://devopscube.com/kubernetes-architecture-explained/)
+	- [kubenetes architecture - devopcube](https://devopscube.com/kubernetes-architecture-explained/)
 - ![[Pasted image 20240209210714.png | 800]]
 1. the need of system like k8s
 	- moving from monolithic app to microservices -> scaling based on service basis
@@ -109,8 +109,6 @@ kubectl debug <target-container-name> --image=<debug-container-image> --target=<
 		- scaling statefulset relates to increase/decrease number of replicas
 	- restart pod, deployment, ...
 	```bash
-kubectl delete pods <pod> --grace-period=0 --force
-kubectl patch pod <pod> -p '{"metadata":{"finalizers":null}}' # if hitting wall :(
 ```
 5. service
 	- pods are ephemeral, pods' ip addresses are assigned after pods have been scheduled to nodes, and many pods may provide same service

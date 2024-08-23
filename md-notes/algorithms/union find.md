@@ -186,3 +186,61 @@ public:
     }
 };
 ```
+- [remove max number of edges to keep graph fully traversable](https://leetcode.com/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable/)
+```cpp
+class Solution {
+public:
+    int find_parent(vector<int> &p, int i) {
+        int j = i;
+        while (p[i] != -1) i = p[i];
+        if (j != i) p[j] = i;
+        return i;
+    }
+
+													    bool check(vector<int> &p) {
+        int l = 0;
+        for (int i = 1; i < p.size(); i++) {
+            if (p[i] == -1) {
+                if (l) return true;
+                l = i;
+            }
+        }
+        return false;
+    }
+
+    int maxNumEdgesToRemove(int n, vector<vector<int>>& edges) {
+        int ans = 0;
+        vector<int> p(n+1,-1);
+        for (auto &e : edges) {
+            if (e[0] != 3) continue;
+            int p1 = find_parent(p, e[1]), p2 = find_parent(p, e[2]);
+            if (p2 != p1) {
+                p[p2] = p1;
+            } else {
+                ans++;
+            }
+        }
+
+        vector<int> pb(p);
+        for (auto &e : edges) {
+            if (e[0] == 1) {
+                int p1 = find_parent(p, e[1]), p2 = find_parent(p, e[2]);
+                if (p2 != p1) {
+                    p[p2] = p1;
+                } else {
+                    ans++;
+                }
+            } else if (e[0] == 2) {
+                int p1 = find_parent(pb, e[1]), p2 = find_parent(pb, e[2]);
+                if (p2 != p1) {
+                    pb[p2] = p1;
+                } else {
+                    ans++;
+                }
+            }
+        }
+        if (check(p) || check(pb)) return -1;
+        return ans;
+    }
+};
+```

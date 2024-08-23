@@ -1,4 +1,4 @@
-1. [earliest second to mark indices i](https://leetcode.com/problems/earliest-second-to-mark-indices-i/description/)
+	1. [earliest second to mark indices i](https://leetcode.com/problems/earliest-second-to-mark-indices-i/description/)
 ```cpp
 class Solution {
 public:
@@ -139,6 +139,36 @@ public:
             m = (l+r)/2;
             ll c = count(nums, m); // subarrays having number of distinct integers <= m
             if (c < t) {
+                l = m+1;
+            } else {
+                r = m;
+            }
+        }
+        return l;
+    }
+};
+```
+- [find kth smallest pair distance](https://leetcode.com/problems/find-k-th-smallest-pair-distance)
+```cpp
+class Solution {
+public:
+	// count number of pair distances that are less than or equal m
+    int count(vector<int> &nums, int m) {
+        int ans = 0;
+        for (int i = 0, j = 1; j < nums.size(); j++) {
+            while (nums[j] - nums[i] > m) i++;
+            ans += j-i;
+        }
+        return ans;
+    }
+
+    int smallestDistancePair(vector<int>& nums, int k) {
+        sort(nums.begin(),nums.end());
+        int l = 0, r = nums.back(), m;
+        while (l < r) {
+            m = (l+r)>>1;
+            int c = count(nums, m);
+            if (c < k) {
                 l = m+1;
             } else {
                 r = m;
