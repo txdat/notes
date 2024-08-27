@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "9b9193731df82e39",
+        "id": "74cd754c93cc9d43",
         "type": "tabs",
         "children": [
           {
-            "id": "70ad2ff2ae460f06",
+            "id": "003e3e0c0a21eb3e",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "engineering/design system/topics/facebook - memcached.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "engineering/design system/topics/facebook - memcached.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "engineering/design system/topics/facebook - memcached.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -119,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "my schedule 2024.md"
+                "file": "engineering/design system/topics/facebook - memcached.md"
               }
             }
           },
@@ -141,54 +147,54 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "table-editor-obsidian:Advanced Tables Toolbar": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": true,
       "templates:Insert template": true,
       "command-palette:Open command palette": true,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
       "obsidian-excalidraw-plugin:Create new drawing": false,
       "obsidian-kanban:Create new board": false
     }
   },
-  "active": "61a29ac0d3d1ca10",
+  "active": "003e3e0c0a21eb3e",
   "lastOpenFiles": [
+    "attachments/Pasted image 20240826001228.png",
+    "engineering/design system/alex-xu/cache.md",
     "engineering/design system/topics/facebook - memcached.md",
+    "engineering/design system/system-design-primer/web crawler.md",
+    "engineering/design system/system-design-primer/README.md",
+    "engineering/design system/system-design-primer/aws webserver.md",
+    "engineering/design system/alex-xu/key-value store.md",
     "engineering/design system/alex-xu/consistent hashing.md",
+    "engineering/design system/alex-xu/chat system.md",
+    "engineering/design system/alex-xu/url shortener.md",
+    "engineering/design system/design data intensive applications/book/part 1. foundations.md",
+    "algorithms/arrays.md",
+    "algorithms/bits.md",
+    "algorithms/binary search.md",
+    "algorithms/cache.md",
+    "algorithms/misc.md",
+    "algorithms/number theory.md",
+    "algorithms/union find.md",
+    "algorithms/topology sorting.md",
+    "algorithms/tree.md",
+    "algorithms/string.md",
+    "algorithms/stack.md",
+    "algorithms/sorting.md",
+    "algorithms/queue.md",
+    "algorithms/priority queue - heap.md",
+    "algorithms/prefix sum.md",
     "attachments/Pasted image 20240823154815.png",
     "attachments/Pasted image 20240823154803.png",
     "attachments/Pasted image 20240823154656.png",
     "attachments/Pasted image 20240823153645.png",
     "attachments/Pasted image 20240823153631.png",
-    "algorithms/dynamic programming.md",
-    "engineering/design system/alex-xu/cache.md",
-    "engineering/design system/misc/consistent hashing.md",
-    "Excalidraw/consitent hashing.excalidraw.md",
-    "engineering/design system/design data intensive applications/book/part 1. foundations.md",
-    "engineering/design system/design data intensive applications/book/part 2. distributed data.md",
-    "engineering/design system/design data intensive applications/book/part 3. derived data.md",
     "attachments/Pasted image 20240815221711.png",
-    "algorithms/binary search.md",
-    "engineering/shell scripts.md",
     "attachments/Pasted image 20240813223647.png",
     "attachments/Pasted image 20240813223622.png",
-    "my schedule 2024.md",
-    "data structures/AVL tree.md",
     "attachments/Pasted image 20240813221121.png",
-    "engineering/database/kafka.md",
-    "engineering/database/redis.md",
-    "engineering/database/postgres.md",
-    "engineering/database/mongodb.md",
-    "engineering/database/nosql.md",
-    "schedule notes/engineering - redis+kafka deep dive.md",
     "schedule notes",
-    "engineering/linux.md",
-    "algorithms/priority queue - heap.md",
-    "algorithms/graph.md",
-    "algorithms/arrays.md",
-    "engineering/design system/alex-xu/key-value store.md",
-    "engineering/design system/system-design-primer/key-value storage for search engine.md",
-    "engineering/interview questions/networking.md",
     "attachments/Pasted image 20240730132017.png",
     "engineering/web",
     "engineering/shell scripts",
