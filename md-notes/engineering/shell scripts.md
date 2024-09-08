@@ -2,19 +2,6 @@
 ```bash
 #!/bin/bash
 
-# pikaichi_restaurants_ftp.json
-# [
-#   {
-#     "companyCode": 100,
-#     "merchantCode": 1001,
-#     "merchantId": "6536381804e556a260dcd4b4",
-#     "ftpHost": "",
-#     "ftpUser": "",
-#     "ftpPassword": ""
-#   },
-#   ...
-# ]
-
 export TZ=Asia/Tokyo
 
 reports=(

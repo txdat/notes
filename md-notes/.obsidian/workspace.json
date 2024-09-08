@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "af2f7c5343567554",
+        "id": "b8ace42ac3488d77",
         "type": "tabs",
         "children": [
           {
-            "id": "8c7aee7dcd4965a3",
+            "id": "c5ec2fa1e2866d66",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "engineering/shell scripts.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "engineering/shell scripts.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "engineering/shell scripts.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "engineering/shell scripts.md"
+              }
             }
           },
           {
@@ -149,8 +157,21 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "8c7aee7dcd4965a3",
+  "active": "c5ec2fa1e2866d66",
   "lastOpenFiles": [
+    "english/grammar/tenses.md",
+    "english/grammar/modal verbs.md",
+    "engineering/shell scripts.md",
+    "engineering/linux.md",
+    "engineering/k8s.md",
+    "engineering/git.md",
+    "engineering/devops/k8s.md",
+    "engineering/design system/design data intensive applications/blog posts/CAP.md",
+    "engineering/design system/design data intensive applications/blog posts/redlock - distributed lock.md",
+    "engineering/devops/aws.md",
+    "engineering/devops/gcp.md",
+    "engineering/devops/helm.md",
+    "engineering/devops/kafka.md",
     "engineering/design system/topics/facebook - memcached.md",
     "attachments/Pasted image 20240907232831.png",
     "attachments/Pasted image 20240907231914.png",
@@ -168,18 +189,6 @@
     "engineering/design system/alex-xu/url shortener.md",
     "engineering/design system/design data intensive applications/book/part 1. foundations.md",
     "algorithms/arrays.md",
-    "algorithms/bits.md",
-    "algorithms/binary search.md",
-    "algorithms/cache.md",
-    "algorithms/misc.md",
-    "algorithms/number theory.md",
-    "algorithms/union find.md",
-    "algorithms/tree.md",
-    "algorithms/string.md",
-    "algorithms/stack.md",
-    "algorithms/sorting.md",
-    "algorithms/queue.md",
-    "algorithms/priority queue - heap.md",
     "attachments/Pasted image 20240823154815.png",
     "attachments/Pasted image 20240823154803.png",
     "attachments/Pasted image 20240823154656.png",

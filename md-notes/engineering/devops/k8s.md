@@ -1,4 +1,4 @@
-	- [kubenetes architecture - devopcube](https://devopscube.com/kubernetes-architecture-explained/)
+- [kubenetes architecture - devopcube](https://devopscube.com/kubernetes-architecture-explained/)
 - ![[Pasted image 20240209210714.png | 800]]
 1. the need of system like k8s
 	- moving from monolithic app to microservices -> scaling based on service basis
@@ -19,9 +19,8 @@
 kubectl debug <target-container-name> --image=<debug-container-image> --target=<target-pod-name>
 ```
 3. architecture of k8s
-![[Pasted image 20231228203156.png | 800]]
-	 - cluster may be public (all k8s's vm have external IPs) or private (only internal IPs, only accessible inside subnet)
-	 includes:
+	![[Pasted image 20231228203156.png | 800]]
+	 - cluster may be public (all k8s's vm have external IPs) or private (only internal IPs, only accessible inside subnet), includes:
 		- control plane
 			- api server:
 				- central hub of k8s cluster, expose kubernetes api for users and third-party services (using http rest for users and grpc)
@@ -59,7 +58,7 @@ kubectl debug <target-container-name> --image=<debug-container-image> --target=<
 				- proxies TCP, UDP, SCTP, and **not understand HTTP**
 				- network traffic routing to backend pods (using iptables)
 				- ![[Pasted image 20240209220243.png | 600]]
-![[Pasted image 20231228203731.png | 800]]
+	![[Pasted image 20231228203731.png | 800]]
 	- k8s interfaces:
 		- extend and customize k8s' core functions
 		- some interfaces:
@@ -108,7 +107,7 @@ kubectl debug <target-container-name> --image=<debug-container-image> --target=<
 		- stateful pods are initialized sequentially, based on their indices
 		- scaling statefulset relates to increase/decrease number of replicas
 	- restart pod, deployment, ...
-	```bash
+```bash
 ```
 5. service
 	- pods are ephemeral, pods' ip addresses are assigned after pods have been scheduled to nodes, and many pods may provide same service
@@ -158,7 +157,7 @@ kubectl debug <target-container-name> --image=<debug-container-image> --target=<
 			![[Pasted image 20231229031657.png | 600]]
 8. kubernetes event driven autoscaling (KEDA)
 	- usually use HPA for pod scaling in k8s with limited predefined metrics (like CPU, memory, ...) -> KDEA supports custom metrics
-	- KEDA is custom resource definition (CRD) extends HPA
+		- KEDA is custom resource definition (CRD) extends HPA
 	- key roles:
 		- activates/deactivates deployments to scale from/to 0 on no event (different from HPA)
 		- acts as k8s metrics server, exposes event data to HPA to drive scale out
