@@ -162,4 +162,10 @@ kubectl debug <target-container-name> --image=<debug-container-image> --target=<
 		- activates/deactivates deployments to scale from/to 0 on no event (different from HPA)
 		- acts as k8s metrics server, exposes event data to HPA to drive scale out
 		- validates resource change to prevent misconfiguration
+9. service ip / pod ip and ip masquerade
+	- outbound requests from pod use pod's ip and be converted to node's ip (public internet) - ip masquerade
+		- 2 types of outbound internet access
+			- outbound internet access: use external IP address of node (instead of NAT)
+			- NAT: outbound requests go to public internet through NAT's router (change source ip to static ip of NAT)
+	- service's ip is used for inbound requests (for load balancing between pods), not used for outbound requests
 9. service mesh

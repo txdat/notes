@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "b8ace42ac3488d77",
+        "id": "e54e5bf3e83e0fb0",
         "type": "tabs",
         "children": [
           {
-            "id": "c5ec2fa1e2866d66",
+            "id": "50b7f15e9b2be76a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "engineering/shell scripts.md",
+                "file": "engineering/devops/k8s.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "engineering/shell scripts.md",
+                "file": "engineering/devops/k8s.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "engineering/shell scripts.md",
+                "file": "engineering/devops/k8s.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "engineering/shell scripts.md"
+                "file": "engineering/devops/k8s.md"
               }
             }
           },
@@ -157,11 +157,18 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "c5ec2fa1e2866d66",
+  "active": "50b7f15e9b2be76a",
   "lastOpenFiles": [
+    "Excalidraw/Drawing 2024-03-28 22.12.31.excalidraw.md",
+    "Excalidraw/consitent hashing.excalidraw.md",
+    "Excalidraw/cache-data-inconsistency.md",
+    "Excalidraw/AWS VPC.md",
+    "Excalidraw/GCP - Network endpoint group.md",
+    "Excalidraw/cloud_nat.md",
+    "engineering/devops/aws migration.md",
+    "engineering/shell scripts.md",
     "english/grammar/tenses.md",
     "english/grammar/modal verbs.md",
-    "engineering/shell scripts.md",
     "engineering/linux.md",
     "engineering/k8s.md",
     "engineering/git.md",
@@ -182,13 +189,6 @@
     "engineering/design system/alex-xu/cache.md",
     "engineering/design system/system-design-primer/web crawler.md",
     "engineering/design system/system-design-primer/README.md",
-    "engineering/design system/system-design-primer/aws webserver.md",
-    "engineering/design system/alex-xu/key-value store.md",
-    "engineering/design system/alex-xu/consistent hashing.md",
-    "engineering/design system/alex-xu/chat system.md",
-    "engineering/design system/alex-xu/url shortener.md",
-    "engineering/design system/design data intensive applications/book/part 1. foundations.md",
-    "algorithms/arrays.md",
     "attachments/Pasted image 20240823154815.png",
     "attachments/Pasted image 20240823154803.png",
     "attachments/Pasted image 20240823154656.png",
