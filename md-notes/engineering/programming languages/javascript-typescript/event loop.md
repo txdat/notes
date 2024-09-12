@@ -1,9 +1,0 @@
-- JS is event-driven archtecture, use event-loop for asynchronous operations, handle multiple concurrent requests unblocking
-- asynchronous programming is achieved by callbacks (triggered by an event)
-- when an asynchronous operation is triggered, event loop puts callback to queue and continues running synchronous code until callstack is empty, then run callbacks in order
-- event types
-	- microtask:
-		- higher priority task, run after current operation completes and before event loop moves to next phase
-		- is associated to JS concurrency model
-	- macrotask:
-		- lower priority task, run after the current phase of event loop completes
