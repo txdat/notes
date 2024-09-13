@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "1da329daf6b22f0c",
+        "id": "837fb23af24ba624",
         "type": "tabs",
         "children": [
           {
-            "id": "43589fe7da58a3f4",
+            "id": "80a5f93a21333021",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "engineering/programming languages/javascript-typescript/nodejs.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "engineering/programming languages/javascript-typescript/nodejs.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "engineering/programming languages/javascript-typescript/nodejs.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "engineering/programming languages/javascript-typescript/nodejs.md"
-              }
+              "state": {}
             }
           },
           {
@@ -157,16 +149,18 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "43589fe7da58a3f4",
+  "active": "80a5f93a21333021",
   "lastOpenFiles": [
+    "Excalidraw/serverless & NAT.md",
+    "engineering/devops/k8s.md",
+    "engineering/devops/gcp.md",
+    "engineering/programming languages/javascript-typescript/nodejs.md",
     "attachments/Pasted image 20240912221635.png",
     "attachments/Pasted image 20240912221632.png",
     "engineering/devops/gcp - aws migration.md",
-    "engineering/programming languages/javascript-typescript/nodejs.md",
     "attachments/Pasted image 20240912002217.png",
     "engineering/programming languages/javascript-typescript/typescript-fundamental.md",
     "engineering/programming languages/javascript-typescript/javascript-info.md",
-    "engineering/devops/k8s.md",
     "Excalidraw/Drawing 2024-03-28 22.12.31.excalidraw.md",
     "Excalidraw/consitent hashing.excalidraw.md",
     "Excalidraw/cache-data-inconsistency.md",
@@ -182,7 +176,6 @@
     "engineering/design system/design data intensive applications/blog posts/CAP.md",
     "engineering/design system/design data intensive applications/blog posts/redlock - distributed lock.md",
     "engineering/devops/aws.md",
-    "engineering/devops/gcp.md",
     "engineering/devops/helm.md",
     "engineering/devops/kafka.md",
     "engineering/design system/topics/facebook - memcached.md",
@@ -194,7 +187,6 @@
     "attachments/Pasted image 20240823154815.png",
     "attachments/Pasted image 20240823154803.png",
     "attachments/Pasted image 20240823154656.png",
-    "attachments/Pasted image 20240823153645.png",
     "schedule notes",
     "engineering/web",
     "engineering/shell scripts",

@@ -168,4 +168,7 @@ kubectl debug <target-container-name> --image=<debug-container-image> --target=<
 			- outbound internet access: use external IP address of node (instead of NAT)
 			- NAT: outbound requests go to public internet through NAT's router (change source ip to static ip of NAT)
 	- service's ip is used for inbound requests (for load balancing between pods), not used for outbound requests
-9. service mesh
+10. http-proxy with NAT (in GCP)
+	- connect to public internet with static ips (for whitelisting), but expensive
+	- use serverless (GCP cloud run) for http-proxy
+[[serverless & NAT]]
