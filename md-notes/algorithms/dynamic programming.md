@@ -1,4 +1,4 @@
-						1. [minimum moves to pick k ones](https://leetcode.com/problems/minimum-moves-to-pick-k-ones/description/)
+1. [minimum moves to pick k ones](https://leetcode.com/problems/minimum-moves-to-pick-k-ones/description/)
 ```cpp
 using ll = long long;
 constexpr int MOD = 1e9+7;
@@ -269,6 +269,90 @@ public:
         vector<vector<int>> dp(n,vector<int>(n,-1));
         for (int i = 0; i < n; i++) dp[i][i] = 1;
         return solve(s, dp, 0, n-1);
+    }
+};
+```
+- [length of longest increasing subsequence](https://leetcode.com/problems/longest-increasing-subsequence)
+```cpp
+// O(n)
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> q{nums[0]};
+        for (int i = 1; i < n; i++) {
+            int j = lower_bound(q.begin(), q.end(), nums[i]) - q.begin();
+            if (j < q.size()) {
+                q[j] = nums[i];
+            } else {
+                q.push_back(nums[i]);
+            }
+        }
+        return q.size();
+    }
+};
+// O(n^2)
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> dp(n, 1);
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[i] > nums[j]) dp[i] = max(dp[i], dp[j] + 1);
+            }
+        }
+        return *max_element(dp.begin(), dp.end());
+    }
+};
+```
+- [length of the longest increasing path](https://leetcode.com/problems/length-of-the-longest-increasing-path/description/)
+```cpp
+class Solution {
+public:
+    int lis1(vector<int>& nums) {
+        int n = nums.size();
+        if (n == 0) return 0;
+        vector<int> q{nums[0]};
+        int j = 0;
+        for (int i = 1; i < n; i++) {
+            j = lower_bound(q.begin(), q.end(), nums[i]) - q.begin();
+            if (j < q.size()) {
+                q[j] = nums[i];
+            } else {
+                q.push_back(nums[i]);
+            }
+        }
+        return j; // keep the last element
+    }
+    
+    int lis2(vector<int>& nums) {
+        int n = nums.size();
+        if (n == 0) return 0;
+        vector<int> q{nums[0]};
+        for (int i = 1; i < n; i++) {
+            int j = lower_bound(q.begin(), q.end(), nums[i]) - q.begin();
+            if (j < q.size()) {
+                if (j > 0) q[j] = nums[i]; // keep the first element
+            } else {
+                q.push_back(nums[i]);
+            }
+        }
+        return q.size();
+    }
+    
+    int maxPathLength(vector<vector<int>>& a, int k) {
+        int n = a.size();
+        int x0 = a[k][0], y0 = a[k][1];
+        sort(a.begin(),a.end(),[](vector<int> &x, vector<int> &y) { return x[0] == y[0] ? x[1] > y[1] : x[0] < y[0]; }); // to avoid selecting 2 points with same x
+        int l = lower_bound(a.begin(),a.end(),x0,[](const vector<int> &ai, int v) { return ai[0] < v; }) - a.begin();
+        int r = upper_bound(a.begin(),a.end(),x0,[](int v, const vector<int> &ai) { return v < ai[0]; }) - a.begin();
+        vector<int> q1;
+        for (int i = 0; i < l; i++) q1.push_back(a[i][1]);
+        q1.push_back(y0);
+        vector<int> q2{y0};
+        for (int i = r; i < n; i++) q2.push_back(a[i][1]);
+        return lis1(q1)+lis2(q2);
     }
 };
 ```
