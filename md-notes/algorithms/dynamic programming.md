@@ -356,3 +356,41 @@ public:
     }
 };
 ```
+- [find the longest substring containing vowels in even counts](https://leetcode.com/problems/find-the-longest-substring-containing-vowels-in-even-counts)
+```cpp
+class Solution {
+public:
+    int get_idx(char c) {
+      switch (c) {
+        case 'a':
+          return 0;
+        case 'e':
+          return 1;
+        case 'i':
+          return 2;
+        case 'o':
+          return 3;
+        case 'u':
+          return 4;
+        default:
+          return -1;
+      }
+    }
+
+    int findTheLongestSubstring(string s) {
+      int n = s.length();
+      int q[32]; // 2^5 states
+      memset(q, -1, sizeof(q));
+	      q[0] = 0; // zero for all vowels
+      int ans = 0;
+      int m = 0;
+      for (int i = 0; i < n; i++) {
+        int t = get_idx(s[i]);
+        if (t != -1) m ^= 1<<t;
+        if (q[m] == -1) q[m] = i+1;
+        ans = max(ans, i-q[m]+1);
+      }
+      return ans;
+    }
+};
+```

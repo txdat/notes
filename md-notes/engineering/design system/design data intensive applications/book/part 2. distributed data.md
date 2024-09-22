@@ -30,3 +30,31 @@
 - setting up new followers
 	- to increase number of replicas or replace failed nodes
 	- no consistent data for simply copying (locking data is invalid high-availability policy)
+- setting up without downtime
+	- take the consistent snapshot of leader without locking, write to the replicas and take changed data from since snapshot was taken from leader
+- handling node outages
+	- follower
+		- each follower keeps a log of the data changes from leader -> recovery from the logs from the fault occurred
+	- leader
+		- one of followers and promoted as new leader
+- replication logs
+	- statement-based
+		- leader logs all write requests and send to its followers
+		- leader can replace any nondeterministic function calls with a return value when statement is logged
+	- write-ahead log
+		- is an append only sequence of bytes containing all writes (using SSTables - LSM Trees) -> describe data on the low level
+	- logical (row-based) log
+		- is a sequence of records describing writes at the granularity of a row
+			- insert: new values of all columns
+			- update/delete: contains enough information to identify updated row, and values of changed/all columns
+	- trigger-based
+- replication lag problems
+	- leader-based replication requires all writes go to a single node (primary) and reads can go to any replicas -> if read from asynchronous replica, it may return outdated data
+	- inconsistent state is temporary -> eventual consistency
+	- read-after-write consistency
+		- if users reload page, they will always see any update they have made themselves
+	- monotonic reads
+		- users can see things moving backward in time (greater lag): reads go to random replicas -> monotonic reads means if users make several reads in sequence, they will not see time go backward
+		- eventualy consistency < monotonic reads < strong consistency
+	- consistent prefix reads
+		- it guarantees that if a sequence of writes happens in a certain order, then anyone reading those writes will see them in the same order
