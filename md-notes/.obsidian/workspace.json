@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "6ff7a27d48e6987b",
+        "id": "7f78806a0b08949a",
         "type": "tabs",
         "children": [
           {
-            "id": "2244888fd2f8ee85",
+            "id": "e61ee19680aa2372",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "engineering/design system/design data intensive applications/book/part 2. distributed data.md",
+                "file": "algorithms/number theory.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "engineering/design system/design data intensive applications/book/part 2. distributed data.md",
+                "file": "algorithms/number theory.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "engineering/design system/design data intensive applications/book/part 2. distributed data.md",
+                "file": "algorithms/number theory.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "engineering/design system/design data intensive applications/book/part 2. distributed data.md"
+                "file": "algorithms/number theory.md"
               }
             }
           },
@@ -157,8 +157,25 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "2244888fd2f8ee85",
+  "active": "e61ee19680aa2372",
   "lastOpenFiles": [
+    "engineering/k8s.md",
+    "engineering/database/database internals/part 1. storage engines.md",
+    "engineering/design system/wuyichen24",
+    "engineering/design system/design data intensive applications/book/README.md",
+    "engineering/design system/design data intensive applications/book/part 2. distributed data.md",
+    "attachments/Pasted image 20240924222102.png",
+    "attachments/Pasted image 20240924165001.png",
+    "engineering/database/database internals",
+    "engineering/database/mongodb.md",
+    "engineering/database/kafka.md",
+    "engineering/database/postgres.md",
+    "engineering/database/redis.md",
+    "engineering/design system/topics/facebook - memcached.md",
+    "engineering/design system/design data intensive applications/book/part 1. foundations.md",
+    "attachments/Pasted image 20240923112014.png",
+    "algorithms/trie.md",
+    "algorithms/tree.md",
     "algorithms/string.md",
     "engineering/devops/aws.md",
     "engineering/devops/aws migration.md",
@@ -176,25 +193,10 @@
     "engineering/programming languages/javascript-typescript/javascript-info.md",
     "Excalidraw/Drawing 2024-03-28 22.12.31.excalidraw.md",
     "Excalidraw/consitent hashing.excalidraw.md",
-    "Excalidraw/cache-data-inconsistency.md",
-    "Excalidraw/AWS VPC.md",
-    "Excalidraw/GCP - Network endpoint group.md",
-    "Excalidraw/cloud_nat.md",
-    "engineering/shell scripts.md",
-    "english/grammar/tenses.md",
-    "english/grammar/modal verbs.md",
-    "engineering/linux.md",
-    "engineering/k8s.md",
-    "engineering/git.md",
-    "engineering/design system/design data intensive applications/blog posts/CAP.md",
-    "engineering/design system/design data intensive applications/blog posts/redlock - distributed lock.md",
     "attachments/Pasted image 20240907232831.png",
     "attachments/Pasted image 20240907231914.png",
     "attachments/Pasted image 20240904114233.png",
     "attachments/Pasted image 20240826001228.png",
-    "attachments/Pasted image 20240823154815.png",
-    "attachments/Pasted image 20240823154803.png",
-    "attachments/Pasted image 20240823154656.png",
     "schedule notes",
     "engineering/web",
     "engineering/shell scripts",
@@ -203,8 +205,6 @@
     "engineering/design system/design data intensive applications/blog posts",
     "engineering/design system/design data intensive applications",
     "engineering/design system/topics",
-    "engineering/programming languages/javascript-typescript",
-    "data structures/database",
     "Untitled.canvas"
   ]
 }

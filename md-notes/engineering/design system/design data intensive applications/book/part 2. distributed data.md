@@ -9,7 +9,7 @@
 
 # replication
 - goals
-	- keep data geographically close to users (reduce latency)
+		- keep data geographically close to users (reduce latency)
 	- keep system to continue working even if some of its parts are failed
 	- scale out to serve more read queries
 - challenges
@@ -52,9 +52,29 @@
 	- leader-based replication requires all writes go to a single node (primary) and reads can go to any replicas -> if read from asynchronous replica, it may return outdated data
 	- inconsistent state is temporary -> eventual consistency
 	- read-after-write consistency
-		- if users reload page, they will always see any update they have made themselves
+				- if users reload page, they will always see any update they have made themselves
 	- monotonic reads
 		- users can see things moving backward in time (greater lag): reads go to random replicas -> monotonic reads means if users make several reads in sequence, they will not see time go backward
 		- eventualy consistency < monotonic reads < strong consistency
 	- consistent prefix reads
 		- it guarantees that if a sequence of writes happens in a certain order, then anyone reading those writes will see them in the same order
+### multi leader replication
+- use cases
+	- multi datacenter
+		- have a leader in each datacenter, and replicates each change to another datacenter leaders
+		- same data may be concurrently modified in 2 different datacenters, -> write conflicts occur, must be resolved
+![[Pasted image 20240923112014.png | 600]]
+![[Pasted image 20240924165001.png | 600]]
+
+- handling write conflicts
+	- conflict avoidance
+		- all writes for a particular record go through same leader
+	- converging toward a consistent state
+		- no defined ordering of writes, no final value -> DB must resolve the conflict in a convergent way (all replicas have same final value when all changes are replicated)
+- topologies
+	- > 2 leaders: circular, star, and all-to-all
+	- all-to-all topology
+		- incorrect order of replication messages -> version vector technique
+![[Pasted image 20240924222102.png | 600]]
+
+### leaderless replication

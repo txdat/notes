@@ -1,0 +1,5 @@
+- software component of DBMS for storing, retrieving, and managing data
+- 3 types of DB
+	- online transaction processing (OLTP): large number of requests, transactions. queries are defined and short-lived
+	- online analytical processing (OLAP): handle complex aggregation, long-running ad-hocs queries
+	- hybrid (HTAP)

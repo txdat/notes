@@ -200,3 +200,6 @@ public:
 ```cpp
 
 ```
+- [k-th smallest in lexicographical order](https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/) (trie concept only, not implementation)
+```cpp
+```

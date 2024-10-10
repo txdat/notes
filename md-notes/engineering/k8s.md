@@ -1,7 +1,7 @@
 - delete pod
 ```bash
 kubectl delete pods <pod> --grace-period=0 --force
-kubectl patch pod <pod> -p '{"metadata":{"finalizers":null}}' # if hitting wall :(
+	kubectl patch pod <pod> -p '{"metadata":{"finalizers":null}}' # if hitting wall :(
 ```
 - get config/secret
 ```bash
