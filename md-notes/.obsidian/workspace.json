@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "7f78806a0b08949a",
+        "id": "db1ac0285f0ff5b0",
         "type": "tabs",
         "children": [
           {
-            "id": "e61ee19680aa2372",
+            "id": "7ba1713b75309755",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "algorithms/number theory.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "algorithms/number theory.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "algorithms/number theory.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "algorithms/number theory.md"
-              }
+              "state": {}
             }
           },
           {
@@ -157,9 +149,12 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "e61ee19680aa2372",
+  "active": "7ba1713b75309755",
   "lastOpenFiles": [
+    "engineering/shell scripts.md",
     "engineering/k8s.md",
+    "engineering/devops/k8s.md",
+    "algorithms/number theory.md",
     "engineering/database/database internals/part 1. storage engines.md",
     "engineering/design system/wuyichen24",
     "engineering/design system/design data intensive applications/book/README.md",
@@ -182,7 +177,6 @@
     "algorithms/dynamic programming.md",
     "algorithms/segment tree.md",
     "Excalidraw/serverless & NAT.md",
-    "engineering/devops/k8s.md",
     "engineering/devops/gcp.md",
     "engineering/programming languages/javascript-typescript/nodejs.md",
     "attachments/Pasted image 20240912221635.png",
@@ -191,8 +185,6 @@
     "attachments/Pasted image 20240912002217.png",
     "engineering/programming languages/javascript-typescript/typescript-fundamental.md",
     "engineering/programming languages/javascript-typescript/javascript-info.md",
-    "Excalidraw/Drawing 2024-03-28 22.12.31.excalidraw.md",
-    "Excalidraw/consitent hashing.excalidraw.md",
     "attachments/Pasted image 20240907232831.png",
     "attachments/Pasted image 20240907231914.png",
     "attachments/Pasted image 20240904114233.png",
