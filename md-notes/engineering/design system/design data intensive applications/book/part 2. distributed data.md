@@ -8,22 +8,23 @@
 - split data into subsets (partitions), and assign them to different nodes (sharding)
 
 # replication
+- keeping a copy of same data on multiple machines that are connected via a network
 - goals
-		- keep data geographically close to users (reduce latency)
+	- keep data geographically close to users (reduce latency)
 	- keep system to continue working even if some of its parts are failed
 	- scale out to serve more read queries
 - challenges
 	- handle changes to replicated data
 ### leaders and followers
 - each node stores a copy of data (replica)
-- every write operation needs to be processed by every replica -> leader based replication (active/passive, or master/slave)
+- every write operation needs to be processed by every replica -> leader based replication (active/passive, or master/slave). replicas apply same order of writes as the leader (writes only are accepted on the leader)
 ![[Pasted image 20240904114233.png | 600]]
 ### synchronous replication
 - replication is quite fast (< 1s), but no guarantee
 - advantages
 	- the replicas have up-to-date data (consistent with the leader)
 - disadvantages
-	- the write operation cannot be processed if the follower doesnt response -> semi-synchronous system (1 replica is synchronous and others are asynchronous): at least 2 nodes have up-to-date data
+	- the write operation cannot be processed if the follower doesnt response (the leader may block all writes and wait the replica is ready again) -> semi-synchronous system (1 replica is synchronous and others are asynchronous): at least 2 nodes have up-to-date data
 ### asynchronous replication
 - leader-based replication is configured completely asynchronous (any write hasn't been replicated can be lost) -> no data guarantee even if it has been confirmed to client
 ### implementation
@@ -33,10 +34,14 @@
 - setting up without downtime
 	- take the consistent snapshot of leader without locking, write to the replicas and take changed data from since snapshot was taken from leader
 - handling node outages
-	- follower
-		- each follower keeps a log of the data changes from leader -> recovery from the logs from the fault occurred
-	- leader
-		- one of followers and promoted as new leader
+	- follower (catch-up recovery)
+		- each follower keeps a log of the data changes from leader -> recovery from the logs before the fault occurred, and requires new data from the leader during the connection is lost
+	- leader (failover)
+		- one of followers and promoted as new leader, clients need to be reconfigured to the new leader
+		- problems
+			- new leader may not have full data from old leader before it failed
+			- other storage systems outside of database need to be coordinated with database
+			- in some scenarios, more than 1 node believe they are the leader
 - replication logs
 	- statement-based
 		- leader logs all write requests and send to its followers

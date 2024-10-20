@@ -92,3 +92,80 @@ public:
     }
 };
 ```
+2. Manacher - find the largest palindrome for each position in string
+- maintain (l,r) of rightmost found (sub)palindrome `[s[l+1]...s[r-1]]` is palindrome
+- for next i
+	- if i >= r, just launch trivia algorithm
+	- if i < r, 
+		- get `j=l+r-i` is mirror of i in (l,r), and can set `dp[i] = dp[j]`, but if `j-dp[j] <= l` (out of range), `dp[i] = r-i`
+- add '#' between each element of input to solve parities
+	- `dp[2i] = 2dp_even[i]+1`, `dp[2i+1] = 2dp_odd[i]`
+```cpp
+vector<int> manacher(string &s) {
+    string t = "#";
+    for (char &c : s) {
+        t.push_back(c);
+        t.push_back('#');
+    }
+
+    int n = t.length();
+    t = "$" + t + "^";
+    vector<int> dp(n + 2);
+    int l = 1, r = 1;
+    for (int i = 1; i <= n; i++) {
+        dp[i] = max(0, min(r - i, dp[l + r - i]));
+        while (t[i - dp[i]] == t[i + dp[i]]) dp[i]++;
+        if (i + dp[i] > r) r = i + dp[i], l = i - dp[i];
+    }
+
+    return vector<int>(dp.begin() + 1, dp.end() - 1);
+}
+
+```
+- [check if dfs strings are palindromes](https://leetcode.com/problems/check-if-dfs-strings-are-palindromes)
+```cpp
+class Solution {
+public:
+    int dfs(vector<vector<int>> &g, string &s, string &t, vector<pair<int,int>> &pos, int i = 0) {
+      int l = INT_MAX;
+      for (int &j : g[i]) l = min(l, dfs(g, s, t, pos, j));
+      t.push_back(s[i]), t.push_back('#');
+      if (g[i].empty()) l = t.length()-2;
+      pos[i] = {l,t.length()-2};
+      return l;
+    }
+
+    vector<int> manacher(string &s) {
+      int n = s.length();
+      string t = "$" + s + "^";
+      vector<int> dp(n+2);
+      int l = 1, r = 1;
+      for (int i = 1; i <= n; i++) {
+        dp[i] = max(0,min(r-i, dp[l+r-i]));
+        while (t[i-dp[i]] == t[i+dp[i]]) dp[i]++;
+        if (i+dp[i] > r) l = i-dp[i], r = i+dp[i];
+      }
+      return vector<int>(dp.begin()+1,dp.end()-1);
+    }
+
+    vector<bool> findAnswer(vector<int>& parent, string s) {
+      int n = parent.size();
+      vector<vector<int>> g(n,vector<int>());
+      for (int i = 1; i < n; i++) g[parent[i]].push_back(i);
+      vector<pair<int,int>> pos(n);//[l,r]
+      string t = "#";
+      dfs(g,s,t,pos);
+      auto dp = manacher(t);
+      vector<bool> ans;
+      // cout << t << endl;
+      // for (int &d : dp) cout << d << " ";
+      // cout << endl;
+      for (auto &[l,r] : pos) {
+        // cout << l << " " << r << " " << t.substr(l,r-l+1) << endl;
+        int m = (l+r)/2, h = dp[m];
+        ans.push_back(h >= r-m+1);
+      }
+      return ans;
+    }
+};
+```

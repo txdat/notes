@@ -1,11 +1,9 @@
 # vpc
 
-# elasticache
-
 # eks
 
-# aws gateway api - vpc lattice
+### api gateway - vpc lattice
 
-# acm
+### aws load balancer controller
 
-# route53
+### karpenter

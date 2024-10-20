@@ -11,11 +11,32 @@
             "id": "7ba1713b75309755",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "engineering/k8s.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "k8s"
+            }
+          },
+          {
+            "id": "4271f491f2cdbbea",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "algorithms/string.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "string"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -35,7 +56,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
@@ -50,7 +73,9 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
@@ -58,7 +83,9 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
         ]
@@ -81,6 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "engineering/design system/design data intensive applications/book/part 2. distributed data.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,7 +116,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for part 2. distributed data"
             }
           },
           {
@@ -97,9 +127,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "engineering/design system/design data intensive applications/book/part 2. distributed data.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from part 2. distributed data"
             }
           },
           {
@@ -110,7 +143,9 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true
-              }
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
             }
           },
           {
@@ -118,7 +153,11 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "engineering/design system/design data intensive applications/book/part 2. distributed data.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of part 2. distributed data"
             }
           },
           {
@@ -126,7 +165,9 @@
             "type": "leaf",
             "state": {
               "type": "advanced-tables-toolbar",
-              "state": {}
+              "state": {},
+              "icon": "spreadsheet",
+              "title": "Advanced Tables"
             }
           }
         ],
@@ -149,16 +190,20 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "7ba1713b75309755",
+  "active": "4271f491f2cdbbea",
   "lastOpenFiles": [
-    "engineering/shell scripts.md",
-    "engineering/k8s.md",
-    "engineering/devops/k8s.md",
+    "algorithms/string.md",
     "algorithms/number theory.md",
+    "engineering/design system/design data intensive applications/book/part 2. distributed data.md",
+    "engineering/design system/design data intensive applications/book/part 1. foundations.md",
+    "engineering/design system/design data intensive applications/book/part 3. derived data.md",
+    "engineering/devops/aws.md",
+    "engineering/k8s.md",
+    "engineering/shell scripts.md",
+    "engineering/devops/k8s.md",
     "engineering/database/database internals/part 1. storage engines.md",
     "engineering/design system/wuyichen24",
     "engineering/design system/design data intensive applications/book/README.md",
-    "engineering/design system/design data intensive applications/book/part 2. distributed data.md",
     "attachments/Pasted image 20240924222102.png",
     "attachments/Pasted image 20240924165001.png",
     "engineering/database/database internals",
@@ -167,12 +212,9 @@
     "engineering/database/postgres.md",
     "engineering/database/redis.md",
     "engineering/design system/topics/facebook - memcached.md",
-    "engineering/design system/design data intensive applications/book/part 1. foundations.md",
     "attachments/Pasted image 20240923112014.png",
     "algorithms/trie.md",
     "algorithms/tree.md",
-    "algorithms/string.md",
-    "engineering/devops/aws.md",
     "engineering/devops/aws migration.md",
     "algorithms/dynamic programming.md",
     "algorithms/segment tree.md",
@@ -184,7 +226,6 @@
     "engineering/devops/gcp - aws migration.md",
     "attachments/Pasted image 20240912002217.png",
     "engineering/programming languages/javascript-typescript/typescript-fundamental.md",
-    "engineering/programming languages/javascript-typescript/javascript-info.md",
     "attachments/Pasted image 20240907232831.png",
     "attachments/Pasted image 20240907231914.png",
     "attachments/Pasted image 20240904114233.png",
