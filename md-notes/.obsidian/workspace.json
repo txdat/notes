@@ -35,8 +35,7 @@
               "title": "string"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -190,7 +189,7 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "4271f491f2cdbbea",
+  "active": "7ba1713b75309755",
   "lastOpenFiles": [
     "algorithms/string.md",
     "algorithms/number theory.md",
