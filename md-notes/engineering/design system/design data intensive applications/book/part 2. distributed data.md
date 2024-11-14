@@ -37,7 +37,7 @@
 	- follower (catch-up recovery)
 		- each follower keeps a log of the data changes from leader -> recovery from the logs before the fault occurred, and requires new data from the leader during the connection is lost
 	- leader (failover)
-		- one of followers and promoted as new leader, clients need to be reconfigured to the new leader
+		- one of followers is promoted as new leader, clients need to be reconfigured to the new leader, and other followers need to start consuming data changes from new leader
 		- problems
 			- new leader may not have full data from old leader before it failed
 			- other storage systems outside of database need to be coordinated with database
@@ -45,21 +45,22 @@
 - replication logs
 	- statement-based
 		- leader logs all write requests and send to its followers
-		- leader can replace any nondeterministic function calls with a return value when statement is logged
+		- leader can replace any nondeterministic function calls with a return value when statement is logged (remove side effects on each replica)
 	- write-ahead log
-		- is an append only sequence of bytes containing all writes (using SSTables - LSM Trees) -> describe data on the low level
+		- is an append only sequence of bytes containing all writes (using SSTables - LSM Trees) -> describe data on the low level (details of which bytes were changed), coupled to storage engine (hard to migrate)
 	- logical (row-based) log
-		- is a sequence of records describing writes at the granularity of a row
+		- is a sequence of records describing writes at the granularity of a row, each log record for one row -> decouple replication logs from storage engine
 			- insert: new values of all columns
 			- update/delete: contains enough information to identify updated row, and values of changed/all columns
 	- trigger-based
 - replication lag problems
 	- leader-based replication requires all writes go to a single node (primary) and reads can go to any replicas -> if read from asynchronous replica, it may return outdated data
-	- inconsistent state is temporary -> eventual consistency
+	- read-scaling architecture realistically works with asynchronous replication
+	- inconsistent state is temporary -> eventual consistency (no limit to how far replica can fall behind)
 	- read-after-write consistency
-				- if users reload page, they will always see any update they have made themselves
+		- if users reload page, they will always see any update they have made themselves (read from replica instead of leader) -> decide when reading from leader
 	- monotonic reads
-		- users can see things moving backward in time (greater lag): reads go to random replicas -> monotonic reads means if users make several reads in sequence, they will not see time go backward
+		- users can see things moving backward in time (greater lag): reads go to random replicas -> monotonic reads means if users make several reads in sequence, they will not see time go backward (outdated data)
 		- eventualy consistency < monotonic reads < strong consistency
 	- consistent prefix reads
 		- it guarantees that if a sequence of writes happens in a certain order, then anyone reading those writes will see them in the same order
@@ -68,6 +69,10 @@
 	- multi datacenter
 		- have a leader in each datacenter, and replicates each change to another datacenter leaders
 		- same data may be concurrently modified in 2 different datacenters, -> write conflicts occur, must be resolved
+		- advantages
+			- writes can be processed in local leader -> inter-datacenter network delay is hidden from user
+			- each datacenter operates independently from each others
+			- tolerates network problems between datacenters better
 ![[Pasted image 20240923112014.png | 600]]
 ![[Pasted image 20240924165001.png | 600]]
 
@@ -75,11 +80,23 @@
 	- conflict avoidance
 		- all writes for a particular record go through same leader
 	- converging toward a consistent state
+		- single leader database applies writes in sequential order
 		- no defined ordering of writes, no final value -> DB must resolve the conflict in a convergent way (all replicas have same final value when all changes are replicated)
 - topologies
 	- > 2 leaders: circular, star, and all-to-all
 	- all-to-all topology
-		- incorrect order of replication messages -> version vector technique
+		- incorrect order of replication messages -> version vector technique, clocks cannot be trusted in sync
 ![[Pasted image 20240924222102.png | 600]]
 
 ### leaderless replication
+- abandon the concept of leader, allow any replica accepts writes from clients
+- some database systems use the coordinator, but not enforce the order of writes
+- fallover doesn't exist in leaderless replication
+- to read unavailable/staled data from disconnected node, client/coordinator sends multiple requests in parallel, and can get different data -> version number is used to determine which data is new
+- mechanisms to make data is up-to-date between nodes
+	- read repair
+	- anti-entropy (background process checks missing data and copies from another replica)
+![[Pasted image 20241027225501.png | 600]]
+
+- reading/writing quorums
+- 
