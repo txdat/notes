@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "a92f3486152fa28a",
+        "id": "4b9b33fa873068c7",
         "type": "tabs",
         "children": [
           {
-            "id": "deb2b820b8b44291",
+            "id": "38fc49c49fe7f2f3",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "algorithms/string.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "string"
             }
           }
         ]
@@ -73,7 +77,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 343.49999618530273
+    "width": 271.5
   },
   "right": {
     "id": "e2edfdd285465075",
@@ -147,8 +151,8 @@
             "state": {
               "type": "advanced-tables-toolbar",
               "state": {},
-              "icon": "spreadsheet",
-              "title": "Advanced Tables"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           }
         ],
@@ -171,42 +175,43 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "deb2b820b8b44291",
+  "active": "38fc49c49fe7f2f3",
   "lastOpenFiles": [
-    "engineering/design system/alex-xu/rate limiter.md",
+    "engineering/k8s.md",
+    "engineering/programming languages/javascript-typescript/typescript oop.md",
+    "engineering/programming languages/javascript-typescript/nodejs.md",
+    "engineering/programming languages/javascript-typescript/typescript-fundamental.md",
+    "engineering/design patterns/creational patterns.md",
+    "engineering/design patterns/behavioral patterns.md",
+    "engineering/design patterns/structural patterns.md",
+    "engineering/design patterns",
+    "algorithms/segment tree.md",
+    "engineering/shell scripts.md",
+    "engineering/linux.md",
+    "engineering/envoy-proxy.md",
+    "engineering/git.md",
+    "engineering/system design/topics/consistency patterns.md",
+    "engineering/system design/topics/dynamoDB design.md",
+    "engineering/system design/topics/facebook - memcached.md",
+    "algorithms/graph.md",
+    "algorithms/bits.md",
+    "engineering/system design/design data intensive applications/book/part 2. distributed data.md",
+    "algorithms/queue.md",
+    "engineering/system design/alex-xu/rate limiter.md",
     "engineering/interview questions/misc/voz.md",
     "engineering/database/database internals/part 1. storage engines.md",
-    "engineering/design system/design data intensive applications/book/part 2. distributed data.md",
     "attachments/Pasted image 20241027225501.png",
     "engineering/design system/wuyichen24/system-design-interview",
     "engineering/design system/wuyichen24/system-design-knowledge",
     "algorithms/string.md",
-    "engineering/k8s.md",
     "algorithms/number theory.md",
-    "engineering/design system/design data intensive applications/book/part 1. foundations.md",
-    "engineering/design system/design data intensive applications/book/part 3. derived data.md",
-    "engineering/devops/aws.md",
-    "engineering/shell scripts.md",
-    "engineering/devops/k8s.md",
+    "engineering/system design/design data intensive applications/book/part 1. foundations.md",
+    "engineering/system design/design data intensive applications/book/part 3. derived data.md",
     "engineering/design system/wuyichen24",
-    "engineering/design system/design data intensive applications/book/README.md",
     "attachments/Pasted image 20240924222102.png",
     "attachments/Pasted image 20240924165001.png",
     "engineering/database/database internals",
-    "engineering/database/mongodb.md",
-    "engineering/database/kafka.md",
-    "engineering/database/postgres.md",
-    "engineering/database/redis.md",
-    "engineering/design system/topics/facebook - memcached.md",
     "attachments/Pasted image 20240923112014.png",
-    "algorithms/trie.md",
-    "algorithms/tree.md",
-    "engineering/devops/aws migration.md",
-    "algorithms/dynamic programming.md",
-    "algorithms/segment tree.md",
-    "Excalidraw/serverless & NAT.md",
-    "engineering/devops/gcp.md",
-    "engineering/programming languages/javascript-typescript/nodejs.md",
     "attachments/Pasted image 20240912221635.png",
     "attachments/Pasted image 20240912221632.png",
     "attachments/Pasted image 20240912002217.png",
@@ -217,8 +222,7 @@
     "engineering/web",
     "engineering/shell scripts",
     "engineering/interview questions/misc",
-    "engineering/design system/design data intensive applications/book",
-    "engineering/design system/design data intensive applications/blog posts",
+    "engineering/system design/design data intensive applications/book",
     "Untitled.canvas"
   ]
 }

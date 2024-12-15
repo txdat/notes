@@ -221,3 +221,29 @@ public:
     }
 };
 ```
+- [flip columns for maximum number of equal rows](https://leetcode.com/problems/flip-columns-for-maximum-number-of-equal-rows/description/)
+```cpp
+// key: flip some columns equals to XOR all row values with same number K -> X = X^K^K = K or 1^K -> K = X or 1^X
+class Solution {
+public:
+    int maxEqualRowsAfterFlips(vector<vector<int>>& matrix) {
+        unordered_map<string,int> m;
+        unordered_map<string,string> rev;
+        for (auto &r : matrix) {
+            string s = "", t = "";
+            for (int &d : r) {
+                s.push_back('0'+d);
+                t.push_back('0'+(1-d));
+            }
+            m[s]++;
+            rev[s] = t;
+        }
+        int ans = 0;
+        for (auto &[s, c] : m) {
+            auto &t = rev[s];
+            ans = max(ans, c + (m.find(t) == m.end() ? 0 : m[t]));
+        }
+        return ans;
+    }
+};
+```

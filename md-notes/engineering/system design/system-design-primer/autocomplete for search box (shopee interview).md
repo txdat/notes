@@ -1,0 +1,2 @@
+- use trie to improve search performance?
+	- trie with too much data cannot be loaded into memory (RAM)?

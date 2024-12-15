@@ -31,9 +31,9 @@ mkdir -p $export_dir
 
 for report in "${reports[@]}"; do
   if [[ "$workshift_id" == "''" ]]; then
-    url="https://api.mmenu.io/v2/third-party/pikaichi/export?lang=ja&merchantCode=$merchant_code&merchantId=$merchant_id&businessDate=$business_date&name=$report&fileNamePrefix=$file_name_prefix"
+    url="https://x.com/v2/third-party/pikaichi/export?lang=ja&merchantCode=$merchant_code&merchantId=$merchant_id&businessDate=$business_date&name=$report&fileNamePrefix=$file_name_prefix"
   else
-    url="https://api.mmenu.io/v2/third-party/pikaichi/export?lang=ja&merchantCode=$merchant_code&merchantId=$merchant_id&workshiftId=$workshift_id&businessDate=$business_date&name=$report&fileNamePrefix=$file_name_prefix"
+    url="https://x.com/v2/third-party/pikaichi/export?lang=ja&merchantCode=$merchant_code&merchantId=$merchant_id&workshiftId=$workshift_id&businessDate=$business_date&name=$report&fileNamePrefix=$file_name_prefix"
   fi
   # echo $url
   curl -fsS $url > "$export_dir/${file_name_prefix}_${report}.csv"

@@ -84,3 +84,29 @@ public:
     }
 };
 ```
+- [shortest subarray with sum at least k](https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/)
+```cpp
+using ll = long long;
+
+class Solution {
+public:
+    int shortestSubarray(vector<int>& nums, int k) {
+        int n = nums.size();
+        vector<ll> sum(n);
+        sum[0] = nums[0];
+        for (int i = 1; i < n; i++) sum[i] = sum[i-1] + nums[i];
+        deque<int> q; // monotonic deque
+        int ans = 1e9;
+        for (int i = 0; i < n; i++) {
+            if (sum[i] >= k) ans = min(ans, i+1);
+            while (!q.empty() && sum[i] - sum[q.front()] >= k) { // q.front is the smallest one
+                ans = min(ans, i-q.front());
+                q.pop_front();
+            }
+            while (!q.empty() && sum[i] <= sum[q.back()]) q.pop_back(); // increasing queue
+            q.push_back(i);
+        }
+        return ans > n ? -1 : ans;
+    }
+};
+```

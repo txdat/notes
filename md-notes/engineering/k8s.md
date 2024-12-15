@@ -1,7 +1,7 @@
-- delete pod
+- delete resources (like pod, deployment, service, ...)
 ```bash
 kubectl delete pods pod-name --grace-period=0 --force
-kubectl patch pod pod-name -p '{"metadata":{"finalizers":null}}' # if hitting wall :(
+kubectl patch pod pod-name -p '{"metadata":{"finalizers": []}}' --type=merge # if hitting wall :(
 ```
 - get config/secret
 ```bash

@@ -109,8 +109,8 @@ function hello(name: string[] | string) { // accept both string[] and string
 		- readonly: only be assigned in constructor, but can be read from outside of class
 	- difference between class and interface in TS
 		- purpose
-			- class: create object with properties and methods
-			- interface: define struct of object
+			- class: create object with properties and methods (blueprint of object)
+			- interface: define struct of object (how object works)
 		- implementation
 			- class: contains both properties and methods
 			- interface: contains neither properties nor methods, only describe structure

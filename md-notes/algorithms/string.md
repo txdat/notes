@@ -27,6 +27,7 @@ public:
 ```cpp
 class Solution {
 public:
+	// find all occurences of t in s
 	vector<int> kmp(string &s, string &t) {
 		string w = t + "#" + s;
 		int m = w.length(), n = t.length();
@@ -34,7 +35,7 @@ public:
 		for (int i = 1; i < m; i++) {
 			int j = pi[i-1];
 			while (j > 0 && w[j] != w[i]) j = pi[j-1];
-			if (s[j] == s[i]) j++;
+			if (w[j] == w[i]) j++;
 			pi[i] = j;
 		}
 		vector<int> pos;
