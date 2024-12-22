@@ -178,3 +178,45 @@ public:
     }
 };
 ```
+- [smallest substring with identical characters](https://leetcode.com/problems/smallest-substring-with-identical-characters-ii/)
+```cpp
+class Solution {
+public:
+    int flip(string &s, int m) {
+        int n = s.length(), ans = 0;
+        // when m=1, modified s must be 010... or 101...
+        if (m == 1) {
+            for (int i = 0; i < n-1; i++) ans += s[i]-'0' == (i&1);
+            return min(ans, n-1-ans);
+        }
+
+        for (int i = 1, c = 1; i < n; i++) {
+            if (s[i] == s[i-1]) { // condition *
+                c++;
+                if (c > 2*m) { // only modify middle of substring to reduce number of ops
+                    c = m;
+                    ans++;   
+                }
+            } else {
+                if (c > m) ans++;
+                c = 1;
+            }
+        }
+        return ans;
+    }
+    
+    int minLength(string s, int numOps) {
+        int l = 1, r = s.length(), m;
+        s.push_back(s.back() == '1' ? '0' : '1'); // add different char to check condition *
+        while (l < r) {
+            m = (l+r)/2;
+            if (flip(s, m) <= numOps) {
+                r = m;
+            } else {
+                l = m+1;
+            }
+        }
+        return l;
+    }
+};
+```

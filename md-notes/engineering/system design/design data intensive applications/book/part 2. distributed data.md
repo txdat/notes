@@ -100,15 +100,35 @@
 		- background process checks missing data and copies from another replica
 ![[Pasted image 20241027225501.png | 600]]
 
-- reading/writing quorums
+#### reading/writing quorums
 	- "if there are n replicas, every write must be confirmed by w nodes to be considered successful and must query at least r nodes for each read" -> if `w+r>n`, we expect to get an up-to-date data -> among the nodes we read, there must be at least 1 node with up-to-date data
-	- common choice of w,r,n is n is odd and w, r are ceil(n) = majority selection. but quorums are not neccessary majorities -> sets of ndoes for read/write must overlap in at least 1 node
+	- common choice of w,r,n is n is odd and w, r are ceil(n/2) = majority selection. but quorums are not neccessary majorities -> sets of ndoes for read/write must overlap in at least 1 node
+	- w+r > n && min(w,r) > n/2
 - limitations of quorum consistency
 	- if sloppy quorum is used, the w writes may end up on different nodes than the r reads -> no guarenteed overlap between write/read nodes
 	- if 2 writes occur concurrently, not clear which one happened first -> merge concurrent writes
-	- if a write succeeded on less than w replicas, it's not rolled back on the replicas where it succeeded
+	- if a write succeeded on less than w replicas, it's not rolled back on the replicas where it succeeded -> subsequent reads may/may not return data from failed write (succeeded writes can not be rolled back)
 	- if node has new value fails, its data is restored by a stale value from other replicas -> can break quorum condition
 - monitoring staleness
 	- there is no fixed write order -> hard to monitor the replication lag between replicas
 - sloppy quorums, hinted handoff
-- 
+	- leaderless replication appealing for HA and low latency system with occasional stale reads
+	- sloppy quorum:
+		- writes and reads still require w/r successful responses, but those may include nodes (not in n designed nodes - temporarily), and send back to home nodes when internet interruption is fixed (handoff)
+		- useful for increasing write availability (write to at least w nodes), but may get stale data (write to not designed nodes)
+#### concurrent writes
+- some database (like dynamo) allow concurrent writes (no well-defined ordering) for same key -> conflict even if using strict quorums -> inconsistent if keeping write order
+- last write wins - LWW (discarding concurrent writes)
+	- only keep most recent value and allow older values to be overwriteten and discarded -> unambigously determining most recent value -> eventually converage
+	- concurrent writes dont have a natural ordering -> force an arbitrary order: attach timestamp to each write
+	- safe way to use LWW in database is avoiding any concurrent updates to the same key -> use UUID as key
+- the "happens-before" relationship
+	- 2 operations should be called concurrent if they occur at the same time. in fact, 2 operations are concurrent if they are both unaware of each other
+	- each replica in replication system uses its own version number and keeps track of version numbers from other replicas -> version vector
+![[Pasted image 20241222220907.png | 700]]
+
+- algorithm
+	- maintain a version number for every key, increase this key each tim it is written, and store it with new value
+	- server returns all values that have not been overwritten and the latest number version
+	- when client writes key, it must include prior version number and merge all received values from prior read
+	- when server writes with a particular version, it overwrites all below number version data (has been merged into new value, eg. merge siblings by client) and keep all higher version data

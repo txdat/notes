@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "4b9b33fa873068c7",
+        "id": "84690fa756078509",
         "type": "tabs",
         "children": [
           {
-            "id": "38fc49c49fe7f2f3",
+            "id": "b08a1a660bc7cc1d",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "algorithms/string.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "string"
+              "title": "New tab"
             }
           }
         ]
@@ -77,7 +73,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 271.5
+    "width": 271.5,
+    "collapsed": true
   },
   "right": {
     "id": "e2edfdd285465075",
@@ -175,9 +172,19 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "38fc49c49fe7f2f3",
+  "active": "b08a1a660bc7cc1d",
   "lastOpenFiles": [
+    "engineering/system design/design data intensive applications/book/part 2. distributed data.md",
+    "attachments/Pasted image 20241222220907.png",
+    "algorithms/binary search.md",
     "engineering/k8s.md",
+    "engineering/system design/topics/distributed counter.md",
+    "engineering/system design/topics/consistency patterns.md",
+    "attachments/Pasted image 20241215214104.png",
+    "attachments/Pasted image 20241215213950.png",
+    "attachments/Pasted image 20241215213948.png",
+    "attachments/Pasted image 20241215213748.png",
+    "algorithms/string.md",
     "engineering/programming languages/javascript-typescript/typescript oop.md",
     "engineering/programming languages/javascript-typescript/nodejs.md",
     "engineering/programming languages/javascript-typescript/typescript-fundamental.md",
@@ -190,12 +197,10 @@
     "engineering/linux.md",
     "engineering/envoy-proxy.md",
     "engineering/git.md",
-    "engineering/system design/topics/consistency patterns.md",
     "engineering/system design/topics/dynamoDB design.md",
     "engineering/system design/topics/facebook - memcached.md",
     "algorithms/graph.md",
     "algorithms/bits.md",
-    "engineering/system design/design data intensive applications/book/part 2. distributed data.md",
     "algorithms/queue.md",
     "engineering/system design/alex-xu/rate limiter.md",
     "engineering/interview questions/misc/voz.md",
@@ -203,21 +208,12 @@
     "attachments/Pasted image 20241027225501.png",
     "engineering/design system/wuyichen24/system-design-interview",
     "engineering/design system/wuyichen24/system-design-knowledge",
-    "algorithms/string.md",
-    "algorithms/number theory.md",
-    "engineering/system design/design data intensive applications/book/part 1. foundations.md",
-    "engineering/system design/design data intensive applications/book/part 3. derived data.md",
     "engineering/design system/wuyichen24",
     "attachments/Pasted image 20240924222102.png",
     "attachments/Pasted image 20240924165001.png",
     "engineering/database/database internals",
     "attachments/Pasted image 20240923112014.png",
     "attachments/Pasted image 20240912221635.png",
-    "attachments/Pasted image 20240912221632.png",
-    "attachments/Pasted image 20240912002217.png",
-    "attachments/Pasted image 20240907232831.png",
-    "attachments/Pasted image 20240907231914.png",
-    "attachments/Pasted image 20240904114233.png",
     "schedule notes",
     "engineering/web",
     "engineering/shell scripts",
