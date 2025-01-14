@@ -106,8 +106,10 @@ kubectl debug <target-container-name> --image=<debug-container-image> --target=<
 	- stateful application
 		- stateful pods are initialized sequentially, based on their indices
 		- scaling statefulset relates to increase/decrease number of replicas
+		- to receive `SIGKILL`, `SIGTERM` noti, process must be running as PID 1 (process 1) (eg. run `node index.js` instead of `npm run start`)
 	- restart pod, deployment, ...
 ```bash
+kubectl rollout restart ...
 ```
 5. service
 	- pods are ephemeral, pods' ip addresses are assigned after pods have been scheduled to nodes, and many pods may provide same service

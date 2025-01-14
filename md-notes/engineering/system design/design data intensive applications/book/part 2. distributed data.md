@@ -132,3 +132,36 @@
 	- server returns all values that have not been overwritten and the latest number version
 	- when client writes key, it must include prior version number and merge all received values from prior read
 	- when server writes with a particular version, it overwrites all below number version data (has been merged into new value, eg. merge siblings by client) and keep all higher version data
+# partitioning
+- partitioning is usually combined with replication (copies of each partition are stored in multiple nodes). a node may store more than 1 partitions -> leader for some partitions and follower for others
+### key-value data partition
+- key range
+	- `I0 <= ... < I1 | I1 <= ... < I2`
+	- assign continuous range of keys to each partition
+	- disadvantage:
+		- certain access partern can lead to hotspot (a node is busy while other nodes arent)
+- hash of key
+	- `key % M`
+	- a good hash function takes skewed data and makes it uniformly distributed
+	- disadvantage:
+		- loss ability of range query -> send range query to all nodes (in mongodb)
+### secondary indexes partition
+![[Pasted image 20250114110527.png | 600]]
+- each partition contains its own indexes -> when updating data, only need to deal with the parition that contains its ID (local index)
+- reading from document-partitioned index -> send requests to all replications `scatter/gather`
+#### global secondary indexes - term partition
+- must also be partitioned, updates are asynchronous
+- advantages
+	- make reads more efficient
+- disadvantages
+	- writes are slower and more complicated
+### rebalancing
+
+- fixed number of partitions (not change afterward) -> entire partitions are moving between nodes
+- dynamtic partition
+	- split/merge parititions automatically
+	- fixed number of paritions per node (the bigger node is, the smaller partition is)
+### request routing
+- partitions are rebalanced, the assignment of partitions changes
+![[Pasted image 20250114150931.png | 700]]
+- some databases rely on coordination service (zookeeper) to track cluster metadata (type 2)

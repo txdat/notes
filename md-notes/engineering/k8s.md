@@ -8,7 +8,7 @@ kubectl patch pod pod-name -p '{"metadata":{"finalizers": []}}' --type=merge # i
 kubectl get secrets -n namespace secret-name -o yaml | yq '.metadata.annotations."kubectl.kubernetes.io/last-applied-configuration"' | jq -r | yq -y
 kubectl get secrets -n namespace secret-name -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
 ```
-- restart/rollout namespace's deployments
+- restart/rollout namespace's deployments, replicasets, ...
 ```bash
 kubectl -n namespace rollout restart deployment/deployment-name
 ```
