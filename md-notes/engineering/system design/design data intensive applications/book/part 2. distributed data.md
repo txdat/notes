@@ -165,3 +165,112 @@
 - partitions are rebalanced, the assignment of partitions changes
 ![[Pasted image 20250114150931.png | 700]]
 - some databases rely on coordination service (zookeeper) to track cluster metadata (type 2)
+# transactions
+- group several reads and writes on multiple objects into a logical unit -> execute as one operation: succeed (commit) or fails (abort, rollback)
+### ACID
+- Atomic
+	- cannot be broken down into smaller parts
+	- if transaction cannot be completed (committed), the transaction is abort and DB discards any writes in transaction -> all-or-nothing guarantee
+- Consistency
+	- notion of database is in good state = some statements about data must be true after each transaction execution
+- Isolation
+	- concurrently transaction executions are isolated from each other (*serializability* in some old DBs)
+	- each transaction can be pretend that it is the only one transaction running on the entire DB
+- Durability
+	- once a transaction has committed successfully, its results won't be forgotten (using logs?)
+### isolation levels
+- in theory, isolation pretends that no concurrency is happening, serialize isolation guarantees that concurrent transactions have same effect as if they run serially (without concurrency)
+#### read uncommitted
+- non-repeatable read/read skew: read DB in temporary inconsistent state
+- transaction performs in non-locking situation -> dirty reads (inconsistent data)
+#### read committed
+- only read data that has been commmited (no dirty read)
+	- any writes by a transaction become visible when that transaction commits
+- only overwrite data that has been commited (concurrent transactions try to update same object) (no dirty write)
+- read committed uses a separate snapshot for each query, queries in transaction may have different results
+- implementation
+	- prevent dirty write by using **row-level lock** : transaction must acquire a lock on an object before updating it -> transaction must wait until previous transaction is commited/aborted (release lock)
+	- prevent dirty read by storing both old commited value (returns this value to reads if any write is ongoing) and new commited value
+#### snapshot isolation - repeatable read
+- transaction reads from consistent snapshot of DB (only see committed data from particular point in time), single snapshot for entire transaction
+- implementation
+- write lock to prevent dirty writes (like read committed)
+- no lock for reads, but DB keeps several committed versions of an object -> multi version concurrency control (MVCC)
+- visibility rules
+	- transaction id is used to decide which objects it can see
+	- an object is visible if at the time a transaction started
+		- the transaction that created object had committed
+		- the transaction that requested object deletion had not committed 
+#### serializable
+- is stricter snapshot isolation, all rows are locked -> no update during transaction progress (snapshot isolation allows updating on objects that aren't used by transaction?)
+### preventing lost updates - dirty writes (in concurrent writing transactions)
+- dirty write/lost update -> concurrent updates on single object
+- atomic write operations
+	- if atomic operation can be used, it is best choice
+	- can be implemented with exclusive locking -> no read until the update (read-modify-write cycle) has been applied
+- explicit locking
+	- use locking from application to prevent updating object from concurrent transactions
+- automatically detecting lost updates
+	- atomic writes and lock force read-modify-write cycles happen sequentially
+	- if DB transaction manager detects a lost update, abort transaction and retry it
+- compare and set
+	- allow an update to happen only if the data hasn't changed since last read
+	- if read comes from snapshot/replication (stale data), this operation may not work
+- conflict resolution and replication
+	- lock, compare-and-set assume that there is a single update-to-date copy of data, while multi-leader/leaderless DB allow writes to happen concurrently and replicate them asynchronously -> allow conflicting versions of data and resolve them
+	- last write wins (LWW) is default in many DB, but it may lost updates
+### write skew, phantoms
+#### skew write
+- 2 concurrent transactions read from same objects but they update some of these objects (race condition), generalization of lost update
+- 2 solutions
+	- serializable
+	- set lock to all rows that transaction depends on
+#### phantom
+- a write in a transaction changes result of search query in another transaction
+- snapshot-isolation avoids phantom in read-only queries but not read-write transactions
+#### materializing conflicts
+### serializability
+- strongest isolation level
+- guarantees that the final result of parallel transactions is same as if they were executed one at a time, serially without any concurrency
+#### actual serial execution
+- remove the concurrency
+	- every transaction must be small and fast, slow transaction can stand all transaction processing
+	- use case: when entire database must be in memory (eg. cache, ) for performance issue
+- in the interative style of transaction, lots of time is spent in network communication between application and DB -> DB must wait -> single-threaded DBs dont allow interactive multi-statement transactions -> stored procedure without waiting network and IO
+- use partition to scale DB to multiple CPUs, nodes, ...
+![[Pasted image 20250203105334.png | 600]]
+#### two-phase locking (2PL)
+- use locking to prevent dirty writes -> only one write transaction at any time, but with much stronger requirements
+	- if transaction A has read an object and transaction B want to write -> B must wait until A commits/aborts
+	- if transaction A has written an object and transaction B want to read -> B must wait until A commits/aborts
+-> writers block both other readers/writers and vice versa
+- 2PL performance is worse than weak isolation (due to acquiring/releasing locks and reduced concurrency) -> unstable latencies and deadlocks
+- predicate locks
+	- prevents phantoms (not existing objects) in serialization model
+	- belongs to all objects that match search condition
+- index-range locks
+	- approximation of predicate locks (applied to larger set than predicate locks) -> fast lock matching
+#### serialization snapshot isolation (SSI)
+- two-phase locking doesnt perform well, and serial execution doesnt scale well
+- SSI is based on snapshot isolation and provides full serializability + small performance penalty -> use both in single node/multiple nodes DB
+- currency control
+	- pessimistic
+		- 2PL waits until the situation is safe before do anything (like mutual exclusion)
+		- serial execution transaction has its own lock to entire database (extreme pessimistic)
+	- optimistic
+		- SSL continues transaction and HOPE that everything will be OK :D, and checks state when transaction commits
+		- disadvantage
+			- performs badly if there is high contention (many transasctions try to access same object) -> large proportion of transasction are aborted, but contention can be reduced with commutative atomic operations
+- decision based on an outdated premise
+	- premise is a query result -> any transaction acts on outdated premise must be aborted
+	- detecting stale MVCC reads
+		- when a transaction reads from consistent snapshot (snapshot isolation), it ignores all writes that haven't been committed when snapshot was taken -> DB tracks when a transaction ignores other writes due to MVCC visiablity rules, if any ignored write is has been committed, transaction must be aborted
+	- detecting writes that affect/change prior reads
+		- similar to 2PL with index-range locks, but instead of blocking until reader commit, DB tells to transaction that its data may not be up-to-date
+- advantage
+	- not blocking transaction when lock is held by other transaction (2PL)
+	- scale up to multi CPUs, nodes (serial execution)
+	- work well with short read/write and long read-only transactions
+- disadvantage
+	- less sensitive than 2PL and serial execution for slow transactions
+# consistency - consensus

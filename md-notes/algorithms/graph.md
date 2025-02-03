@@ -349,3 +349,35 @@ public:
     }
 };
 ```
+- [map of highest peak](https://leetcode.com/problems/map-of-highest-peak)
+```cpp
+constexpr int dxy[4][2] = {{-1,0}, {0,1}, {1,0}, {0,-1}};
+using pii = pair<int,int>;
+
+class Solution {
+public:
+    vector<vector<int>> highestPeak(vector<vector<int>>& isWater) {
+        int m = isWater.size(), n = isWater[0].size();
+        vector<vector<int>> ans(m,vector<int>(n));
+        queue<pii> q;
+        for (int i = 0; i < m; i++) for (int j = 0; j < n; j++) if (isWater[i][j]) q.push({i,j});
+        int h = 0;
+        while (!q.empty()) {
+            int sz = q.size();
+            while (sz--) {
+                auto [x, y] = q.front(); q.pop();
+                if (isWater[x][y] == -1) continue;
+                isWater[x][y] = -1;
+                ans[x][y] = h;
+                for (int k = 0; k < 4; k++) {
+                    int xx = x + dxy[k][0], yy = y + dxy[k][1];
+                    if (xx < 0 || yy < 0 || xx == m || yy == n || isWater[xx][yy] == -1) continue;
+                    q.push({xx,yy});
+                }
+            }
+            h++;
+        }
+        return ans;
+    }
+};
+```
