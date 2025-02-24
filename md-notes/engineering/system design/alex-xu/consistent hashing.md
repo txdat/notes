@@ -27,5 +27,5 @@
 	- linear space complexity for storing node's position on hash ring
 	- use multiple hashing functions to find nearest node for each request
 - bounded loads
-		- average load of whole hash ring -> node is not overloaded
-		- list of fallback nodes are similar for same request's hash -> request is distributed among the available nodes instead of only fallback node
+	- average load of whole hash ring -> node is not overloaded
+	- list of fallback nodes are similar for same request's hash -> request is distributed among the available nodes instead of only fallback node

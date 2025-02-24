@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "39f4fb2fa6ae9394",
+        "id": "163dce5ec0fe2db1",
         "type": "tabs",
         "children": [
           {
-            "id": "9d6a4ae437f20609",
+            "id": "dc3bf0c6ac93a89c",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 279.5,
-    "collapsed": true
+    "width": 279.5
   },
   "right": {
     "id": "e2edfdd285465075",
@@ -177,13 +176,23 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "9d6a4ae437f20609",
+  "active": "dc3bf0c6ac93a89c",
   "lastOpenFiles": [
+    "algorithms/string.md",
+    "engineering/system design/design data intensive applications/book/part 2. distributed data.md",
+    "attachments/Pasted image 20250215204428.png",
+    "engineering/system design/alex-xu/cache.md",
+    "engineering/system design/alex-xu/chat system.md",
+    "engineering/system design/alex-xu/consistent hashing.md",
+    "engineering/system design/alex-xu/bytebytego posts.md",
+    "attachments/Pasted image 20250208233035.png",
+    "engineering/system design/topics/facebook - memcached.md",
+    "engineering/system design/topics/dynamoDB design.md",
+    "engineering/system design/system-design-primer/cache.md",
     "attachments/Pasted image 20250203105334.png",
     "algorithms/counting.md",
     "algorithms/number theory.md",
     "algorithms/graph.md",
-    "engineering/system design/design data intensive applications/book/part 2. distributed data.md",
     "engineering/system design/design data intensive applications/book/README.md",
     "engineering/system design/design data intensive applications/book/part 3. derived data.md",
     "engineering/devops/zookeeper.md",
@@ -200,21 +209,11 @@
     "attachments/Pasted image 20250114110527.png",
     "engineering/system design/design data intensive applications/book/part 1. foundations.md",
     "engineering/design patterns - typescript/behavioral patterns.md",
-    "engineering/database/database internals/part 1. storage engines.md",
     "attachments/Pasted image 20250114092604.png",
     "attachments/Pasted image 20250114092537.png",
     "attachments/Pasted image 20250101213824.png",
     "attachments/Pasted image 20250101213803.png",
     "attachments/Pasted image 20250101213800.png",
-    "attachments/Pasted image 20250101213149.png",
-    "attachments/Pasted image 20250101213125.png",
-    "attachments/Pasted image 20250101204321.png",
-    "engineering/system design/alex-xu/cache.md",
-    "engineering/system design/design data intensive applications/blog posts/CAP.md",
-    "engineering/system design/system-design-primer/cache.md",
-    "algorithms/binary search.md",
-    "engineering/system design/topics/distributed counter.md",
-    "engineering/system design/topics/consistency patterns.md",
     "engineering/design patterns - typescript",
     "engineering/design system/wuyichen24/system-design-interview",
     "engineering/design system/wuyichen24/system-design-knowledge",

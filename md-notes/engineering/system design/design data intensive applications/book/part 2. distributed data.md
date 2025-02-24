@@ -180,9 +180,15 @@
 	- once a transaction has committed successfully, its results won't be forgotten (using logs?)
 ### isolation levels
 - in theory, isolation pretends that no concurrency is happening, serialize isolation guarantees that concurrent transactions have same effect as if they run serially (without concurrency)
+- [blog1](https://dogy.io/2020/12/29/transaction-isolation-part-1/), [blog2](https://dogy.io/2021/01/01/transaction-isolation-part-2/)
+**exclusive lock/shared lock**
+- exclusive lock
+	- is held by a single transaction to write data to an object
+- shared lock
+	- is held by one/many transactions to read data from an object
 #### read uncommitted
 - non-repeatable read/read skew: read DB in temporary inconsistent state
-- transaction performs in non-locking situation -> dirty reads (inconsistent data)
+- transaction performs in non-locking situation -> dirty reads (inconsistent data) (no lock on reading, but acquire exclusive lock on writing?)
 #### read committed
 - only read data that has been commmited (no dirty read)
 	- any writes by a transaction become visible when that transaction commits
@@ -202,7 +208,7 @@
 		- the transaction that created object had committed
 		- the transaction that requested object deletion had not committed 
 #### serializable
-- is stricter snapshot isolation, all rows are locked -> no update during transaction progress (snapshot isolation allows updating on objects that aren't used by transaction?)
+- is stronger snapshot isolation, all rows are locked -> no update during transaction progress (snapshot isolation allows updating on objects that aren't used by transaction?)
 ### preventing lost updates - dirty writes (in concurrent writing transactions)
 - dirty write/lost update -> concurrent updates on single object
 - atomic write operations
@@ -274,3 +280,75 @@
 - disadvantage
 	- less sensitive than 2PL and serial execution for slow transactions
 # consistency - consensus
+- **consensus: getting all of the nodes to agree on something
+- most DBs provide **eventually consistency** - if stop writing to database and wait **unspecified** length of time, eventually all reads return same value (consistency) or convergence
+
+### linearizability
+- make a DB appear as if there were only one copy of data, and all operations are atomic
+- linearizability is **recency guarantee** (read after write - once a new value has been written or read, all subsequent reads see that value, until it is overwritten again) -> operations are executed in **well-defined order**
+- DB that guarantees linearizability is slow -> many DBs don't provide linearizability guarantee
+![[Pasted image 20250208233035.png | 600]]
+- linearizability vs serializability
+	- serializability: isolation property of transaction, guarantee that concurrent transactions run as without concurrency (in serial order)
+	- linearizability: recency guarantee
+	- -> combination: **strict serializability** or **strong one-copy serializability**
+- implementation
+	- single-leader replication (potentially linearizable - only one leader accepts writes)
+	- consensus algorithm (linearizable)
+	- multi-leader replication (not linearizable - multiple nodes accept writes)
+	- leaderless replication (potentially not linearizable - quorums conditions aren't met)
+#### CAP theorem
+- consistent or available when partitioned >> consistency, availiability, partition tolerance
+- when a network fault occurs (network partition) -> choose between linearizability or availability
+- CAP theorem doesn't mention other network problems -> little practical value
+### ordering guarantees
+#### ordering and causality
+- **consistent with causality** (consistent snapshot isolation)
+	- if the snapshot contains an answer (effect), it must contain the question being answered (cause)
+- causal order is not total order (partial order), while linearizability is total order -> linearizability > causuality consistency
+	- linearizability: system behaves as if there is a single copy of data, every operation is atomic
+	- causality: 2 operations are incomparable, if they are concurrent
+		- is **strongest consistency model** not slow down due to network delay
+- maintain causality = know which operation happened before other operation -> keep this order in all relicas
+#### sequence number ordering
+- assing a sequence number/timestamp to each operation -> total order (2 operations are comparable)
+- if a follower (single leader DB) applies replication log in same order -> causally consistency
+- Lamport timestamp
+	- keep pair of (counter/timestamp, nodeid) -> unique timestamp for each operation between multiple nodes -> total order
+	- a node keeps track of maximum counter value in request (may come from another node), if this value is greater than current counter value, set current counter value to this value
+#### total order broadcast
+- is a protocol for exchanging messages between nodes, with reliable delivery (no message is lost) and totally ordered delivery (delivered messages are in same order for all nodes) -> guarentees linearizable writes, not linearizable reads
+- every replica processes the same writes to the DB in same order -> replicas remain consistent with each other -> fixed order at the time messages are delivered
+- total order broadcase is asynchronous: guarantees to delivery messages in a fixed order, but not the time when messages are delivered
+### distributed transactions and consensus
+- consensus: "get several nodes agree on something"
+#### atomic commit / two-phase commit (2PC)
+- algorithm for atomic transaction commit across multiple nodes
+![[Pasted image 20250215204428.png | 600]]
+- includes 2 phases
+	- prepare
+		- coordinator sends prepare requests to all participants, 
+		- participant makes sure it can commit **under all circumstances** (including node crash, networking, ...), if any participant responses "no", transaction is aborted on all participants
+	- commit
+		- coordinator receives responses from participants and decides to commit transaction or not, and write its decision to transaction log (coordinator must write decision to transaction log before sending "commit" request)
+		- send commit/abort for this transaction to all participants, retry sending request until it succeeds
+- if coordinator crashes
+	- before sending "prepare" -> all participants abort transaction
+	- before sending "commit" -> all participants have to wait coordinator response -> may cause inconsistence between participants
+- three-phase commit - nonblocking atomic commit protocol -> perfect failure detector for telling whether node has crashed or not?
+#### XA transaction
+- a standard for implemeting 2PC across heterogeneous technologies (from 2 or more different technologies)
+#### fault-tolerant consensus
+- consensus: getting several nodes to agree on something (full agreement, not partial), consensus algorithm helps to select final value from some proposed values
+- **partial consensus**
+	- quorum-based (majority agreement)
+	- fault-tolenrant: tolerate node failing or disagreeing
+	- eventually consistency
+- consensus' properties
+	- uniform / full agreement: no 2 nodes decide differently
+	- integrity: no node decides twice
+	- validity: if a node dicides a value, this value must be proposed by some node
+	- termination: every node doesnt crash eventually decides some value -> process doesnt get stuck, even if some node fails, the system must reach a decision -> requires **at least a majority of nodes** to be functioning correctly
+- single-leader replication - consensus
+	- 2 rounds of voting leader: choose a leader + vote on a leader's proposal; requires quorums of 2 rounds must overlap (at least 1 node votes for both most recent leader and its proposal)
+#### membership and coordination services
