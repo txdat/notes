@@ -1,0 +1,229 @@
+- https://lethain.com/introduction-to-architecting-systems-for-scale/
+- [system-design](https://github.com/karanpratapsingh/system-design)
+- [system-design-primmer](https://github.com/donnemartin/system-design-primer)
+
+- performance vs scalability
+	- scalable: performance is increased in the manner proportional to resources added -> serving more units of work
+	- problems
+		- performance: slow for single user
+		- scalability: fast for single user, but slow under heavy load
+- latency vs throughput
+	- latency: the time to perform action to get result
+	- througput: the number of actions performed per unit of time
+	-> maximum throughput with acceptance latency
+- availability vs consistency
+	- CAP theorem
+		- ![[Pasted image 20250317111228.png | 600]]
+		- consistency: all clients see same data at the same time, no matter which server is connected
+		- availability: able to get data when one or more servers (not all) are down
+		- partition tolerance: the system continues to operate despite network partition (some of network's components are disconnected)
+	-> network is not reliable, have to support network partitioning -> select between
+		- CP: consistency & partition tolerance
+			- waiting for a response from partitioned node may cause timeout error -> business requires atomic read/write
+		- AP: availability & partition tolerance
+			- return most reliable data (might not be latest). write operations may need time to propagate when the partition is resolved -> business requires eventual consistency or have to continue working despite errors
+	- consistency patterns
+		- sync multiple copies of data to make clients have a consistent view of data
+		- weak consistency
+			- after a write, read operations may/maynot see it, works well in real-time use cases
+			- seen in systems such as memcached
+		- eventual consistency
+			- after a write, all read operations will **eventually** see it -> data is replicated asynchronously, works well on high availability systems
+			- seen in systems such as mail, ...
+		- strong consistency
+			- after a write, all read operations will see it -> data is replicated synchronously
+			- seen in systems such as file systems and RDBMs (systems require transaction)
+	- availability patterns
+		- failover
+			- active-active
+				- ![[Pasted image 20250317110323.png | 600]]
+				- multiple instances of application are running and serving clients' requests simultaneously -> provide high availability and scalability, allow system to distribute workload to all servers
+				- provides redundant resources and failover capability -> the system continues working even if one or more servers are down
+			- active-passive (for failover)
+				- ![[Pasted image 20250317110338.png | 600]]
+				- one instance of application is running (active) and other instances are idle (passive) -> provide failover capability and efficient resource utilization (but high latency during failover)
+				- simplicity and cost-effective
+		- replication
+	- metrics for monitoring
+		- SLA - service level agreement
+			- agreement between services and their users, eg. service availability, ...
+		- SLO - service level objective
+			- about specific metrics
+		- SLI - service level indicator
+			- determine whether SLO metric is met or not
+- domain name system (DNS)
+	- hierarchical system, with some authoritative servers -> ip lookup
+	- ![[Pasted image 20250317105433.png | 600]]
+	- DNS resolver
+		- middleman between client and DNS nameserver
+	- Root server
+		- redirect request to TLD server based on extension of domain (.net, .org, ...)
+	- Top-level domain (TLD) server
+	- authoritative server
+	- DNS record types
+		- address record: domain -> ip address
+			- A: IPv4
+			- AAAA: IPv6
+		- canonical name record (cname): domain -> domain (not ip address)
+		- name server (NS): name server of DNS
+- content delivery network (CDN)
+	- ![[Pasted image 20250317110756.png | 600]]
+	- increase data availability and reduce network costs
+	- global distributed network of proxy servers -> serving contents from locations closer to user for static or multimedia files
+	- 2 types
+		- push cdn: receive new content when changes are made on server -> full responsibility for providing content, upload and rewrite url
+		- pull cdn: grab new content when the first user requests them -> may delay request, create redundant traffic
+- load balancer & proxy
+	- ![[Pasted image 20250317105933.png | 1000]]
+	- distribute incomming requests to computing resources, and return responses to clients
+	- prevent requests comming to unhealty resources, overloading resources, ssl termination and keep session persistence (session affinity)
+	- support horizontal scaling (usually managed by cloud provider)
+	- load balancer can be a bottleneck in system if it's not well designed
+	- 2 types of load balancer
+		- L4 (network load balancer): based on networking information (eg. headers, ip address, ...) -> for UDP/TCP/... -> for gateway
+		- L7 (application load balancer): content-based routing (read full request's info) -> for HTTP/HTTPs, support SSL natively -> for business services
+	- some routing algos
+		- round-robin
+		- weighted round-robin
+		- least connections
+		- least response time
+		- least bandwidth
+		- hashing
+	- reverse proxy is internal service to provide unifined interface to public (hide servers from client) -> increase complexity of system
+	- load balancer is more efficient than reverse proxy if having multiple servers
+	- forward proxy
+		- middlemand between client and internet: client >> forward proxy -> internet
+		- ![[Pasted image 20250317110907.png | 600]]
+	- reverse proxy
+		- middleman between server and internet: internet -> reverse proxy >> servers
+		- reverse proxy can act as load balancer
+- database
+	- relational database (RDBMs)
+		- collection of data items organized in tables
+		- ACID: set of properties of RDBMs
+			- atomic: a transaction's operations must be executed all or nothing
+			- consistency: a transaction brings system from consistent state to another consistent state
+			- isolation: each transaction is executed independently from other transactions
+			- durability: each transation is executed, and then stored
+		- scaling
+			- replication
+				- master (read+write) - slaves (read only), if master is down, one of slaves is promoted as next master, and new slave is created
+				- master - master
+					- need load balancing, or logic to select server to write (system uses consistent hashing?)
+					- may violate ACID properties
+					- have to solve conflicts
+			- federation - functional partitioning
+				- not effective if schema/logic requires many functions, table joining
+				- hardware complexity
+			- sharding
+				- ![[Pasted image 20250317111313.png | 600]]
+				- distribute data across databases (manage a subset of data) -> less read/write traffic, replication, ...
+				- system is availabilty (continue working if some shards are down)
+				- parallel writing operations
+				- add more complexity to logic, table joining
+				- need to rebalance data (resharding)
+		- denormalization
+			- keep redundant data to reduce expensive joins
+			- data is duplicated, worse performance for heavy write operations
+	- nosql
+		- data is represented in key-value, document, wide column, or graph
+		- data is duplicated
+		- violate ACID properties
+		- eventual consistentcy: reach consistent state after a period of time
+		- key-value
+			- read/write operations in O(1), backed by memory or SSD
+			- high performance, mostly use for temporal data and caching
+		- document
+			- data is store in document format (XML, json, ...)
+			- documents are organized by collections, tags, ...
+		- wide-column
+		- graph
+			- each node stores a record of data, and each arc stores the relationship between nodes
+			- optimized for representing complex relationships
+	- cache
+		- ![[Pasted image 20250317110401.png | 600]]
+		- reduce the load and improve the performance in servers and databases
+		- many types of caching
+			- client
+			- CDN
+			- web server, reverse proxies
+			- database
+			- application (memory caching)
+		- when to update cache/cache validation [[engineering/system design/alex-xu/cache|cache]]
+		- cache invalidation
+			- write-through
+			- write-around
+			- write-back
+		- eviction policies
+			- FIFO
+			- LIFO
+			- LRU
+			- LFU
+			- MRU
+			- RR - random replacement
+		- distributed cache
+			- ![[Pasted image 20250317110616.png | 600]]
+- asynchronism - non-blocking system
+	- reduce request time for expensive operations, doing time-consuming works in advance, such as periodic aggregation of data
+	- message queue
+		- application publishes a job to queue, a worker receives, processes and sets job's status to complete (in the background)
+	- task queue
+			- a worker receives job and its data, and delivers its result
+		- support scheduling and run computationally-intensive jobs in the background
+	- message queue vs task queue? #TODO need to verify
+		- message queue is the low-level building block of the concept
+		- task queue is the implementation of message queue to achieve task orchestration - wrapper over message queue
+- networking
+	- OSI model
+		- application (L7)
+			- supports http, smtp protocols
+			- interacts with user's data
+		- presentation
+			- translation, encryption/decryption, and compression
+		- session 
+			- open/close connection between 2 devices
+		- transport (L4)
+			- support TCP, UDP protocols
+			- chunking/ reassembling data into packets
+		- network 
+			- routing and transfering data in networks
+		- data link 
+		- physical
+	- TCP
+		- is a connection-oriented protocol over IP network, established and terminated using handshake
+		- all packets sent are guaranteed to reach the destination in original order without corruption
+		- support congestion control
+		- ![[Pasted image 20250317105320.png | 600]]
+	- UDP
+		- is a connectionless
+		- packets sent might reach to the destination out of order and not at all
+		- not support congestion control (prevent network overload and ensure smooth data flow -> manage traffic, similar to rate limiter?)
+		- less reliable but works well in real time use case
+		- ![[Pasted image 20250317105335.png | 600]]
+	- HTTP
+		- is request/response protocol to encoding and transporting data between client and server
+		- self-contained -> flow through intermediate routers, and servers that perform load balancing, caching, encryption, ...
+		- 5 verbs: GET, POST, PATCH, DELETE, PUT
+	- REST
+	- RPC
+
+- service discovery
+	- client-side
+		- ![[Pasted image 20250317112011.png | 600]]
+	- server-side
+		- use intermediate components such that load balancer to distribute requests
+		- ![[Pasted image 20250317112030.png | 600]]
+- virtualization / containerization
+	- ![[Pasted image 20250317111912.png | 600]]
+- rate limiting
+	- prevent frequency of an operation from exceeding a defined limit
+	- ![[Pasted image 20250317112315.png | 600]]
+	- algorithms
+		- leaky bucket
+		- token buket
+		- fixed window
+		- sliding log
+		- sliding window
+- message broker - message queues - pub/sub
+- monoliths - microservices
+- event-drivent architecture (EDA) - event sourcing

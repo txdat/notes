@@ -309,7 +309,7 @@
 	- linearizability: system behaves as if there is a single copy of data, every operation is atomic
 	- causality: 2 operations are incomparable, if they are concurrent
 		- is **strongest consistency model** not slow down due to network delay
-- maintain causality = know which operation happened before other operation -> keep this order in all relicas
+- maintain causality (ensures messages respect cause-and-effect, but unrelated messages can shuffle differently across nodes) = know which operation happened before other operation -> keep this order in all relicas
 #### sequence number ordering
 - assing a sequence number/timestamp to each operation -> total order (2 operations are comparable)
 - if a follower (single leader DB) applies replication log in same order -> causally consistency

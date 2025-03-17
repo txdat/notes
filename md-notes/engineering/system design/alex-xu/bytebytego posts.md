@@ -12,3 +12,5 @@
 ![[Pasted image 20240508005647.png | 600]]
 - elastic search use cases
 ![[Pasted image 20240517115450.png | 600]]
+- top alogirthms for system design
+![[Pasted image 20250228101246.png | 600]]
