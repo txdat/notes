@@ -1,6 +1,7 @@
 - https://lethain.com/introduction-to-architecting-systems-for-scale/
 - [system-design](https://github.com/karanpratapsingh/system-design)
 - [system-design-primmer](https://github.com/donnemartin/system-design-primer)
+- [system design complete course](https://www.karanpratapsingh.com/blog/system-design-the-complete-course)
 
 - performance vs scalability
 	- scalable: performance is increased in the manner proportional to resources added -> serving more units of work
@@ -224,6 +225,33 @@
 		- fixed window
 		- sliding log
 		- sliding window
+- n-tier architecture
+	- layers are a way to separate responsibilities and dependencies, higher layers can use services from lower layers, not vice versa
+	- ![[Pasted image 20250331110237.png | 600]]
 - message broker - message queues - pub/sub
+	- brokers can store, route and deliver messages to consumers -> allow services can communicate with each other and exchange information, without connecting directly
+	- ![[Pasted image 20250331110804.png | 600]]
 - monoliths - microservices
 - event-drivent architecture (EDA) - event sourcing
+	- use event as a way to communicate within a system
+	- components
+		- event producers
+		- event routers - brokers
+		- event consumers
+![[Pasted image 20250331111300.png | 600]]
+
+- event-driven patterns?
+	- saga
+		- a sequence of local transactions, each transaction updates database and publishes a message/event to trigger next transaction, if one transaction fails, preceding transactions will be reverted
+		- ![[Pasted image 20250331111706.png | 600]]
+	- pub/sub
+		- ![[Pasted image 20250331111913.png | 600]]
+		- advantages
+			- eliminate polling, decoupled and independent scaling, ...
+	- event sourcing (not part of event-driven)
+		- use append-only store to record all actions taken on that data
+		- avoids synchronizing data model and business model, provides consistency for transactional data
+		- ![[Pasted image 20250331112626.png | 600]]
+	- command and query responsibility segregation (CQRS)
+		- divides system into 2 parts: query (read) and command (write)
+		- ![[Pasted image 20250331112858.png | 600]]
