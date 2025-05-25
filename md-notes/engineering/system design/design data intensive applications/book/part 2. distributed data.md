@@ -119,7 +119,7 @@
 - sloppy quorums, hinted handoff
 	- leaderless replication appealing for HA and low latency system with occasional stale reads
 	- sloppy quorum:
-		- writes and reads still require w/r successful responses, but those may include nodes (not in n designed nodes - temporary nodes), and send back to home nodes when network interruption is fixed (hinted handoff)
+		- writes and reads still require w/r successful responses, but those may include nodes (not in n designed nodes - temporary nodes), and send back to home nodes when network interruption is fixed (hinted handoff - [[hinted handoff]])
 		- useful for **increasing write availability** (write to at least w nodes), **but may get stale data** from interrupted nodes (write to not designed nodes)
 #### concurrent writes
 - some database (like dynamo) allow concurrent writes (no well-defined ordering) for same key -> conflict even if using strict quorums -> inconsistent if keeping write order (get value from latest write)

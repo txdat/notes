@@ -1,6 +1,8 @@
 [[consitent hashing.excalidraw]]
 
 [highscalability blog](https://highscalability.com/consistent-hashing-algorithm/)
+[systemdesign.one blog](https://systemdesign.one/consistent-hashing-explained/)
+
 - to distribute requests/data across servers for horizontal scaling
 - rehashing problem?
 	- happen when adding new servers or remove existing servers if still using current hash function

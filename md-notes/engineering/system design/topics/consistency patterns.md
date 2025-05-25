@@ -1,3 +1,5 @@
+[systemdesign.one](https://systemdesign.one/consistency-patterns/)
+
 ### strong consistency
 - every read on any server must return latest data (by latest write) -> data is repliacated **synchronously** across multiple servers
 - adventage
@@ -25,3 +27,4 @@
 - linearizability ~ strong consistency
 ### causal consistency
 - ~ eventual consistency (strong > causal > eventual)
+- 

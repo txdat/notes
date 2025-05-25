@@ -1,3 +1,6 @@
+[systemdesign.one](https://systemdesign.one/url-shortening-system-design/)
+
+
 - given a long url, create a shortened url (as short as possible) and redirect to original url: `https://abc.xyz/...` -> `https://tinyUrl.com/{hashValue}`
 	- 2 endpoints
 		- `[POST] /shorten` -> shorten url
