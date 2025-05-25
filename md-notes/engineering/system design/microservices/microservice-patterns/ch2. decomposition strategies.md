@@ -1,0 +1,14 @@
+- key idea of microservice architecture is functional decomposition -> application = parts + their relationships
+# architecture styles
+- layered architecture
+	- split software elements into layers, each layer has its responsibilities
+	- 3 layers
+		- presentation
+		- business logic
+		- persistence
+- hexagon architecture
+	- places business logic at the center -> use adapters to handle requests by invoking business logic/external applications
+- monolithic
+	- single executable/deployable component
+- microservices
+	- set of executable/deployable components

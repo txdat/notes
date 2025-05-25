@@ -119,3 +119,24 @@ public:
 ```cpp
 
 ```
+- [find the maximum sum of node values](https://leetcode.com/problems/find-the-maximum-sum-of-node-values)
+```cpp
+using ll = long long;
+
+class Solution {
+public:
+    long long maximumValueSum(vector<int>& nums, int k, vector<vector<int>>& edges) {
+	  // we can change any pair of nodes in tree
+      // cnt is number of nodes such that it value becomes greater if we change, if cnt is odd, m is smallest decrement value
+      ll ans = 0;
+      int cnt = 0, m = INT_MAX;
+      for (int &d : nums) {
+        int t = d^k;
+        ans += max(d, t);
+        cnt += t>d;
+        m = min(m, abs(d-t));
+      }
+      return ans - ((cnt&1) ? m : 0);
+    }
+};
+```

@@ -25,4 +25,3 @@
 - linearizability ~ strong consistency
 ### causal consistency
 - ~ eventual consistency (strong > causal > eventual)
-- 

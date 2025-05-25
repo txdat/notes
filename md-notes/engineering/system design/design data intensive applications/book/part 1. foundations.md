@@ -1,6 +1,6 @@
 # introduction
 - 3 concerns
-		- reliability: the system should work correctly even in the face of adversity (faults, errors, ...) -> fault tolerance
+	- reliability: the system should work correctly even in the face of adversity (faults, errors, ...) -> fault tolerance/resilient
 	- scalability: there should be reasonable ways of dealing with the growth of data, traffic, ... (~ a system's ability to cope with increased load)
 		- performance
 			- when increase load parameters and keep system's resources unchange, how is the performance affected?
@@ -66,9 +66,11 @@
 		- newer and smaller SSTables are merged into older and larger SSTables
 	- leveled
 		- split up into smaller SSTables and older data is moved into separate levels
+- split data into variable-size segments
 ### B-Tree
 ![[Pasted image 20240813223622.png | 600]]
 ![[Pasted image 20240813223647.png|600]]
+- split data into fixed-size segments (page size)
 - B-tree with n keys always has a depth of O(logn) -> most of databases can fit into 3 or 4 levels depth
 - the overwrite data doesn't change the location of page (ref), different from LSM (append only)
 - implement write-ahead log (WAL) (append-only before modify tree itself) to make database more resilient to crashes

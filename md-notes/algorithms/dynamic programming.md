@@ -394,3 +394,33 @@ public:
     }
 };
 ```
+- [painting the grid with three different colors](https://leetcode.com/problems/painting-a-grid-with-three-different-colors)
+```cpp
+using ll = long long;
+constexpr int mod = 1e9+7;
+
+class Solution {
+public:
+    int dp[1001][1024] = {};
+
+    // curr is state of current column j (from row 0 to row i-1), if i = 0, curr = 0
+    // prev is state of entire previous column j-1
+    int colorTheGrid(int m, int n, int i = 0, int j = 0, int curr = 0, int prev = 0) {
+      if (i == m) return colorTheGrid(m, n, 0, j+1, 0, curr); // move to next column, curr becomes prev
+      if (j == n) return 1;
+      if (i == 0 && dp[j][prev]) return dp[j][prev]; // check for first row only
+      // get color of left and up cells
+      int left = (prev>>(i*2))&3, up = i == 0 ? 0 : (curr>>((i-1)*2))&3;
+      ll ans = 0;
+      for (int k = 1; k <= 3; k++) {
+        if (k == left || k == up) continue;
+        int mask = k<<(i*2);
+        curr ^= mask; // set color of current cell
+        ans += colorTheGrid(m, n, i+1, j, curr, prev);
+        curr ^= mask;
+      }
+      if (i == 0) return dp[j][prev] = ans%mod;
+      return ans%mod;
+    }
+};
+```

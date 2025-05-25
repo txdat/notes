@@ -150,7 +150,7 @@
 			- web server, reverse proxies
 			- database
 			- application (memory caching)
-		- when to update cache/cache validation [[engineering/system design/alex-xu/cache|cache]]
+		- when to update cache/cache validation [[engineering/system design/topics/cache|cache]]
 		- cache invalidation
 			- write-through
 			- write-around
