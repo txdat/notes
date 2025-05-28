@@ -1,3 +1,5 @@
+[systemdesign.one](https://newsletter.systemdesign.one/p/rate-limiter)
+
 - control the rate of traffic sent by a client or service (= number of requests allowed to be sent in a period of time)
 - prevents: denial of service (DDoS), reduce cost, prevent servers from being overloaded, ...
 # requirements
