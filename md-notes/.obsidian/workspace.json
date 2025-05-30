@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "4265826d03a721e1",
+        "id": "f2e5730ce917862d",
         "type": "tabs",
         "children": [
           {
-            "id": "ef68ec5c9f26b61a",
+            "id": "80581baa24794886",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -176,10 +176,17 @@
       "obsidian-kanban:Create new board": false
     }
   },
-  "active": "ef68ec5c9f26b61a",
+  "active": "80581baa24794886",
   "lastOpenFiles": [
-    "engineering/system design/topics/url shortener.md",
+    "attachments/Pasted image 20250530111519.png",
+    "attachments/Pasted image 20250530111213.png",
+    "attachments/Pasted image 20250530103522.png",
+    "engineering/system design/topics/hinted handoff.md",
     "engineering/system design/topics/distributed lock.md",
+    "engineering/system design/topics/chat system.md",
+    "engineering/system design/topics/cache.md",
+    "engineering/git.md",
+    "engineering/system design/topics/url shortener.md",
     "attachments/Pasted image 20250528135905.png",
     "attachments/Pasted image 20250528135108.png",
     "attachments/Pasted image 20250528120701.png",
@@ -191,8 +198,6 @@
     "engineering/system design/topics/consistent hashing.md",
     "engineering/system design/topics/consistency patterns.md",
     "Excalidraw/consitent hashing.excalidraw.md",
-    "engineering/system design/topics/chat system.md",
-    "engineering/system design/topics/hinted handoff.md",
     "engineering/system design/topics/web server.md",
     "engineering/system design/topics/real-time presence.md",
     "engineering/system design/topics/search autocomplete - incremental search.md",
@@ -207,13 +212,8 @@
     "engineering/system design/system-design-primer/data structure for social network.md",
     "engineering/system design/system-design-primer/cache.md",
     "engineering/system design/system-design-primer/chat server.md",
-    "engineering/system design/system-design-primer/aws webserver.md",
-    "engineering/system design/system-design-primer/autocomplete for search box (shopee interview).md",
-    "engineering/system design/system-design-primer/amazon sale ranking by category.md",
     "attachments/Pasted image 20250525172853.png",
     "attachments/Pasted image 20250525172713.png",
-    "attachments/Pasted image 20250525172647.png",
-    "attachments/Pasted image 20250525172147.png",
     "engineering/system design/event-driven",
     "engineering/database/CMU 15-445_645",
     "engineering/system design/microservices/microservice-patterns",

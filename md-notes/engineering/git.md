@@ -8,3 +8,8 @@ git config core.hooksPath # see current settings
 git config core.hooksPath '/dev/null'
 git config core.hooksPath '<previous path>' # or unset it git config --unset core.hooksPath
 ```
+
+# compare local file with remote at specific SHA commit
+```bash
+git diff HEAD <remote-sha> -- <file-path>
+```
