@@ -17,7 +17,6 @@
 ### redis lock with fencing token
 - every write requires a fencing token (increasing number) when acquring lock (but require token service generates **strictly motonotically increasing tokens** -> zookeeper) -> write with old token is rejected
 - ![[Pasted image 20250530111519.png | 600]]
--
 # zookeeper/etcd - correctness lock
 - keep data consistent across most of servers (through quorum)
 - strong consistency but heavier computation compared to redis
