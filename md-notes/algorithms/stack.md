@@ -145,3 +145,33 @@ public:
     }
 };
 ```
+- [using a robot to print the lexicographically smallest string](https://leetcode.com/problems/using-a-robot-to-print-the-lexicographically-smallest-string)
+```cpp
+class Solution {
+public:
+    string robotWithString(string s) {
+      int n = s.length();
+      vector<int> q(n); // q[i] is greater or equal than i such that s[q[i]] <= s[i]
+      q[n-1] = n-1;
+      for (int i = n-2; i >= 0; i--) q[i] = s[i] <= s[q[i+1]] ? i : q[i+1];
+
+      string ans, t;
+      for (int i = 0; i < n; i = q[i]+1) {
+        int j = q[i]+1;
+        t += s.substr(i, j-i); // copy s[i..q[i]]
+        if (j < n) {
+          char c = s[q[j]];
+          while (!t.empty() && t.back() <= c) { // pop t if top/back of t is smaller or equal to next smaller c (s[q[i]+1])
+            ans.push_back(t.back());
+            t.pop_back();
+          }
+        }
+      }
+      while (!t.empty()) {
+        ans.push_back(t.back());
+        t.pop_back();
+      }
+      return ans;
+    }
+};
+```
