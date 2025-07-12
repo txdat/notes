@@ -11,10 +11,21 @@
             "id": "bbce2a6dd44a0e6a",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
+              "type": "kanban",
+              "state": {
+                "file": "dat kanban.md",
+                "kanbanViewState": {
+                  "kanban-plugin": "board",
+                  "list-collapse": [
+                    false,
+                    false,
+                    false,
+                    false
+                  ]
+                }
+              },
+              "icon": "lucide-trello",
+              "title": "dat kanban"
             }
           }
         ]
@@ -170,11 +181,13 @@
       "templates:Insert template": true,
       "command-palette:Open command palette": true,
       "obsidian-excalidraw-plugin:New drawing": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-kanban:Create new board": false
     }
   },
-  "active": "bbce2a6dd44a0e6a",
+  "active": "61a29ac0d3d1ca10",
   "lastOpenFiles": [
+    "dat kanban.md",
     "engineering/system design/bytebytego posts.md",
     "engineering/system design/README.md",
     "engineering/system design/system-design-primer/data structure for social network.md",
@@ -202,7 +215,6 @@
     "engineering/devops/k8s incidents.md",
     "engineering/devops/k8s.md",
     "engineering/devops/helm.md",
-    "engineering/devops/gcp.md",
     "computer science",
     "attachments/Pasted image 20250606110657.png",
     "attachments/Pasted image 20250606105619.png",
