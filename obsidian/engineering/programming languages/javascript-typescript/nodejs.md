@@ -22,3 +22,13 @@
 	- microtask
 
 [effective promise](https://www.builder.io/blog/promises)
+- use `Promise.all`
+	- add `.catch()` to promises
+	```javascript
+	const [user, product] = await Promise.all([
+		fetchUser().catch(onReject), // ⬅️
+		fetchProduct().catch(onReject) // ⬅️
+	]);
+```
+- use `Promise.allSettled`
+	- returns `{status, value, reason}`, status is `fulfilled/rejected`

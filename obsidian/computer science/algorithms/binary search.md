@@ -1,4 +1,4 @@
-	1. [earliest second to mark indices i](https://leetcode.com/problems/earliest-second-to-mark-indices-i/description/)
+- [earliest second to mark indices i](https://leetcode.com/problems/earliest-second-to-mark-indices-i/description/)
 ```cpp
 class Solution {
 public:
