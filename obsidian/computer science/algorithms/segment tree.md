@@ -67,3 +67,56 @@ public:
     }
 };
 ```
+- [fruits into baskets iii](https://leetcode.com/problems/fruits-into-baskets-iii/description/)
+```cpp
+// use segment tree ST to track largest basket in range [l,r], but too slow
+class Solution {
+public:
+    int build_st(vector<int> &st, vector<int> &baskets, int l, int r, int i = 1) {
+        if (l == r) {
+            return st[i] = baskets[l];
+        }
+        int m = (l+r)>>1, ii = i<<1;
+        return st[i] = max(build_st(st, baskets, l, m, ii), build_st(st, baskets, m+1, r, ii+1));
+    }
+
+    int update_st(vector<int> &st, int l, int r, int k, int v, int i = 1) {
+        if (k < l || k > r) return st[i];
+        if (l == r) return st[i] = v;
+        int m = (l+r)>>1, ii = i<<1;
+        return st[i] = max(update_st(st, l, m, k, v, ii), update_st(st, m+1, r, k, v, ii+1));
+    }
+
+    int query(vector<int> &st, int l, int r, int u, int v, int i = 1) {
+        if (v < l || u > r) return 0;
+        if (u <= l && r <= v) return st[i];
+        int m = (l+r)>>1, ii = i<<1;
+        return max(query(st, l, m, u, v, ii), query(st, m+1, r, u, v, ii+1));
+    }
+
+    int numOfUnplacedFruits(vector<int>& fruits, vector<int>& baskets) {
+        int n = fruits.size();
+        vector<int> st(4*n);
+        build_st(st, baskets, 0, n-1);
+        int ans = 0;
+        for (int &d : fruits) {
+            int l = 0, r = n, m;
+            while (l < r) {
+                m = (l+r)>>1;
+                int v = query(st, 0, n-1, 0, m);
+                if (v >= d) {
+                    r = m;
+                } else {
+                    l = m+1;
+                }
+            }
+            if (l < n) {
+                update_st(st, 0, n-1, l, 0);
+            } else {
+                ans++;
+            }
+        }
+        return ans;
+    }
+};
+```

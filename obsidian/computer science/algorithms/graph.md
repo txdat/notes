@@ -381,3 +381,13 @@ public:
     }
 };
 ```
+
+- [flight routes](https://cses.fi/problemset/task/1196/) - k shortest paths with node revisits
+	- codeforces' note to find k shortest paths [link](https://codeforces.com/blog/entry/102085)
+```cpp
+
+```
+
+- [longest flight route](https://cses.fi/problemset/task/1680/) - longest path in DAG -> topo sort
+```cpp
+```

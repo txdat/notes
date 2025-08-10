@@ -170,3 +170,9 @@ public:
     }
 };
 ```
+
+- [pattern positions](https://cses.fi/problemset/task/2104/)
+	- cses solution for string topic [link](https://codeforces.com/blog/entry/95004)
+```cpp
+
+```
