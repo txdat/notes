@@ -1,4 +1,9 @@
-[example](https://www.prisma.io/dataguide/managing-databases/introduction-database-caching)
+[[Excalidraw/caching|caching]]
+[blog](https://newsletter.techworld-with-milan.com/p/caching-the-single-most-helpful-strategy)
+
+
+# cache strategies
+
 - read strategies
 	- read-aside
 		- the cache is seperated from database -> the system can get data from database (if the cache crashes), and can store diffrent data models (compared to database)
@@ -20,6 +25,10 @@
 	- write-around
 		- the application invalidates data in the cache (asynchronously), writes data to the database first, and the data goes to the cache (read-aside)
 		![[Pasted image 20240420222927.png | 600]]
+
+- cache strategy comparison
+![[Pasted image 20250813100557.png | 700]]
+
 - cache validation strategies
 	- time-based (expiration)
 	- command-based (triggered directly)
@@ -34,7 +43,27 @@
 	-> read aside + write around (delete cache after writing to database)
 		- write operations to cache are much faster than to database -> write around operations nearly unable to run between read - write back operations
 		- use ttl to expire data (even distribution)
-- cache scaling
-	- cluster -> High Availability
-	- rate limiter/circuit breaker
+
+### caching problems
+- thundering herd problem
+	- when cache expires, numerous requests are sent to backend simultaneously -> use cache expiration, lock/message queue to manage request flow
 - cache breakdown
+	- during intense load, cache fails, and route all traffic to DB (bottleneck) -> cache expiration, layer caching mechanisms, rate limiting, ...
+- cache crash
+	- cache service crashes -> use cache cluster (backups + secondary failover cache), circuit breaker mechanism?
+- cache penetration
+	- queries bypass cache and increase DB load -> use cache-aside pattern (check cache first then DB)
+
+# redis
+### architecture
+- single-node
+- master-slave: 1 master node + >= 2 slave nodes
+- sentinel: monitoring, notification, automatic failover
+- cluster: distributed caching -> improve HA
+
+### why fast?
+- in-memory storage
+- optimized data structure
+- single-thread model: simplifies code base, eliminates threading overhead and race condition
+- asynchronous and non blocking I/O
+![[Pasted image 20250813101918.png | 700]]

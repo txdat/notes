@@ -100,7 +100,7 @@
 		- reverse proxy can act as load balancer
 - database
 	- relational database (RDBMs)
-		- collection of data items organized in tables
+		- collection of data items organized in tables -> **schema on write**
 		- ACID: set of properties of RDBMs
 			- atomic: a transaction's operations must be executed all or nothing
 			- consistency: a transaction brings system from consistent state to another consistent state
@@ -131,16 +131,19 @@
 		- data is duplicated
 		- violate ACID properties
 		- eventual consistentcy: reach consistent state after a period of time
+		- easy horizontal scaling/sharding?
 		- key-value
 			- read/write operations in O(1), backed by memory or SSD
 			- high performance, mostly use for temporal data and caching
 		- document
 			- data is store in document format (XML, json, ...)
 			- documents are organized by collections, tags, ...
+			- document databases offer **schema flexibility and load entire documents efficiently** -> **eliminate join overhead and be more performant**
 		- wide-column
 		- graph
 			- each node stores a record of data, and each arc stores the relationship between nodes
 			- optimized for representing complex relationships
+	- ![[Pasted image 20250811163257.png | 600]]
 	- cache
 		- ![[Pasted image 20250317110401.png | 600]]
 		- reduce the load and improve the performance in servers and databases
@@ -150,7 +153,7 @@
 			- web server, reverse proxies
 			- database
 			- application (memory caching)
-		- when to update cache/cache validation [[engineering/system design/topics/cache|cache]]
+		- when to update cache/cache validation [[engineering/system design/topics/caching|caching]]
 		- cache invalidation
 			- write-through
 			- write-around
@@ -164,6 +167,34 @@
 			- RR - random replacement
 		- distributed cache
 			- ![[Pasted image 20250317110616.png | 600]]
+	- how to scale database?
+		- partitioning
+			- horizontal partitioning (sharding)
+				- split tables by row, each partition has same schema but with different rows
+				- suitable for multi-tenant applications
+				- kinds of horizontal partitioning
+					- key-based
+						- use uniform distribution hash function on specific key in each record
+						- queries can span multiple shards
+					- range-based
+						- based on ranges of a particular key
+						- uneven distribution and hotspots data
+					- directory-based
+						- use lookup table to map keys to corresponding shards
+						- lookup table may become performance bottleneck
+					- geo-sharding
+						- based on geographic location
+					- customer-based sharding
+						- optimize performance and isolation for multi-tenant applications
+						- hard to utilize resources across shards
+			- vertical partitioning
+				- split tables by columns -> optimize access times and cache efficiency
+		- scaling
+			- vertical scaling
+				- add more CPU and memory to DB
+			- horizontal scaling
+				- create new read replicas of DB (master-slave), or add new node to leaderless DB
+		![[Pasted image 20250813093919.png | 600]]
 - asynchronism - non-blocking system
 	- reduce request time for expensive operations, doing time-consuming works in advance, such as periodic aggregation of data
 	- message queue

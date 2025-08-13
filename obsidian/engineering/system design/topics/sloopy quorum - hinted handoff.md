@@ -7,7 +7,7 @@
 
 
 # hinted handoff
-- distributed system pattern to perform repairs in the write path, post-failure data (as hints - metadata?) comes from backup node (coordinator) to target node when it is healthy again
+- distributed system pattern to perform repairs in the write path, post-failure data (as hints - temporary records that hold write operations) comes from backup node (coordinator) to target node when it is healthy again
 - some DBMSs store hints for a certain time frames, and flush to disk-based storage, some DBMSs store in local directory
 - hints can be rejected if target node remains unavailable, or gets decommissioned?
 

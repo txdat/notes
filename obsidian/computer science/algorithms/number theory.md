@@ -37,7 +37,7 @@ public:
             if (si*si == m) return 2;
         }
 
-        return 3; // legendre's three-square
+        return 3; // lagrange's three-square
     }
 };
 ```

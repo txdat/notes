@@ -119,7 +119,7 @@
 - sloppy quorums, hinted handoff
 	- leaderless replication appealing for HA and low latency system with occasional stale reads
 	- sloppy quorum:
-		- writes and reads still require w/r successful responses, but those may include nodes (not in n designed nodes - temporary nodes), and send back to home nodes when network interruption is fixed (hinted handoff - [[hinted handoff]])
+		- writes and reads still require w/r successful responses, but those may include nodes (not in n designed nodes - temporary nodes), and send back to home nodes when network interruption is fixed (hinted handoff - [[sloopy quorum - hinted handoff]])
 		- useful for **increasing write availability** (write to at least w nodes), **but may get stale data** from interrupted nodes (write to not designed nodes)
 #### concurrent writes
 - some database (like dynamo) allow concurrent writes (no well-defined ordering) for same key -> conflict even if using strict quorums -> inconsistent if keeping write order (get value from latest write)
@@ -172,6 +172,7 @@
 - some databases rely on coordination service (zookeeper) to track cluster metadata (type 2)
 # transactions
 - group several reads and writes on multiple objects into a logical unit -> execute as one operation: succeed (commit) or fails (abort, rollback)
+- transactions keep correctness guarantees
 ### ACID
 - Atomic
 	- cannot be broken down into smaller parts
@@ -183,9 +184,11 @@
 	- each transaction can be pretend that it is the only one transaction running on the entire DB
 - Durability
 	- once a transaction has committed successfully, its results won't be forgotten (using logs?)
+![[Pasted image 20250812103621.png | 600]]
 ### isolation levels
 - in theory, isolation pretends that no concurrency is happening, serialize isolation guarantees that concurrent transactions have same effect as if they run serially (without concurrency)
 - [blog1](https://dogy.io/2020/12/29/transaction-isolation-part-1/), [blog2](https://dogy.io/2021/01/01/transaction-isolation-part-2/)
+- ![[Pasted image 20250812103720.png | 600]]
 **exclusive lock/shared lock**
 - exclusive lock
 	- is held by a single transaction to write data to an object
@@ -194,7 +197,7 @@
 #### read uncommitted
 - non-repeatable read/read skew: read DB in temporary inconsistent state
 - transaction performs in non-locking situation -> dirty reads (inconsistent data) (no lock on reading, but acquire exclusive lock on writing?)
-#### read committed
+#### read committed -> no dirty reads/writes, but not read skew
 - only read data that has been commmited (no dirty read)
 	- any writes by a transaction become visible when that transaction commits
 - only overwrite data that has been commited (concurrent transactions try to update same object) (no dirty write)
@@ -202,7 +205,7 @@
 - implementation
 	- prevent dirty write by using **row-level lock** : transaction must acquire a lock on an object before updating it -> transaction must wait until previous transaction is commited/aborted (release lock)
 	- prevent dirty read by storing both old commited value (returns this value to reads if any write is ongoing) and new commited value
-#### snapshot isolation - repeatable read
+#### snapshot isolation - repeatable read -> no dirty reads/writes, read skew, but not lost updates, write skew (race conditions)
 - transaction reads from consistent snapshot of DB (only see committed data from particular point in time), single snapshot for entire transaction
 - implementation
 - write lock to prevent dirty writes (like read committed)
@@ -215,6 +218,7 @@
 #### serializable
 - is stronger snapshot isolation, all rows are locked -> no update during transaction progress (snapshot isolation allows updating on objects that aren't used by transaction?)
 ### preventing lost updates - dirty writes (in concurrent writing transactions)
+![[Pasted image 20250812105154.png | 500]]
 - dirty write/lost update -> concurrent updates on single object
 - atomic write operations
 	- if atomic operation can be used, it is best choice
@@ -240,7 +244,7 @@
 - a write in a transaction changes result of search query in another transaction
 - snapshot-isolation avoids phantom in read-only queries but not read-write transactions
 #### materializing conflicts
-### serializability
+### serializability (without serial order)
 - strongest isolation level
 - guarantees that the final result of parallel transactions is same as if they were executed one at a time, serially without any concurrency
 #### actual serial execution
@@ -288,7 +292,7 @@
 - **consensus: getting all of the nodes to agree on something
 - most DBs provide **eventually consistency** - if stop writing to database and wait **unspecified** length of time, eventually all reads return same value (consistency) or convergence
 
-### linearizability
+### linearizability = serializability with causality (real-time order)?
 - make a DB appear as if there were only one copy of data, and all operations are atomic
 - linearizability is **recency guarantee** (read after write - once a new value has been written or read, all subsequent reads see that value, until it is overwritten again) -> operations are executed in **well-defined order**
 - DB that guarantees linearizability is slow -> many DBs don't provide linearizability guarantee
