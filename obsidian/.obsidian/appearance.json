@@ -3,7 +3,7 @@
   "interfaceFontFamily": "Maple Mono NF CN",
   "textFontFamily": "Maple Mono NF CN",
   "monospaceFontFamily": "Maple Mono NF CN",
-  "baseFontSize": 13,
+  "baseFontSize": 12,
   "nativeMenus": true,
   "theme": "obsidian",
   "cssTheme": "Minimal",

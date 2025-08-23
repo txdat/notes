@@ -1,4 +1,6 @@
 {
-  "minimal-style@@bg1@@dark": "#000000",
-  "minimal-style@@tx1@@dark": "#CCCCCC"
+  "minimal-style@@tx1@@dark": "#CCCCCC",
+  "minimal-advanced@@animations": "disable-animations",
+  "minimal-advanced@@cursor": "default",
+  "minimal-advanced@@mobile-toolbar-off": true
 }
