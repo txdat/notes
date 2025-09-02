@@ -1,8 +1,8 @@
 {
   "lightStyle": "minimal-light",
-  "darkStyle": "minimal-dark",
-  "lightScheme": "minimal-gruvbox-light",
-  "darkScheme": "minimal-gruvbox-dark",
+  "darkStyle": "minimal-dark-black",
+  "lightScheme": "minimal-nord-light",
+  "darkScheme": "minimal-nord-dark",
   "editorFont": "Maple Mono SC NF",
   "lineHeight": 1,
   "lineWidth": 40,

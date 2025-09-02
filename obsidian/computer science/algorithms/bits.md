@@ -247,3 +247,31 @@ public:
     }
 };
 ```
+- [maximum product of 2 integers without common bits](https://leetcode.com/problems/maximum-product-of-two-integers-with-no-common-bits/description/)
+	- idea: `dp[i]` is maximum value of nums such that `d&i=d` (i is superset of d)
+```cpp
+using ll = long long;
+
+class Solution {
+public:
+    long long maxProduct(vector<int>& nums) {
+        int m = *max_element(nums.begin(),nums.end());
+        int mb = 31 - __builtin_clz(m), max_mask = (1<<(mb+1))-1;
+        vector<int> dp(max_mask+1,0);
+        for (int &d : nums) dp[d] = d;
+        for (int b = 0; b <= mb; b++) {
+            int t = 1<<b;
+            for (int mask = 0; mask < max_mask; mask++) {
+                if (mask&t) {
+                    dp[mask] = max(dp[mask], dp[mask^t]);
+                }
+            }
+        }
+        ll ans = 0;
+        for (int &d : nums) {
+            ans = max(ans, ll(d)*dp[max_mask^d]);
+        }
+        return ans;
+    }
+};
+```
