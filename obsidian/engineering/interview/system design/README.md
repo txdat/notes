@@ -56,7 +56,7 @@
 	- think about non-functional requirements -> improve existing system to solve each of interviewer's requiments
 ### 2. core concepts
 - [x] CAP theorem [[engineering/interview/system design/core concepts/cap theorem|cap theorem]] -> choose between consistency (C) or availability (A) when partition (P) happens
-- [ ] networking essentials
+- [x] networking essentials [[network essentials]]
 - [x] API design [[api design]] -> choose REST as default
 - [ ] locking
 - [ ] DB indexing
