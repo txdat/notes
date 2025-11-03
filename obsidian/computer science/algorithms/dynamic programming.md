@@ -424,3 +424,24 @@ public:
     }
 };
 ```
+- [minimum score triangulation of polygon](https://leetcode.com/problems/minimum-score-triangulation-of-polygon)
+```cpp
+class Solution {
+public:
+    int solve(vector<int> &values, vector<vector<int>> &dp, int i, int j) {
+        if (dp[i][j] != -1) return dp[i][j];
+        int ans = 1e7, v = values[i]*values[j];
+        for (int k = i+1; k < j; k++) {
+            ans = min(ans, solve(values, dp, i, k) + solve(values, dp, k, j) + v*values[k]);
+        }
+        return dp[i][j] = ans;
+    }
+
+    int minScoreTriangulation(vector<int>& values) {
+        int n = values.size();
+        vector<vector<int>> dp(n,vector<int>(n,-1));
+        for (int i = 0; i < n-1; i++) dp[i][i+1] = 0;
+        return solve(values, dp, 0, n-1);
+    }
+};
+```

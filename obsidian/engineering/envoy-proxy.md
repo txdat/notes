@@ -107,7 +107,8 @@ static_resources:
                         allow_origin_string_match:
                           - prefix: '*'
                         allow_methods: GET, PUT, DELETE, POST, OPTIONS
-                        allow_headers: keep-alive,user-agent,cache-control,content-type,content-transfer-encoding,custom-header-1,x-accept-content-transfer-encoding,x-accept-response-streaming,x-user-agent,x-grpc-web,grpc-timeout,authorization
+                        # allow_headers: keep-alive,user-agent,cache-control,content-type,content-transfer-encoding,custom-header-1,x-accept-content-transfer-encoding,x-accept-response-streaming,x-user-agent,x-grpc-web,grpc-timeout,authorization
+                        allow_headers: "*" # allow all headers
                         max_age: '1728000'
                         expose_headers: custom-header-1,grpc-status,grpc-message
                 http_filters:
@@ -124,7 +125,7 @@ static_resources:
                       '@type': type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
 
   clusters:
-    - name: grpc-restful
+    - name: restful
       type: LOGICAL_DNS
       lb_policy: ROUND_ROBIN
       dns_lookup_family: V4_ONLY

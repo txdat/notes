@@ -47,6 +47,7 @@
   "penModeDoubleTapEraser": true,
   "penModeSingleFingerPanning": true,
   "penModeCrosshairVisible": true,
+  "panWithRightMouseButton": false,
   "renderImageInMarkdownReadingMode": false,
   "renderImageInHoverPreviewForMDNotes": false,
   "renderImageInMarkdownToPDF": false,
@@ -106,7 +107,7 @@
   "library2": {
     "type": "excalidrawlib",
     "version": 2,
-    "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.14.2",
+    "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.16.1",
     "libraryItems": []
   },
   "imageElementNotice": true,
@@ -118,8 +119,10 @@
   "mdCSS": "",
   "scriptEngineSettings": {},
   "defaultTrayMode": false,
+  "compactModeOnTablets": true,
   "previousRelease": "2.0.17",
   "showReleaseNotes": false,
+  "compareManifestToPluginVersion": true,
   "showNewVersionNotification": false,
   "latexBoilerplate": "\\color{blue}",
   "latexPreambleLocation": "preamble.sty",

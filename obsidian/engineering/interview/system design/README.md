@@ -60,7 +60,7 @@
 - [x] API design [[api design]] -> choose REST as default
 - [ ] locking
 - [ ] DB indexing
-- [ ] consistent hashing
+- [ ] consistent hashing [[engineering/interview/system design/core concepts/consistent hashing|consistent hashing]]
 - [ ] scaling
 - [ ] security
 - [ ] monitoring

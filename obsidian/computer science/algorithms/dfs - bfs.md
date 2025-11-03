@@ -42,3 +42,45 @@ public:
     }
 };
 ```
+
+- [trapping rain water ii](https://leetcode.com/problems/trapping-rain-water-ii/description)
+```cpp
+constexpr int dij[4][2] = {{-1,0},{0,1},{1,0},{0,-1}};
+using pii = pair<int,int>;
+
+class Solution {
+public:
+    int trapRainWater(vector<vector<int>>& heightMap) {
+        int m = heightMap.size(), n = heightMap[0].size(), m1 = m-1, n1 = n-1;
+
+        auto cmp = [&](pii &p1, pii &p2) { return heightMap[p1.first][p1.second] > heightMap[p2.first][p2.second]; };
+        priority_queue<pii,vector<pii>,decltype(cmp)> q(cmp);
+
+        for (int i = 0; i < m; i++) {
+            q.push({i, 0});
+            q.push({i, n1});
+        }
+        for (int j = 1; j < n1; j++) {
+            q.push({0, j});
+            q.push({m1, j});
+        }
+
+        int ans = 0, h = 1;
+        while (!q.empty()) {
+            auto [i, j] = q.top(); q.pop();
+            if (heightMap[i][j] == -1) continue;
+
+            h = max(h, heightMap[i][j]);
+            ans += h - heightMap[i][j];
+            heightMap[i][j] = -1; // visited
+
+            for (int k = 0; k < 4; k++) {
+                int ii = i+dij[k][0], jj = j+dij[k][1];
+                if (ii < 0 || jj < 0 || ii == m || jj == n || heightMap[ii][jj] == -1) continue;
+                q.push({ii, jj});
+            }
+        }
+        return ans;
+    }
+};
+```
