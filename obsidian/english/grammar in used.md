@@ -14,10 +14,25 @@
 
 - unreal past = If + past perfect, S + would have + V_pp
 
+- mixed/reverted/reverse conditional (type 2 + type 3) -> link condition in one time frame to result in another time frame
+	- past condition - present result = If + past perfect, S + would + V_inf -> an action/event didn't happen in the past has a lasting effect in the present
+		- eg. `If I had studied, I would be a doctor (now)` = `I didn't study in the past, so I'm not a doctor now`
+	- present condition - past result = If + past simple, S + would have + V_pp -> a general truth/state that is untrue in the present caused a specific change in the past
+		- eg.
+
 ### wish/hope = S + wish + smb + smt / S + hope + clause
 
 - use `wish` to say that we regret smt, smt is not as we would like it to be
 - use `wish + S + had V_pp` to say that we regret smt in the past
+
+### unless = if not
+- is conditional conjunction
+- emphasizes a condition that prevents a result
+- eg. `If it doesn't rain, we will go out` = `Unless it rains, we will go out`
+
+### if + adj = if S + (be) + adj
+- shorten form
+- eg. If necessary = If it is necessary, ...
 # passive
 
 - active verbs -> what subject does?
@@ -39,3 +54,40 @@
 
 ### have/get smt done
 - arrange smb to do smt for us
+
+# questions, auxiliary verbs
+### questions
+- put subject after the first verb
+- use negative question to show surprise, expect the listener to agree
+- keep the word order when question is a part of longer sentence?
+	- eg. Do you know where Tom has gone?
+
+### question tags
+- mini question on the end of sentence
+- negative question tag after positive sentence, positive question tag after negative sentence
+- some verbs with question tag
+	- let's ... , shall we?
+	- don't ... , will you?
+	- I'm ... , aren't you?
+
+### auxiliary verbs
+- use aux verbs to not repeat smt, deny/show interest/surprise what smb has said
+- use with 'so/neither' (verb before subject)
+	- eg. I'm tired -> so am I
+	- eg. I never read newspapers -> neither do I
+
+# V-ing (gerunds) / to V
+[[V-ing_to-V]]
+
+# prefer / would rather
+
+### prefer (general preference)
+- prefer to V
+- prefer N/V_ing to N/V_ing -> having comparison
+
+### would prefer (preference in a specific situation)
+- would prefer N/to V
+- would prefer to V rather than V -> having comparison
+- would prefer smb (not) to V
+
+### would rather = would prefer to do

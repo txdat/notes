@@ -275,3 +275,16 @@ public:
     }
 };
 ```
+- [minimum 1 bit operations to make integers zero](https://leetcode.com/problems/minimum-one-bit-operations-to-make-integers-zero)
+	- idea: convert 1XXXXXXX -> ... -> 11000000 -> 1000000 -> ... -> 0
+```cpp
+class Solution {
+public:
+    int minimumOneBitOperations(int n) {
+        if (n <= 1) return n;
+        int k = 1;
+        while ((1<<k) <= n) k++;
+        return (1<<k) - 1 - minimumOneBitOperations(n-(1<<(k-1)));
+    }
+};
+```

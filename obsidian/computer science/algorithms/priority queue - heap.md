@@ -65,3 +65,74 @@ public:
 - get k-th element
 	- minimum -> max-heap priority queue
 	- maximum -> min-heap priority queue
+- [find x-sum of all k-long subarrays ii](https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-ii)
+```cpp
+using ll = long long;
+using pii = pair<int,int>;
+
+class Solution {
+public:
+    void add(unordered_map<int,int> &m, set<pii,greater<pii>> &top, set<pii,greater<pii>> &rest, ll &s, int x, int d) {
+        auto &c = m[d];
+        pii p = {c,d};
+        if (top.find(p) != top.end()) {
+            top.erase(p);
+            s -= 1ll*c*d;
+        } else {
+            rest.erase(p);
+        }
+        
+		// add new pair to top to move smallest of top to rest if necessary
+        top.insert({++c,d});
+        s += 1ll*c*d;
+        if (top.size() > x) {
+            auto it = prev(top.end());
+            s -= 1ll*it->first*it->second;
+            rest.insert(*it);
+            top.erase(it);
+        }
+    }
+
+    void sub(unordered_map<int,int> &m, set<pii,greater<pii>> &top, set<pii,greater<pii>> &rest, ll &s, int x, int d) {
+        auto &c = m[d];
+        pii p = {c,d};
+        if (top.find(p) != top.end()) {
+            top.erase(p);
+            s -= 1ll*c*d;
+        } else {
+            rest.erase(p);
+        }
+
+        if (--c == 0) {
+            m.erase(d);
+        } else {
+	        // add new pair to rest to move largest of rest to top if necessary
+            rest.insert({c,d});
+        }
+
+        if (top.size() < x && !rest.empty()) {
+            auto it = rest.begin();
+            top.insert(*it);
+            s += 1ll*it->first*it->second;
+            rest.erase(it);
+        }
+    }
+
+    vector<long long> findXSum(vector<int>& nums, int k, int x) {
+        int n = nums.size();
+        unordered_map<int,int> m;
+        set<pii,greater<pii>> top, rest; // maintain 2 set(heap) [...top, ...rest] of sliding window
+        ll s = 0;
+
+        for (int i = 0; i < k; i++) add(m, top, rest, s, x, nums[i]);
+
+        vector<ll> ans{s};
+        for (int i = k; i < n; i++) {
+            sub(m, top, rest, s, x, nums[i-k]);
+            add(m, top, rest, s, x, nums[i]);
+            ans.push_back(s);
+        }
+        return ans;
+    }
+};
+```

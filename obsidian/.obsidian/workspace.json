@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "b573caf1bbbb2d64",
+        "id": "8236b1409c78d0f1",
         "type": "tabs",
         "children": [
           {
-            "id": "4bdfd37646f2f825",
+            "id": "f1d69b9beaca94e8",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "english/grammar in used.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "grammar in used"
+              "title": "New tab"
             }
           }
         ]
@@ -179,13 +175,31 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "4bdfd37646f2f825",
+  "active": "f1d69b9beaca94e8",
   "lastOpenFiles": [
-    "engineering/web/security.md",
+    "engineering/devops/zookeeper.md",
+    "engineering/devops/kafka.md",
+    "engineering/devops/k8s.md",
+    "engineering/devops/gcp.md",
+    "engineering/k8s.md",
+    "engineering/devops/aws - lambda.md",
+    "engineering/devops/aws - saa.md",
+    "engineering/devops/helm.md",
+    "engineering/devops/k8s incidents.md",
+    "computer science/data structures/AVL tree.md",
+    "dat kanban.md",
+    "engineering/interview/nodejs/nodejs design patterns.md",
+    "engineering/interview/nodejs/asynchronous task runner.md",
+    "engineering/design patterns/creational - factory method.md",
+    "engineering/design patterns/creational - singleton.md",
+    "computer science/algorithms/bits.md",
+    "book Alan_Beaulieu-Learning_SQL.md",
     "english/grammar in used.md",
+    "computer science/algorithms/priority queue - heap.md",
+    "Excalidraw/V-ing_to-V.md",
+    "engineering/web/security.md",
     "Excalidraw/modal verbs.md",
     "Excalidraw/tenses.md",
-    "dat kanban.md",
     "english/phrase verbs.md",
     "attachments/phrase_verb_5.jpg",
     "attachments/phrase_verb_4.jpg",
@@ -195,31 +209,13 @@
     "english",
     "engineering/envoy-proxy.md",
     "engineering/sql.md",
-    "engineering/linux.md",
-    "engineering/dependency-injection.md",
-    "engineering/bash script.md",
     "Untitled.base",
-    "engineering/k8s.md",
     "Untitled 1.base",
-    "engineering/design patterns/creational - singleton.md",
-    "engineering/interview/system design/key technologies/message queue.md",
-    "engineering/interview/system design/key technologies/kafka.md",
-    "engineering/interview/system design/core concepts/consistent hashing.md",
-    "engineering/design patterns/README.md",
-    "engineering/design patterns/structural - decorator.md",
-    "engineering/programming languages/javascript-typescript/nodejs.md",
-    "engineering/interview/misc/nodejs - asynchronous task runner.md",
     "attachments/Pasted image 20251007015429.png",
     "engineering/interview/system design/key technologies",
-    "engineering/system design/topics/sloopy quorum - hinted handoff.md",
-    "engineering/system design/topics/raft.md",
-    "engineering/system design/topics/load balancing.md",
-    "engineering/system design/topics/distributed lock.md",
-    "engineering/system design/topics/gossip protocol - broadcast algorithm.md",
     "attachments/Pasted image 20251007014238.png",
     "attachments/Pasted image 20251007014146.png",
     "attachments/Pasted image 20251007014013.png",
-    "engineering/interview/system design/core concepts/network essentials.md",
     "attachments/Pasted image 20250907162653.png",
     "engineering/interview/system design/core concepts",
     "engineering/interview/system design",
