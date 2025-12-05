@@ -1,8 +1,8 @@
 {
   "lightStyle": "minimal-light",
   "darkStyle": "minimal-dark-black",
-  "lightScheme": "minimal-nord-light",
-  "darkScheme": "minimal-nord-dark",
+  "lightScheme": "minimal-flexoki-light",
+  "darkScheme": "minimal-flexoki-dark",
   "editorFont": "Maple Mono SC NF",
   "lineHeight": 1,
   "lineWidth": 40,
