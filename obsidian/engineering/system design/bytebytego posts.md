@@ -1,5 +1,3 @@
-- restful methods
-![[Pasted image 20240508004245.png | 600]]
 - how https work?
 ![[Pasted image 20240508004410.png | 600]]
 - concurrency - parallelism
@@ -10,7 +8,11 @@
 ![[Pasted image 20240508005248.png | 600]]
 - cloud messaging patterns
 ![[Pasted image 20240508005647.png | 600]]
-- elastic search use cases
-![[Pasted image 20240517115450.png | 600]]
 - top alogirthms for system design
 ![[Pasted image 20250228101246.png | 600]]
+- system design concepts
+![[Pasted image 20251207234914.png | 600]]
+- http vs https
+![[Pasted image 20251207235627.png | 600]]
+- kafka
+![[Pasted image 20251207235755.png | 600]]
