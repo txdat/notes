@@ -30,7 +30,7 @@
 2. causal consistency
 	- related events are in same order for all users
 3. read-your-own-writes consistency
-	- users always see own updates, though other users might see state data
+	- users always see own updates, though other users might see stale data
 4. eventual consistency
 	- the system becomes consistent over time, but may temporarily be inconsistent
 

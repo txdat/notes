@@ -1,11 +1,11 @@
 {
-  "accentColor": "#000000",
+  "accentColor": "#eee8d5",
   "interfaceFontFamily": "Maple Mono NF CN",
   "textFontFamily": "Maple Mono NF CN",
   "monospaceFontFamily": "Maple Mono NF CN",
   "baseFontSize": 12,
   "nativeMenus": true,
-  "theme": "moonstone",
+  "theme": "obsidian",
   "cssTheme": "Minimal",
   "baseFontSizeAction": true,
   "showRibbon": true
