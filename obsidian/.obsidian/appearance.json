@@ -5,7 +5,7 @@
   "monospaceFontFamily": "Maple Mono NF CN",
   "baseFontSize": 12,
   "nativeMenus": true,
-  "theme": "obsidian",
+  "theme": "moonstone",
   "cssTheme": "Minimal",
   "baseFontSizeAction": true,
   "showRibbon": true

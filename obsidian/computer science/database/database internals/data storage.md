@@ -1,5 +1,5 @@
-# page structure
-- DB stores data in data and index files (partitioned into fixed-size units - pages)
-### slotted pages
-- store variable-size records -> split into fixed-size segments
-- ![[Pasted image 20251211111724.png | 600]]
+# file format
+- use b-tree as page management mechanism
+- DB stores data and index files in fixed-size (4-16Kb) pages
+### slotted page
+![[Pasted image 20260101115955.png | 300]]
