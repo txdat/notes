@@ -11,10 +11,14 @@
             "id": "eff405b99bce35a6",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "computer science/database/database internals/transaction processing.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "transaction processing"
             }
           }
         ]
@@ -74,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 383.5
+    "width": 383.5,
+    "collapsed": true
   },
   "right": {
     "id": "e2edfdd285465075",
@@ -177,8 +182,10 @@
   },
   "active": "eff405b99bce35a6",
   "lastOpenFiles": [
-    "computer science/database/database internals/transaction processing.md",
+    "computer science/database/database internals/lsm.md",
     "computer science/database/database internals/b-tree.md",
+    "attachments/Pasted image 20260105164019.png",
+    "computer science/database/database internals/transaction processing.md",
     "computer science/database/database internals/consensus.md",
     "attachments/Pasted image 20260105133440.png",
     "attachments/Pasted image 20260105133436.png",
@@ -214,7 +221,6 @@
     "engineering/interview/system design/core concepts",
     "engineering/message queue",
     "computer science/database/database internals",
-    "attachments/Pasted image 20251205141548.png",
     "english",
     "Untitled.base",
     "Untitled 1.base",
