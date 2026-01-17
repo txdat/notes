@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "fabb8fee6aaa96b1",
+        "id": "b2717aa5b0ddbc7b",
         "type": "tabs",
         "children": [
           {
-            "id": "5425960309342873",
+            "id": "b70a859c86245670",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "engineering/design data intensive applications/book/part 2. distributed data.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "part 2. distributed data"
             }
           }
         ]
@@ -175,41 +179,41 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "61a29ac0d3d1ca10",
+  "active": "b70a859c86245670",
   "lastOpenFiles": [
+    "engineering/design data intensive applications/book/part 1. foundations.md",
+    "engineering/design data intensive applications/book/part 2. distributed data.md",
+    "engineering/design data intensive applications/blog posts/CAP.md",
+    "engineering/design data intensive applications/blog posts/redlock - distributed lock.md",
+    "computer science/database/database internals/consensus.md",
+    "computer science/database/database internals/data storage.md",
+    "computer science/database/database internals/distributed system.md",
+    "computer science/database/database internals/distributed transaction.md",
+    "computer science/database/database internals/lsm.md",
+    "computer science/database/database internals/transaction processing.md",
+    "computer science/database/database internals/b-tree.md",
+    "computer science/database/CMU 15-445_645/ch7-10. hash table and index.md",
+    "computer science/database/CMU 15-445_645/ch3-6. database storage & memory management.md",
+    "computer science/database/CMU 15-445_645/ch2. modern sql.md",
+    "computer science/database/CMU 15-445_645/ch1. relational model.md",
+    "computer science/algorithms/sorting.md",
+    "computer science/algorithms/binary search.md",
+    "computer science/database/CMU 15-445_645/ch11. sorting and aggregation.md",
+    "engineering/system design/networking.md",
     "engineering/system design/topics/network essentials.md",
     "engineering/system design/topics/real-time presence status.md",
-    "engineering/system design/networking.md",
-    "computer science/database/database internals/transaction processing.md",
-    "computer science/database/database internals/lsm.md",
-    "computer science/database/database internals/b-tree.md",
     "attachments/Pasted image 20260105164019.png",
-    "computer science/database/database internals/consensus.md",
     "attachments/Pasted image 20260105133440.png",
     "attachments/Pasted image 20260105133436.png",
     "attachments/Pasted image 20260101172554.png",
     "attachments/Pasted image 20260101172120.png",
-    "computer science/database/database internals/data storage.md",
     "attachments/Pasted image 20260101115955.png",
-    "engineering/design data intensive applications/book/part 1. foundations.md",
     "computer science/database/CMU 15-445_645/ch16-19. concurrency control.md",
     "computer science/data structures/AVL tree.md",
-    "engineering/design data intensive applications/book/part 2. distributed data.md",
-    "engineering/design data intensive applications/blog posts/redlock - distributed lock.md",
-    "engineering/design data intensive applications/blog posts/CAP.md",
-    "computer science/database/database internals/distributed system.md",
     "english/english vocabulary in use.md",
     "english/english grammar in use.md",
     "english/phrase verbs.md",
-    "engineering/system design/operating system.md",
-    "Excalidraw/serverless & NAT.md",
-    "2026 kanban.md",
-    "computer science/database/database internals/distributed transaction.md",
     "attachments/Pasted image 20251211111724.png",
-    "engineering/system design/topics/CAP theorem - either CP or AP, not CA.md",
-    "engineering/design patterns/structural - decorator.md",
-    "engineering/system design/database.md",
-    "engineering/system design/interview guidance.md",
     "attachments/Pasted image 20251207234914.png",
     "attachments/Pasted image 20251207235755.png",
     "attachments/Pasted image 20251207235627.png",
