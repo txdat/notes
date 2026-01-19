@@ -6,14 +6,14 @@
 # network protocols
 - client (sender) -> chat service
 	- client opens a http connection to chat service with keep-alive header to send message, and inform chat service to send to the receiver
-	- keep-alive connection allows maintain connection, reduce http handshakes
+	- keep-alive connection allows maintaining connection, reduce http handshakes
 - chat service -> client (recipient)
 	- not able to send message from server to client using http connection
 	- server initiated connection:
-		- pooling
+		- polling
 			- client periodically asks the server for new messages available
-			- depend on frequency, pooling could be costly (consume more server's resources to answer 'no')
-		- long pooling
+			- depend on frequency, polling could be costly (consume more server's resources to answer 'no')
+		- long polling
 			- client holds connection until there are new messages or reach to timeout
 			- client sends new messages to server by new connection after receiving messages
 			- cons:
@@ -21,7 +21,7 @@
 				- a server has no good way to tell that client is disconnected
 				- make periodic connections after timeout
 		- web socket -> most common solution to send asynchronous updates from server to client
-			- initiated by client, bi-direction and persistent connection
+			- initiated by client, bi-directional and persistent connection
 			- works even if firewall is in place, because it uses port 80 and 443 like http/https connection
 			- use for both sending/receiving on both server and client
 # service
@@ -41,7 +41,7 @@
 # storage - database
 - relational database: for generic data like user profile, settings, user friends list, ...
 - no-relational database: for chat history
-	- amount of data is very? large
+	- amount of data is very large
 	- only recent data is accessed frequently, but service must support old chat history by search
 	-> key-value storage?
 		- easy horizontal scaling

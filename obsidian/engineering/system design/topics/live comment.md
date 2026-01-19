@@ -5,10 +5,10 @@
 - **read-heavy system** (clients view live comments)
 
 # api design
-- use pull-based model (client-initiated), and HTTP long pooling with server-sent events (SSE) (server streams events on same connection, with header `Accept: text/event-stream`)
+- use pull-based model (client-initiated), and HTTP long polling with server-sent events (SSE) (server streams events on same connection, with header `Accept: text/event-stream`)
 - SSE works on traditional HTTP and supports chunking messages
 - disadvantages of SSE
-	- only support UTF-8 message transporting, no support for binary data
+	- only support UTF-8 message transport, no support for binary data
 	- up to 6 concurrent connections (before http2)
 
 # data storage
@@ -52,7 +52,7 @@
 
 #### redis
 - as pub/sub server to transmit messages between nodes
-- replicates every message to all nodes (dont know about receivers) -> degraded performance
+- replicates every message to all nodes (don't know about receivers) -> degraded performance
 - TCP connections are maintained between producer-redis, and redis-consumer for delivering messages
 - limitations
 	- no guarantee at least one-time message delivery
@@ -71,7 +71,7 @@
 - ![[Pasted image 20250606105619.png | 600]]
 ### massive concurrent clients on multiple videos
 - use dispatcher to broadcast message to partitioned gateway servers
-- gateway servers (clients) only subscribe a subset of live videos -> dispatcher broadcasts **inefficiently** messages to all gateway servers
+- gateway servers (clients) only subscribe a subset of live videos -> dispatcher broadcasts messages inefficiently to all gateway servers
 - dispatcher uses endpoint store to track which videos are requested by gateway servers for broadcasting
 - ![[Pasted image 20250606110657.png | 600]]
 

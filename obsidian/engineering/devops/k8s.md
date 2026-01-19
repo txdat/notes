@@ -1,4 +1,4 @@
-- [kubenetes architecture - devopcube](https://devopscube.com/kubernetes-architecture-explained/)
+- [kubernetes architecture - devopscube](https://devopscube.com/kubernetes-architecture-explained/)
 - ![[Pasted image 20240209210714.png | 800]]
 1. the need of system like k8s
 	- moving from monolithic app to microservices -> scaling based on service basis
@@ -6,10 +6,10 @@
 2. container
 	- isolating components of each microservice -> run multiple services on same host machine
 	- includes: namespace (isolate container with others) and cgroup (limit cpu/memory resources)
-	- compared to VMs (require theirs system processes), container is just isolated process (less resources)
+	- compared to VMs (require their system processes), container is just isolated process (less resources)
 	- 3 main concepts:
 		- image: packages application and its environment, includes multiple layers to distribute more efficient and reduce storage
-			- each invidual command is a new layer
+			- each individual command is a new layer
 				- ![[Pasted image 20231228203918.png | 600]]
 		- registry: stores docker images (eg. dockerhub, ECR, ...)
 		- container: created from docker images, is isolated process on host machine
@@ -48,9 +48,9 @@ kubectl debug <target-container-name> --image=<debug-container-image> --target=<
 					- open container initiative (OCI)
 			- kubelet: 
 				- manage pods (from podSpec) on its node by connection with api server and container runtime (like create/modify/delete pods, handle liveness/readiness probe, mount volumes, ...)
-				- run as daemon process (managed by `systemd)
-				- manage static pods directly (not from api-server): api-server, scheduler, and controller manager are static pods during control plane boostraping
-					- static pod spec are stored under directory `/ect/kubernetes/manifests`
+				- run as daemon process (managed by `systemd`)
+				- manage static pods directly (not from api-server): api-server, scheduler, and controller manager are static pods during control plane bootstrapping
+					- static pod spec are stored under directory `/etc/kubernetes/manifests`
 				- ![[Pasted image 20240209212825.png | 600]]
 			- kube-proxy: 
 				- k8s' service is a way to expose pods, create an endpoint object that contains all ip addresses of pods under service
@@ -75,7 +75,7 @@ kubectl debug <target-container-name> --image=<debug-container-image> --target=<
 		- all pods can access other pods by their ip address (flat inter-pod network)
 		- pods are managed by labels
 		- why running pod instead of container?
-			- use multi processes (each process per container). if running multiple processes on same container, have to keep all processes running, manage their logs, ... (pdf)
+			- use multiple processes (each process per container). if running multiple processes on same container, have to keep all processes running, manage their logs, ... (pdf)
 			-
 		- k8s checks if pod is alive by `liveness probe` (send HTTP request, TCP socket, execute command, ...) -> restart unhealthy pods automatically
 		- k8s checks if pod is able to receive user's request or not (not restart pods)
@@ -106,7 +106,7 @@ kubectl debug <target-container-name> --image=<debug-container-image> --target=<
 	- stateful application
 		- stateful pods are initialized sequentially, based on their indices
 		- scaling statefulset relates to increase/decrease number of replicas
-		- to receive `SIGKILL`, `SIGTERM` noti, process must be running as PID 1 (process 1) (eg. run `node index.js` instead of `npm run start`)
+		- to receive `SIGKILL`, `SIGTERM` notification, process must be running as PID 1 (process 1) (eg. run `node index.js` instead of `npm run start`)
 	- restart pod, deployment, ...
 ```bash
 kubectl rollout restart ...
@@ -149,16 +149,16 @@ kubectl rollout restart ...
 		![[Pasted image 20231229025302.png | 800]]
 7. auto scaling for pods and cluster nodes
 	- node autoscaling:
-		- increase/decrease number of nodes in node pool (create new node pool if neccessary)
+		- increase/decrease number of nodes in node pool (create new node pool if necessary)
 	- pod autoscaling:
 		- need to set CPU/memory's requests and metrics
 		- vertical scaling: replace current pods with more resources (CPU and memory) pods
 			![[Pasted image 20231229031527.png | 600]]
 		- horizontal scaling: increase/decrease number of pods
-			- use stablization window for scaling (short for scale up, long for scale down)
+			- use stabilization window for scaling (short for scale up, long for scale down)
 			![[Pasted image 20231229031657.png | 600]]
 8. kubernetes event driven autoscaling (KEDA)
-	- usually use HPA for pod scaling in k8s with limited predefined metrics (like CPU, memory, ...) -> KDEA supports custom metrics
+	- usually use HPA for pod scaling in k8s with limited predefined metrics (like CPU, memory, ...) -> KEDA supports custom metrics
 		- KEDA is custom resource definition (CRD) extends HPA
 	- key roles:
 		- activates/deactivates deployments to scale from/to 0 on no event (different from HPA)

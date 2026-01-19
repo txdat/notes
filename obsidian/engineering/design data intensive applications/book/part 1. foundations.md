@@ -3,30 +3,30 @@
 	- reliability: the system should work correctly even in the face of adversity (faults, errors, ...) -> fault tolerance/resilient
 	- scalability: there should be reasonable ways of dealing with the growth of data, traffic, ... (~ a system's ability to cope with increased load)
 		- performance
-			- when increase load parameters and keep system's resources unchange, how is the performance affected?
+			- when increase load parameters and keep system's resources unchanged, how is the performance affected?
 			- when increase load parameters, how much need to increase system's resources to keep the performance unchanged?
 		- metric
 			- average response time of service -> percentiles -> know how long users typically have to wait
-			- high percentage of response time (tail latencies) -> effect user's experience of service
+			- high percentage of response time (tail latencies) -> affect user's experience of service
 			- SLO (service level objectives)
 			- SLA (service level agreements)
 				- service is up if median (p50) response time less than 200ms and 99th percentile (p99) under 1s
 		- cope with load
 			- scaling up (vertical) / out (horizontal)
-	- maintainablilty
+	- maintainability
 
 # data models and query languages
 - relational vs document model
 	- relational
-		- data is ogranized in relations (tables) and each relation is an unordered collection of tuples (rows)
+		- data is organized in relations (tables) and each relation is an unordered collection of tuples (rows)
 		- theoretical proposal
 		- schema-on-write (structure is explicit)
-		- query optimizer decices which parts of query to execute first and which indexes to use
+		- query optimizer decides which parts of query to execute first and which indexes to use
 	- nosql
 		- greater scalability (very large dataset, very high write throughput, ...)
 		- dynamic and expressive data models
 		- schemaless -> schema-on-read (structure is implicit)
-		- need more works to keep data consistency (in many-to-many relationship)
+		- need more work to keep data consistency (in many-to-many relationship)
 	- many-to-one, many-to-many relationships
 		- if something has no meaning to human, it never needs to change (ie. id). something is meaningful to human, it may be changed in the future -> write overhead, inconsistencies, ...
 - mapreduce
@@ -60,7 +60,7 @@
 - used in embedded key-value storage engine like RocksDB, LevelDB,
 - based on principle of merging and compacting sorted files
 - support high write throughput applications
-- use Bloom filter for optimize data access -> check key doesn't exist
+- use Bloom filter for optimizing data access -> check key doesn't exist
 - the order and timing how SSTables are compacted and merged
 	- size-tiered
 		- newer and smaller SSTables are merged into older and larger SSTables

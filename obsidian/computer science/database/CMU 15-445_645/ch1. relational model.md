@@ -12,7 +12,7 @@
 		- description of particular collection of data (data model)
 	- relational model
 		- unordered set contains the relationship of attributes represent entities
-		- defines database abstration based on relations to avoid maintenance overhead (reduce cost?)
+		- defines database abstraction based on relations to avoid maintenance overhead (reduce cost?)
 		- structure: the definition of database's relations and their contents
 		- integrity: ensure database's contents satisfy constraints
 		- manipulation: provide programming interface for modifying database's contents
@@ -21,9 +21,9 @@
 ![[Pasted image 20240420170332.png | 600]]
 - relational model
 	- primary keys
-		- uniquely indentifies a single tuple
+		- uniquely identifies a single tuple
 		- types:
-			- indentity (sql standard)
+			- identity (sql standard)
 			- sequence (postgresql/oracle)
 			- increment (mysql)
 	- foreign keys
@@ -35,7 +35,7 @@
 - data manipulation languages (DML)
 	- procedural (relational algebra) -> find desired results
 		- operations:
-			- select, projection, union, intersection, difference, product (generate all combinations of tuples, neednt common values - cross join)
+			- select, projection, union, intersection, difference, product (generate all combinations of tuples, needn't have common values - cross join)
 			- join:
 				- generate tuples are combination of two tuples with common values
 		- define high-level steps to compute a query
@@ -43,15 +43,15 @@
 - queries
 	- relational model is independent of any query implementation
 - conflict-free replicated data type (CRDT)
-	- for distributing data structure that allows local updates to be made independently, and the states eventually converage
-	- a family of replicated data types with a common set of properties that enable operations to always converage to a final state consistent among all replicas
-	- perform replication as commutative operations (the order doesnt matter)
+	- for distributing data structure that allows local updates to be made independently, and the states eventually converge
+	- a family of replicated data types with a common set of properties that enable operations to always converge to a final state consistent among all replicas
+	- perform replication as commutative operations (the order doesn't matter)
 	- eventual consistency vs strong consistency?
-		- strong consistency propagates any update to all copies of data (keep the same order). when a entity makes update, all other replicas are locked to avoid conflicts -> neednt for real-time performance -> eventual consistency (regardless of the order of update events -> resolve conflicts of concurrent updates) 
+		- strong consistency propagates any update to all copies of data (keep the same order). when a entity makes update, all other replicas are locked to avoid conflicts -> no need for real-time performance -> eventual consistency (regardless of the order of update events -> resolve conflicts of concurrent updates) 
 - another data models
 	- document
 		- collection of record documents containing a hierarchy of named field/value pairs
 		- tightly coupling objects and databases
 		- some databases: mongodb, ...
 	- vector
-		- use for nearest neighbor searching by embedded vectors (exact or approximate), maily for ML systems
+		- use for nearest neighbor searching by embedded vectors (exact or approximate), mainly for ML systems

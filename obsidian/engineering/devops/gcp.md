@@ -22,7 +22,7 @@
 ## Network peering
 [GCP doc](https://cloud.google.com/vpc/docs/vpc-peering)
 - Network peering connects *only* 2 VPCs so each network can connect with each other using internal ip addresses, their subnets' ip range cannot overlap
-- **Transitive peering is not supported**. N1 is peered with N2, N3, but N2 and N3 cannot communicate (are not direclty connected)
+- **Transitive peering is not supported**. N1 is peered with N2, N3, but N2 and N3 cannot communicate (are not directly connected)
 - Some GCP services use network peering as default mode to connect VPC and service's *Google-managed* VPC -> use private service access to support transitive connection
 - Support between VPCs:
 	- route exchanges
@@ -62,13 +62,13 @@
 			- AWS HA-VPN: `FOUR_IPS_REDUNDANCY`
 				- 2 gateway interfaces
 				- 2 peer VPN endpoints (2 customer gateways)
-				- 4 tunnels, 2 tunnels from 1 VPN gateway inteface to peer endpoint (with 2 ip addresses)
+				- 4 tunnels, 2 tunnels from 1 VPN gateway interface to peer endpoint (with 2 ip addresses)
 				- Create HA-VPN between GCP and AWS step by step [tech.deriv's blog](https://tech.deriv.com/aws-gcp-ha-site-to-site-vpn/)
 # Google kubernetes engine [[engineering/devops/k8s]]
 # Cloud load balancing
 [GCP doc](https://cloud.google.com/load-balancing/docs/load-balancing-overview)
 - distributes user traffic across multiple services, instances, ... (load balancing backend services) -> reduce risk
-- connections are splitted to 2 paths: client -> LB and LB -> backend services
+- connections are split to 2 paths: client -> LB and LB -> backend services
 - supports:
 	- single IP address
 	- software-defined
@@ -92,7 +92,7 @@
 			![[Pasted image 20231229031207.png | 600]]
 	- passthrough network LB
 		 - keep packets' source, destination ip addresses, protocol, ...
-		 - connections are terminated at backend services, and responses come go directely to clients, not back through LB
+		 - connections are terminated at backend services, and responses come directly to clients, not back through LB
 			 ![[Pasted image 20231229031245.png | 600]]
 - proxy-only subnet for LB (regional internal/external load balancers)
 	- requires reserved exclusively ip addresses for LB

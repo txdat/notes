@@ -3,7 +3,7 @@
 # requirements
 - **high write** availability
 - scalable
-- eventually consistency
+- eventual consistency
 
 
 # hinted handoff
@@ -12,7 +12,7 @@
 - hints can be rejected if target node remains unavailable, or gets decommissioned?
 
 # sloppy quorum - hinted handoff
-- traditional quorum is **not fault-toleration** when network partition happens or some nodes become unavailable (constraint of r/w nodes cannot be reached)
+- traditional quorum is **not fault-tolerant** when network partition happens or some nodes become unavailable (constraint of r/w nodes cannot be reached)
 - sloppy quorum leverages hinted handoff (temporary backup nodes accept writes/hints) to reach quorum -> keep availability for writes
 - drawback of sloppy quorum is clients may read stale data (delayed consistency - reads come before hints are delivered to designed nodes), DMBSs dont allow read directly from coordinators
 

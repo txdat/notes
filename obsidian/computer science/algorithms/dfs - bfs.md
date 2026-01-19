@@ -29,7 +29,7 @@ public:
     }
 
     string longestSubsequenceRepeatedK(string s, int k) {
-        // remove characters that doesnt appear greater than or equal k times
+        // remove characters that doesn't appear greater than or equal k times
         int cnt[26] = {0};
 		for (char &c : s) cnt[c-'a']++;
         int n = 0;

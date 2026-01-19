@@ -1,7 +1,7 @@
 - system of records - source of truth
-	- holds authoritative version of data, incomming data is written here first
+	- holds authoritative version of data, incoming data is written here first
 - derived data
-	- holds transformed/processed data from another systems
+	- holds transformed/processed data from other systems
 	- derived data is redundant - denormalized, but is essential for read queries (better performance)
 	
 - system types
@@ -40,11 +40,11 @@
 	- can use unbounded message queue for slow consumers
 	- multiple consumers
 		- load balancing: assign one consumer for each message
-		- fan-out: broadcase a message to all consumers, run independently
+		- fan-out: broadcast a message to all consumers, run independently
 		- ![[Pasted image 20250405111232.png | 600]]
 	- acknowledgements and redelivery
-		- consumer must tell to message broker that message processing is success (ack), if not (failed response, timeout, ...) the message is sent to another consumer (redelivery)
-		- message can be reordering (message is redelivered) when using load balancing
+		- consumer must tell to message broker that message processing is successful (ack), if not (failed response, timeout, ...) the message is sent to another consumer (redelivery)
+		- message can be reordered (message is redelivered) when using load balancing
 	- using logs (append-only sequence of records) for message storage
 		- a producer sends a message by appending it to log, a consumer reads log sequentially
 		- log-based approach supports fan-out messaging, multiple consumers can read independently (not delete message from queue)
@@ -55,5 +55,5 @@
 - store all changes as log of change events, built on immutable events that are written to an event log
 - commands/events
 	- command: user's request
-	- event: command -> event (is fact, cannt be rejected by consumer)
+	- event: command -> event (is fact, cannot be rejected by consumer)
 - immutable events

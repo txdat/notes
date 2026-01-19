@@ -34,12 +34,12 @@
 			- a burst of traffic fills up the queue with old requests, recent requests will be rate limited
 			- hard to tune 2 parameters: bucket size (queue size), outflow rate (number of requests processed in second)
 	1. fixed window counter
-		- devide the timeline into fix-sized time windows and assign a counter for each window
+		- divide the timeline into fix-sized time windows and assign a counter for each window
 		- a request increases the counter by one. it will be dropped if counter reaches to predefined threshold, and wait to next window
 		- pros:
 			- easy to understand
 			- memory efficient
-			- fit certain usecases when reseting quota at the end of unit time
+			- fit certain use cases when resetting quota at the end of unit time
 		- cons:
 			- a burst of traffic at the edges of time windows could cause more requests than allowed quota go through
 		- **MAJOR ISSUE:** allow to more requests at the edges of time window

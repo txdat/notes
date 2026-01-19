@@ -96,7 +96,7 @@
 - abandon the concept of leader, allow any replica accepts writes from clients
 - some database systems use the coordinator, but not enforce the order of writes. different from leader replication, a leader determines the order of writes and followers apply in same order
 - **failover doesn't exist in leaderless replication** (using quorum consensus for multiple writes)
-- to read unavailable/staled data from disconnected node, client/coordinator sends multiple requests in parallel, and can get different data -> version number is used to determine which data is new
+- to read unavailable/stale data from disconnected node, client/coordinator sends multiple requests in parallel, and can get different data -> version number is used to determine which data is new
 - mechanisms to make data is up-to-date between nodes
 	- read repair
 		- send new data writes to nodes which have stale data
@@ -106,11 +106,11 @@
 
 #### reading/writing quorums
 - "if there are n replicas, every write must be confirmed by w nodes to be considered successful and must query at least r nodes for each read" -> if **w+r>n**, we expect to get an up-to-date data -> among the nodes we read, there must be at least 1 node with up-to-date data
-	- common choice of w,r,n is n is odd and w, r are ceil(n/2) = majority selection. but quorums are not neccessary majorities -> sets of ndoes for read/write must overlap in at least 1 node
+	- common choice of w,r,n is n is odd and w, r are ceil(n/2) = majority selection. but quorums are not necessary majorities -> sets of nodes for read/write must overlap in at least 1 node
 	- w+r > n && min(w,r) > n/2
-	- normally, reads and writes are sent to all relicas, but client waits at least r replicas for each read and w replicas for each write
+	- normally, reads and writes are sent to all replicas, but client waits at least r replicas for each read and w replicas for each write
 - limitations of quorum consistency
-	- if sloppy quorum is used, the w writes may end up on different nodes than the r reads -> no guarenteed overlap between write/read nodes
+	- if sloppy quorum is used, the w writes may end up on different nodes than the r reads -> no guaranteed overlap between write/read nodes
 	- if 2 writes occur concurrently, not clear which one happened first -> merge concurrent writes
 	- if a write succeeded on less than w replicas (there is at least 1 replica that fails), it's not rolled back on the replicas where it succeeded -> subsequent reads may/may not return data from failed write (succeeded writes can not be rolled back)
 	- if node has new value fails, its data is restored by a stale value from other replicas -> can break quorum condition
@@ -119,12 +119,12 @@
 - sloppy quorums, hinted handoff
 	- leaderless replication appealing for HA and low latency system with occasional stale reads
 	- sloppy quorum:
-		- writes and reads still require w/r successful responses, but those may include nodes (not in n designed nodes - temporary nodes), and send back to home nodes when network interruption is fixed (hinted handoff - [[sloopy quorum - hinted handoff]])
+		- writes and reads still require w/r successful responses, but those may include nodes (not in n designed nodes - temporary nodes), and send back to home nodes when network interruption is fixed (hinted handoff - [[sloppy quorum - hinted handoff]])
 		- useful for **increasing write availability** (write to at least w nodes), **but may get stale data** from interrupted nodes (write to not designed nodes)
 #### concurrent writes
 - some database (like dynamo) allow concurrent writes (no well-defined ordering) for same key -> conflict even if using strict quorums -> inconsistent if keeping write order (get value from latest write)
 - last write wins - LWW (discarding concurrent writes)
-	- only keep most recent value and allow older values to be overwriteten and discarded -> unambigously determining most recent value -> eventually converage
+	- only keep most recent value and allow older values to be overwritten and discarded -> unambiguously determining most recent value -> eventually converge
 	- concurrent writes dont have a natural ordering -> force an arbitrary order: attach timestamp to each write to pick most recent = last write wins (LWW)
 	- safe way to use LWW in database is avoiding any concurrent updates to the same key -> use UUID as key
 - the "happens-before" relationship
@@ -163,9 +163,9 @@
 ### rebalancing
 
 - fixed number of partitions (not change afterward) -> entire partitions are moving between nodes
-- dynamtic partition
-	- split/merge parititions automatically
-	- fixed number of paritions per node (the bigger node is, the smaller partition is)
+- dynamic partition
+	- split/merge partitions automatically
+	- fixed number of partitions per node (the bigger node is, the smaller partition is)
 ### request routing
 - partitions are rebalanced, the assignment of partitions changes
 ![[Pasted image 20250114150931.png | 700]]
@@ -198,13 +198,13 @@
 - non-repeatable read/read skew: read DB in temporary inconsistent state
 - transaction performs in non-locking situation -> dirty reads (inconsistent data) (no lock on reading, but acquire exclusive lock on writing?)
 #### read committed -> no dirty reads/writes, but not read skew
-- only read data that has been commmited (no dirty read)
+- only read data that has been committed (no dirty read)
 	- any writes by a transaction become visible when that transaction commits
-- only overwrite data that has been commited (concurrent transactions try to update same object) (no dirty write)
+- only overwrite data that has been committed (concurrent transactions try to update same object) (no dirty write)
 - read committed uses a separate snapshot for each query, queries in transaction may have different results
 - implementation
-	- prevent dirty write by using **row-level lock** : transaction must acquire a lock on an object before updating it -> transaction must wait until previous transaction is commited/aborted (release lock)
-	- prevent dirty read by storing both old commited value (returns this value to reads if any write is ongoing) and new commited value
+	- prevent dirty write by using **row-level lock** : transaction must acquire a lock on an object before updating it -> transaction must wait until previous transaction is committed/aborted (release lock)
+	- prevent dirty read by storing both old committed value (returns this value to reads if any write is ongoing) and new committed value
 #### snapshot isolation - repeatable read -> no dirty reads/writes, read skew, but not lost updates, write skew (race conditions)
 - transaction reads from consistent snapshot of DB (only see committed data from particular point in time), single snapshot for entire transaction
 - implementation
@@ -279,7 +279,7 @@
 - decision based on an outdated premise
 	- premise is a query result -> any transaction acts on outdated premise must be aborted
 	- detecting stale MVCC reads
-		- when a transaction reads from consistent snapshot (snapshot isolation), it ignores all writes that haven't been committed when snapshot was taken -> DB tracks when a transaction ignores other writes due to MVCC visiablity rules, if any ignored write is has been committed, transaction must be aborted
+		- when a transaction reads from consistent snapshot (snapshot isolation), it ignores all writes that haven't been committed when snapshot was taken -> DB tracks when a transaction ignores other writes due to MVCC visibility rules, if any ignored write is has been committed, transaction must be aborted
 	- detecting writes that affect/change prior reads
 		- similar to 2PL with index-range locks, but instead of blocking until reader commit, DB tells to transaction that its data may not be up-to-date
 - advantage
@@ -290,7 +290,7 @@
 	- less sensitive than 2PL and serial execution for slow transactions
 # consistency - consensus
 - **consensus: getting all of the nodes to agree on something
-- most DBs provide **eventually consistency** - if stop writing to database and wait **unspecified** length of time, eventually all reads return same value (consistency) or convergence
+- most DBs provide **eventual consistency** - if stop writing to database and wait **unspecified** length of time, eventually all reads return same value (consistency) or convergence
 
 ### linearizability = serializability with causality (real-time order)?
 - make a DB appear as if there were only one copy of data, and all operations are atomic
@@ -314,19 +314,19 @@
 #### ordering and causality
 - **consistent with causality** (consistent snapshot isolation)
 	- if the snapshot contains an answer (effect), it must contain the question being answered (cause)
-- causal order is not total order (partial order), while linearizability is total order -> linearizability > causuality consistency
+- causal order is not total order (partial order), while linearizability is total order -> linearizability > causality consistency
 	- linearizability: system behaves as if there is a single copy of data, every operation is atomic
 	- causality: 2 operations are incomparable, if they are concurrent
 		- is **strongest consistency model** not slow down due to network delay
-- maintain causality (ensures messages respect cause-and-effect, but unrelated messages can shuffle differently across nodes) = know which operation happened before other operation -> keep this order in all relicas
+- maintain causality (ensures messages respect cause-and-effect, but unrelated messages can shuffle differently across nodes) = know which operation happened before other operation -> keep this order in all replicas
 #### sequence number ordering
-- assing a sequence number/timestamp to each operation -> total order (2 operations are comparable)
+- assign a sequence number/timestamp to each operation -> total order (2 operations are comparable)
 - if a follower (single leader DB) applies replication log in same order -> causally consistency
 - Lamport timestamp
 	- keep pair of (counter/timestamp, nodeid) -> unique timestamp for each operation between multiple nodes -> total order
 	- a node keeps track of maximum counter value in request (may come from another node), if this value is greater than current counter value, set current counter value to this value
 #### total order broadcast
-- is a protocol for exchanging messages between nodes, with reliable delivery (no message is lost) and totally ordered delivery (delivered messages are in same order for all nodes) -> guarentees linearizable writes, not linearizable reads
+- is a protocol for exchanging messages between nodes, with reliable delivery (no message is lost) and totally ordered delivery (delivered messages are in same order for all nodes) -> guarantees linearizable writes, not linearizable reads
 - every replica processes the same writes to the DB in same order -> replicas remain consistent with each other -> fixed order at the time messages are delivered
 - total order broadcase is asynchronous: guarantees to delivery messages in a fixed order, but not the time when messages are delivered
 ### distributed transactions and consensus
@@ -346,18 +346,18 @@
 	- before sending "commit" -> all participants have to wait coordinator response -> may cause inconsistence between participants
 - three-phase commit - nonblocking atomic commit protocol -> perfect failure detector for telling whether node has crashed or not?
 #### XA transaction
-- a standard for implemeting 2PC across heterogeneous technologies (from 2 or more different technologies)
+- a standard for implementing 2PC across heterogeneous technologies (from 2 or more different technologies)
 #### fault-tolerant consensus
 - consensus: getting several nodes to agree on something (full agreement, not partial), consensus algorithm helps to select final value from some proposed values
 - **partial consensus**
 	- quorum-based (majority agreement)
-	- fault-tolenrant: tolerate node failing or disagreeing
-	- eventually consistency
+	- fault-tolerant: tolerate node failing or disagreeing
+	- eventual consistency
 - consensus' properties
 	- uniform / full agreement: no 2 nodes decide differently
 	- integrity: no node decides twice
-	- validity: if a node dicides a value, this value must be proposed by some node
-	- termination: every node doesnt crash eventually decides some value -> process doesnt get stuck, even if some node fails, the system must reach a decision -> requires **at least a majority of nodes** to be functioning correctly
+	- validity: if a node decides a value, this value must be proposed by some node
+	- termination: every node doesn't crash eventually decides some value -> process doesnt get stuck, even if some node fails, the system must reach a decision -> requires **at least a majority of nodes** to be functioning correctly
 - single-leader replication - consensus
 	- 2 rounds of voting leader: choose a leader + vote on a leader's proposal; requires quorums of 2 rounds must overlap (at least 1 node votes for both most recent leader and its proposal)
 #### membership and coordination services

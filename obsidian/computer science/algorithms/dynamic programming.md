@@ -8,7 +8,7 @@ public:
     int sumOfPower(vector<int>& nums, int k) {
         int n = nums.size();
         vector<vector<int>> dp(n+1,vector<int>(k+1,0));
-        dp[0][0] = 1; // dp[i][j]: number of subsequences length i, and sum equals to j -> bottom-up solution
+        dp[0][0] = 1; // dp[i][j]: number of subsequences of length i and sum equal to j -> bottom-up solution
         for (int &d : nums) {
             for (int v = k; v >= d; v--) {
                 for (int i = n; i > 0; i--) {
@@ -126,7 +126,7 @@ public:
 				if (dp[i-d] != 1e9 && dp[i-d]+1<dp[i]) {
 					dp[i] = dp[i-d]+1;
 					trace[i] = i-d;
-					if (i == target) ans = backtrack(trace,target); // backtracking after forloop can cause wrong results
+					if (i == target) ans = backtrack(trace,target); // backtracking after for loop can cause wrong results
 				}
 			}
 		}

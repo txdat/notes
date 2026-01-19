@@ -11,14 +11,14 @@
 
 ### when to choose consistency
 - ticket booking, e-commerce inventory, financial, ... -> transaction system
-- the design should includes
+- the design should include
 	- distributed transaction (with 2-phase commit)
 	- single-node solution (no distributed system)
 	- traditional DBMS (support transaction + rollback)
 
 ### when to choose availability
 - social network, content platform (streaming), review sites, ... -> social/network
-- the design should includes
+- the design should include
 	- multiple replicas (replication + partition (sharding))
 	- change data capture (CDC)
 		- track changes in primary DB and propagate them **asynchronously** to replicas, caches, ...
@@ -26,7 +26,7 @@
 
 # levels (spectrum) of consistency (highest to lowest)
 1. strong consistency
-	- all reads reflect the most recent write -> expensive, but is neccesary for banking system (account balance) 
+	- all reads reflect the most recent write -> expensive, but is necessary for banking system (account balance) 
 2. causal consistency
 	- related events are in same order for all users
 3. read-your-own-writes consistency
@@ -36,7 +36,7 @@
 
 # CAP tradeoffs
 - CA without P (network partition): not realistic in distributed system
-- CP without Availibity = high consistency
+- CP without Availability = high consistency
 	- clients **MUST** wait data among nodes be consistent before accessing them
 	- eg: distributed relational DBMS
 - AP without Consistency = high availability

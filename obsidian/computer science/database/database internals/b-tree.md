@@ -16,7 +16,7 @@
 - use copy-on-write instead of latching for data integrity
 - ![[Pasted image 20260105164019.png | 600]]
 - advantages
-	- readers require no synchronization, writer doesn't block readers (writen pages are immutable -> no latching)
+	- readers require no synchronization, writer doesn't block readers (written pages are immutable -> no latching)
 - disadvantages
 	- requires more storage and processing time, but b-tree is shallow -> it is acceptable
 ### lazy b-tree

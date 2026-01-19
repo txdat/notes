@@ -25,7 +25,7 @@
 # challenges
 ### within cluster
 - reduce latency
-	- memcached servers are deployed using consistency hashing
+	- memcached servers are deployed using consistent hashing
 	- parallel requests and batching
 		- process multiple data pieces in same request
 	- use UDP for fetching requests (GET)

@@ -22,9 +22,9 @@
 	- includes source IP, destination IP and binary blob of data
 	- characteristics
 		- low latency
-		- conectionless (no handshake `SYN+ACK`)
+		- connectionless (no handshake `SYN+ACK`)
 		- no guarantee of delivery and ordering
-	-> choose UDP if speed is more important than reliablity (eg. streaming, DNS lookup, ...)
+	-> choose UDP if speed is more important than reliability (eg. streaming, DNS lookup, ...)
 ### application layer (HTTP, DNS, websocket)
 - built on top of TCP or UDP
 
@@ -41,7 +41,7 @@
 - most common API paradigm
 - clients perform operations on their resources
 ### graphql
--> for flexible data fetching (barely required by interviewr for specific platforms)
+-> for flexible data fetching (barely required by interviewer for specific platforms)
 - under-fetching: need multiple requests and round trips, add overhead and latency for page loading
 - over-fetching: api needs long time to load and returns too much data
 
@@ -53,7 +53,7 @@
 -> realtime push notification relies on HTTP, but is expensive to maintain connection
 - allow server to stream many messages over time in a single response
 
-=> if microsevices and performant API, then RPC, else REST
+=> if microservices and performant API, then RPC, else REST
 # websocket - high frequency, persistent, real time bidirectional communication
 - websockets provide a persistent, tcp-style connection between client and server -> real-time bidirectional communication
 - server and client push data to each other without being prompted by a new request
@@ -81,7 +81,7 @@
 	- internal services
 ### dedicated LB (server-side)
 - client -> LB -> servers (LB chooses which server will process request from client)
-- load balancing algorightms
+- load balancing algorithms
 	- round-robin
 	- random
 	- least connections
@@ -98,7 +98,7 @@
 
 - application load balancer (L7)
 	- make routing based on request content -> more intelligent routing decisions
-	- receive application-leve requesst (HTTP) and forward them to appropriate servers
+	- receive application-level requests (HTTP) and forward them to appropriate servers
 	- are suitable for HTTP-based traffic
 	- ![[Pasted image 20250907162653.png | 700]]
 	- where to use?

@@ -173,7 +173,7 @@ public:
                 int pi = find_parent(p,check,i), pj = find_parent(p,check,j);
                 // sharing secret instantaneously
                 check[i] = check[j] = check[pi] = check[pj] = (check[i] || check[j] || check[pi] || check[pj]);
-                // ignore previous meetings if not be shared secret
+                // ignore previous meetings if not having been shared the secret
                 if (!check[i]) {
                     p[i] = p[j] = -1;
                 }

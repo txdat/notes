@@ -40,7 +40,7 @@ using ll = long long;
 
 class Solution {
 public:
-	// count nubmer of denimiations less than or equal to m
+	// count number of denominations less than or equal to m
     ll count(vector<vector<pair<ll,int>>> &q, ll m) {
         ll ans = 0;
         ll s = 1;

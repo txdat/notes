@@ -23,11 +23,11 @@ public:
 };
 ```
 
-- find all occurences of target in string
+- find all occurrences of target in string
 ```cpp
 class Solution {
 public:
-	// find all occurences of t in s
+	// find all occurrences of t in s
 	vector<int> kmp(string &s, string &t) {
 		string w = t + "#" + s;
 		int m = w.length(), n = t.length();
@@ -96,7 +96,7 @@ public:
 2. Manacher - find the largest palindrome for each position in string
 - maintain (l,r) of rightmost found (sub)palindrome `[s[l+1]...s[r-1]]` is palindrome
 - for next i
-	- if i >= r, just launch trivia algorithm
+	- if i >= r, just launch trivial algorithm
 	- if i < r, 
 		- get `j=l+r-i` is mirror of i in (l,r), and can set `dp[i] = dp[j]`, but if `j-dp[j] <= l` (out of range), `dp[i] = r-i`
 - add '#' between each element of input to solve parities

@@ -43,7 +43,7 @@ vector<vector<int>> shortest_path(vector<vector<pair<int,int>>> &g) {
 }
 ```
 3. [minimum obstacle removal to reach corner](https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner)
-- solved by djikstra
+- solved by dijkstra
 ```cpp
 using ia3 = array<int,3>; // {cost,x,y}
 
@@ -230,7 +230,7 @@ public:
         for (int &j : g[i]) {
             if (ans[j].empty() || ans[j].back() != i0) {
                 ans[j].push_back(i0);
-                dfs(g, j, i0, ans); // neednt go deeper if ans[j] is not change
+                dfs(g, j, i0, ans); // needn't go deeper if ans[j] is not change
             }
         }
     }
@@ -295,7 +295,7 @@ public:
         int t0 = -1;
         while (!q.empty()) {
             auto [t,i] = q.top(); q.pop();
-            if (t == last[i] || visited[i] == 2) continue; // dont reach with same value or more than 2 times
+            if (t == last[i] || visited[i] == 2) continue; // don't reach with same value or more than 2 times
             visited[i]++;
             last[i] = t;
             if (i == n) {

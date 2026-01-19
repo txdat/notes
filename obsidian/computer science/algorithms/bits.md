@@ -87,7 +87,7 @@ class Solution {
 public:
     long long maximumValueSum(vector<int>& nums, int k, vector<vector<int>>& edges) {
         ll ans = 0;
-        int m = INT_MAX, c = 0; // min diff and number of changable nodes
+        int m = INT_MAX, c = 0; // min diff and number of changeable nodes
         // needn't care about edges
         for (int &d : nums) {
             int t = d^k;
@@ -154,7 +154,7 @@ public:
 };
 ```
 - [find xor-beauty of array](https://leetcode.com/problems/find-xor-beauty-of-array/description/)
-	- [explaination](https://leetcode.com/problems/find-xor-beauty-of-array/solutions/3015014/why-just-xor-of-all-numbers-works/)
+	- [explanation](https://leetcode.com/problems/find-xor-beauty-of-array/solutions/3015014/why-just-xor-of-all-numbers-works/)
 ```cpp
 class Solution {
 public:

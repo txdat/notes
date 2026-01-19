@@ -10,12 +10,12 @@
 ![[Pasted image 20240724234547.png | 800]];
 # oauth/jwt
 ![[Pasted image 20240724234836.png | 800]]
-- jwt contains 3 parts (splitted by '.')
+- jwt contains 3 parts (split by '.')
 	- header: token's info (like encryption algorithm, ...)
 	- payload: client-defined info (eg. username, role, ...)
 	- signature: (base64 header + base64 payload) & secret key `HMACSHA256(base64UrlEncode(header) + '.' + base64UrlEncode(payload), secret_key)`
 - jwt is stateless (access/refresh? tokens are stored in client)
-- signing key by symetric signing method
+- signing key by symmetric signing method
 - token expiration
 	- refresh token
 		- **RT is stateful (stored in DB in dedicated RT table) , AT is stateless**

@@ -13,7 +13,7 @@ public:
 
         vector<bool> ans;
         for (auto &q : queries) {
-            ans.push_back(a[q[0]] == a[q[1]]); // if between q[0] and q[1], there is a adjecent elements with same parity, prefix sum will change
+            ans.push_back(a[q[0]] == a[q[1]]); // if between q[0] and q[1], there is a adjacent elements with same parity, prefix sum will change
         }
         return ans;
     }

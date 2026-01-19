@@ -6,7 +6,7 @@
 
 - read strategies
 	- read-aside
-		- the cache is seperated from database -> the system can get data from database (if the cache crashes), and can store diffrent data models (compared to database)
+		- the cache is separated from database -> the system can get data from database (if the cache crashes), and can store different data models (compared to database)
 		- the application gets missing data from database and writes to the the cache
 		- data in cache may be inconsistent
 		![[Pasted image 20240420221351.png | 600]]
@@ -21,7 +21,7 @@
 	- write-back
 		- similar to write-through strategy, but the cache writes to the database after a delay (not immediately)
 		- improve overall write performance, and reduce writes if batching is supported
-		- can loss data if the cache is down
+		- can lose data if the cache is down
 	- write-around
 		- the application invalidates data in the cache (asynchronously), writes data to the database first, and the data goes to the cache (read-aside)
 		![[Pasted image 20240420222927.png | 600]]
@@ -34,7 +34,7 @@
 	- command-based (triggered directly)
 	- event-based (triggered by event, may come from other services)
 - cache invalidation is hard?
-	- when should we to invalidate cache (by time-to-live TTL)?
+	- when should we invalidate cache (by time-to-live TTL)?
 	- race condition in concurrency
 	- data relationship?
 	- cache may be in anywhere (in distributed system)

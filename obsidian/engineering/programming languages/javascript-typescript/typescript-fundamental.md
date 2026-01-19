@@ -18,7 +18,7 @@
 		- only `undefined` to be assignable to type `void`
 		- use for returned value of function isn't going to be used
 	- never
-		- represent values that never occur (no reachable endpoint) -> cant have a value
+		- represent values that never occur (no reachable endpoint) -> can't have a value
 		```typescript
 		function infiniteLoop(): never {
 			while (true) {...}
@@ -84,7 +84,7 @@ function hello(name: string[] | string) { // accept both string[] and string
 };
 ```
 - enum
-	- a set of named constants (not exists in JS)
+	- a set of named constants (does not exist in JS)
 	```typescript
 	// js
 	const direction = {
@@ -110,12 +110,12 @@ function hello(name: string[] | string) { // accept both string[] and string
 	- difference between class and interface in TS
 		- purpose
 			- class: create object with properties and methods (blueprint of object)
-			- interface: define struct of object (how object works)
+			- interface: define structure of object (how object works)
 		- implementation
 			- class: contains both properties and methods
 			- interface: contains neither properties nor methods, only describe structure
 		- inheritance
-			- class: support inhertance from other class (only 1)
+			- class: support inheritance from other class (only 1)
 			- interface: only extend without any implementation, can be extended from multiple interfaces
 		- usage
 			- class: for creating object with data and behavior
@@ -164,7 +164,7 @@ pokemon.hello();
 pokemon.bark('hihi');
 ```
 - decorator
-	- high-order function, takes function as argument -> metaprogramming #TODO
+	- higher-order function, takes function as argument -> metaprogramming #TODO
 ```typescript
 ```
 - generic

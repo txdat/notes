@@ -141,8 +141,8 @@ public:
 };
 ```
 - [distribute candies among children ii](https://leetcode.com/problems/distribute-candies-among-children-ii)
-	- to devide n candies among 3 children
-		- n = 5: `|*|*|*|*|*|` (6 places to put barrier) -> put 2 barriers among n chidren = `(n+1)C2+n+1 = (n+2)*(n+1)/2` (`n+1` cases that 2 barriers are in same place)
+	- to divide n candies among 3 children
+		- n = 5: `|*|*|*|*|*|` (6 places to put barrier) -> put 2 barriers among n children = `(n+1)C2+n+1 = (n+2)*(n+1)/2` (`n+1` cases that 2 barriers are in same place)
 	- set A is `a >= limit+1`, B is `b >= limit+1`, and C is `c >= limit+1` -> answer is `U-(A+B+C-AB-BC-CA+ABC)`
 ```cpp
 using ll = long long;

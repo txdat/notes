@@ -1,4 +1,4 @@
-[[consitent hashing.excalidraw]]
+[[consistent hashing.excalidraw]]
 
 [highscalability blog](https://highscalability.com/consistent-hashing-algorithm/)
 [systemdesign.one blog](https://systemdesign.one/consistent-hashing-explained/)
@@ -34,8 +34,8 @@
 ![[Pasted image 20240823154815.png | 600]]
 
 
-- consistent hashing aid cloud computing by minimizing the movement of data when number of nodes changes due to scaling
-- nodes mayn't be uniform distributed -> virtual nodes -> improve load balancing and prevent hotspots (receive too much requests). the nodes with higher capacity will have more positions (or virtual nodes) on hash ring
+- consistent hashing aids cloud computing by minimizing the movement of data when number of nodes changes due to scaling
+- nodes may not be uniformly distributed -> virtual nodes -> improve load balancing and prevent hotspots (receive too much requests). the nodes with higher capacity will have more positions (or virtual nodes) on hash ring
 
 # optimization
 - multi-probe

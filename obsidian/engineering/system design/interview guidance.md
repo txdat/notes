@@ -39,7 +39,7 @@
 			- fault tolerance = redundancy, failover, recovery mechanisms
 2. core entities (~ 5m)
 	- are data entities/schemas
-	- **don't entire data models at this point** -> quickly iterate and add to it later
+	- **don't define entire data models at this point** -> quickly iterate and add to it later
 3. API / system interfaces (~ 1m)
 	- REST (default) => not choose another type unless there are specific requirements
 	- RPC for service-to-service
@@ -47,13 +47,13 @@
 	- graphQL
 4. data flow (~ 5m)
 	- is data processing (optional)
-5. high-level design = white board design (~ 5-10m)
+5. high-level design = whiteboard design (~ 5-10m)
 	- represents system components (eg. load balancer, servers, databases, caches, ...) and demonstrates how they interact
 	- **don't overthink** -> make it simple and focus on functional requirements
 	- be explicit about how data flows and changes in the system
 	- ![[Pasted image 20250902155636.png | 700]]
 6. low-level design (deep dive) (~ 10-20m)
-	- think about non-functional requirements -> improve existing system to solve each of interviewer's requiments
+	- think about non-functional requirements -> improve existing system to solve each of interviewer's requirements
 ### 2. core concepts
 - [ ] CAP theorem -> choose between consistency (C) or availability (A) when partition (P) happens
 - [ ] networking essentials 

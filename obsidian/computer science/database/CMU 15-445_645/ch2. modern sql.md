@@ -52,7 +52,7 @@ FROM table_name;
 		- `RANK`: the order position of current row -> handle tied values by assign same rank number, and skip sequential ranks
 		- `DENSE_RANK`: same as `RANK` but not skipping sequential ranks
 	- grouping:
-		- `OVER`: clause specifies how to grouping tuples together
+		- `OVER`: clause specifies how to group tuples together
 		- `PARTITION BY`: specify group
 		```sql
 SELECT * FROM (

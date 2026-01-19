@@ -9,7 +9,7 @@
 		- column: cassandra
 		- document: mongodb
 	- use for:
-		- super low lattency
+		- super low latency
 		- only serialize/deserialize
 		- data is unstructured, not having relations
 		- store massive amount of data
@@ -20,7 +20,7 @@
 	- reliability
 	- high availability
 		- if a slave server goes offline, operations will be directed to master server. a new server may replace old one.
-		- if the master server goes offline, one of slave servers will be promoted to become master server. data recovery process may be need.
+		- if the master server goes offline, one of slave servers will be promoted to become master server. data recovery process may be needed.
 3. Database scaling
 	1. vertical scaling
 		- add more cpu/memory to server -> quota limit, greater risk of SPOF, more expensive
@@ -46,5 +46,5 @@
 # Data centers
 - geoDNS-routed: let to choose resources that serve traffic based on geographic location of users
 # Message queue
-- durable component, stored in memory, support asynchronous communication between producers/publishers and consumers/subcribers
-- producers and subcribers can scale independently. when queue's size is large, more workers are added to reduce processing time and vice versa
+- durable component, stored in memory, support asynchronous communication between producers/publishers and consumers/subscribers
+- producers and subscribers can scale independently. when queue's size is large, more workers are added to reduce processing time and vice versa

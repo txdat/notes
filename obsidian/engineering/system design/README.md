@@ -10,7 +10,7 @@
 		- scalability: fast for single user, but slow under heavy load
 - latency vs throughput
 	- latency: the time to perform action to get result
-	- througput: the number of actions performed per unit of time
+	- throughput: the number of actions performed per unit of time
 	-> maximum throughput with acceptance latency
 - availability vs consistency
 	- CAP theorem
@@ -76,8 +76,8 @@
 		- pull cdn: grab new content when the first user requests them -> may delay request, create redundant traffic
 - load balancer & proxy
 	- ![[Pasted image 20250317105933.png | 1000]]
-	- distribute incomming requests to computing resources, and return responses to clients
-	- prevent requests comming to unhealty resources, overloading resources, ssl termination and keep session persistence (session affinity)
+	- distribute incoming requests to computing resources, and return responses to clients
+	- prevent requests coming to unhealthy resources, overloading resources, ssl termination and keep session persistence (session affinity)
 	- support horizontal scaling (usually managed by cloud provider)
 	- load balancer can be a bottleneck in system if it's not well designed
 	- 2 types of load balancer
@@ -90,10 +90,10 @@
 		- least response time
 		- least bandwidth
 		- hashing
-	- reverse proxy is internal service to provide unifined interface to public (hide servers from client) -> increase complexity of system
+	- reverse proxy is internal service to provide unified interface to public (hide servers from client) -> increase complexity of system
 	- load balancer is more efficient than reverse proxy if having multiple servers
 	- forward proxy
-		- middlemand between client and internet: client >> forward proxy -> internet
+		- middleman between client and internet: client >> forward proxy -> internet
 		- ![[Pasted image 20250317110907.png | 600]]
 	- reverse proxy
 		- middleman between server and internet: internet -> reverse proxy >> servers
@@ -105,7 +105,7 @@
 			- atomic: a transaction's operations must be executed all or nothing
 			- consistency: a transaction brings system from consistent state to another consistent state
 			- isolation: each transaction is executed independently from other transactions
-			- durability: each transation is executed, and then stored
+			- durability: each transaction is executed, and then stored
 		- scaling
 			- replication
 				- master (read+write) - slaves (read only), if master is down, one of slaves is promoted as next master, and new slave is created
@@ -119,7 +119,7 @@
 			- sharding
 				- ![[Pasted image 20250317111313.png | 600]]
 				- distribute data across databases (manage a subset of data) -> less read/write traffic, replication, ...
-				- system is availabilty (continue working if some shards are down)
+				- system is availability (continue working if some shards are down)
 				- parallel writing operations
 				- add more complexity to logic, table joining
 				- need to rebalance data (resharding)
@@ -130,7 +130,7 @@
 		- data is represented in key-value, document, wide column, or graph
 		- data is duplicated
 		- violate ACID properties
-		- eventual consistentcy: reach consistent state after a period of time
+		- eventual consistency: reach consistent state after a period of time
 		- easy horizontal scaling/sharding?
 		- key-value
 			- read/write operations in O(1), backed by memory or SSD
@@ -218,7 +218,7 @@
 			- support TCP, UDP protocols
 			- chunking/ reassembling data into packets
 		- network 
-			- routing and transfering data in networks
+			- routing and transferring data in networks
 		- data link 
 		- physical
 	- TCP
@@ -252,7 +252,7 @@
 	- ![[Pasted image 20250317112315.png | 600]]
 	- algorithms
 		- leaky bucket
-		- token buket
+		- token bucket
 		- fixed window
 		- sliding log
 		- sliding window
@@ -263,7 +263,7 @@
 	- brokers can store, route and deliver messages to consumers -> allow services can communicate with each other and exchange information, without connecting directly
 	- ![[Pasted image 20250331110804.png | 600]]
 - monoliths - microservices
-- event-drivent architecture (EDA) - event sourcing
+- event-driven architecture (EDA) - event sourcing
 	- use event as a way to communicate within a system
 	- components
 		- event producers

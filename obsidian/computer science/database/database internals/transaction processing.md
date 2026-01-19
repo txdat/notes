@@ -1,7 +1,7 @@
 # ACID
 - atomic: transaction steps are indivisible, all or none of them are successful (transaction commits or aborts)
 - consistency: an application-specific guarantee
-- isolation: multiple concurrently transactions run without interference (changes may become visible to other concurrent transactions)
+- isolation: multiple concurrent transactions run without interference (changes may become visible to other concurrent transactions)
 - durability: when transaction is committed, all modifications must be persisted
 
 # caching
@@ -15,7 +15,7 @@
 	- more frequently accessed items have higher chance of retention and vice versa
 # recovery
 - write-ahead log (WAL) (commit log) is **append-only** disk-resident structure for crash and transaction recovery
-- every record in WAL has unique and monotonically increaseing log sequence number (LSN) -> all logs records have to be flushed on disk in LSN order
+- every record in WAL has unique and monotonically increasing log sequence number (LSN) -> all logs records have to be flushed on disk in LSN order
 
 # transaction isolation
 ### read/write anomalies
@@ -30,7 +30,7 @@
 - a dirty write
 	- get uncommitted value, modify and save it
 - a write skew
-	- combination of transactiosn does not satisfy invariants (but each transaction does)
+	- combination of transactions does not satisfy invariants (but each transaction does)
 
 ### isolation levels
 ||dirty read|non-repeatable read|phantom read|

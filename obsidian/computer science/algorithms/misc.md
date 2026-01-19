@@ -68,7 +68,7 @@ public:
         return n;
     }
 
-	// https://leetcode.com/problems/minimum-cost-to-make-array-equalindromic/
+	// https://leetcode.com/problems/minimum-cost-to-make-array-equal-palindromic/
     long long minimumCost(vector<int>& nums) {
         sort(nums.begin(), nums.end());
         int n = nums.size();
