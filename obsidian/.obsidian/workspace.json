@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "b2717aa5b0ddbc7b",
+        "id": "35d04b59a4b3970b",
         "type": "tabs",
         "children": [
           {
-            "id": "b70a859c86245670",
+            "id": "8fa5292f9f48e6ee",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "engineering/design data intensive applications/book/part 2. distributed data.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "part 2. distributed data"
+              "title": "New tab"
             }
           }
         ]
@@ -169,7 +165,6 @@
   "left-ribbon": {
     "hiddenItems": {
       "bases:Create new base": false,
-      "obsidian-kanban:Create new board": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": true,
@@ -179,10 +174,19 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "b70a859c86245670",
+  "active": "8fa5292f9f48e6ee",
   "lastOpenFiles": [
-    "engineering/design data intensive applications/book/part 1. foundations.md",
+    "computer science/database/CMU 15-445_645/ch12. joins algorithms.md",
+    "computer science/database/CMU 15-445_645/ch22-24. distributed database.md",
+    "english/phrase verbs.md",
+    "english/english vocabulary in use.md",
+    "english/english grammar in use.md",
+    "linux.md",
+    "k8s.md",
+    "git.md",
+    "envoy-proxy.md",
     "engineering/design data intensive applications/book/part 2. distributed data.md",
+    "engineering/design data intensive applications/book/part 1. foundations.md",
     "engineering/design data intensive applications/blog posts/CAP.md",
     "engineering/design data intensive applications/blog posts/redlock - distributed lock.md",
     "computer science/database/database internals/consensus.md",
@@ -198,21 +202,12 @@
     "computer science/database/CMU 15-445_645/ch1. relational model.md",
     "computer science/algorithms/sorting.md",
     "computer science/algorithms/binary search.md",
-    "computer science/database/CMU 15-445_645/ch11. sorting and aggregation.md",
-    "engineering/system design/networking.md",
-    "engineering/system design/topics/network essentials.md",
-    "engineering/system design/topics/real-time presence status.md",
     "attachments/Pasted image 20260105164019.png",
     "attachments/Pasted image 20260105133440.png",
     "attachments/Pasted image 20260105133436.png",
     "attachments/Pasted image 20260101172554.png",
     "attachments/Pasted image 20260101172120.png",
     "attachments/Pasted image 20260101115955.png",
-    "computer science/database/CMU 15-445_645/ch16-19. concurrency control.md",
-    "computer science/data structures/AVL tree.md",
-    "english/english vocabulary in use.md",
-    "english/english grammar in use.md",
-    "english/phrase verbs.md",
     "attachments/Pasted image 20251211111724.png",
     "attachments/Pasted image 20251207234914.png",
     "attachments/Pasted image 20251207235755.png",
