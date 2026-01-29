@@ -4,9 +4,10 @@
   "textFontFamily": "Maple Mono NF CN",
   "monospaceFontFamily": "Maple Mono NF CN",
   "baseFontSize": 12,
-  "nativeMenus": true,
+  "nativeMenus": false,
   "theme": "obsidian",
   "cssTheme": "Minimal",
   "baseFontSizeAction": true,
-  "showRibbon": true
+  "showRibbon": true,
+  "showViewHeader": false
 }
