@@ -3,7 +3,7 @@
 # CAP theorem
 - consistency: linearizability - specific notion of consistency
 - availability: every request received by non-failing node (able to handle it) must result in a (non-error) response
-- (network) partition tolerance: message may be delayed or dropped on asynchronous network
+- (network) partition tolerance: message may be delayed or dropped on asynchronous network. CAP discusses network partitions rather than node crashes
 # linearizability - consistency
 - informal definition: "if operation B start after operation A complete, it must see the system in the same state as it was on completion of operation A or newer state"
 - if you want to provide linearizability (consistency), you have to make it appear as only one single copy of data (even though there are multiple copies of data in multiple places)
