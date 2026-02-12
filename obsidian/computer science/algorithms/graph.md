@@ -1,4 +1,4 @@
-1. dijkstra
+	1. dijkstra
 ```cpp
 // g: {i: [{cost_ij, j},...]}
 int shortest_path(vector<vector<pair<int,int>>> &g, int s, int t) {
