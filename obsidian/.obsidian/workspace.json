@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "3b6746db41c209cf",
+        "id": "69bd69eeefe8e579",
         "type": "tabs",
         "children": [
           {
-            "id": "f7139edfb4847455",
+            "id": "5f213582976b61f4",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -174,11 +174,11 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "f7139edfb4847455",
+  "active": "5f213582976b61f4",
   "lastOpenFiles": [
+    "computer science/database/database internals/distributed transaction.md",
     "computer science/database/database internals/distributed system.md",
     "attachments/Pasted image 20260212153937.png",
-    "computer science/database/database internals/distributed transaction.md",
     "attachments/Pasted image 20260212143200.png",
     "attachments/Pasted image 20260212143155.png",
     "computer science/database/database internals/data storage.md",
