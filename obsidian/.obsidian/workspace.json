@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "69bd69eeefe8e579",
+        "id": "a2f2e114a2b1d955",
         "type": "tabs",
         "children": [
           {
-            "id": "5f213582976b61f4",
+            "id": "e15447fe971087ec",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -174,23 +174,23 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "5f213582976b61f4",
+  "active": "e15447fe971087ec",
   "lastOpenFiles": [
+    "computer science/database/database internals/consensus.md",
+    "attachments/Pasted image 20260216003547.png",
+    "attachments/Pasted image 20260216002137.png",
+    "attachments/Pasted image 20260216001208.png",
+    "attachments/Pasted image 20260215234227.png",
+    "computer science/database/database internals/b-tree.md",
+    "attachments/Pasted image 20260215142509.png",
     "computer science/database/database internals/distributed transaction.md",
     "computer science/database/database internals/distributed system.md",
     "attachments/Pasted image 20260212153937.png",
     "attachments/Pasted image 20260212143200.png",
     "attachments/Pasted image 20260212143155.png",
     "computer science/database/database internals/data storage.md",
-    "computer science/database/database internals/consensus.md",
     "attachments/Pasted image 20260202142856.png",
     "attachments/Pasted image 20260202142850.png",
-    "attachments/Pasted image 20260202142753.png",
-    "attachments/Pasted image 20260202142731.png",
-    "attachments/Pasted image 20260202142720.png",
-    "attachments/Pasted image 20260202142717.png",
-    "attachments/Pasted image 20260202142705.png",
-    "computer science/database/database internals/b-tree.md",
     "computer science/algorithms/dynamic programming.md",
     "computer science/algorithms/graph.md",
     "engineering/design data intensive applications/blog posts/CAP.md",

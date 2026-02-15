@@ -567,11 +567,21 @@
     "WreakHavoc": null,
     "WroughtIron": null,
     "YeaToYeah": null,
-    "YehToYeah": null
+    "YehToYeah": null,
+    "ExpandThrough": null,
+    "LayoutVerb": null,
+    "MissingDeterminer": null,
+    "NoLonger": null,
+    "WorthToDo": null
   },
   "userDictionary": [
     "ACK",
+    "PBFT",
+    "ZAB",
+    "acceptor",
+    "acceptors",
     "linearizability",
+    "paxos",
     "tunable"
   ],
   "dialect": 0,
