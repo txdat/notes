@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "a2f2e114a2b1d955",
+        "id": "e25ebeecd6deb2f5",
         "type": "tabs",
         "children": [
           {
-            "id": "e15447fe971087ec",
+            "id": "1f37c39469720386",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -174,8 +174,14 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "e15447fe971087ec",
+  "active": "1f37c39469720386",
   "lastOpenFiles": [
+    "computer science/database/database internals/lsm.md",
+    "attachments/Pasted image 20260221171610.png",
+    "Excalidraw/bloom filter.md",
+    "engineering/system design/topics/bloom filter - probabilistic data structure.md",
+    "attachments/Pasted image 20260221163813.png",
+    "attachments/Pasted image 20260220164004.png",
     "computer science/database/database internals/consensus.md",
     "attachments/Pasted image 20260216003547.png",
     "attachments/Pasted image 20260216002137.png",
@@ -187,10 +193,7 @@
     "computer science/database/database internals/distributed system.md",
     "attachments/Pasted image 20260212153937.png",
     "attachments/Pasted image 20260212143200.png",
-    "attachments/Pasted image 20260212143155.png",
     "computer science/database/database internals/data storage.md",
-    "attachments/Pasted image 20260202142856.png",
-    "attachments/Pasted image 20260202142850.png",
     "computer science/algorithms/dynamic programming.md",
     "computer science/algorithms/graph.md",
     "engineering/design data intensive applications/blog posts/CAP.md",
@@ -206,11 +209,8 @@
     "engineering/design data intensive applications/book/part 2. distributed data.md",
     "engineering/design data intensive applications/book/part 1. foundations.md",
     "engineering/design data intensive applications/blog posts/redlock - distributed lock.md",
-    "computer science/database/database internals/lsm.md",
     "computer science/database/database internals/transaction processing.md",
     "computer science/database/CMU 15-445_645/ch7-10. hash table and index.md",
-    "computer science/database/CMU 15-445_645/ch3-6. database storage & memory management.md",
-    "computer science/database/CMU 15-445_645/ch2. modern sql.md",
     "engineering/interview/system design/core concepts",
     "engineering/message queue",
     "computer science/database/database internals",
