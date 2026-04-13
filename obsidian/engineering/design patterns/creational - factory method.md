@@ -1,1 +1,0 @@
--> define an interface for creating object, allow subclasses to decide which class to instantiate

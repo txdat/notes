@@ -1,0 +1,63 @@
+1. process vs thread?
+- process:
+	- is program execution
+	- memory is isolated between processes (must be modified by 1 process at specific time)
+	- processes can communicate with each other via sockets
+	- multi-processing is when more than one process runs simultaneously on a computer
+	- child process:
+		- created by 1 process
+		- inherit most properties from its parent, create new properties like id, lock, ...
+- thread:
+	- A thread is a segment of a process. A process can have one or more threads (with 1 main thread)
+	- Threads in the same process can access the same memory allocation
+	- CPU uses fewer resources to switch between threads than processes - as there is no need to change memory space
+	- multi-threading is when more than one thread runs simultaneously within a single process
+	- thread pool:
+		- manage concurrent execution
+2. concurrency vs parallelism vs multi-threading?
+- [concurrency-parallelism](https://jenkov.com/tutorials/java-concurrency/concurrency-vs-parallelism.html)
+- concurrency: tasks can start, run, and complete in overlapping time periods, which can lead to race conditions
+	- making progress on more than one task at the same time. If a computer has 1 CPU, the CPU switches between different tasks during execution
+- parallel execution
+	- CPUs (more than 1 CPU) make progress on more than one task simultaneously. Parallel execution != parallelism
+- parallel concurrent execution
+	- making progress on tasks across CPUs simultaneously (parallel), with multiple tasks on each CPU (concurrency)
+- parallelism: multiple threads/processes working on the same task using multiple CPUs
+	- application splits its tasks into smaller subtasks, which can be processed in parallel at the same time -> != parallel (concurrent) execution
+	- have more than 1 thread and each thread must run on separate CPUs
+	-> concurrency refers to how a single CPU makes progress on multiple tasks seemingly at the same time
+	-> parallelism refers to how an application can be processed in parallel by splitting a task into smaller subtasks
+3. race condition?
+	- multi-threading issue
+	- data race
+		- more than 1 thread/process that access shared memory/resources
+		- at least 1 thread/process that changes shared resources' values
+	-> use 'mutual exclusion' to guarantee that only 1 thread/process modifies shared memory/resource at any time
+	- race condition:
+		- not control order and number of executions of threads/processes
+4. locking mechanism?
+	- threads have independent execution context (similar to processes), but they ==share same memory space==
+	- lock variable protects critical section -> all threads competing for critical section share same lock -> only one thread acquires lock at a time, and other threads have to wait
+	- concurrency - [MIT_6.005](https://web.mit.edu/6.005/www/fa15/classes/19-concurrency/)
+		- means multiple computations happening at the same time
+		- 2 models
+			- shared memory: concurrency modules interact by reading/writing shared objects in memory
+			- message passing: concurrency modules interact by sending messages to each other through communication channel
+		- processes, threads, and time-slicing
+			- process:
+				- an instance of a running program, and ==is isolated from other processes== -> has its own private section of memory, and cannot access other processes' memory
+			- thread:
+				- a locus of control inside a running program (at least 1 thread - main thread in each process)
+				- ready for shared memory -> can read all other threads' memory in the same process
+			- time-slicing:
+				- concurrency simulation -> the CPU switches between threads ==unpredictably and nondeterministically==
+		- race condition:
+			- the correctness of a program
+			- thread safe strategies:
+				- confinement: don't give other threads the ability to read/write data directly
+				- use immutable references and data types
+				- use thread safe data types
+				- synchronization: prevent threads (except one?) access shared data at the same time (implemented in thread safe data types?)
+					- use 'lock' -> 2 actions: acquire/release
+					- deadlock: threads wait others forever (circular dependency)
+1. virtual memory & paging?

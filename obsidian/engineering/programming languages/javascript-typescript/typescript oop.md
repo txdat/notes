@@ -1,1 +1,0 @@
-- [github](https://github.com/jafari-dev/oop-expert-with-typescript)
