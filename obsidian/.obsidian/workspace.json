@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "bb21554441c04c3d",
+        "id": "728947d8b21e5cfb",
         "type": "tabs",
         "children": [
           {
-            "id": "5371b0e8b85bc13e",
+            "id": "2619c13b2dc3a314",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -174,14 +174,17 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "5371b0e8b85bc13e",
+  "active": "2619c13b2dc3a314",
   "lastOpenFiles": [
-    "engineering/system-design/caching.md",
-    "computer-science/algorithms/priority queue - heap.md",
-    "engineering/programming-languages/javascript-typescript/nodejs.md",
+    "engineering/programming-languages/javascript-typescript/nodejs event loop.md",
     "engineering/programming-languages/javascript-typescript/nodejs design patterns.md",
     "engineering/programming-languages/javascript-typescript/asynchronous task runner.md",
+    "engineering/programming-languages/javascript-typescript/nodebook.md",
     "engineering/programming-languages/javascript-typescript/typescript-fundamental.md",
+    "excalidraw/distributed counter.md",
+    "engineering/system-design/distributed counter - shared counter.md",
+    "engineering/system-design/caching.md",
+    "computer-science/algorithms/priority queue - heap.md",
     "engineering/programming-languages/javascript-typescript/typescript oop.md",
     "engineering/tools/k8s.md",
     "engineering/infrastructure/k8s.md",
@@ -198,11 +201,7 @@
     "engineering/system architecture/hexagon.md",
     "engineering/system design/interview guidance.md",
     "engineering/system design/distributed counter - shared counter.md",
-    "engineering/system design/fundamentals/oop.md",
-    "engineering/system design/distributed lock.md",
-    "engineering/system design/fundamentals/README.md",
     "engineering/system design/fundamentals",
-    "engineering/system design/bytebytego.md",
     "engineering/system architecture",
     "attachments/Pasted image 20260321120728.png",
     "attachments/Pasted image 20260321120525.png",
