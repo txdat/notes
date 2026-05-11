@@ -13,3 +13,12 @@ git config core.hooksPath '<previous path>' # or unset it git config --unset cor
 ```bash
 git diff HEAD <remote-sha> -- <file-path>
 ```
+
+# git sparse checkout
+```bash
+git clone --filter=blob:none --no-checkout <link> <dir>
+cd <dir>
+git sparse-checkout init --cone
+git sparse-checkout set <folder 1> <folder 2> ...
+git checkout <branch>
+```
