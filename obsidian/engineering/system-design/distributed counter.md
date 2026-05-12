@@ -71,5 +71,5 @@
 - ![[Pasted image 20250604110451.png | 600]]
 
 #### CRDT workflow
-[[distributed counter]]
+[[excalidraw/distributed counter]]
 

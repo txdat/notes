@@ -2,7 +2,7 @@
 
 - space-efficient probabilistic data structure to check membership, return "true" if item is member of set, may be **false positive**
 
-[[bloom filter]]
+[[excalidraw/bloom filter]]
 
 ### minimize false positive of bloom filter (when checking item is in set or not)
 - formula to calculate false positive $$p \approx (1-e^{-kn/m})^k$$, with n is number of inserted items, k is number of hash functions, and m is size of bits array
