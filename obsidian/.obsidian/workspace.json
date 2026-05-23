@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "dcb48f3adeef4a62",
+        "id": "a75e2c2f70c76317",
         "type": "tabs",
         "children": [
           {
-            "id": "92835682d4a5547d",
+            "id": "94ac9d441b46317f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "roadmaps/low-level system engineer.md",
+                "file": "engineering/infrastructure/k8s.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "low-level system engineer"
+              "title": "k8s"
             }
           }
         ]
@@ -178,33 +178,37 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "92835682d4a5547d",
+  "active": "94ac9d441b46317f",
   "lastOpenFiles": [
+    "engineering/infrastructure/k8s.md.tmp.16531.c4558cc78988",
+    "engineering/infrastructure/k8s.md.tmp.16531.2832b2a79aa3",
+    "engineering/infrastructure/k8s.md.tmp.16531.b66c5f4f7457",
+    "engineering/infrastructure/k8s.md.tmp.16531.556ff241d74f",
+    "engineering/infrastructure/k8s.md.tmp.16531.4e220863cf73",
+    "engineering/infrastructure/k8s.md.tmp.16531.26448bfa4026",
+    "engineering/infrastructure/k8s.md.tmp.16531.d97685971ae3",
+    "engineering/infrastructure/k8s.md.tmp.16531.946fa623941b",
+    "engineering/infrastructure/k8s.md.tmp.16531.9bcf8de15e54",
+    "engineering/infrastructure/k8s.md.tmp.16531.708fa4fe37dc",
+    "engineering/infrastructure/gcp.md",
+    "engineering/infrastructure/k8s.md",
+    "engineering/system-architecture/hexagon.md",
+    "engineering/programming-languages/javascript-typescript/nodebook.md",
+    "engineering/programming-languages/javascript-typescript/javascript-info.md",
+    "roadmaps/low-level system engineer.md",
     "roadmaps/low-level system engineer.md.tmp.66937.ecbb7079c2bc",
-    "roadmaps/low-level system engineer.md.tmp.66937.72df02481a44",
     "excalidraw/consistent-hashing-drawing.md",
     "excalidraw/AWS VPC.md",
     "excalidraw/cache-data-inconsistency.md",
     "excalidraw/GCP - Network endpoint group.md",
     "excalidraw/serverless & NAT.md",
-    "roadmaps/low-level system engineer.md",
-    "roadmaps",
     "engineering/storage engine/lsm.md",
     "computer-science/database/database internals/lsm.md",
-    "engineering/storage engine",
     "engineering/system-design/CAP theorem.md",
     "engineering/system-design/cqrs.md",
     "engineering/system-design/outbox.md",
     "engineering/system-design/saga.md",
-    "engineering/system-design/outbox.md.tmp.32025.8a614b0b0532",
-    "engineering/system-design/cqrs.md.tmp.32025.fe7013cf3923",
     "engineering/system-design/idempotency.md",
-    "engineering/system-design/idempotency.md.tmp.32025.bceefd98e96a",
-    "engineering/system-design/outbox.md.tmp.32025.7d5a273c4574",
-    "engineering/system-architecture/hexagon.md",
-    "engineering/system-design/saga.md.tmp.32025.add0f42f21c4",
-    "engineering/system-design/saga.md.tmp.32025.7b19ed663954",
-    "engineering/system-design/outbox.md.tmp.32025.96be18ada645",
     "engineering/system-design/sloppy quorum - hinted handoff.md",
     "engineering/system-design/search autocomplete - incremental search.md",
     "engineering/system-design/gossip protocol.md",
@@ -212,10 +216,6 @@
     "engineering/system-design/bloom filter.md",
     "engineering/system-design/web server.md",
     "engineering/system-design/web security.md",
-    "engineering/system-design/url shortener.md",
-    "engineering/system-design/consistent hashing.md",
-    "excalidraw/bloom filter.md",
-    "engineering/system-design/raft.md",
     "attachments/Pasted image 20260321120728.png",
     "attachments/Pasted image 20260321120525.png",
     "attachments/Pasted image 20260221171610.png",
