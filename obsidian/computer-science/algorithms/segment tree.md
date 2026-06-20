@@ -124,3 +124,81 @@ public:
     }
 };
 ```
+- [maximum total subarray value ii](https://leetcode.com/problems/maximum-total-subarray-value-ii/)
+```cpp
+using ll = long long;
+
+class Solution {
+public:
+    int build_max_t(vector<int> &nums, vector<int> &t, int l, int r, int i = 1) {
+        if (l == r) return t[i] = nums[l];
+
+        int m = (l+r)/2, j = i*2;
+        return t[i] = max(build_max_t(nums, t, l, m, j), build_max_t(nums, t, m+1, r, j+1));
+    }
+
+    int build_min_t(vector<int> &nums, vector<int> &t, int l, int r, int i = 1) {
+        if (l == r) return t[i] = nums[l];
+
+        int m = (l+r)/2, j = i*2;
+        return t[i] = min(build_min_t(nums, t, l, m, j), build_min_t(nums, t, m+1, r, j+1));
+    }
+
+    int query_max_t(vector<int> &t, int u, int v, int l, int r, int i = 1) {
+        if (v < l || u > r) return 0;
+        if (u <= l && r <= v) return t[i];
+        int m = (l+r)/2, j = i*2;
+        return max(query_max_t(t, u, v, l, m, j), query_max_t(t, u, v, m+1, r, j+1));
+    }
+
+    int query_min_t(vector<int> &t, int u, int v, int l, int r, int i = 1) {
+        if (v < l || u > r) return 1e9;
+        if (u <= l && r <= v) return t[i];
+        int m = (l+r)/2, j = i*2;
+        return min(query_min_t(t, u, v, l, m, j), query_min_t(t, u, v, m+1, r, j+1));
+    }
+
+    long long maxTotalValue(vector<int>& nums, int k) {
+        int n = nums.size(), n1 = n-1;
+        int l = 0;
+        for (int i = 1; i < n; i++) if (nums[i] > nums[l]) l = i;
+        int r = 0;
+        for (int i = 1; i < n; i++) if (nums[i] < nums[r]) r = i;
+        if (l > r) swap(l,r);
+
+        ll k0 = ll(n-r)*(l+1);
+        if (k0 >= k) return ll(abs(nums[l]-nums[r]))*k;
+
+        k -= k0;
+        ll ans = ll(abs(nums[l]-nums[r]))*k0;
+
+        vector<int> max_t(n*4), min_t(n*4);
+        build_max_t(nums, max_t, 0, n1);
+        build_min_t(nums, min_t, 0, n1);
+
+        priority_queue<array<int,3>> q;
+        for (int i = l+1; i < n; i++) {
+            // query on [l..n-1]
+            int v = query_max_t(max_t, i, n1, 0, n1) - query_min_t(min_t, i, n1, 0, n1);
+            q.push({v, i, n1});
+        }
+        int r1 = r-1;
+        for (int i = l; i >= 0; i--) {
+            // query on [l..r-1]
+            int v = query_max_t(max_t, i, r1, 0, n1) - query_min_t(min_t, i, r1, 0, n1);
+            q.push({v, i, r1});
+        }
+
+        while (k-- > 0) {
+            auto [v,i,j] = q.top(); q.pop();
+            if (v == 0) break;
+
+            ans += v;
+            // query on [i..j-1]
+            if (i < j) q.push({query_max_t(max_t, i, j-1, 0, n1)-query_min_t(min_t, i, j-1, 0, n1), i, j-1});
+        }
+    
+        return ans;
+    }
+};
+```

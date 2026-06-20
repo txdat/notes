@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "a75e2c2f70c76317",
+        "id": "d13d0075181ff0c4",
         "type": "tabs",
         "children": [
           {
-            "id": "94ac9d441b46317f",
+            "id": "88b4ed257672bd2d",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "engineering/infrastructure/k8s.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "k8s"
+              "title": "New tab"
             }
           }
         ]
@@ -178,8 +174,17 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "94ac9d441b46317f",
+  "active": "88b4ed257672bd2d",
   "lastOpenFiles": [
+    "engineering/programming-languages/javascript-typescript/nodebook.md",
+    "attachments/Pasted image 20260615152905.png",
+    "english/english grammar in use.md",
+    "engineering/roadmaps/low-level system engineer.md",
+    "english",
+    "computer-science/algorithms/tree.md",
+    "computer-science/algorithms/segment tree.md",
+    "engineering/programming-languages/javascript-typescript/asynchronous task runner.md",
+    "engineering/infrastructure/k8s.md",
     "engineering/infrastructure/k8s.md.tmp.16531.c4558cc78988",
     "engineering/infrastructure/k8s.md.tmp.16531.2832b2a79aa3",
     "engineering/infrastructure/k8s.md.tmp.16531.b66c5f4f7457",
@@ -189,14 +194,9 @@
     "engineering/infrastructure/k8s.md.tmp.16531.d97685971ae3",
     "engineering/infrastructure/k8s.md.tmp.16531.946fa623941b",
     "engineering/infrastructure/k8s.md.tmp.16531.9bcf8de15e54",
-    "engineering/infrastructure/k8s.md.tmp.16531.708fa4fe37dc",
     "engineering/infrastructure/gcp.md",
-    "engineering/infrastructure/k8s.md",
     "engineering/system-architecture/hexagon.md",
-    "engineering/programming-languages/javascript-typescript/nodebook.md",
     "engineering/programming-languages/javascript-typescript/javascript-info.md",
-    "roadmaps/low-level system engineer.md",
-    "roadmaps/low-level system engineer.md.tmp.66937.ecbb7079c2bc",
     "excalidraw/consistent-hashing-drawing.md",
     "excalidraw/AWS VPC.md",
     "excalidraw/cache-data-inconsistency.md",
@@ -212,10 +212,6 @@
     "engineering/system-design/sloppy quorum - hinted handoff.md",
     "engineering/system-design/search autocomplete - incremental search.md",
     "engineering/system-design/gossip protocol.md",
-    "engineering/system-design/memcached.md",
-    "engineering/system-design/bloom filter.md",
-    "engineering/system-design/web server.md",
-    "engineering/system-design/web security.md",
     "attachments/Pasted image 20260321120728.png",
     "attachments/Pasted image 20260321120525.png",
     "attachments/Pasted image 20260221171610.png",
@@ -225,7 +221,6 @@
     "attachments/Pasted image 20260216002137.png",
     "attachments/Pasted image 20260216001208.png",
     "attachments/Pasted image 20260215234227.png",
-    "attachments/Pasted image 20260215142509.png",
     "Untitled.canvas"
   ]
 }
