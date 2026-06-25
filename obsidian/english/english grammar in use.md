@@ -48,3 +48,69 @@
 
 ### past perfect continuous
 - `S + had been + V-ing`
+
+### present tenses for the future
+- present continuous -> decided/arranged to do something
+- present simple -> timetables (plans are fixed like a timetable), programmes
+- `S + (be) + doing to + V`
+	- intend to do something (arranged or not)
+	- something is going to happen in the future
+
+### future simple (will/shall)
+- offering/agreeing/promising to do something (not decided/arranged before) -> will/shall (not arranged) < `(be) going to` (arranged or not) < present continuous (arranged)
+
+### future simple continuous
+- `S + will be + V-ing` = i will be in the middle of doing something
+
+### future perfect
+- `S + will have + V-pp` = it will be complete before a time in the future
+
+### have = have got
+- for possession, relationship, appointment, ..., not things we do/experience
+
+### used to
+- i did it often in the past, but not any more
+
+### if/when
+- when/while/before/after/as soon as/until + present simple = time in the future (happen together)
+- when + present perfect = one thing is complete before other (not happen together)
+
+# modal verbs
+
+| **Modal Verb** | **Epistemic Function (Probability)**                    | **Deontic Function (Obligation/Permission)**                 |
+| -------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
+| **must**       | Logical deduction (_"It must be raining."_)             | Absolute obligation (_"You must stop."_)                     |
+| **can**        | General possibility (_"It can get cold here."_)         | Permission or Ability (_"Can I go?"_ / _"I can drive."_)     |
+| **could**      | Weak possibility (_"It could rain."_)                   | Past ability / Polite request (_"Could you help?"_)          |
+| **may**        | Factual possibility (_"He may accept the job."_)        | Formal permission (_"May I enter?"_)                         |
+| **might**      | Remote possibility (_"They might lose."_)               | Very formal permission (_"Might I suggest an alternative?"_) |
+| **should**     | Expectation (_"They should be here soon."_)             | Advice / Weak obligation (_"You should eat healthier."_)     |
+| **will**       | Certain prediction (_"The sun will rise."_)             | Volition / Intent (_"I will help you."_)                     |
+| **would**      | Hypothetical probability (_"That would be difficult."_) | Past habit / Conditional (_"I would go if I had time."_)     |
+
+### can/could/(be) able to
+- something is possible or allowed, somebody has the ability to do it
+- could (general ability) != was/were able to (= managed to)
+- `could have done` = it was possible but didn't happen
+
+### must/can't
+- must = something is certain
+- can't = something is not possible
+
+### may/might
+- something is possible
+- may be != maybe (perhaps)
+- could ~ may/might, could not (not possible) < may/might not (perhaps)
+- use 'might' (not 'may') if situation is not real
+- 'may/might as well do something' = should do it because there is no better alternative
+
+### have to/must/need
+- must/have to do something = it is necessary to do it
+- mustn't do something = don't do it
+- not have to do something = needn't do it
+
+### should
+
+### would
+
+### had better/it's time
