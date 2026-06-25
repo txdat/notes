@@ -23,26 +23,18 @@ Quartz will serve the site at `http://localhost:8080`.
 2. Set `Source` to `GitHub Actions`.
 3. Trigger a deploy in one of these ways:
    - run the workflow manually from the `Actions` tab
-   - push a tag that matches `pages-v*`
-   - bump [`.pages-version`](/home/txdat/work/notes/.pages-version) on `main` and push that file
+   - push to `master`
 
 Examples:
 
 ```bash
-# tag-based deploy
-git tag pages-v1
-git push origin pages-v1
-
-# version-file deploy
-printf '2\n' > .pages-version
-git add .pages-version
-git commit -m "trigger pages deploy"
-git push origin main
+# push-based deploy
+git push origin master
 ```
 
 Notes:
 
-- normal content/code pushes no longer trigger Pages automatically
-- `workflow_dispatch` is still available for truly manual deploys
+- pushes to `master` trigger the Pages deploy workflow
+- `workflow_dispatch` is available for manual deploys
 
 The workflow is in [deploy-pages.yml](/home/txdat/work/notes/.github/workflows/deploy-pages.yml).
