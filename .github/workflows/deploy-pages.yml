@@ -13,10 +13,6 @@ on:
   push:
     branches:
       - main
-    tags:
-      - pages-v*
-    paths:
-      - .pages-version
 
 permissions:
   contents: read
