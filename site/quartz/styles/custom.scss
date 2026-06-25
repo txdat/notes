@@ -1,3 +1,38 @@
 @use "./variables.scss" as *;
 
-// put your custom CSS here!
+@font-face {
+  font-family: "Maple Mono Normal NL NF CN";
+  src: url("/static/fonts/MapleMonoNormalNL-NF-CN-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono Normal NL NF CN";
+  src: url("/static/fonts/MapleMonoNormalNL-NF-CN-Italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono Normal NL NF CN";
+  src: url("/static/fonts/MapleMonoNormalNL-NF-CN-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono Normal NL NF CN";
+  src: url("/static/fonts/MapleMonoNormalNL-NF-CN-BoldItalic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --codeFont: "Maple Mono Normal NL NF CN", ui-monospace, SFMono-Regular, SF Mono, Menlo,
+    monospace;
+}

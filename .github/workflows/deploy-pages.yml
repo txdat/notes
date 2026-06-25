@@ -13,6 +13,8 @@ on:
   push:
     branches:
       - master
+    paths:
+      - version.json
 
 permissions:
   contents: read
