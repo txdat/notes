@@ -62,7 +62,7 @@ async function buildHomePage() {
         !entry.name.startsWith(".") &&
         !hiddenHomeSections.has(entry.name),
     )
-    .map((entry) => `- [${toTitleCase(entry.name)}](./${entry.name})`)
+    .map((entry) => `- [${toTitleCase(entry.name)}](./${entry.name}/)`)
     .sort((left, right) => left.localeCompare(right))
 
   const homePage = [

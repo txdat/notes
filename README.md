@@ -1,7 +1,5 @@
 # txdat's notes
 
-- open **obsidian** as a vault of [obsidian](https://obsidian.md/)
-
 ## GitHub Pages
 
 This repo now includes a Quartz site scaffold in [`site/`](/home/txdat/work/notes/site) that publishes the
