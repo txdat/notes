@@ -109,8 +109,23 @@
 - mustn't do something = don't do it
 - not have to do something = needn't do it
 
-### should
-
+### should/ought to
+- should do = right thing to do
+- should have done = DIDN'T do the right thing to do
+- shouldn't have done = DID something that wasn't good thing
+- use should after
+	- insist, demand, recommend, suggest, propose
+	- (adjective) strange, odd, funny, typical, natural, interesting, surprised, surprising
 ### would
+- when we imagine a situation/action (not real), would have done for past
 
 ### had better/it's time
+- had better do something = it is advisable to do it. if not, there will be a problem/danger -> use for a specific situation (not for general)
+
+### can/could/would for requests/offers/permission/invitations
+
+# conditional sentence
+
+# passive sentence
+
+# reported speech

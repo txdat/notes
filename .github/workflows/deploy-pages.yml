@@ -14,7 +14,7 @@ on:
     branches:
       - master
     paths:
-      - version.json
+      - release.md
 
 permissions:
   contents: read

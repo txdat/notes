@@ -181,7 +181,7 @@
 
 ### OS Fundamentals — Systems Depth (Weeks 1–3, ~60 hrs)
 
-- [ ] Read OSTEP Ch. 13-23 — full Virtualization section (Address Spaces, Address Translation, Segmentation, Free Space, Paging, TLBs, Smaller Tables, Swapping)
+- [ ] Read OSTEP Ch. 13-23 — full Virtualization section. **Work chapter-by-chapter through the Reading Guide below — a chapter counts only when its self-checks pass cold**
 - [ ] Draw a process virtual address space (stack, heap, BSS, text) from memory
 - [ ] Study memory allocator internals: dlmalloc/ptmalloc, TCMalloc, jemalloc
 - [ ] Explain why TCMalloc is faster than ptmalloc under high thread contention
@@ -680,38 +680,179 @@
 
 ---
 
-## Resources
+## Interview Depth Bank — "Why" and "What Fails"
 
-### Books
-- [ ] **OSTEP** — ostep.org (free). Read Virtualization fully, Concurrency in Phase 2.
-- [ ] **What Every Programmer Should Know About Memory** — Drepper 2007. Free PDF.
-- [ ] **100 Go Mistakes and How to Avoid Them** — Harsanyi. Ch. 1–9.
-- [ ] **Effective Modern C++** — Scott Meyers. Ch. 1–5 (move semantics), Ch. 7 (concurrency).
-- [ ] **A Tour of C++** — Stroustrup. Read before Effective Modern C++.
-- [ ] **The Art of Multiprocessor Programming** — Herlihy & Shavit. Queue and memory reclamation chapters.
-- [ ] **C++ Concurrency in Action** — Williams. Ch. 7 (lock-free data structures).
-- [ ] **Java Concurrency in Practice** — Goetz. Ch. 1–5 + Ch. 10–12.
-- [ ] **PostgreSQL 14 Internals** — Rogov. Free at postgrespro.com. Ch. 1–6, 9, 12.
-- [ ] **Designing Data-Intensive Applications** — Kleppmann. Ch. 5, 7, 8, 9.
-- [ ] **Competitive Programmer's Handbook** — Laaksonen. Free PDF. CF algorithm reference.
-- [ ] **BPF Performance Tools** — Brendan Gregg. Ch. 1–5.
-- [ ] **Linux Kernel Development** — Robert Love. Ch. 4 (scheduling), Ch. 13 (VFS).
+> The questions an interviewer probes with. Answer all of these cold, without notes.
+> Most are extracted from the phase tasks above; the system-design section is the gap this roadmap otherwise doesn't cover.
 
-### Papers
-- [ ] In Search of an Understandable Consensus Algorithm — Ongaro & Ousterhout 2014
-- [ ] Simple, Fast, Practical Non-Blocking Queue — Michael & Scott 1996
-- [ ] Hazard Pointers: Safe Memory Reclamation — Michael 2004
-- [ ] The Log-Structured Merge-Tree — O'Neil 1996
-- [ ] A Critique of ANSI SQL Isolation Levels — Berenson et al. 1995
-- [ ] Time, Clocks, and the Ordering of Events — Lamport 1978
-- [ ] Dynamo: Amazon's Highly Available Key-Value Store — DeCandia et al. 2007
-- [ ] FLP Impossibility — Fischer, Lynch, Paterson 1985
+### OS / CS Fundamentals
 
-### Online
-- [ ] **MIT 6.824** — pdos.csail.mit.edu/6.824. Labs 2A–2D with test harness.
-- [ ] **NeetCode 150** — neetcode.io. Minimum viable interview problem set.
-- [ ] **Codeforces EDU** — codeforces.com/edu/courses. Binary Search, Segment Tree, DSU, Flows.
-- [ ] **Atcoder DP Contest** — atcoder.jp/contests/dp. 26 DP archetypes.
-- [ ] **cp-algorithms.com** — E-Maxx algorithm reference in English.
-- [ ] **JVM Anatomy Quarks** — Shipilev. Read any 5 posts.
-- [ ] **Brendan Gregg** — brendangregg.com. Flame graphs, eBPF, off-CPU analysis.
+- **Why is TCMalloc faster than ptmalloc under high thread contention?**
+  Each thread allocates from a thread-local cache with no lock; it only touches the central heap — under a lock — to refill or drain in batches. ptmalloc has per-arena locks, but threads still contend on a bounded number of arenas. TCMalloc removes the lock from the common path and amortizes it over batches.
+- **What is a store buffer and why does it break visibility on non-x86?**
+  A per-core FIFO holding stores before they reach coherent cache, so the core doesn't stall on cache-coherence. Another core can't see the store until it drains. x86 (TSO) only reorders StoreLoad, so it's mostly hidden; weak models (ARM/POWER) also reorder StoreStore/LoadLoad, so without a barrier another core sees writes out of order or stale.
+- **Why do two threads writing *different* variables slow each other >5x?**
+  The variables share one 64-byte cache line; each write invalidates the other core's copy (MESI), forcing a coherence round-trip on every access. `alignas(64)` to separate lines removes it.
+- **Why does a low-nice (high-priority) process accumulate vruntime more slowly?**
+  CFS divides real runtime by the process's weight when incrementing vruntime. Higher weight → smaller vruntime step per unit of real time → it stays leftmost in the RB-tree longer → scheduled more often.
+- **Why does ext4 ordered mode prevent metadata pointing at garbage?**
+  It flushes data blocks to disk *before* committing the metadata that references them. After a crash, a file's block pointers can never reference blocks that were never written — which would otherwise expose another file's deleted/stale data (an integrity + security hole). It orders data; it doesn't journal it.
+
+### Go
+
+- **What happens to the scheduler when a goroutine makes a blocking syscall?**
+  The M (OS thread) blocks in the kernel. The runtime detaches its P and hands it to another M (spawning one if needed) so remaining goroutines keep running. On return, the M tries to reacquire a P; if none is free, its goroutine is queued and the M parks.
+- **Why does a value escape to the heap, and how do you see it?**
+  If the compiler can't prove the value's lifetime is bounded by the stack frame — its address is returned, stored behind a pointer, captured by a closure, or passed through an interface — it must heap-allocate. `go build -gcflags='-m'` prints each decision.
+- **How does a goroutine blocked on a socket read not block an OS thread?**
+  The fd is non-blocking and registered with epoll. The goroutine parks and the M is freed. When epoll signals readiness, the netpoller marks the goroutine runnable and the scheduler resumes it — so millions of goroutines block on I/O with a handful of threads.
+
+### PostgreSQL
+
+- **When is an Index Only Scan used instead of an Index Scan, and what enables it?**
+  When every column the query needs is in the index *and* the visibility map marks the pages all-visible — so Postgres skips the heap fetch it would otherwise need to check MVCC visibility. If recent writes cleared the VM bit, it falls back to visiting the heap.
+- **What anomaly does each isolation level still allow?**
+  Read Committed: non-repeatable reads and phantoms. Repeatable Read (snapshot in PG): prevents those but allows write skew. Serializable (SSI): detects the read/write dependency cycle behind write skew and aborts one transaction.
+- **Walk the checkpoint-to-crash-recovery sequence.**
+  Changes hit the WAL before the data page (write-ahead). A checkpoint flushes dirty buffers and writes a checkpoint record with a REDO pointer. After a crash, redo replays WAL from that pointer forward. No undo pass — uncommitted changes are simply invisible under MVCC because their xids never committed.
+- **Why does UPDATE write a new tuple, and what's the consequence?**
+  To keep the old version visible to concurrent snapshots (readers don't block writers). Consequence: dead tuples accumulate → bloat → VACUUM must reclaim them. Autovacuum and the visibility map exist to manage exactly this.
+
+### Distributed
+
+- **Why does a coordinator crash block the cohorts in 2PC?**
+  After voting yes ("prepared"), a cohort holds its locks and can't unilaterally commit or abort without breaking atomicity — it must wait for the decision. If the coordinator dies after collecting votes but before broadcasting, cohorts are stranded holding locks.
+- **Why does making the coordinator a Raft group fix that?**
+  The commit decision is replicated to a majority before it's acted on, so it survives any single crash. A new leader reads the decision from the replicated log and finishes the protocol — no single node whose death strands the cohorts.
+- **FLP says async consensus is impossible — why does Raft work?**
+  FLP assumes full asynchrony, where a slow node is indistinguishable from a dead one. Raft assumes partial synchrony and uses timeouts / randomized election timers — a stronger model FLP doesn't cover. It can sacrifice *liveness* under pathological timing (repeated elections) but never *safety*.
+- **State the leader completeness property and why it holds.**
+  Once an entry is committed, it's present in every future leader's log. It holds because an entry commits only after reaching a majority, a candidate wins only with a majority, and the RequestVote up-to-date check makes voters reject any candidate whose log is behind — so any winner already has every committed entry.
+
+### System Design — the "what fails" gap (most important for high-scale interviews)
+
+- **Why can a read replica return a stale value, and when does it matter?**
+  It applies WAL asynchronously, lagging the primary by ms–s. A user who just wrote (e.g., debited balance) may read the pre-write value — a read-your-writes violation. Fix: route a recently-writing user's reads to the primary, or carry a causal/session token.
+- **What fails if two identical requests race on an idempotency key?**
+  With a non-atomic check-then-insert, both see "absent" and both execute the side effect — double charge. Fix: a UNIQUE constraint or `INSERT ... ON CONFLICT`, making the key itself the concurrency-control point.
+- **A saga isn't atomic — what does that mean for correctness?**
+  Each step commits independently; there's no global rollback, only compensation. Between a failure and its compensation the system is valid-per-service but globally inconsistent (money debited, booking not yet made). You must model that intermediate state explicitly (a `pending` status) — acceptable only if the business tolerates eventual consistency.
+- **What happens to in-flight limits when a rate-limiter node dies?**
+  With node-local counters, its quota share is lost and clients rerouted elsewhere get a fresh bucket — the global limit is briefly exceeded. Fix: centralize counters (Redis) or accept approximate limiting; it's an accuracy vs latency/availability trade.
+
+---
+
+## Reading Guide — Chapter-by-Chapter with Self-Checks
+
+> **Rule for every chapter/paper:** finish it, close the book, answer the checks out loud without notes.
+> Can't answer → reread that chapter before moving on. A checkbox means "passed the checks," not "eyes saw the pages."
+
+### OSTEP — ostep.org (free)
+
+**Phase 1: Virtualization/Memory (Ch. 13–23)**
+- [ ] **Ch. 13 — Address Spaces.** Check: state the three goals of virtualizing memory (transparency, efficiency, protection). Draw a process address space with stack/heap growth directions — this is the Phase 1 task.
+- [ ] **Ch. 14 — Memory API.** Check: name three classic malloc bugs (buffer overflow, use-after-free, leak) and which tool catches each. Why is `free()` given no size argument — where does the size live?
+- [ ] **Ch. 15 — Address Translation.** Check: how does base-and-bounds translation work and what hardware does it require? Why is it insufficient for real programs (no sparse address spaces, internal waste)?
+- [ ] **Ch. 16 — Segmentation.** Check: how do segment base/bounds pairs enable a sparse address space? What is external fragmentation and why does segmentation cause it?
+- [ ] **Ch. 17 — Free-Space Management.** Check: explain splitting and coalescing. Best-fit vs first-fit tradeoffs? How do segregated lists / slab allocation sidestep fragmentation? (Feeds directly into `memory-allocators.md`.)
+- [ ] **Ch. 18 — Paging.** Check: translate a virtual address by hand (split VPN/offset, index page table). Why does a linear page table for a 32-bit space with 4KB pages cost ~4MB *per process*?
+- [ ] **Ch. 19 — TLBs.** Check: walk a TLB miss end-to-end (hardware-managed vs OS-managed). What happens to the TLB on context switch, and how do ASIDs avoid a full flush? Why does row-major vs column-major array traversal change performance?
+- [ ] **Ch. 20 — Smaller Tables.** Check: how does a multi-level page table save memory and what does it cost on a TLB miss? x86-64 uses a 4-level walk — what does that imply about TLB-miss latency?
+- [ ] **Ch. 21 — Swapping: Mechanisms.** Check: narrate a page fault from present-bit trap to instruction retry. Why is the page fault handler always software even with a hardware-walked TLB?
+- [ ] **Ch. 22 — Swapping: Policies.** Check: why is exact LRU too expensive to implement? Explain the clock algorithm. Define thrashing and what the OS can do about it.
+- [ ] **Ch. 23 — VAX/VMS Case Study.** Check: name two VMS ideas that survive in Linux today (e.g., second-chance FIFO lists, demand-zero pages, kernel mapped into every address space).
+
+**Phase 2: Concurrency (Ch. 26–32)**
+- [ ] **Ch. 26 — Concurrency Intro.** Check: show why `counter++` is not atomic at the instruction level. Define race condition vs data race.
+- [ ] **Ch. 28 — Locks.** Check: compare test-and-set, compare-and-swap, fetch-and-add as lock primitives. When is a spinlock the right choice vs a blocking lock?
+- [ ] **Ch. 29 — Lock-Based Data Structures.** Check: what is lock coupling (hand-over-hand)? Why does a sloppy/approximate counter scale where a single-lock counter doesn't? (Same idea as your sharded LRU cache.)
+- [ ] **Ch. 30 — Condition Variables.** Check: why must `wait()` be called in a `while` loop, not `if`? What is a spurious wakeup? Producer/consumer with two CVs — why two?
+- [ ] **Ch. 31 — Semaphores.** Check: implement a lock and a CV-equivalent with semaphores. What initial value means what?
+- [ ] **Ch. 32 — Concurrency Bugs.** Check: atomicity violation vs order violation with an example of each. State the four conditions for deadlock and which one lock ordering breaks.
+
+### What Every Programmer Should Know About Memory — Drepper 2007 (free PDF)
+
+> Read §3, §4, §6 carefully; skim §2 and §5 (§5 becomes required in Phase 5/NUMA).
+- [ ] **§3 — CPU Caches.** Check: define set associativity and compute which set an address maps to. Write-back vs write-through? Explain cache line bouncing between cores — connect to your false-sharing benchmark.
+- [ ] **§4 — Virtual Memory.** Check: what does a 4-level page walk cost, and how do hugepages reduce TLB pressure? (Connect to `perf stat -e dTLB-load-misses`.)
+- [ ] **§6 — What Programmers Can Do.** Check: why does sequential access beat random access even when everything fits in RAM (prefetcher)? Give two data-layout changes that improve cache use (AoS→SoA, padding to line size).
+
+### 100 Go Mistakes and How to Avoid Them — Harsanyi (Ch. 1–9)
+
+- [ ] **Ch. 2 — Code/Project Organization.** Check: when is an interface pollution (define interfaces on the consumer side, not producer)? Why does returning an interface hurt?
+- [ ] **Ch. 3 — Data Types.** Check: slice length vs capacity — show how re-slicing a large slice leaks memory. What does `copy` require that assignment doesn't?
+- [ ] **Ch. 4 — Control Structures.** Check: what does `for range` copy on each iteration? The classic goroutine-captures-loop-variable bug — why does it happen and how is it fixed (pre-1.22 vs 1.22+)?
+- [ ] **Ch. 5 — Strings.** Check: iterating a string yields bytes or runes — when? Why can `len(s)` disagree with character count? Why is repeated `+=` concatenation O(n²) and what replaces it?
+- [ ] **Ch. 6 — Functions & Methods.** Check: value vs pointer receiver — when does it matter for mutation and for interface satisfaction? What does `defer` evaluate immediately vs at return? The defer-in-loop resource leak.
+- [ ] **Ch. 7 — Error Management.** Check: `%w` vs `%v` in `fmt.Errorf` — what do `errors.Is`/`errors.As` need? Why panic only for programmer errors?
+- [ ] **Ch. 8 — Concurrency: Foundations.** Check: data race vs race condition in Go terms. Why is a buffered channel of size 1 not a mutex? What does `context.Context` propagate and when must you check `ctx.Done()`?
+- [ ] **Ch. 9 — Concurrency: Practice.** Check: three ways to leak a goroutine (blocked send on unread channel, forgotten receiver, missing cancellation) and the fix for each. When does `sync.Pool` help and when does it hurt?
+
+### PostgreSQL 14 Internals — Rogov (free at postgrespro.com)
+
+- [ ] **Ch. 1 — Introduction.** Check: sketch the process architecture — postmaster, backend per connection, checkpointer, WAL writer, autovacuum workers. Where does shared memory sit?
+- [ ] **Part I — Isolation & MVCC (Ch. 2–8).**
+  - [ ] Isolation chapters — Check: which anomaly does each PG level allow (map to your two-psql-sessions labs)? Why is PG's Read Uncommitted actually Read Committed?
+  - [ ] Pages & tuples — Check: what's in a page header, an item pointer (line pointer), a tuple header (xmin, xmax, ctid)? How large before TOAST kicks in?
+  - [ ] Snapshots — Check: what three things define a snapshot (xmin, xmax, active xid list) and how is tuple visibility decided from them?
+  - [ ] HOT updates & page pruning — Check: what two conditions allow a HOT update, and why does it avoid index bloat?
+  - [ ] Vacuum & autovacuum — Check: write the autovacuum trigger formula (threshold + scale_factor × reltuples). What does vacuum reclaim vs what does it just mark?
+  - [ ] Freezing — Check: why does xid wraparound exist (32-bit xids) and what would happen without freezing?
+- [ ] **Part II — Buffer Cache & WAL (Ch. 9–11).**
+  - [ ] Buffer cache — Check: walk clock-sweep eviction with usage counts. Why does a Seq Scan use a ring buffer instead of flooding shared_buffers?
+  - [ ] WAL — Check: what is an LSN? Why must WAL flush *before* the dirty page (the actual write-ahead rule)? What are full-page writes and why after each checkpoint?
+  - [ ] Checkpoints — Check: narrate crash recovery from the REDO pointer (your Depth Bank answer, now with LSN detail).
+- [ ] **Part III — Locks (Ch. 12–15).** Check: table-level lock modes — which conflict with what? Row locks live in tuple headers, not memory — why does that matter? What is a deadlock detection cycle in PG?
+- [ ] **Part IV — Query Execution (Ch. 16–20).** Check: cost model — what do seq_page_cost/random_page_cost encode? For each join (nested loop, hash, merge): when does the planner pick it and what makes it degrade? Why do stale statistics produce bad plans (`ANALYZE`)?
+
+### Designing Data-Intensive Applications — Kleppmann (Ch. 5, 7, 8, 9)
+
+> Your highest-leverage book for Grab system design rounds. One chapter per week, notes in `design-data-intensive-applications/`.
+- [ ] **Ch. 5 — Replication.** Check: single-leader vs multi-leader vs leaderless — one use case each. Define read-your-writes, monotonic reads, consistent prefix, and one implementation for each. How do leaderless quorums (w + r > n) still return stale data?
+- [ ] **Ch. 7 — Transactions.** Check: define dirty write, read skew, write skew, phantom — with a concrete money example each. How does 2PL differ from SSI in *how* it prevents write skew (blocking vs abort)?
+- [ ] **Ch. 8 — The Trouble with Distributed Systems.** Check: why can't wall-clock time order events (NTP skew, leap smearing)? What is a fencing token and what failure does it prevent (paused process with expired lock)? Why are process pauses (GC, VM migration) indistinguishable from crashes?
+- [ ] **Ch. 9 — Consistency and Consensus.** Check: linearizability vs serializability — which is about single-object recency, which about multi-object transactions? Why is total order broadcast equivalent to consensus? Restate CAP precisely (during a partition: consistency or availability).
+
+### Java Concurrency in Practice — Goetz (Ch. 1–5, 10–12)
+
+- [ ] **Ch. 2–3 — Thread Safety & Sharing Objects.** Check: what makes a class thread-safe? Explain publication and escape — why is starting a thread in a constructor dangerous? List the safe-publication idioms (final field, volatile, lock, static initializer).
+- [ ] **Ch. 4–5 — Composing Objects & Building Blocks.** Check: why is a class built from thread-safe components not automatically thread-safe (check-then-act across calls)? What do `ConcurrentHashMap`'s atomic compound ops (`computeIfAbsent`) buy you?
+- [ ] **Ch. 10–11 — Liveness & Performance.** Check: show a lock-ordering deadlock and the fix. What is lock contention's real cost (context switches, cache traffic)? Lock splitting vs lock striping.
+- [ ] **Ch. 12 — Testing.** Check: why do concurrency bugs hide under test (JIT, weak schedules) and what raises the odds (more threads than cores, barriers to synchronize start)?
+
+### C++ Track (Phase 2)
+
+- [ ] **A Tour of C++ — Stroustrup, Ch. 1–5.** Check: RAII in one sentence. What does `=delete` on copy operations express? Value vs reference semantics of containers.
+- [ ] **Effective Modern C++ — Meyers, Ch. 1 + 5 + 7.**
+  - [ ] Ch. 5 (move semantics, items 23–30) — Check: why does `std::move` move nothing? Universal (forwarding) reference vs rvalue reference — how does `T&&` differ in a template? When does perfect forwarding fail? Why can moving disable RVO?
+  - [ ] Ch. 7 (concurrency, items 35–40) — Check: `std::atomic` vs `volatile` — which is for concurrency, which for memory-mapped I/O? What does a joinable `std::thread` destructor do (terminate!) and how do you guard it?
+- [ ] **C++ Concurrency in Action — Williams, Ch. 7.** Check: implement lock-free stack push in pseudocode with correct orderings. Where exactly does ABA bite it? Why is `compare_exchange_weak` in a loop preferred?
+- [ ] **The Art of Multiprocessor Programming — Herlihy & Shavit, queue + reclamation chapters.** Check: define linearization point; identify it for MS-queue enqueue and dequeue. Why can't a lock-free structure just `free()` removed nodes?
+- [ ] **Linux Kernel Development — Love, Ch. 4 + 13.** Check: how does CFS pick the next task (leftmost node) in O(log n)? What are the VFS four objects (superblock, inode, dentry, file) and what does each own?
+- [ ] **BPF Performance Tools — Gregg, Ch. 1–5.** Check: kprobe vs uprobe vs tracepoint vs USDT — stability and overhead of each. Why is off-CPU analysis needed when CPU flame graphs look flat?
+
+### Papers — each with checks
+
+- [ ] **Raft — Ongaro & Ousterhout 2014** (read twice). Check: why randomized election timeouts (split votes)? State the Log Matching property and how AppendEntries' prev-index/term check maintains it. Figure 8: why can a leader *not* commit a previous term's entry by counting replicas — what's the rule?
+- [ ] **Michael & Scott queue — 1996.** Check: why can `tail` lag behind the real last node, and how does "helping" fix it? Identify both linearization points. Why does dequeue read `head`, `tail`, *and* `next`?
+- [ ] **Hazard Pointers — Michael 2004.** Check: walk the protocol — publish hazard pointer, validate, use. Why is validation (re-read after publish) mandatory? When does a retired node actually get freed?
+- [ ] **LSM-Tree — O'Neil 1996.** Check: define write amplification, read amplification, space amplification — and state which one leveled compaction optimizes at the cost of which. Why do sequential writes beat random even on SSDs?
+- [ ] **A Critique of ANSI SQL Isolation Levels — Berenson 1995.** Check: why were the ANSI anomaly definitions ambiguous (strict vs broad interpretation)? Define snapshot isolation and show the A5B write-skew history that proves SI ≠ serializable.
+- [ ] **Time, Clocks — Lamport 1978.** Check: define happened-before. Why do Lamport clocks give `a→b ⇒ C(a)<C(b)` but not the converse — and what do vector clocks add that fixes it?
+- [ ] **Dynamo — DeCandia 2007.** Check: why did Amazon choose availability over consistency for the cart? Sloppy quorum + hinted handoff — what guarantee is weakened? How do vector clocks surface conflicts and who resolves them? What are Merkle trees for?
+- [ ] **FLP — Fischer, Lynch, Paterson 1985.** Check (concept-level is enough): what exact model does it assume (async, deterministic, one crash)? What does "bivalent configuration" mean intuitively? What does it *not* say (consensus usually works in practice — why)?
+
+### Courses & Online
+
+- [ ] **MIT 6.824** — pdos.csail.mit.edu/6.824. Watch lectures 1–8 before/alongside labs.
+  - [ ] Lec 2 (RPC/threads) — Check: why does the lab use condition variables + a mutex per Raft peer?
+  - [ ] Lec 3 (GFS) — Check: what consistency does GFS actually give appends, and why was that acceptable?
+  - [ ] Lec 4 (Primary/Backup) — Check: why must the backup see *every* nondeterministic input?
+  - [ ] Lec 6–7 (Raft) — Check: answers to all Raft paper checks above, plus: why snapshot instead of infinite log?
+- [ ] **JVM Anatomy Quarks** — Shipilev, any 5 posts. Check per post: write the one-paragraph takeaway in your own words in `programming-languages/java/` notes.
+- [ ] **Brendan Gregg** — brendangregg.com. Check: explain what a flame graph's x-axis is (population, *not* time) and what off-CPU flame graphs add.
+- [ ] **NeetCode 150** — neetcode.io. Pattern coverage tracker for LC track.
+- [ ] **Codeforces EDU** — Binary Search, Segment Tree, DSU, Flows sections.
+- [ ] **Atcoder DP Contest** — 26 DP archetypes.
+- [ ] **cp-algorithms.com** — reference while solving, not linear reading.
+- [ ] **Competitive Programmer's Handbook** — Laaksonen. Reference alongside CF ladder, not cover-to-cover.
