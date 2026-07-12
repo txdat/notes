@@ -175,7 +175,8 @@
 			- any ABORTED -> ABORT
 			- all PRE-COMMITED -> COMMIT (a full prepare quorum was reached and coordinator had decided to commit)
 			- all PREPARED/INIT -> ABORT
-   ```
+
+```
 NORMAL PATH: COMMIT PROTOCOL
 ═══════════════════════════════════════════════════════════════════════════════
 
@@ -380,10 +381,12 @@ STATE DECISION MATRIX (used by both termination and recovery)
   all PREPARED             ABORT           no decision made, safe to abort
   all INIT                 ABORT           transaction never started
 
-   ```
+```
+
 - failure scenarios
 	- durability violation: commit quorum not reached
-		```
+
+```
 N = 7, Qc = 4
 coordinator sends DO_COMMIT to all 7, but receives 3 ACK before crash
 
@@ -391,17 +394,19 @@ termination protocol fires -> new elected coordinator queries states -> any COMM
 all COMMITTED nodes crash -> new elected coordinator sees only PRE-COMMIT
 	- allow COMMIT from PRE-COMMIT quorum
 	- abort -> 4 ABORTED, 3 COMMITTED (after recover) -> split brain
-		```
-		- additional mechanisms for durability
-			- persistent WAL before ACK
-			- consensus underneath (raft/paxos): spanner (2PC over paxos)
+```
+
+- additional mechanisms for durability
+	- persistent WAL before ACK
+	- consensus underneath (raft/paxos): spanner (2PC over paxos)
 ### long-lived transaction & saga
 ![[Pasted image 20260712174935.png | 600]]
 - saga is sequence of local transactions (trigger next transaction by message/event) that can be interleaved with other sagas with atomic guarantee. each of transaction T in saga is associated with compensating transaction C for rollback
 - 2 execution models
 	- choreography
 		- no central coordinator, services listen event and react
-		```
+
+```
 OrderService          PaymentService        InventoryService
      │                       │                      │
   T1: create order           │                      │
@@ -417,10 +422,12 @@ OrderService          PaymentService        InventoryService
      │                    C2: refund card           │
   C1: cancel order           │                      │
 
-		```
-	- orchestration
-		- central coordinator drives sequence of transactions
-		```
+```
+
+- orchestration
+	- central coordinator drives sequence of transactions
+
+```
 Orchestrator      OrderService   PaymentService   InventoryService
      │                 │               │                 │
      │──── T1 ────────>│               │                 │
@@ -437,7 +444,8 @@ Orchestrator      OrderService   PaymentService   InventoryService
      │                 │               │                 │
    DONE (compensated)
 
-		```
+```
+
 
 - drawbacks
 	- no isolation guarantee between concurrent sagas
