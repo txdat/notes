@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "058bb811742ff916",
+        "id": "81f20cb65c584e4f",
         "type": "tabs",
         "children": [
           {
-            "id": "82a48f3b6ee045bc",
+            "id": "694816412c608765",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "engineering/design-data-intensive-applications/distributed-system-practitioners.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "distributed-system-practitioners"
+              "title": "New tab"
             }
           }
         ]
@@ -155,8 +151,8 @@
             "state": {
               "type": "advanced-tables-toolbar",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "advanced-tables-toolbar"
+              "icon": "spreadsheet",
+              "title": "Advanced Tables"
             }
           }
         ],
@@ -179,15 +175,23 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "82a48f3b6ee045bc",
+  "active": "694816412c608765",
   "lastOpenFiles": [
+    "engineering/design-data-intensive-applications/distributed-system-practitioners.md",
+    "attachments/Pasted image 20260712174935.png",
+    "attachments/Pasted image 20260712172253.png",
+    "attachments/Pasted image 20260712163621.png",
+    "attachments/Pasted image 20260712160808.png",
+    "engineering/design-data-intensive-applications/ddia-2.md",
+    "tools/git.md",
+    "tools/k8s.md",
+    "interview-questions",
     "attachments/Pasted image 20260711215537.png",
     "attachments/Pasted image 20260711161149.png",
     "attachments/Pasted image 20260711151010.png",
     "attachments/Pasted image 20260711142406.png",
     "attachments/Pasted image 20260711142354.png",
     "engineering/roadmaps/low-level system engineer.md",
-    "engineering/design-data-intensive-applications/distributed-system-practitioners.md",
     "computer-science/database/CMU 15-445_721/storage models & memory management.md",
     "computer-science/database/CMU 15-445_721/transaction.md",
     "computer-science/database/CMU 15-445_721/sorting & aggregation.md",
@@ -209,10 +213,7 @@
     "computer-science/distributed/consistent-hashing.md",
     "engineering/system-design/consistent hashing.md",
     "computer-science/distributed/raft.md",
-    "computer-science/database/lsm.md",
     "computer-science/database/lsm.md.tmp.41130.3151a4a7a105",
-    "computer-science/os/cpu-cache-and-false-sharing.md",
-    "computer-science/algorithms/number theory.md",
     "engineering/postgresql/query-optimization.md.tmp.41130.d34aff8c08ba",
     "engineering/postgresql/partitioning.md.tmp.41130.7aa2f1241e87",
     "engineering/postgresql/streaming-replication.md.tmp.41130.258ebeec19f8",
@@ -221,12 +222,6 @@
     "engineering/postgresql/wal-and-recovery.md.tmp.41130.580f1f0c6eb5",
     "engineering/postgresql/isolation-levels.md.tmp.41130.db5f01f1c056",
     "engineering/postgresql/indexes-and-explain.md.tmp.41130.0ae815ae5610",
-    "engineering/postgresql/mvcc.md.tmp.41130.78405f8a3a41",
-    "attachments/Pasted image 20260615152905.png",
-    "attachments/Pasted image 20260321120728.png",
-    "attachments/Pasted image 20260321120525.png",
-    "attachments/Pasted image 20260221171610.png",
-    "attachments/Pasted image 20260221163813.png",
     "Untitled.canvas"
   ]
 }
