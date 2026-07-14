@@ -15,7 +15,7 @@
 ### present simple
 
 - `S + V-inf`
-- use these words with simple form
+- use these verbs with simple form
 	- apologize, advise, insist, agree, refuse, suggest
 	- like, want, need, prefer
 	- know, realize, understand, recognize
@@ -126,6 +126,47 @@
 
 # conditional sentence
 
+### 1st condition
+- `if S + V-inf, S will + V-inf`
+- talk about something will happen, decision
+- `if S + V-inf, S + V-inf` = general, always true
+
+### 2nd condition
+- `if S + V-ed, S would/could/might + V-inf`
+- talk about something won't happen, we don't expect that it will happen
+- use `V-ed` after wish to say that we regret something, something is not as we would like it to be
+
+### 3rd condition
+- `if S have + V-pp, S would have + V-pp`
+- talk about something didn't happen in the past
+- use `had + V-pp` after wish
+
+### wish/hope
+- wish somebody something, hope something happens
+- use wish to say that we regret something, `wish S + V-ed` for the present, and `wish S have + V-pp` for the past
+- "I wish I could do something" = "I regret that I cannot do it", "I wish I could have done something" = "I regret that I could not do it"
+
 # passive sentence
+- `be + V-pp`/`have been + V-pp`
+- use "get" for the passive only when things happen
 
 # reported speech
+- use with these verbs (V-pp)
+	- said, alleged, believed, considered, expected, known, reported, thought, understood
+	- supposed to = what is intended/arranged/expected (but it is different from the real situation)
+
+- `have/get S + V-pp` = you arrange for somebody to do it for you
+- in reported speech, the main verb is usually past (1 tense back). if the situation is still the same, it isn't necessary to change the verb
+
+# questions
+- `S + V` -> `V + S`/`aux + S + V`
+- in Wh questions, prepositions go at the end
+	- eg. "Where are you from?"
+- negative questions
+	- show surprise
+	- use with "Why". "Why don't we eat out tonight?"
+	- yes/no to negative question. "Don't you want to go?" -> "Yes (I want to go)"/"No (I don't want to go)"
+- when the question is a part of longer sentence, the word order changes
+	- "Do you know where Tom has gone?" (not where has Tom gone)
+
+# auxiliary verbs
