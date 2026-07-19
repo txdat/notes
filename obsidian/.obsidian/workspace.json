@@ -11,10 +11,14 @@
             "id": "f3422537e387cc5b",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "english/Categorized_4000_Essential_English_Words.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Categorized_4000_Essential_English_Words"
             }
           }
         ]
@@ -74,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 297.5,
-    "collapsed": true
+    "width": 297.5
   },
   "right": {
     "id": "e2edfdd285465075",
@@ -177,6 +180,7 @@
   },
   "active": "f3422537e387cc5b",
   "lastOpenFiles": [
+    "engineering/design-data-intensive-applications/ddia-2.md",
     "engineering/system-design/distributed-system-practitioners.md",
     "engineering/system-design/distributed-system-practitioners.md.tmp.21824.2b4879b20930",
     "engineering/system-design/distributed-system-practitioners.md.tmp.21824.f0a105c4a7b2",
@@ -202,7 +206,6 @@
     "engineering/programming-languages/cpp/memory-model-and-atomics.md",
     "engineering/programming-languages/cpp/language-core.md",
     "engineering/postgresql/mvcc.md",
-    "engineering/design-data-intensive-applications/ddia-2.md",
     "english/english grammar in use.md",
     "attachments/Pasted image 20260712174935.png",
     "attachments/Pasted image 20260712172253.png",

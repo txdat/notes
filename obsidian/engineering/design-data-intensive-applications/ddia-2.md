@@ -1,11 +1,7 @@
-# non-functional requirements
-
-# storage and retrieval
-
 # replication
 
-# sharding
-
 # transactions
+
+# the trouble with distributed systems
 
 # consistency and consensus
