@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "84fa462abdb67885",
+        "id": "e88cede426e391a8",
         "type": "tabs",
         "children": [
           {
-            "id": "aa0c1552cd241bc1",
+            "id": "f17f6104777f4602",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "english/ielts 6.5-7 roadmap.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "ielts 6.5-7 roadmap"
             }
           }
         ]
@@ -174,8 +178,18 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "aa0c1552cd241bc1",
+  "active": "f17f6104777f4602",
   "lastOpenFiles": [
+    "english/ielts 6.5-7 roadmap.md.tmp.56581.0bf62d84426d",
+    "english/ielts 6.5-7 roadmap.md.tmp.56581.3f8a8bed54bb",
+    "english/english grammar in use.md",
+    "english/ielts 6.5-7 roadmap.md.tmp.56581.96d2bd6fba4a",
+    "english/ielts 6.5-7 roadmap.md",
+    "english/ielts 6.5-7 roadmap.md.tmp.56581.4c7dfeb86492",
+    "english/english grammar in use.md.tmp.56581.8707d639bfe1",
+    "english/english grammar in use.md.tmp.56581.e4d205d4131a",
+    "english/english grammar in use/1. present continuous (1).md",
+    "english/english grammar in use",
     "english/Categorized_4000_Essential_English_Words.md",
     "engineering/design-data-intensive-applications/ddia-2.md",
     "engineering/system-design/distributed-system-practitioners.md",
@@ -183,12 +197,6 @@
     "engineering/system-design/distributed-system-practitioners.md.tmp.21824.f0a105c4a7b2",
     "engineering/system-design/distributed-system-practitioners.md.tmp.21824.29509eab95f3",
     "engineering/system-design/distributed-system-practitioners.md.tmp.21824.f87a0a6bf387",
-    "engineering/system-design/distributed-system-practitioners.md.tmp.21824.e24ea1cbf3c3",
-    "engineering/system-design/distributed-system-practitioners.md.tmp.21824.7ffb5c1b77c0",
-    "engineering/system-design/distributed-system-practitioners.md.tmp.21824.fe40d4fa5ba1",
-    "engineering/system-design/distributed-system-practitioners.md.tmp.21824.2263c2fb4016",
-    "engineering/system-design/distributed-system-practitioners.md.tmp.21824.627a3b68c6e3",
-    "engineering/system-design/distributed-system-practitioners.md.tmp.21824.b77435d84db5",
     "attachments/Pasted image 20260715010651.png",
     "attachments/Pasted image 20260714224737.png",
     "attachments/Pasted image 20260714165235.png",
@@ -203,7 +211,6 @@
     "engineering/programming-languages/cpp/memory-model-and-atomics.md",
     "engineering/programming-languages/cpp/language-core.md",
     "engineering/postgresql/mvcc.md",
-    "english/english grammar in use.md",
     "attachments/Pasted image 20260712174935.png",
     "attachments/Pasted image 20260712172253.png",
     "attachments/Pasted image 20260712163621.png",
@@ -219,9 +226,6 @@
     "computer-science/database/CMU 15-445_721/relational model.md",
     "computer-science/database/CMU 15-445_721/query planning & execution.md",
     "computer-science/database/CMU 15-445_721/query optimization.md",
-    "computer-science/database/CMU 15-445_721/modern sql.md",
-    "computer-science/database/CMU 15-445_721/logging & recovery.md",
-    "computer-science/database/CMU 15-445_721/index.md",
     "Untitled.canvas"
   ]
 }
