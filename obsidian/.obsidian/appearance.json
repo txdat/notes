@@ -6,7 +6,7 @@
   "baseFontSize": 13,
   "nativeMenus": false,
   "theme": "obsidian",
-  "cssTheme": "Minimal",
+  "cssTheme": "",
   "baseFontSizeAction": true,
   "showRibbon": true,
   "showViewHeader": false
