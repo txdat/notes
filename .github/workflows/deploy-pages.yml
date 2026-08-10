@@ -39,13 +39,15 @@ jobs:
           cache: npm
           cache-dependency-path: site/package-lock.json
 
+      # Cache is exact-key-only: the generated .quartz/plugins/index.ts and plugin
+      # dist/ are derived from both quartz.lock.json AND the quartz core (e.g.
+      # Head.tsx imports plugin exports). A restore-keys fallback would reuse a
+      # stale index.ts and fail the build with "No matching export" errors.
       - name: Cache Quartz plugins
         uses: actions/cache@v4
         with:
           path: site/.quartz/plugins
-          key: ${{ runner.os }}-quartz-plugins-${{ hashFiles('site/quartz.lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-quartz-plugins-
+          key: ${{ runner.os }}-quartz-plugins-${{ hashFiles('site/quartz.lock.json', 'site/quartz/**', 'site/quartz.config.yaml') }}
 
       - name: Install site dependencies
         working-directory: site
