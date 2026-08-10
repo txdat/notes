@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "169a754e9453112b",
+        "id": "222d349e1d881513",
         "type": "tabs",
         "children": [
           {
-            "id": "71c15c02405590d0",
+            "id": "26f46145d62fdfb2",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -37,7 +37,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -174,23 +176,30 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "71c15c02405590d0",
+  "active": "26f46145d62fdfb2",
   "lastOpenFiles": [
+    "engineering/system-design/60-days-of-system-design.md",
+    "computer-science/database/CMU 15-445_721/index.md",
+    "computer-science/database/CMU 15-445_721/storage models & memory management.md",
+    "computer-science/database/CMU 15-445_721/transaction.md",
+    "computer-science/database/CMU 15-445_721/sorting & aggregation.md",
+    "computer-science/database/CMU 15-445_721/relational model.md",
+    "computer-science/database/CMU 15-445_721/query planning & execution.md",
+    "computer-science/database/CMU 15-445_721/query optimization.md",
+    "computer-science/database/CMU 15-445_721/modern sql.md",
+    "computer-science/database/CMU 15-445_721/logging & recovery.md",
+    "computer-science/database/CMU 15-445_721/distributed database.md",
+    "computer-science/database/CMU 15-445_721/concurrency control.md",
+    "attachments/Pasted image 20260728221425.png",
     "computer-science/algorithms/dynamic programming.md",
     "computer-science/algorithms/sliding window.md",
     "computer-science/algorithms/sorting.md",
-    "computer-science/database/CMU 15-445_721/query planning & execution.md",
     "computer-science/algorithms/priority queue - heap.md",
     "computer-science/algorithms/number theory.md",
     "computer-science/algorithms/cache.md",
-    "computer-science/database/CMU 15-445_721/modern sql.md",
     "computer-science/os/kernel-bypass-dpdk.md",
     "computer-science/os/epoll-and-io.md",
-    "computer-science/database/CMU 15-445_721/storage models & memory management.md",
     "attachments/Pasted image 20260727003530.png",
-    "computer-science/database/CMU 15-445_721/concurrency control.md",
-    "computer-science/database/CMU 15-445_721/distributed database.md",
-    "engineering/system-design/60-days-of-system-design.md",
     "english/ielts 6.5-7 roadmap.md.tmp.56581.0bf62d84426d",
     "english/ielts 6.5-7 roadmap.md.tmp.56581.3f8a8bed54bb",
     "english/english grammar in use.md",
@@ -210,18 +219,11 @@
     "attachments/Pasted image 20260715010651.png",
     "attachments/Pasted image 20260714224737.png",
     "attachments/Pasted image 20260714165235.png",
-    "engineering/roadmaps/low-level system engineer.md",
-    "engineering/programming-languages/javascript-typescript/nodebook.md",
-    "engineering/programming-languages/java/jit-compilation.md",
-    "engineering/programming-languages/go/scheduler-and-memory-model.md",
-    "engineering/programming-languages/go/language-core.md",
-    "engineering/programming-languages/go/advanced-go.md",
     "attachments/Pasted image 20260712174935.png",
     "attachments/Pasted image 20260712172253.png",
     "attachments/Pasted image 20260712163621.png",
     "attachments/Pasted image 20260712160808.png",
     "attachments/Pasted image 20260711215537.png",
-    "attachments/Pasted image 20260711161149.png",
     "Untitled.canvas"
   ]
 }

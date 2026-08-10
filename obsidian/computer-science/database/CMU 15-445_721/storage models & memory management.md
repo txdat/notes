@@ -9,6 +9,21 @@
 	- slotted pages: maps slots to offsets
 		![[Pasted image 20260727003530.png | 200]]
 
+### storage layout
+- tuple-oriented storage
+	- store tuples on disk using the slotted-page scheme
+	- check page directory to find page position in disk, fetch page to memory, find free slot in this page and update
+- log-structured storage
+	- maintains a log that records changes to tuples
+	- DBMS applies changes to an in-memory data structure (MemTable) and writes out sequentially to disk (SSTable)
+	- SSTables are immutable -> append-only storage
+	- use merging algorithm to combine SSTables into larger one (taking most recent changes for each tuple)
+
+### storage models
+- N-Array storage model (NSM)
+	- row store -> OLTP
+- decomposition storage model (DSM)
+	- column store -> OLAP
 # memory
 - move data back and forth between disk and memory with Buffer Pool Manager
 ### buffer pool
@@ -16,6 +31,7 @@
 - is array of fixed-size frames
 - page directory maps page IDs to page locations in DB files. all changes must be recorded on disk
 - page table maps page IDs to a copy of pages in buffer pool frames
+- DBMS can maintain multiple buffer pools with (local) tailored policies
 
 ### locks/latches
 - lock is a higher-level, logical primitive that protects **the contents of a DB** from other transactions
@@ -26,3 +42,9 @@
 - CLOCK
 	- similar to LRU without a separate timestamp per page (use reference bit - 1 is page is accessed)
 	- LRU/CLOCK are susceptible to sequential flooding
+- LRU-K
+- ARC: adaptive replacement cache
+
+### disk IO, OS cache
+- DBMS maintains internal queues to track page read/write
+
