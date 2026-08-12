@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "222d349e1d881513",
+        "id": "633c2b88fe073c29",
         "type": "tabs",
         "children": [
           {
-            "id": "26f46145d62fdfb2",
+            "id": "ef77da97735cee85",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -176,9 +176,12 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "26f46145d62fdfb2",
+  "active": "ef77da97735cee85",
   "lastOpenFiles": [
     "engineering/system-design/60-days-of-system-design.md",
+    "engineering/system-design/60-days-outline.md",
+    "engineering/system-design/cqrs.md",
+    "engineering/system-design/distributed lock.md",
     "computer-science/database/CMU 15-445_721/index.md",
     "computer-science/database/CMU 15-445_721/storage models & memory management.md",
     "computer-science/database/CMU 15-445_721/transaction.md",
@@ -210,9 +213,6 @@
     "english/english grammar in use.md.tmp.56581.e4d205d4131a",
     "english/english grammar in use/1. present continuous (1).md",
     "english/english grammar in use",
-    "english/Categorized_4000_Essential_English_Words.md",
-    "engineering/design-data-intensive-applications/ddia-2.md",
-    "engineering/system-design/distributed-system-practitioners.md",
     "engineering/system-design/distributed-system-practitioners.md.tmp.21824.2b4879b20930",
     "engineering/system-design/distributed-system-practitioners.md.tmp.21824.f0a105c4a7b2",
     "engineering/system-design/distributed-system-practitioners.md.tmp.21824.29509eab95f3",
