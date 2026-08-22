@@ -5,6 +5,7 @@
 # happens-before
 
 # volatile
+
 - when volatile is insufficient
 
 # synchronized

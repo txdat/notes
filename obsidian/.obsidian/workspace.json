@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "dc5e63e13160ce43",
+        "id": "c0dbac012a85da8f",
         "type": "tabs",
         "children": [
           {
-            "id": "09b1bb474d7555ca",
+            "id": "e23e3b30fa7922d5",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "engineering/system-design/60-days-of-system-design.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "60-days-of-system-design"
+              "title": "New tab"
             }
           }
         ]
@@ -180,10 +176,17 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "09b1bb474d7555ca",
+  "active": "e23e3b30fa7922d5",
   "lastOpenFiles": [
-    "tools/k8s.md",
     "engineering/system-design/60-days-of-system-design.md",
+    "engineering/system-design/60-days-of-system-design.md.tmp.41450.982c76da6e92",
+    "engineering/system-design/60-days-of-system-design.md.tmp.41450.8f0427461ca5",
+    "engineering/system-design/60-days-of-system-design.md.tmp.41450.239c775e9fea",
+    "engineering/system-design/60-days-of-system-design.md.tmp.41450.1a0a26952101",
+    "engineering/system-design/60-days-of-system-design.md.tmp.41450.762840d79c4d",
+    "engineering/system-design/60-days-of-system-design.md.tmp.41450.54592ae9dedc",
+    "engineering/system-design/60-days-of-system-design.md.tmp.41450.728bb5aaa043",
+    "tools/k8s.md",
     "engineering/system-design/60-days-outline.md",
     "engineering/system-design/cqrs.md",
     "engineering/system-design/distributed lock.md",
@@ -212,14 +215,6 @@
     "english/ielts 6.5-7 roadmap.md.tmp.56581.3f8a8bed54bb",
     "english/english grammar in use.md",
     "english/ielts 6.5-7 roadmap.md.tmp.56581.96d2bd6fba4a",
-    "english/ielts 6.5-7 roadmap.md",
-    "english/ielts 6.5-7 roadmap.md.tmp.56581.4c7dfeb86492",
-    "english/english grammar in use.md.tmp.56581.8707d639bfe1",
-    "english/english grammar in use.md.tmp.56581.e4d205d4131a",
-    "english/english grammar in use",
-    "engineering/system-design/distributed-system-practitioners.md.tmp.21824.2b4879b20930",
-    "engineering/system-design/distributed-system-practitioners.md.tmp.21824.f0a105c4a7b2",
-    "engineering/system-design/distributed-system-practitioners.md.tmp.21824.29509eab95f3",
     "attachments/Pasted image 20260715010651.png",
     "attachments/Pasted image 20260714224737.png",
     "attachments/Pasted image 20260714165235.png",

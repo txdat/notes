@@ -1,4 +1,5 @@
 - [earliest second to mark indices i](https://leetcode.com/problems/earliest-second-to-mark-indices-i/description/)
+
 ```cpp
 class Solution {
 public:
@@ -34,7 +35,9 @@ public:
     }
 };
 ```
+
 - [kth smallest amount with single denomination combination](https://leetcode.com/problems/kth-smallest-amount-with-single-denomination-combination/description/)
+
 ```cpp
 using ll = long long;
 
@@ -52,7 +55,7 @@ public:
         }
         return ans;
     }
-    
+
     long long findKthSmallest(vector<int>& coins, int k) {
         int n = coins.size();
         vector<vector<pair<ll,int>>> q;
@@ -72,7 +75,7 @@ public:
             }
             q.push_back(v);
         }
-        
+
         ll l = 0, r = 1e15, m;
         while (l < r) {
             m = l+(r-l)/2;
@@ -87,8 +90,10 @@ public:
     }
 };
 ```
-- [find the median of the uniqueness array](https://leetcode.com/problems/find-the-median-of-the-uniqueness-array/description/) 
-	- similar question: [subarrays with k different integers](https://leetcode.com/problems/subarrays-with-k-different-integers/) -> at-most technique
+
+- [find the median of the uniqueness array](https://leetcode.com/problems/find-the-median-of-the-uniqueness-array/description/)
+  - similar question: [subarrays with k different integers](https://leetcode.com/problems/subarrays-with-k-different-integers/) -> at-most technique
+
 ```cpp
 class Solution {
 public:
@@ -148,7 +153,9 @@ public:
     }
 };
 ```
+
 - [find kth smallest pair distance](https://leetcode.com/problems/find-k-th-smallest-pair-distance)
+
 ```cpp
 class Solution {
 public:
@@ -178,7 +185,9 @@ public:
     }
 };
 ```
+
 - [smallest substring with identical characters](https://leetcode.com/problems/smallest-substring-with-identical-characters-ii/)
+
 ```cpp
 class Solution {
 public:
@@ -195,7 +204,7 @@ public:
                 c++;
                 if (c > 2*m) { // only modify middle of substring to reduce number of ops
                     c = m;
-                    ans++;   
+                    ans++;
                 }
             } else {
                 if (c > m) ans++;
@@ -204,7 +213,7 @@ public:
         }
         return ans;
     }
-    
+
     int minLength(string s, int numOps) {
         int l = 1, r = s.length(), m;
         s.push_back(s.back() == '1' ? '0' : '1'); // add different char to check condition *

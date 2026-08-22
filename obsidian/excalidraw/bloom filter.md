@@ -1,15 +1,14 @@
 ---
-
 excalidraw-plugin: parsed
 tags: [excalidraw]
-
 ---
-==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠== You can decompress Drawing data with the command palette: 'Decompress current Excalidraw file'. For more info check in plugin settings under 'Saving'
 
+==⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠== You can decompress Drawing data with the command palette: 'Decompress current Excalidraw file'. For more info check in plugin settings under 'Saving'
 
 # Excalidraw Data
 
 ## Text Elements
+
 N buckets ^PSo56cPN
 
 1 ^sAlb9iaC
@@ -56,13 +55,15 @@ N buckets ^PSo56cPN
 
 0 ^etlCBAkL
 
-false positive 
+false positive
 (not added, but bloom filter says "yes") ^hRVx1Mk9
 
 k hash functions ^CFau8xwa
 
 %%
+
 ## Drawing
+
 ```compressed-json
 N4KAkARALgngDgUwgLgAQQQDwMYEMA2AlgCYBOuA7hADTgQBuCpAzoQPYB2KqATLZMzYBXUtiRoIACyhQ4zZAHoFAc0JRJQgEYA6bGwC2CgF7N6hbEcK4OCtptbErHALRY8RMpWdx8Q1TdIEfARcZgRmBShcZQUebQBGOJ4aOiCEfQQOKGZuAG1wMFAwYogSbggOACFNADFmABUAOQBRbABmDgAtACt6AAlJOAAZTABZAGEU4shYRHLA7CiOZWCp
 
@@ -238,4 +239,5 @@ bNbz0AZbOSKaC7vKwc5cvO3fcqowfOYLkXUzNHzzMjgpKsuC+KR4KdcxzP1y7soQuoLgPN1JrzwPc3Kz
 
 1wBUU61XxT7S3gANpmw3YEVSjQbrmUBGwMUHmAbSu0t1QHS/0tlFQQF0pZTJS2EsahHi1szgBT0uqDyQ3zbrlbBtxeGKiQjS76BrzsAI7jEKjQXcT6K1810E6564NfMlK7AboEUhsgeUF3E4APUoNLdxIlMCMUILdMYB6gAUvghKwo8JVA0gLdPjhlBPKWK59AEkpg5VM40OrADAeUE7KYyxLTooUwRspIMWy92B4hwAP3mlBZQcIC6LsITCCAA=
 ```
+
 %%

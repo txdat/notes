@@ -1,6 +1,8 @@
 1. monotonic stack
-**find maximum element -> decreasing monotonic stack. find minimum element -> increasing monotonic stack**
+   **find maximum element -> decreasing monotonic stack. find minimum element -> increasing monotonic stack**
+
 - [sum of subarrays' minimum](https://leetcode.com/problems/sum-of-subarray-minimums/description)
+
 ```cpp
 using ll = long long;
 constexpr int MOD = 1e9 + 7;
@@ -28,7 +30,9 @@ public:
     }
 };
 ```
+
 - [count submatrices with all ones](https://leetcode.com/problems/count-submatrices-with-all-ones)
+
 ```cpp
 // solve 1
 class Solution {
@@ -53,7 +57,9 @@ public:
     }
 };
 ```
+
 - [longest valid parentheses](https://leetcode.com/problems/longest-valid-parentheses/)
+
 ```cpp
 class Solution {
 public:
@@ -84,7 +90,9 @@ public:
     }
 };
 ```
+
 - [largest rectangle in histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/description/)
+
 ```cpp
 // using strictly increasing monotonic stack
 class Solution {
@@ -108,7 +116,9 @@ public:
     }
 };
 ```
+
 - [find number of subarrays where boundary elements are maximum](https://leetcode.com/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/)
+
 ```cpp
 using ll = long long;
 
@@ -145,7 +155,9 @@ public:
     }
 };
 ```
+
 - [using a robot to print the lexicographically smallest string](https://leetcode.com/problems/using-a-robot-to-print-the-lexicographically-smallest-string)
+
 ```cpp
 class Solution {
 public:

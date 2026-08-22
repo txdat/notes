@@ -3,6 +3,7 @@
 ## Problem
 
 In distributed systems, network failures and retries cause the same request to arrive more than once. Without protection, a retry can:
+
 - Create a duplicate booking, payment, or reservation
 - Double-charge a customer
 - Produce duplicate notifications
@@ -13,6 +14,7 @@ In distributed systems, network failures and retries cause the same request to a
 An operation is **idempotent** if executing it multiple times with the same input produces the same result as executing it once. Safe HTTP methods (`GET`, `HEAD`) are naturally idempotent. State-mutating operations (`POST`, `PATCH`) are not — they require explicit deduplication.
 
 Two types of idempotency:
+
 - **Natural** — the operation's semantics prevent duplication (e.g. `INSERT ... ON CONFLICT DO NOTHING`, unique constraints, `DELETE WHERE id = ?`)
 - **Key-based** — client supplies a unique key; server deduplicates by storing and replaying the first response
 
@@ -23,28 +25,33 @@ Atomic-book implements key-based idempotency via `idempotency-lib`, using a two-
 ### Phases
 
 **Phase 1 — Pre-check (before executing)**
+
 ```sql
 INSERT INTO idempotency_keys (key, fingerprint, status, expires_at)
 VALUES (?, ?, 'PROCESSING', ?)
 ON CONFLICT (key) DO NOTHING
 RETURNING *
 ```
+
 - **Row inserted** (`RETURNING *` is non-empty) → this is a first-time request; proceed with execution
 - **Conflict** (`RETURNING *` is empty) → key exists; continue to phase 1b
 
 **Phase 1b — Conflict resolution**
+
 ```sql
 SELECT * FROM idempotency_keys WHERE key = ? FOR UPDATE
 ```
+
 `FOR UPDATE` blocks until any in-flight request on the same key commits — then switch on status:
 
-| Status | Action |
-|---|---|
-| `PROCESSING` | throw `IdempotencyConflictException` → HTTP 409 |
-| `COMPLETED` + fingerprint matches | deserialise `result_json` → return cached response |
-| `COMPLETED` + fingerprint mismatch | throw `IdempotencyKeyReusedException` → HTTP 422 |
+| Status                             | Action                                             |
+| ---------------------------------- | -------------------------------------------------- |
+| `PROCESSING`                       | throw `IdempotencyConflictException` → HTTP 409    |
+| `COMPLETED` + fingerprint matches  | deserialise `result_json` → return cached response |
+| `COMPLETED` + fingerprint mismatch | throw `IdempotencyKeyReusedException` → HTTP 422   |
 
 **Phase 2 — Complete (after executing)**
+
 ```sql
 UPDATE idempotency_keys SET status = 'COMPLETED', result_json = ?
 WHERE key = ?
@@ -115,10 +122,10 @@ No synthetic `id` column — `key` is the primary key.
 
 ### Status Enum
 
-| Status | Meaning |
-|---|---|
-| `PROCESSING` | Request is in-flight; concurrent duplicates get 409 |
-| `COMPLETED` | Response stored; all future duplicates get cached response |
+| Status       | Meaning                                                    |
+| ------------ | ---------------------------------------------------------- |
+| `PROCESSING` | Request is in-flight; concurrent duplicates get 409        |
+| `COMPLETED`  | Response stored; all future duplicates get cached response |
 
 There is no `FAILED` status. If the saga throws, the `PROCESSING` row stays and is cleaned up by TTL expiry. A retry after failure will hit the `PROCESSING` → 409 path briefly, then after the row expires (24h), the next retry will insert a fresh row and re-execute.
 
@@ -138,6 +145,7 @@ byte[] bytes = MessageDigest
 **Purpose:** detect key reuse with a different payload. When a `COMPLETED` record is found, `preCheck` compares fingerprints. If they differ, it throws `IdempotencyKeyReusedException` (422) instead of returning the cached response. This prevents a client from accidentally reusing a key with a modified request and silently receiving a stale response.
 
 **What triggers a mismatch:**
+
 - Client changed the request body but reused the key
 - Serialisation is non-deterministic (e.g. map key ordering); use Jackson with a consistent `ObjectMapper` config
 
@@ -178,13 +186,14 @@ All beans are `@ConditionalOnMissingBean` — override any by providing your own
 
 **Config properties:**
 
-| Property | Default | Meaning |
-|---|---|---|
-| `idempotency.enabled` | `true` | Disable entirely by setting `false` |
-| `idempotency.ttl-hours` | `24` | How long a completed record is retained |
-| `idempotency.cleanup.interval-ms` | `3600000` (1h) | How often expired rows are deleted |
+| Property                          | Default        | Meaning                                 |
+| --------------------------------- | -------------- | --------------------------------------- |
+| `idempotency.enabled`             | `true`         | Disable entirely by setting `false`     |
+| `idempotency.ttl-hours`           | `24`           | How long a completed record is retained |
+| `idempotency.cleanup.interval-ms` | `3600000` (1h) | How often expired rows are deleted      |
 
 **Adopting in a service:**
+
 1. Add `idempotency-lib` Maven dependency
 2. Add `"classpath:db/idempotency"` to `FlywayConfig` migration locations
 3. Use a separate `flyway_schema_history_idempotency` table to avoid V1 collision with service migrations
@@ -226,11 +235,11 @@ class CreateBookingService implements CreateBooking {
 
 **Services that use it in atomic-book:**
 
-| Service | Use cases protected |
-|---|---|
-| `booking-service` | `CreateBooking` |
-| `inventory-service` | `ReserveSlot` |
-| `ledger-service` | `Hold`, `Capture`, `Refund`, `Release`, `Topup` |
+| Service             | Use cases protected                             |
+| ------------------- | ----------------------------------------------- |
+| `booking-service`   | `CreateBooking`                                 |
+| `inventory-service` | `ReserveSlot`                                   |
+| `ledger-service`    | `Hold`, `Capture`, `Refund`, `Release`, `Topup` |
 
 `identity-service` does not use the library — auth endpoints are naturally idempotent by domain semantics (login always issues new tokens; register rejects duplicates via unique constraint).
 

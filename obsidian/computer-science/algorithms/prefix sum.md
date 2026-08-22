@@ -1,4 +1,5 @@
 - [special array ii](https://leetcode.com/problems/special-array-ii/)
+
 ```cpp
 class Solution {
 public:
@@ -19,7 +20,9 @@ public:
     }
 };
 ```
+
 - [make sum divisible by p](https://leetcode.com/problems/make-sum-divisible-by-p/description/)
+
 ```cpp
 using ll = long long;
 

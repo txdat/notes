@@ -1,4 +1,5 @@
 - [maximum subsequence score](https://leetcode.com/problems/maximum-subsequence-score/description/)
+
 ```cpp
 using ll = long long;
 
@@ -30,7 +31,9 @@ public:
     }
 };
 ```
+
 - [minimum cost to hire k workers](https://leetcode.com/problems/minimum-cost-to-hire-k-workers/description/)
+
 ```cpp
 class Solution {
 public:
@@ -62,10 +65,12 @@ public:
     }
 };
 ```
+
 - get k-th element
-	- minimum -> max-heap priority queue
-	- maximum -> min-heap priority queue
+  - minimum -> max-heap priority queue
+  - maximum -> min-heap priority queue
 - [find x-sum of all k-long subarrays ii](https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-ii)
+
 ```cpp
 using ll = long long;
 using pii = pair<int,int>;
@@ -81,7 +86,7 @@ public:
         } else {
             rest.erase(p);
         }
-        
+
 		// add new pair to top to move smallest of top to rest if necessary
         top.insert({++c,d});
         s += 1ll*c*d;

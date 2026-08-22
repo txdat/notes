@@ -1,15 +1,14 @@
 ---
-
 excalidraw-plugin: parsed
 tags: [excalidraw]
-
 ---
-==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠== You can decompress Drawing data with the command palette: 'Decompress current Excalidraw file'. For more info check in plugin settings under 'Saving'
 
+==⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠== You can decompress Drawing data with the command palette: 'Decompress current Excalidraw file'. For more info check in plugin settings under 'Saving'
 
 # Excalidraw Data
 
 ## Text Elements
+
 client 1 ^Cg2a5AyO
 
 client 2 ^LLu7knDy
@@ -42,9 +41,9 @@ gateway server ^IblifW0S
 
 dispatcher ^OKexi5Qy
 
-dispatcher  ^oGYV7d8r
+dispatcher ^oGYV7d8r
 
-dispatcher  ^NZS6CEKX
+dispatcher ^NZS6CEKX
 
 replication ^01C4J24w
 
@@ -56,7 +55,9 @@ client
 (publisher) ^wzkBLL2N
 
 %%
+
 ## Drawing
+
 ```compressed-json
 N4KAkARALgngDgUwgLgAQQQDwMYEMA2AlgCYBOuA7hADTgQBuCpAzoQPYB2KqATLZMzYBXUtiRoIACyhQ4zZAHoFAc0JRJQgEYA6bGwC2CgF7N6hbEcK4OCtptbErHALRY8RMpWdx8Q1TdIEfARcZgRmBShcZQUebQBGOJ4aOiCEfQQOKGZuAG1wMFAwYogSbggAFgBxACtcTQAxAGUADSaAa3aAdQBNfAAzGoBZbAAFIwBRFOLIWERywOwojmVg
 
@@ -252,4 +253,5 @@ UQnygZ8W2lqxaiW05txr+SAVvSAJgfTJltDMpVv0BnCBuLSjdwEFrKUKQZUDek7MhogxxjkJbDUzgaUk
 
 bbm2hMIOAgGwNplahoSlvLJnlfqCRJ83DIGzh0wWOBqaxKtNoBhavXZSIAIpGdogBW0D5vob3QDOG04Ds1c3xa7AGoEi1mAHfw2xk2hAFTa/6h1UmM2hBAHYg2AOkC9ao2MIGCAlgXbMH5psTOHFb1kPfONjYwAwBod724bLs98Mt8AfbGAS9uvb6sSyHAArIEC3CBOsCSHLAgAA
 ```
+
 %%

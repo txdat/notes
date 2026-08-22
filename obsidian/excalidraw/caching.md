@@ -1,15 +1,14 @@
 ---
-
 excalidraw-plugin: parsed
 tags: [excalidraw]
-
 ---
-==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠== You can decompress Drawing data with the command palette: 'Decompress current Excalidraw file'. For more info check in plugin settings under 'Saving'
 
+==⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠== You can decompress Drawing data with the command palette: 'Decompress current Excalidraw file'. For more info check in plugin settings under 'Saving'
 
 # Excalidraw Data
 
 ## Text Elements
+
 Cache-aside (Lazy loading) ^5nn2FYbL
 
 Cache ^3GFDThNi
@@ -32,11 +31,11 @@ App ^sEwx9DkD
 - more granular control what is cached
 - data can be stale if not updating (cache validation)
 - most popular choice
-    + simply and granular control (by application logic)
-    + resilience to cache failure
-=> use cache-aside for reads and write-through-invalidation for writes ^D1TRbvK6
+  - simply and granular control (by application logic)
+  - resilience to cache failure
+    => use cache-aside for reads and write-through-invalidation for writes ^D1TRbvK6
 
-Read-through (Cache handles data retrieval from DB)  ^z7LZleN6
+Read-through (Cache handles data retrieval from DB) ^z7LZleN6
 
 Cache ^uS7xh1KY
 
@@ -80,7 +79,7 @@ Database ^USU5LKAE
 
 Write-back ^vKBk6Y11
 
-- data is written to cache and sync to DB later -> reduces writes but risks data loss -> write-heavy apps (slight data loss is acceptable), NOT FOR TRANSACTIONS 
+- data is written to cache and sync to DB later -> reduces writes but risks data loss -> write-heavy apps (slight data loss is acceptable), NOT FOR TRANSACTIONS
 - faster write mechanism -> reduces load on DB
 - data may be not consistency ^gm0fkAe0
 
@@ -110,7 +109,9 @@ Database ^8FTvO3pU
 1. write to DB ^bdB9p4wv
 
 %%
+
 ## Drawing
+
 ```compressed-json
 N4KAkARALgngDgUwgLgAQQQDwMYEMA2AlgCYBOuA7hADTgQBuCpAzoQPYB2KqATLZMzYBXUtiRoIACyhQ4zZAHoFAc0JRJQgEYA6bGwC2CgF7N6hbEcK4OCtptbErHALRY8RMpWdx8Q1TdIEfARcZgRmBShcZQUebQBGABZtHho6IIR9BA4oZm4AbXAwUDBSiBJuCABWDg4eADEATU0AGTTSyFhESqgsKHayzG5nRIAGOMT4gDYpniqATgB2KarZ
 
@@ -376,4 +377,5 @@ HHAwAEAlkDquomkuNg8QPWJa6BSFID1SAkATOwg/qPxAEKAIAqVKIifBJAHFBsAakBQ8ttWJoY/55NKN
 
 /dkB4qJthAwQM09lI/yJpSGQQ27Ojv9k+XaoCgGQL09MQuCWfa0QzT60/tPkmG5DgAccE3UnySjFfquQQAA=
 ```
+
 %%

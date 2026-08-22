@@ -7,5 +7,6 @@
 # Standby Setup
 
 # Lab
+
 - configure streaming replication
 - verify WAL shipping to standby

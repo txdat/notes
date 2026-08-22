@@ -1,6 +1,7 @@
 - [maximum number of consecutive values from array](https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/description/)
-	- follow up: [minimum number of coins to be added to reach target value](https://leetcode.com/problems/minimum-number-of-coins-to-be-added/)
-	- suppose we have made consecutive values `[1...mx)`, if next value from array `d > mx`, so we have to add new value `mx` to array, and we have new consecutive values `[1..mx')`, `nx' = mx*2`
+  - follow up: [minimum number of coins to be added to reach target value](https://leetcode.com/problems/minimum-number-of-coins-to-be-added/)
+  - suppose we have made consecutive values `[1...mx)`, if next value from array `d > mx`, so we have to add new value `mx` to array, and we have new consecutive values `[1..mx')`, `nx' = mx*2`
+
 ```cpp
 class Solution {
 	public:
@@ -26,6 +27,7 @@ class Solution {
 ```
 
 - [sliding window maximum](https://leetcode.com/problems/sliding-window-maximum/description/)
+
 ```cpp
 // using deque
 class Solution {
@@ -48,10 +50,15 @@ public:
     }
 };
 ```
+
 - [sliding window median](https://leetcode.com/problems/sliding-window-median/)
+
 ```cpp
+
 ```
+
 - [longest increasing subsequence](https://leetcode.com/problems/longest-increasing-subsequence)
+
 ```cpp
 class Solution {
 public:
@@ -63,7 +70,7 @@ public:
 		//	for (int j = i + 1; j < n; j++) dp[j] = max(dp[j], dp[i] + 1);
 		//}
 		//return *max_element(dp.begin(), dp.end());
-		
+
 		// Nlog(N)
 		int n = nums.size();
 		int ans = 1;
@@ -79,11 +86,15 @@ public:
 	}
 }
 ```
+
 - [find the median in average O(n)](https://rcoh.me/posts/linear-time-median-finding/)
+
 ```cpp
 
 ```
+
 - [longest non-decreasing subarray from 2 arrays](https://leetcode.com/problems/longest-non-decreasing-subarray-from-two-arrays/description/)
+
 ```cpp
 class Solution {
 public:
@@ -115,7 +126,9 @@ public:
     }
 };
 ```
+
 - [maximize consecutive elements in an array after modification](https://leetcode.com/problems/maximize-consecutive-elements-in-an-array-after-modification/) - similar to problem "longest non-decreasing subarray ..." above
+
 ```cpp
 class Solution {
 public:
@@ -138,7 +151,7 @@ public:
         sort(nums1.begin(), nums1.end());
         vector<int> nums2(nums1);
         for (int &d : nums2) d++;
-        
+
         vector<vector<int>> dp(2,vector<int>(n));
         dp[0][0] = dp[1][0] = 1;
         int ans = 1;
@@ -174,14 +187,16 @@ public:
     }
 };
 ```
+
 - [count of smaller numbers after self](https://leetcode.com/problems/count-of-smaller-numbers-after-self/description/)
+
 ```cpp
 // using merge-sort can count number of smaller numbers
 class Solution {
 public:
     void merge_sort(vector<pair<int,int>> &q, int l, int r, vector<int> &cnt) {
         if (l >= r) return ;
-        
+
         int m = (l+r)>>1;
         merge_sort(q, l, m, cnt);
         merge_sort(q, m+1, r, cnt);
@@ -213,9 +228,11 @@ public:
     }
 };
 ```
+
 - count frequencies of all elements - O(n) time complexity, O(1) space complexity
-	- count frequencies of n-length array elements, whose elements are between 1-n -> use element as an index and store their count at the index (negative number)
-	- [solution](https://www.geeksforgeeks.org/count-frequencies-elements-array-o1-extra-space-time/)
+  - count frequencies of n-length array elements, whose elements are between 1-n -> use element as an index and store their count at the index (negative number)
+  - [solution](https://www.geeksforgeeks.org/count-frequencies-elements-array-o1-extra-space-time/)
+
 ```cpp
 unordered_map<int,int> count1(vector<int> &a) { // use a[a[i]] to store counts of a[i]
 	int n = a.size();
@@ -246,6 +263,7 @@ unordered_map<int,int> count2(vector<int> &a) { // use a[a]
 ```
 
 - [find all duplicates in an array](https://leetcode.com/problems/find-all-duplicates-in-an-array)
+
 ```cpp
 class Solution {
 public:
@@ -271,7 +289,9 @@ public:
     }
 };
 ```
+
 - [find first missing positive](https://leetcode.com/problems/first-missing-positive/description/)
+
 ```cpp
 // find all numbers disappeared in array - leetcode 448
 class Solution_LC448 {
@@ -305,8 +325,10 @@ public:
     }
 };
 ```
+
 - [minimize manhattan distance](https://leetcode.com/problems/minimize-manhattan-distances/)
-	- [compute maximum manhattan distance between 2 points from n points](https://www.geeksforgeeks.org/maximum-manhattan-distance-between-a-distinct-pair-from-n-coordinates/)
+  - [compute maximum manhattan distance between 2 points from n points](https://www.geeksforgeeks.org/maximum-manhattan-distance-between-a-distinct-pair-from-n-coordinates/)
+
 ```cpp
 int get_max_distance(vector<vector<int>> &points) {
 	int n = points.size();
@@ -329,6 +351,7 @@ int get_max_distance(vector<vector<int>> &points) {
 	return max(max_s-min_s,max_d-min_d);
 }
 ```
+
 ```cpp
 class Solution {
 public:
@@ -364,7 +387,7 @@ public:
         }
         return {dd, min_di, max_di};
     }
-    
+
     int minimumDistance(vector<vector<int>>& points) {
         auto v = get_max(points);
         // ignore 2 points that create maximum manhattan distance
@@ -374,7 +397,9 @@ public:
     }
 };
 ```
+
 - [longest consecutive sequence - O(n)](https://leetcode.com/problems/longest-consecutive-sequence/description/)
+
 ```cpp
 // using union-find
 class Solution {
@@ -410,7 +435,9 @@ public:
     }
 };
 ```
+
 - [minimum number of flips to make binary grid palindromic ii](https://leetcode.com/problems/minimum-number-of-flips-to-make-binary-grid-palindromic-ii/description/) -> greedy
+
 ```cpp
 class Solution {
 public:
@@ -438,7 +465,7 @@ public:
                 }
             }
         }
-        
+
         if (n&1) {
             for (int i = 0; i < m1; i++) {
                 if (grid[i][n1] != grid[m-1-i][n1]) {

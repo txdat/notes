@@ -1,4 +1,5 @@
 1. [find all people with secret](https://leetcode.com/problems/find-all-people-with-secret/description/)
+
 ```cpp
 class Solution {
 public:
@@ -47,7 +48,9 @@ public:
     }
 };
 ```
+
 2. [greatest common divisor traversal](https://leetcode.com/problems/greatest-common-divisor-traversal/description/)
+
 ```cpp
 class Solution {
 public:
@@ -97,7 +100,9 @@ public:
     }
 };
 ```
+
 - [minimum cost walk in weighted graph](https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/)
+
 ```cpp
 class Solution {
 public:
@@ -107,7 +112,7 @@ public:
         if (j != i) p[j] = i;
         return i;
     }
-    
+
     vector<int> minimumCost(int n, vector<vector<int>>& edges, vector<vector<int>>& query) {
         vector<int> p(n,-1);
         vector<int> m(n,INT_MAX);
@@ -119,7 +124,7 @@ public:
             }
             m[p0] &= e[2];
         }
-        
+
         vector<int> ans;
         for (auto &e : query) {
             if (e[0] == e[1]) {
@@ -137,7 +142,9 @@ public:
     }
 };
 ```
+
 - [find all people with secret](https://leetcode.com/problems/find-all-people-with-secret/)
+
 ```cpp
 using pii = pair<int,int>;
 
@@ -186,7 +193,9 @@ public:
     }
 };
 ```
+
 - [remove max number of edges to keep graph fully traversable](https://leetcode.com/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable/)
+
 ```cpp
 class Solution {
 public:

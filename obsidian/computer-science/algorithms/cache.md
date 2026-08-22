@@ -1,4 +1,5 @@
 - [lru cache](https://leetcode.com/problems/lru-cache/description/)
+
 ```cpp
 class LRUCache {
 public:
@@ -8,7 +9,7 @@ public:
 
     LRUCache(int capacity) : n(capacity) {
     }
-    
+
     int get(int key) {
         if (m.find(key) == m.end()) return -1;
         int value = m[key]->second;
@@ -17,7 +18,7 @@ public:
         m[key] = q.begin();
         return value;
     }
-    
+
     void put(int key, int value) {
         if (m.find(key) != m.end()) {
             q.erase(m[key]);
@@ -39,6 +40,7 @@ public:
 ```
 
 - [lfu cache](https://leetcode.com/problems/lfu-cache/description/)
+
 ```cpp
 class LFUCache {
 public:
@@ -48,7 +50,7 @@ public:
 
     LFUCache(int capacity): capacity(capacity) {
     }
-    
+
     int get(int key) {
         if (m.find(key) == m.end()) return -1;
         auto [k, it] = m[key];
@@ -61,7 +63,7 @@ public:
         m[key] = {k, q[k].begin()};
         return value;
     }
-    
+
     void put(int key, int value) {
         if (m.find(key) != m.end()) {
             auto [k, it] = m[key];

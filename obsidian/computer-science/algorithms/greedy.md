@@ -1,4 +1,5 @@
 1. [minimum deletions to make string k-special](https://leetcode.com/problems/minimum-deletions-to-make-string-k-special/description/)
+
 ```cpp
 class Solution {
 public:
@@ -24,7 +25,9 @@ public:
     }
 };
 ```
+
 - [minimum cost for cutting cake](eetcode.com/problems/minimum-cost-for-cutting-cake-ii/)
+
 ```cpp
 // if select horizontal cut, all remaining vertical cuts must be count (+1), and vice versa
 

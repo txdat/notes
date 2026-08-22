@@ -1,4 +1,5 @@
 1. [find the number of ways to place people ii](https://leetcode.com/problems/find-the-number-of-ways-to-place-people-ii/description/)
+
 ```cpp
 class Solution {
 public:
@@ -20,7 +21,9 @@ public:
     }
 };
 ```
+
 - [maximum gap - O(n)](https://leetcode.com/problems/maximum-gap/description/)
+
 ```cpp
 // bucket sort?
 class Solution {
@@ -42,7 +45,9 @@ public:
     }
 };
 ```
+
 - [sort an array - radix sort](https://leetcode.com/problems/sort-an-array/description/)
+
 ```cpp
 class Solution {
 public:
@@ -70,4 +75,5 @@ public:
     }
 };
 ```
+
 - minimum swaps to sort array

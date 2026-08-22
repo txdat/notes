@@ -1,4 +1,5 @@
 1. get nearest palindrome numbers
+
 ```cpp
 using ll = long long;
 
@@ -83,7 +84,9 @@ public:
     }
 };
 ```
+
 2. [randomized set](https://leetcode.com/problems/insert-delete-getrandom-o1/description/)
+
 ```cpp
 class RandomizedSet {
 public:
@@ -98,7 +101,7 @@ public:
     //RandomizedSet() : rng(rd()), dist(0, 200000) {
     //}
     RandomizedSet() {}
-    
+
     bool insert(int val) {
         if (m.find(val) != m.end()) return false;
         if (n == q.size()) {
@@ -109,7 +112,7 @@ public:
         m[val] = n++;
         return true;
     }
-    
+
     bool remove(int val) {
         if (m.find(val) == m.end()) return false;
         int i = m[val];
@@ -118,7 +121,7 @@ public:
         m.erase(val);
         return true;
     }
-    
+
     int getRandom() {
         //return q[dist(rng) % n];
 		return q[rand()%n];

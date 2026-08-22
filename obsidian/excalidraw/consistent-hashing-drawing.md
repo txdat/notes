@@ -1,15 +1,14 @@
 ---
-
 excalidraw-plugin: parsed
 tags: [excalidraw]
-
 ---
-==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠==
 
+==⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠==
 
 # Excalidraw Data
 
 ## Text Elements
+
 hash ring ^zL13wr89
 
 server 1 ^hCkOPYyN
@@ -49,7 +48,9 @@ keys in this segment need be redistributed when server 4 is removed ^9egY7urO
 implemented by self-balance BST, each server is node in BST ^Asg2ABMs
 
 %%
+
 ## Drawing
+
 ```compressed-json
 N4KAkARALgngDgUwgLgAQQQDwMYEMA2AlgCYBOuA7hADTgQBuCpAzoQPYB2KqATLZMzYBXUtiRoIACyhQ4zZAHoFAc0JRJQgEYA6bGwC2CgF7N6hbEcK4OCtptbErHALRY8RMpWdx8Q1TdIEfARcZgRmBShcZQUebQBGOJ4aOiCEfQQOKGZuAG1wMFAwYuh4cXQgojkkfhLGFnYuNB4ANgB2Wsh61k4AOU4xbni2gGYWgAY2gFYp+JbOiEIOYixu
 
@@ -359,4 +360,5 @@ KjMQIDD5Uc7AZUYl1FUcSi1UY0RoYEDhpoJCBZIEvVYQJ3VLYCVhEBENQdKK9VYOqajMQLCBR7MJ0RcF
 
 ju0dSC0wf9hFUTiicQN8ASYJwBgvnYNRYI7BkYJDBkEOKBMgDmjroDsdsAFUAZXiUAgiHcjBNllhBYPVQRcgOi7AB5hMIdkA4QEEQ4AJmiVgNmiVIRQ11gNgASYIwBoYGwB3QH6ixNsDBo0U3ghAI6ADAIajk0IiDoviuADAHCA0gDeidFA3lMKqCAgMXeiH0QBoQ8GhBwAJghNdsEBDwOeAQAOeAgAA
 ```
+
 %%

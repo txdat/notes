@@ -9,6 +9,7 @@ A business operation that spans multiple services (e.g. booking a slot, reservin
 A **saga** is a sequence of local transactions. Each step performs a local write and publishes an event (or calls the next service). On failure, **compensating transactions** undo prior steps in reverse order.
 
 Two coordination styles:
+
 - **Choreography** — each service reacts to events from other services (no central coordinator)
 - **Orchestration** — a single service drives the saga, calling others sequentially and handling compensation centrally
 
@@ -70,27 +71,28 @@ The orchestrator explicitly knows the full sequence and all compensation paths. 
 
 ### Comparison
 
-| Dimension | Choreography | Orchestration |
-|---|---|---|
-| **Coupling** | Loose — services only know event contracts | Tighter — orchestrator knows all downstream APIs |
-| **Flow visibility** | Implicit — must trace events across logs | Explicit — entire flow is readable in one class |
-| **Debugging** | Hard — distributed trace required to follow a saga | Easy — stack trace and logs are in one service |
-| **Compensation** | Distributed — each service handles its own rollback on a compensating event | Centralized — orchestrator runs all rollbacks in one place |
-| **Single point of failure** | None — any service failure is isolated | Orchestrator is the SPOF; if it crashes mid-saga, state may be inconsistent |
-| **Saga state** | Distributed across services (each holds its own state) | Usually implicit in the orchestrator's DB row (e.g. `Reservation.status=PENDING`) |
-| **Service contracts** | Event-based — producers emit, consumers filter | RPC-based — orchestrator calls a specific API on a specific service |
-| **Adding a new step** | Add a new listener; no other service changes needed | Must modify orchestrator code; potentially update compensation logic |
-| **Testing** | Harder — must simulate event chains | Easier — orchestrator logic is a single unit under test |
-| **Cyclic dependencies** | Less likely — services don't call each other | Possible — orchestrator imports all downstream port interfaces |
-| **Latency** | Higher if each step waits for an event round-trip through Kafka | Lower for synchronous steps (direct HTTP/gRPC calls); higher if event-driven |
-| **Throughput** | Higher — steps can overlap across multiple saga instances via event parallelism | Sequential steps within a single saga; parallelism requires explicit branching |
-| **Operational burden** | More Kafka topics, more consumer groups, more event schema governance | One service owns the flow; fewer moving parts per saga |
+| Dimension                   | Choreography                                                                    | Orchestration                                                                     |
+| --------------------------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| **Coupling**                | Loose — services only know event contracts                                      | Tighter — orchestrator knows all downstream APIs                                  |
+| **Flow visibility**         | Implicit — must trace events across logs                                        | Explicit — entire flow is readable in one class                                   |
+| **Debugging**               | Hard — distributed trace required to follow a saga                              | Easy — stack trace and logs are in one service                                    |
+| **Compensation**            | Distributed — each service handles its own rollback on a compensating event     | Centralized — orchestrator runs all rollbacks in one place                        |
+| **Single point of failure** | None — any service failure is isolated                                          | Orchestrator is the SPOF; if it crashes mid-saga, state may be inconsistent       |
+| **Saga state**              | Distributed across services (each holds its own state)                          | Usually implicit in the orchestrator's DB row (e.g. `Reservation.status=PENDING`) |
+| **Service contracts**       | Event-based — producers emit, consumers filter                                  | RPC-based — orchestrator calls a specific API on a specific service               |
+| **Adding a new step**       | Add a new listener; no other service changes needed                             | Must modify orchestrator code; potentially update compensation logic              |
+| **Testing**                 | Harder — must simulate event chains                                             | Easier — orchestrator logic is a single unit under test                           |
+| **Cyclic dependencies**     | Less likely — services don't call each other                                    | Possible — orchestrator imports all downstream port interfaces                    |
+| **Latency**                 | Higher if each step waits for an event round-trip through Kafka                 | Lower for synchronous steps (direct HTTP/gRPC calls); higher if event-driven      |
+| **Throughput**              | Higher — steps can overlap across multiple saga instances via event parallelism | Sequential steps within a single saga; parallelism requires explicit branching    |
+| **Operational burden**      | More Kafka topics, more consumer groups, more event schema governance           | One service owns the flow; fewer moving parts per saga                            |
 
 ---
 
 ### When to Use Each
 
 **Choose choreography when:**
+
 - Services are truly independent and owned by separate teams; no team should own the "booking flow"
 - The saga is long-running and steps may take minutes/hours (e.g. waiting for a human approval step)
 - You want each service to be deployable and scalable independently without coordinating on flow changes
@@ -98,6 +100,7 @@ The orchestrator explicitly knows the full sequence and all compensation paths. 
 - You already have strong event schema governance (schema registry, versioning)
 
 **Choose orchestration when:**
+
 - The saga is short-lived and latency-sensitive (all steps complete in < 1s under normal conditions)
 - Compensation logic is complex and dependent on which step failed — centralising it is safer than distributing it
 - The full flow needs to be readable and auditable in one place (compliance, ops debugging)
@@ -105,6 +108,7 @@ The orchestrator explicitly knows the full sequence and all compensation paths. 
 - You want synchronous error propagation — the caller gets an error back immediately on failure
 
 **Atomic-book uses orchestration** because:
+
 1. The booking flow is latency-sensitive (user is waiting for a confirmation)
 2. Compensation is non-trivial (LIFO order, `safeXxx` wrappers, ledger/promo interactions)
 3. Downstream services (fraud, promo, inventory, ledger) are utility APIs, not domain owners
@@ -135,6 +139,7 @@ Each service would consume and emit typed Kafka events. The booking flow would b
 ```
 
 Compensation chain on `SlotReserveFailed`:
+
 ```
 [inventory-service] emit SlotReserveFailed
   → [promo-service] consume SlotReserveFailed → emit PromoRolledBack
@@ -142,6 +147,7 @@ Compensation chain on `SlotReserveFailed`:
 ```
 
 **Problems this introduces:**
+
 - The booking flow is now spread across 6 services and ~12 Kafka topics
 - A single saga instance requires tracing events across all 6 services to debug
 - Each service must be idempotent on its trigger event (Kafka at-least-once delivery)
@@ -180,21 +186,25 @@ Step 8: Commit promo batch (HTTP)             (swallowed — batch expires natur
 ### Step Details
 
 **Step 1 — Quote validation**
+
 - Port/out: `PriceQuoteRepository.findById(quoteId)`
 - Failures: `QuoteNotFoundException`, `QuoteExpiredException`, `QuoteAlreadyUsedException`
 
 **Step 2 — Fraud check**
+
 - Port/out: `FraudServiceClient.evaluate(userId, subtotal)` → `FraudDecision(decision, score)`
 - Failure: `FraudBlockedException` if `decision == "BLOCK"`
 - Current impl: `FraudServiceStub` always returns `ALLOW/0` (`@ConditionalOnMissingBean(name = "fraudGrpcClient")`)
 - Injection point for real gRPC adapter: provide a bean named `fraudGrpcClient`
 
 **Step 3 — Promo reservation** _(conditional: only if coupons present)_
+
 - Port/out: `PromoServiceClient.reserve(userId, couponCodes, subtotal, slotId, null)`
 - Returns `PromoReservationResult(batchId, totalDiscount, discountedSubtotal)`
 - Failure: `CouponReservationFailedException`
 
 **Step 4 — Inventory slot reservation**
+
 - Port/out: `InventoryServiceClient.reserveSlot(slotId, bookingId, qty, expiresAt)`
 - Returns `SlotReservationResult(reservationId, supplierId)`
 - TTL: `booking.reservation.ttl-minutes` (default 15 min) — slot auto-releases on expiry
@@ -202,11 +212,13 @@ Step 8: Commit promo batch (HTTP)             (swallowed — batch expires natur
 - **Compensation:** `safeRollbackPromo(promoBatchId)`
 
 **Step 5 — Cancellation policy validation**
+
 - Port/out: `CancellationPolicyRepository.findById(policyId)`
 - Failures: `PolicyNotFoundException`, `PolicyNotActiveException`
 - **Compensation:** `safeReleaseInventory(inventoryReservationId)` → `safeRollbackPromo(promoBatchId)`
 
 **Step 6 — Atomic DB write**
+
 - Delegated to `ReservationWriter.writeReservation()` (`@Transactional`):
   - `quoteRepository.markUsed(quoteId)` — idempotency guard (prevents double-booking on retry)
   - `reservationRepository.save(Reservation)` — status `PENDING`
@@ -215,6 +227,7 @@ Step 8: Commit promo batch (HTTP)             (swallowed — batch expires natur
 - **Compensation:** `safeReleaseInventory` → `safeRollbackPromo`
 
 **Step 7 — Ledger fund hold**
+
 - Port/out: `LedgerServiceClient.holdFunds(userId, reservationId, originalSubtotal)`
 - Holds pre-discount amount
 - Failure: `LedgerServiceException`
@@ -222,6 +235,7 @@ Step 8: Commit promo batch (HTTP)             (swallowed — batch expires natur
 - Note: the `PENDING` reservation row is **not** DB-rolled-back here — it expires via the TTL sweeper
 
 **Step 8 — Promo batch commit** _(conditional)_
+
 - Port/out: `PromoServiceClient.commit(batchId, reservationId)`
 - Failure: silently swallowed — batch expires naturally if commit fails
 
@@ -246,6 +260,7 @@ private void safeReleaseInventory(UUID inventoryReservationId) {
 ### Rate Limiting (Pre-saga guard)
 
 `FlashSaleRateLimitFilter` — HTTP filter applied before the saga entry point:
+
 - Matches: `POST /api/v1/bookings` only
 - Redis key: `rate_limit:booking:{userId}`, 60-second window
 - Default: `booking.rate-limit.flash-sale.requests-per-minute=5`
@@ -255,11 +270,11 @@ private void safeReleaseInventory(UUID inventoryReservationId) {
 
 **No dedicated saga state table.** The `Reservation` row with `status=PENDING` is the implicit saga state.
 
-| Status | Meaning |
-|---|---|
-| `PENDING` | Saga in progress or ledger hold step failed (awaiting expiry) |
-| `CONFIRMED` | Saga completed successfully |
-| `CANCELLED` | Cancelled by user or system |
+| Status          | Meaning                                                               |
+| --------------- | --------------------------------------------------------------------- |
+| `PENDING`       | Saga in progress or ledger hold step failed (awaiting expiry)         |
+| `CONFIRMED`     | Saga completed successfully                                           |
+| `CANCELLED`     | Cancelled by user or system                                           |
 | `MANUAL_REVIEW` | Cancellation failed after retries exhausted (ops intervention needed) |
 
 If a compensation call fails mid-rollback, the `PENDING` reservation expires via the **inventory TTL sweeper**, which calls `compensate()` on the inventory port to restore available qty.
@@ -268,12 +283,12 @@ If a compensation call fails mid-rollback, the `PENDING` reservation expires via
 
 All saga lifecycle events go through the **outbox pattern**, not direct Kafka sends:
 
-| Event | Emitted by | Transaction boundary |
-|---|---|---|
-| `BookingCreated` | `ReservationWriter.writeReservation()` | Same `@Transactional` as reservation INSERT |
-| `BookingConfirmed` | `ConfirmBookingService.confirm()` | Same `@Transactional` as status UPDATE |
-| `BookingCancelled` | `CancelBookingService.cancel()` | Same `@Transactional` as status UPDATE |
-| `RefundFailed` | `CancelBookingService.cancel()` | Same `@Transactional` as status UPDATE |
+| Event              | Emitted by                             | Transaction boundary                        |
+| ------------------ | -------------------------------------- | ------------------------------------------- |
+| `BookingCreated`   | `ReservationWriter.writeReservation()` | Same `@Transactional` as reservation INSERT |
+| `BookingConfirmed` | `ConfirmBookingService.confirm()`      | Same `@Transactional` as status UPDATE      |
+| `BookingCancelled` | `CancelBookingService.cancel()`        | Same `@Transactional` as status UPDATE      |
+| `RefundFailed`     | `CancelBookingService.cancel()`        | Same `@Transactional` as status UPDATE      |
 
 Consumers (e.g. `notification-service`) subscribe to these Kafka topics and react independently.
 
@@ -301,13 +316,13 @@ paymentWriter.updateStatus(paymentId, CAPTURED);  // @Transactional + outbox eve
 
 All transitions write an outbox event inside the same `@Transactional` call (`PaymentWriter`):
 
-| Transition | Outbox event |
-|---|---|
+| Transition               | Outbox event        |
+| ------------------------ | ------------------- |
 | `INITIATED → AUTHORIZED` | `PaymentAuthorized` |
-| `AUTHORIZED → CAPTURED` | `PaymentCaptured` |
-| `CAPTURED → REFUNDED` | `PaymentRefunded` |
-| `* → CANCELLED` | `PaymentCancelled` |
-| `* → FAILED` | `PaymentFailed` |
+| `AUTHORIZED → CAPTURED`  | `PaymentCaptured`   |
+| `CAPTURED → REFUNDED`    | `PaymentRefunded`   |
+| `* → CANCELLED`          | `PaymentCancelled`  |
+| `* → FAILED`             | `PaymentFailed`     |
 
 `InitiatePaymentService` and `CapturePaymentService` are **not** `@Transactional` themselves — they call the external gateway (Stripe HTTP) outside any DB transaction to avoid holding a connection open. The `@Transactional` boundary is in `PaymentWriter` (the sibling write service), which is called after the gateway responds.
 

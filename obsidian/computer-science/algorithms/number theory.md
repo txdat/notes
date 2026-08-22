@@ -1,8 +1,9 @@
 1. [perfect square](https://leetcode.com/problems/perfect-squares/) - sum of squares
-	- Lagrange's four-square theorem:
-		-> every natural number can be represented as sum of 4 non negative integer squares
-	- Legendre's three-square theorem:
-		-> n is a natural number, $n=x^2+y^2+z^2$ is solvable iff n is not of following form $4^a(8b+7)$
+   - Lagrange's four-square theorem:
+     -> every natural number can be represented as sum of 4 non negative integer squares
+   - Legendre's three-square theorem:
+     -> n is a natural number, $n=x^2+y^2+z^2$ is solvable iff n is not of following form $4^a(8b+7)$
+
 ```cpp
 class Solution {
 public:
@@ -41,7 +42,9 @@ public:
     }
 };
 ```
+
 2. check a number is prime, prime factorization (split number into prime factors)
+
 ```cpp
 bool checkPrime(int n) {
     if (n < 2) return false;
@@ -66,7 +69,9 @@ vector<int> factorizeNum(int n) {
 	return f;
 }
 ```
+
 3. find smallest/largest of positive modulo (> 0) between 2 elements in array - [D. Turtle Tenacity: Continual Mods](https://codeforces.com/contest/1933/problem/D)
+
 ```cpp
 bool continualMods(vector<int> &a) {
 	sort(a.begin(),a.end());
@@ -94,9 +99,11 @@ bool continualMods(vector<int> &a) {
     return false;
 }
 ```
+
 - [count array pairs divisible by k](https://leetcode.com/problems/count-array-pairs-divisible-by-k/description/)
-**important property
+  **important property
 - if $$(a*b)\%k=0 \leftrightarrow (gcd(a,k)*gcd(b,k))\%k=0$$
+
 ```cpp
 using ll = long long;
 
@@ -115,11 +122,15 @@ public:
 	}
 };
 ```
+
 - [maximum and minimum sums of at most size k subsequences](https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/description/)
+
 ```cpp
 
 ```
+
 - [find the maximum sum of node values](https://leetcode.com/problems/find-the-maximum-sum-of-node-values)
+
 ```cpp
 using ll = long long;
 
@@ -140,10 +151,12 @@ public:
     }
 };
 ```
+
 - [distribute candies among children ii](https://leetcode.com/problems/distribute-candies-among-children-ii)
-	- to divide n candies among 3 children
-		- n = 5: `|*|*|*|*|*|` (6 places to put barrier) -> put 2 barriers among n children = `(n+1)C2+n+1 = (n+2)*(n+1)/2` (`n+1` cases that 2 barriers are in same place)
-	- set A is `a >= limit+1`, B is `b >= limit+1`, and C is `c >= limit+1` -> answer is `U-(A+B+C-AB-BC-CA+ABC)`
+  - to divide n candies among 3 children
+    - n = 5: `|*|*|*|*|*|` (6 places to put barrier) -> put 2 barriers among n children = `(n+1)C2+n+1 = (n+2)*(n+1)/2` (`n+1` cases that 2 barriers are in same place)
+  - set A is `a >= limit+1`, B is `b >= limit+1`, and C is `c >= limit+1` -> answer is `U-(A+B+C-AB-BC-CA+ABC)`
+
 ```cpp
 using ll = long long;
 

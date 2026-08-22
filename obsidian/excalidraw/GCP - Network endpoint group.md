@@ -1,21 +1,21 @@
 ---
-
 excalidraw-plugin: parsed
 tags: [excalidraw]
-
 ---
-==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠==
 
+==⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠==
 
 # Excalidraw Data
+
 ## Text Elements
+
 internet ^n93cbk7f
 
 Load balancer ^EIxhKNO2
 
 k8s cluster ^Xvjq04Jk
 
-Network Endpoint   Group (services' IP) ^3DBz2OdF
+Network Endpoint Group (services' IP) ^3DBz2OdF
 
 Instance Group (Nodes' IP) ^tl5aA35x
 
@@ -38,7 +38,9 @@ IP table ^QR6UOgq2
 slower - more hops in network ^Pr7hVmVt
 
 %%
+
 ## Drawing
+
 ```compressed-json
 N4KAkARALgngDgUwgLgAQQQDwMYEMA2AlgCYBOuA7hADTgQBuCpAzoQPYB2KqATLZMzYBXUtiRoIACyhQ4zZAHoFAc0JRJQgEYA6bGwC2CgF7N6hbEcK4OCtptbErHALRY8RMpWdx8Q1TdIEfARcZgRmBShcZQUebQAWbR4aOiCEfQQOKGZuAG1wMFAwYuh4cXRA7CiOZWCU4shGFnYuNB4ATn4SptZOADlOMW4ARgAGYYAOUdGAdlH2gFYuyEIO
 
@@ -166,4 +168,5 @@ p/SAfZ4R4vXYKl4S/6ejHZjmusV+C/pA0Kyb9y0ucq+5f9AghwEGZQnBFfmA2AXEIiD2UwNHlfHag4Ps
 
 rm/BGkXXoQml2SogHWwx86QKMzI3j2RqthZp8fhSU9vPE0AWY/+zAV4BGjgA3f1gd3tHxPy2BVBCAjAQEGwEtAregSYQYIKz7DjSxfs1sfQC1/MT27RnRETAizFZ/s/Of+ABPUJ9iGJ3ggPYIT8OCAA=
 ```
+
 %%

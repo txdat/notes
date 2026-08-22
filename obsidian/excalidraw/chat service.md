@@ -1,15 +1,14 @@
 ---
-
 excalidraw-plugin: parsed
 tags: [excalidraw]
-
 ---
-==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠==
 
+==⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠==
 
 # Excalidraw Data
 
 ## Text Elements
+
 client ^kCQ0x4ds
 
 ALB ^7JRtCNRw
@@ -41,7 +40,9 @@ notification service ^AoPAOWdz
 noSQL database ^aBggiqTq
 
 %%
+
 ## Drawing
+
 ```compressed-json
 N4KAkARALgngDgUwgLgAQQQDwMYEMA2AlgCYBOuA7hADTgQBuCpAzoQPYB2KqATLZMzYBXUtiRoIACyhQ4zZAHoFAc0JRJQgEYA6bGwC2CgF7N6hbEcK4OCtptbErHALRY8RMpWdx8Q1TdIEfARcZgRmBShcZQUebQBGAA5tAAYaOiCEfQQOKGZuAG1wMFAwMuh4cXRA7CiOZWD0sshGFnYuNABWPmKWplZOADlOMW54lIAWHgBOADZEgGZO6f5y
 
@@ -187,4 +188,5 @@ rgTuECjcAEKMlQwojSwyj0oxQlij9WUiO/DahOABlEOdbhmKdsgcuBTlrQ6yByB3IheExsflIgAcjkCW
 
 WmjTSfmDPAd4HIEQg4NSyG35ggacD4glwIAA
 ```
+
 %%

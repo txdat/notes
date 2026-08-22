@@ -3,6 +3,7 @@
 ## Problem
 
 In distributed systems, writing to a database and publishing a message to a broker (Kafka, RabbitMQ) are two separate operations. A crash between them causes:
+
 - DB write committed, event never published → downstream out-of-sync
 - Event published, DB write rolled back → phantom event with no backing state
 
@@ -77,6 +78,7 @@ every fixedDelay (default 1s):
 ```
 
 Key choices:
+
 - **`fixedDelay`** (not `fixedRate`) — delay counts from job completion, prevents overlap for variable-duration batches
 - **Synchronous `.get()`** — blocks until Kafka broker acks; at-least-once guarantee (row stays unpublished on timeout)
 - **Partial success** — only successfully sent IDs are marked; failed events remain for next cycle
@@ -87,6 +89,7 @@ Key choices:
 An alternative where `published_at` is never written. Debezium reads the WAL and streams inserts directly.
 
 **Connector config** (`scripts/debezium/outbox-connector.json`):
+
 ```json
 {
   "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
@@ -108,19 +111,20 @@ An alternative where `published_at` is never written. Debezium reads the WAL and
 
 **Polling vs CDC comparison:**
 
-| | Polling | CDC (Debezium) |
-|---|---|---|
-| Delivery | At-least-once (synchronous `.get()`) | At-least-once (WAL) |
-| Latency | Configurable (`poll.interval-ms`) | Near-realtime |
-| `published_at` | Written after send | Never written |
-| Extra infra | None | Debezium + logical replication slot |
-| DB load | Periodic SELECT + UPDATE | WAL reads only |
+|                | Polling                              | CDC (Debezium)                      |
+| -------------- | ------------------------------------ | ----------------------------------- |
+| Delivery       | At-least-once (synchronous `.get()`) | At-least-once (WAL)                 |
+| Latency        | Configurable (`poll.interval-ms`)    | Near-realtime                       |
+| `published_at` | Written after send                   | Never written                       |
+| Extra infra    | None                                 | Debezium + logical replication slot |
+| DB load        | Periodic SELECT + UPDATE             | WAL reads only                      |
 
 ## Library Integration (`outbox-lib`)
 
 Auto-configures via `OutboxAutoConfiguration` (`@ConditionalOnClass(DSLContext.class)`). All beans are `@ConditionalOnMissingBean` — override any by providing your own.
 
 **Adopting in a service:**
+
 1. Add `outbox-lib` Maven dependency
 2. Add `"classpath:db/outbox"` to `FlywayConfig` migration locations (creates `outbox_events`)
 3. Add `spring-kafka` dependency + Kafka producer config
@@ -153,9 +157,9 @@ class ReservationWriter {
 
 **Event types emitted per service:**
 
-| Service | Event Types |
-|---|---|
-| booking-service | `BookingCreated`, `BookingConfirmed`, `BookingCancelled`, `RefundFailed` |
+| Service         | Event Types                                                                                    |
+| --------------- | ---------------------------------------------------------------------------------------------- |
+| booking-service | `BookingCreated`, `BookingConfirmed`, `BookingCancelled`, `RefundFailed`                       |
 | payment-service | `PaymentAuthorized`, `PaymentCaptured`, `PaymentRefunded`, `PaymentCancelled`, `PaymentFailed` |
 
 ## In the Project (atomic-book)
@@ -205,31 +209,31 @@ PostgreSQL WAL (logical replication, pgoutput plugin)
 
 ### What They Share
 
-| | Polling | CDC |
-|---|---|---|
-| **Outbox table** | Same `public.outbox_events` | Same `public.outbox_events` |
-| **Domain model** | `OutboxEvent` | `OutboxEvent` |
-| **Port interface** | `OutboxEventRepository` | `OutboxEventRepository` |
-| **Writer code** | Identical `outboxEventRepository.save(...)` | Identical `outboxEventRepository.save(...)` |
-| **Topic naming** | `eventType` field → Kafka topic | `event_type` column → Kafka topic (via SMT) |
-| **Kafka key** | `aggregateId.toString()` | `aggregate_id` column (via SMT `table.field.event.key`) |
-| **Payload** | `payload` field (JSON string) | `payload` column (JSONB, delivered as string) |
-| **Delivery guarantee** | At-least-once | At-least-once |
+|                        | Polling                                     | CDC                                                     |
+| ---------------------- | ------------------------------------------- | ------------------------------------------------------- |
+| **Outbox table**       | Same `public.outbox_events`                 | Same `public.outbox_events`                             |
+| **Domain model**       | `OutboxEvent`                               | `OutboxEvent`                                           |
+| **Port interface**     | `OutboxEventRepository`                     | `OutboxEventRepository`                                 |
+| **Writer code**        | Identical `outboxEventRepository.save(...)` | Identical `outboxEventRepository.save(...)`             |
+| **Topic naming**       | `eventType` field → Kafka topic             | `event_type` column → Kafka topic (via SMT)             |
+| **Kafka key**          | `aggregateId.toString()`                    | `aggregate_id` column (via SMT `table.field.event.key`) |
+| **Payload**            | `payload` field (JSON string)               | `payload` column (JSONB, delivered as string)           |
+| **Delivery guarantee** | At-least-once                               | At-least-once                                           |
 
 ### What Differs
 
-| | Polling | CDC |
-|---|---|---|
-| **Delivery marker** | `published_at` timestamp (written on success) | WAL offset in replication slot (never touches rows) |
-| **Latency** | Up to `poll.interval-ms` (default 1 000 ms) | Near-realtime (WAL tail latency, typically < 100 ms) |
-| **Retry on crash** | Rows with `published_at IS NULL` are retried on next poll | WAL offset rolled back; events re-streamed from last committed position |
-| **Duplicate risk** | Poll transaction committed, Kafka ack lost → row already marked → no duplicate | WAL replayed from offset → duplicate if consumer not idempotent |
-| **DB write amplification** | Extra `UPDATE published_at` per batch | None — rows are append-only |
-| **Infrastructure** | None beyond the app | Debezium Connect cluster + Postgres logical replication slot |
-| **Replication slot risk** | None | Unconsumed slot holds WAL indefinitely → disk exhaustion if Debezium lags |
-| **Ordering** | `ORDER BY created_at` in SELECT | WAL order (insertion order) — same in practice |
-| **Schema flexibility** | Can add routing logic in `TopicResolver` bean | Routing is SMT config; changing requires connector restart |
-| **Outbox table growth** | Rows accumulate; needs a periodic `DELETE WHERE published_at IS NOT NULL` cleanup job | Rows accumulate; same cleanup needed |
+|                            | Polling                                                                               | CDC                                                                       |
+| -------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| **Delivery marker**        | `published_at` timestamp (written on success)                                         | WAL offset in replication slot (never touches rows)                       |
+| **Latency**                | Up to `poll.interval-ms` (default 1 000 ms)                                           | Near-realtime (WAL tail latency, typically < 100 ms)                      |
+| **Retry on crash**         | Rows with `published_at IS NULL` are retried on next poll                             | WAL offset rolled back; events re-streamed from last committed position   |
+| **Duplicate risk**         | Poll transaction committed, Kafka ack lost → row already marked → no duplicate        | WAL replayed from offset → duplicate if consumer not idempotent           |
+| **DB write amplification** | Extra `UPDATE published_at` per batch                                                 | None — rows are append-only                                               |
+| **Infrastructure**         | None beyond the app                                                                   | Debezium Connect cluster + Postgres logical replication slot              |
+| **Replication slot risk**  | None                                                                                  | Unconsumed slot holds WAL indefinitely → disk exhaustion if Debezium lags |
+| **Ordering**               | `ORDER BY created_at` in SELECT                                                       | WAL order (insertion order) — same in practice                            |
+| **Schema flexibility**     | Can add routing logic in `TopicResolver` bean                                         | Routing is SMT config; changing requires connector restart                |
+| **Outbox table growth**    | Rows accumulate; needs a periodic `DELETE WHERE published_at IS NOT NULL` cleanup job | Rows accumulate; same cleanup needed                                      |
 
 ### Which Mode Is Active When
 
@@ -240,6 +244,7 @@ PostgreSQL WAL (logical replication, pgoutput plugin)
 ### Consumer Idempotency Requirement
 
 Both modes deliver **at-least-once**. Consumers must be idempotent:
+
 - Use the `OutboxEvent.id` (UUID) as a deduplication key
 - `idempotency-lib`'s two-phase store (`INSERT ON CONFLICT DO NOTHING`) is the recommended approach for any consumer that performs a DB write in response to an event
 - For notification-service (email/SMS send), natural idempotency via per-user/per-event deduplication keys is sufficient
@@ -248,7 +253,7 @@ Both modes deliver **at-least-once**. Consumers must be idempotent:
 
 ## Relation to CQRS and Inline Projection
 
-The outbox pattern and inline projection are two different responses to the same underlying question: *how do you keep a second piece of state consistent with the first?*
+The outbox pattern and inline projection are two different responses to the same underlying question: _how do you keep a second piece of state consistent with the first?_
 
 ### Dual-Write in One Transaction
 
@@ -270,13 +275,13 @@ Inline Projection:
 
 The structural pattern is identical. The intent differs:
 
-| | Outbox write | Inline projection write |
-|---|---|---|
-| **Target** | `outbox_events` relay table | Query-optimised read model table |
-| **Consumer** | External services via Kafka (async) | Same service's query layer (sync) |
-| **Consistency** | Eventual — after broker delivery | Immediate — visible after commit |
-| **Coupling** | Write side decoupled from read schema | Write side knows read schema |
-| **Infrastructure** | Broker + poller/CDC | None beyond the DB |
+|                    | Outbox write                          | Inline projection write           |
+| ------------------ | ------------------------------------- | --------------------------------- |
+| **Target**         | `outbox_events` relay table           | Query-optimised read model table  |
+| **Consumer**       | External services via Kafka (async)   | Same service's query layer (sync) |
+| **Consistency**    | Eventual — after broker delivery      | Immediate — visible after commit  |
+| **Coupling**       | Write side decoupled from read schema | Write side knows read schema      |
+| **Infrastructure** | Broker + poller/CDC                   | None beyond the DB                |
 
 ### Outbox as the Bridge for Async Projections
 
@@ -296,11 +301,13 @@ Without the outbox, publishing directly to Kafka inside a transaction is unsafe 
 ### Choosing Between Them
 
 Use **inline projection** when:
+
 - The read model is owned by the same service as the write model
 - Immediate consistency is required (user sees their change right away)
 - The projection is simple (one or two extra rows)
 
 Use **outbox + async projection** when:
+
 - The read model belongs to a different service or bounded context
 - Multiple consumers need independent views of the same event
 - Eventual consistency is acceptable

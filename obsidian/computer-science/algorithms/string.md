@@ -1,6 +1,7 @@
 1. Knuth-Morris-Pratt - prefix function
-	- [cp-algorithms](https://cp-algorithms.com/string/prefix-function.html)
-		- call $\pi[i] = max\{k: s[0..k-1] == s[i-k+1..i]\}$ and $\pi[0]=0?$
+   - [cp-algorithms](https://cp-algorithms.com/string/prefix-function.html)
+     - call $\pi[i] = max\{k: s[0..k-1] == s[i-k+1..i]\}$ and $\pi[0]=0?$
+
 ```cpp
 class Solution {
 public:
@@ -24,6 +25,7 @@ public:
 ```
 
 - find all occurrences of target in string
+
 ```cpp
 class Solution {
 public:
@@ -46,11 +48,15 @@ public:
 	}
 }
 ```
+
 - find all prefixes as suffix of string
+
 ```cpp
+
 ```
 
 - [shortest palindrome](https://leetcode.com/problems/shortest-palindrome/description/)
+
 ```cpp
 class Solution {
 public:
@@ -72,7 +78,9 @@ public:
     }
 };
 ```
+
 - [time needed to rearrange a binary string](https://leetcode.com/problems/time-needed-to-rearrange-a-binary-string/description/)
+
 ```cpp
 class Solution {
 public:
@@ -93,14 +101,17 @@ public:
     }
 };
 ```
+
 2. Manacher - find the largest palindrome for each position in string
+
 - maintain (l,r) of rightmost found (sub)palindrome `[s[l+1]...s[r-1]]` is palindrome
 - for next i
-	- if i >= r, just launch trivial algorithm
-	- if i < r, 
-		- get `j=l+r-i` is mirror of i in (l,r), and can set `dp[i] = dp[j]`, but if `j-dp[j] <= l` (out of range), `dp[i] = r-i`
+  - if i >= r, just launch trivial algorithm
+  - if i < r,
+    - get `j=l+r-i` is mirror of i in (l,r), and can set `dp[i] = dp[j]`, but if `j-dp[j] <= l` (out of range), `dp[i] = r-i`
 - add '#' between each element of input to solve parities
-	- `dp[2i] = 2dp_even[i]+1`, `dp[2i+1] = 2dp_odd[i]`
+  - `dp[2i] = 2dp_even[i]+1`, `dp[2i+1] = 2dp_odd[i]`
+
 ```cpp
 vector<int> manacher(string &s) {
     string t = "#";
@@ -123,7 +134,9 @@ vector<int> manacher(string &s) {
 }
 
 ```
+
 - [check if dfs strings are palindromes](https://leetcode.com/problems/check-if-dfs-strings-are-palindromes)
+
 ```cpp
 class Solution {
 public:
@@ -172,7 +185,8 @@ public:
 ```
 
 - [pattern positions](https://cses.fi/problemset/task/2104/)
-	- cses solution for string topic [link](https://codeforces.com/blog/entry/95004)
+  - cses solution for string topic [link](https://codeforces.com/blog/entry/95004)
+
 ```cpp
 
 ```

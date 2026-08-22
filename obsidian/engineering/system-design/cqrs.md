@@ -17,13 +17,13 @@ Without CQRS, one model serves both purposes — normalized for integrity, but o
 
 ## Commands vs Queries
 
-| | Command | Query |
-|---|---|---|
-| **Intent** | Mutate state | Read state |
-| **Return** | Void or minimal acknowledgement | Data |
-| **Examples** | `CreateBooking`, `CapturePayment` | `GetBookingSummary`, `ListUserReservations` |
-| **Side effects** | Yes — DB writes, events | No |
-| **Idempotency** | Must be handled explicitly | Naturally safe to repeat |
+|                  | Command                           | Query                                       |
+| ---------------- | --------------------------------- | ------------------------------------------- |
+| **Intent**       | Mutate state                      | Read state                                  |
+| **Return**       | Void or minimal acknowledgement   | Data                                        |
+| **Examples**     | `CreateBooking`, `CapturePayment` | `GetBookingSummary`, `ListUserReservations` |
+| **Side effects** | Yes — DB writes, events           | No                                          |
+| **Idempotency**  | Must be handled explicitly        | Naturally safe to repeat                    |
 
 The split is not just architectural — it enforces that query paths never accidentally trigger side effects, and command paths are never polluted with read-optimisation concerns.
 
@@ -53,6 +53,7 @@ COMMIT
 ```
 
 **Properties:**
+
 - Read model is **immediately consistent** — the moment the command commits, the query side reflects it
 - Both writes are atomic — if the command rolls back, the read model also rolls back
 - Write path must know about the read model's schema — coupling between write and read sides
@@ -73,6 +74,7 @@ COMMIT
 ```
 
 **Properties:**
+
 - Read model is **eventually consistent** — lags behind the write model by the delivery latency
 - Write path is decoupled from read model schema — multiple projections can consume the same event
 - Adding a new read model requires a new consumer, no write path change
@@ -80,26 +82,28 @@ COMMIT
 
 ### Comparison
 
-| | Inline Projection | Async Projection |
-|---|---|---|
-| **Consistency** | Immediate (same transaction) | Eventual (delivery lag) |
-| **Atomicity** | Same txn — rollback cleans both | Separate txn — failure leaves them out of sync until retry |
-| **Write path coupling** | Tight — write service knows read schema | Loose — write service only emits an event |
-| **Multiple read models** | Each requires a write path change | Each is a new independent consumer |
-| **Infrastructure** | None beyond the DB | Message broker + consumer |
-| **Failure recovery** | Automatic (transaction rollback) | Consumer retry / dead-letter queue |
-| **Query freshness** | Always up-to-date | May lag under load or failures |
-| **Operational complexity** | Low | Higher (broker, consumers, lag monitoring) |
+|                            | Inline Projection                       | Async Projection                                           |
+| -------------------------- | --------------------------------------- | ---------------------------------------------------------- |
+| **Consistency**            | Immediate (same transaction)            | Eventual (delivery lag)                                    |
+| **Atomicity**              | Same txn — rollback cleans both         | Separate txn — failure leaves them out of sync until retry |
+| **Write path coupling**    | Tight — write service knows read schema | Loose — write service only emits an event                  |
+| **Multiple read models**   | Each requires a write path change       | Each is a new independent consumer                         |
+| **Infrastructure**         | None beyond the DB                      | Message broker + consumer                                  |
+| **Failure recovery**       | Automatic (transaction rollback)        | Consumer retry / dead-letter queue                         |
+| **Query freshness**        | Always up-to-date                       | May lag under load or failures                             |
+| **Operational complexity** | Low                                     | Higher (broker, consumers, lag monitoring)                 |
 
 ### When to Use Each
 
 **Inline projection** is appropriate when:
+
 - The read model is tightly owned by the same service as the write model
 - Query freshness is critical (user expects to see their change immediately)
 - The projection is simple (one or two extra writes)
 - You want to avoid event broker infrastructure for a purely local concern
 
 **Async projection** is appropriate when:
+
 - Multiple independent consumers need to build their own views of the same event
 - The projection belongs to a different service or bounded context
 - Eventual consistency is acceptable (e.g. analytics dashboards, activity feeds)
@@ -111,12 +115,12 @@ COMMIT
 
 CQRS and Event Sourcing are different concepts that are often combined but don't require each other:
 
-| | CQRS | Event Sourcing |
-|---|---|---|
-| **What it separates** | Read model from write model | Current state from event history |
-| **Storage** | Separate tables/DBs for read and write | Events are the source of truth; current state is derived |
-| **Projections** | Build read model from write model | Build any view by replaying events |
-| **Can be used alone** | Yes — plain CQRS without event sourcing | Yes — event sourcing without separate read model |
+|                       | CQRS                                    | Event Sourcing                                           |
+| --------------------- | --------------------------------------- | -------------------------------------------------------- |
+| **What it separates** | Read model from write model             | Current state from event history                         |
+| **Storage**           | Separate tables/DBs for read and write  | Events are the source of truth; current state is derived |
+| **Projections**       | Build read model from write model       | Build any view by replaying events                       |
+| **Can be used alone** | Yes — plain CQRS without event sourcing | Yes — event sourcing without separate read model         |
 
 **Event sourcing with CQRS**: events are the write model; projections (inline or async) build read models by replaying or streaming events. The outbox pattern fits naturally here — events are published from the event store to Kafka, consumers build projections.
 
@@ -143,11 +147,11 @@ INSERT reservation     →   INSERT outbox_event   →   [Poller/CDC]
 
 Inline projection and the outbox write share the same mechanism — **atomic co-write in one transaction** — but serve different goals:
 
-| | Outbox write | Inline projection write |
-|---|---|---|
-| **Target** | `outbox_events` relay table | Read model / view table |
-| **Consumer** | External services via Kafka | Same service's query layer |
-| **Consistency** | Eventual (after broker delivery) | Immediate |
+|                 | Outbox write                     | Inline projection write    |
+| --------------- | -------------------------------- | -------------------------- |
+| **Target**      | `outbox_events` relay table      | Read model / view table    |
+| **Consumer**    | External services via Kafka      | Same service's query layer |
+| **Consistency** | Eventual (after broker delivery) | Immediate                  |
 
 ---
 
@@ -156,17 +160,18 @@ Inline projection and the outbox write share the same mechanism — **atomic co-
 Atomic-book does not implement explicit CQRS — each service queries the same normalized tables it writes to. However, several patterns in the codebase are natural precursors:
 
 **Write and read on the same model (current state):**
+
 - `BookingController` calls `CreateBookingService` (command) and `GetBookingService` (query) — the query reads directly from `reservations`
 - No separate read table; joins are done at query time via jOOQ
 
 **Patterns that point toward CQRS:**
 
-| Current pattern | If CQRS were applied |
-|---|---|
-| `reservations` table queried with joins | `booking_summary_view` table updated inline or via event |
-| `payment-service` queries payments by user | Async projection into `user_payment_history` consumer |
+| Current pattern                                                    | If CQRS were applied                                                            |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------------------- |
+| `reservations` table queried with joins                            | `booking_summary_view` table updated inline or via event                        |
+| `payment-service` queries payments by user                         | Async projection into `user_payment_history` consumer                           |
 | Notification-service subscribes to `BookingConfirmed` Kafka events | Already an async projection — updates notification state from write-side events |
-| Ledger double-entry writes | Natural fit for event sourcing; `account_balance_view` as a projection |
+| Ledger double-entry writes                                         | Natural fit for event sourcing; `account_balance_view` as a projection          |
 
 **`notification-service` is the closest to async CQRS** in the system: it consumes `BookingConfirmed`, `PaymentCaptured`, etc. events from Kafka (published via outbox) and builds its own send-queue state. The write side (booking/payment) emits events; notification-service projects them into dispatch records. This is async projection across a service boundary.
 

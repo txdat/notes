@@ -1,9 +1,8 @@
 - [block placement queries](https://leetcode.com/problems/block-placement-queries/description/)
+
 ```cpp
 
 ```
-
-
 
 - [peaks in array](https://leetcode.com/problems/peaks-in-array/)
 
@@ -20,7 +19,7 @@ public:
         build_st(st,arr,m+1,r,j+1);
         st[i] = st[j] + st[j+1];
     }
-    
+
     void update_st(vector<int> &st, int l, int r, int k, int v, int i = 1) {
         if (k < l || k > r) return;
         if (l == r) {
@@ -32,7 +31,7 @@ public:
         update_st(st,m+1,r,k,v,j+1);
         st[i] = st[j]+st[j+1];
     }
-    
+
     // query [u,v] of nums
     int get_val(vector<int> &st, int l, int r, int u, int v, int i = 1) {
         if (v < l || u > r) return 0;
@@ -40,15 +39,15 @@ public:
         int m = (l+r)>>1, j = i<<1;
         return get_val(st,l,m,u,v,j)+get_val(st,m+1,r,u,v,j+1);
     }
-    
+
     vector<int> countOfPeaks(vector<int>& nums, vector<vector<int>>& queries) {
         int n = nums.size();
         vector<int> arr(n,0);
         for (int i = 1; i < n-1; i++) if (nums[i] > nums[i-1] && nums[i] > nums[i+1]) arr[i] = 1;
-    
+
         vector<int> st(4*n);
         build_st(st, arr, 0, n-1);
-        
+
         vector<int> ans;
         for (auto &q : queries) {
             if (q[0] == 1) {
@@ -71,7 +70,9 @@ public:
     }
 };
 ```
+
 - [fruits into baskets iii](https://leetcode.com/problems/fruits-into-baskets-iii/description/)
+
 ```cpp
 // use segment tree ST to track largest basket in range [l,r], but too slow
 class Solution {
@@ -124,7 +125,9 @@ public:
     }
 };
 ```
+
 - [maximum total subarray value ii](https://leetcode.com/problems/maximum-total-subarray-value-ii/)
+
 ```cpp
 using ll = long long;
 
@@ -197,7 +200,7 @@ public:
             // query on [i..j-1]
             if (i < j) q.push({query_max_t(max_t, i, j-1, 0, n1)-query_min_t(min_t, i, j-1, 0, n1), i, j-1});
         }
-    
+
         return ans;
     }
 };

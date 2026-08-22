@@ -1,5 +1,7 @@
 1. deque (double-ended queue) -> combine queue and monotonic stack
+
 - [sliding window maximum](https://leetcode.com/problems/sliding-window-maximum/)
+
 ```cpp
 class Solution {
 public:
@@ -21,7 +23,9 @@ public:
     }
 };
 ```
+
 - [longest continuous subarray with absolute diff less than or equal limit](https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/description/)
+
 ```cpp
 class Solution {
 public:
@@ -65,7 +69,9 @@ public:
 	}
 };
 ```
+
 - [constrained subsequence sum](https://leetcode.com/problems/constrained-subsequence-sum/)
+
 ```cpp
 class Solution {
 public:
@@ -84,7 +90,9 @@ public:
     }
 };
 ```
+
 - [shortest subarray with sum at least k](https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/)
+
 ```cpp
 using ll = long long;
 

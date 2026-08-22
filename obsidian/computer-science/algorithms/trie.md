@@ -18,7 +18,7 @@ public:
                 root->l = l;
                 root->k = i;
             }
-            
+
             auto curr = root;
             for (int t = l-1; t >= 0; t--) {
                 int j = w[t]-'a';
@@ -45,7 +45,9 @@ public:
     }
 };
 ```
+
 2. [maximum xor of two numbers in an array](https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/)
+
 ```cpp
 struct Node {
     Node* next[2] = {nullptr};
@@ -104,7 +106,9 @@ public:
     }
 };
 ```
+
 3. [maximum genetic difference query](https://leetcode.com/problems/maximum-genetic-difference-query/)
+
 ```cpp
 int q[31];
 
@@ -196,10 +200,15 @@ public:
     }
 };
 ```
+
 - [construct string with minimum cost](https://leetcode.com/problems/construct-string-with-minimum-cost/) -> aho-corasick
+
 ```cpp
 
 ```
+
 - [k-th smallest in lexicographical order](https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/) (trie concept only, not implementation)
+
 ```cpp
+
 ```

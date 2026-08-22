@@ -3,6 +3,7 @@
 ![[Pasted image 20260705211814.png | 400]]
 
 # Layout
+
 - stack
 - heap
 - BSS (uninitialized data)

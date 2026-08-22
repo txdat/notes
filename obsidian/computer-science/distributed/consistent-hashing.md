@@ -8,9 +8,11 @@
 # Hash Ring
 
 # Virtual Nodes
+
 - adding 1 node to 5-node ring remaps ~17% of keys
 - virtual nodes reduce load imbalance to <5%
 
 # Implementation
+
 - ring.AddNode(id, tokens)
 - ring.GetNode(key)

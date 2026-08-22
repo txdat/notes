@@ -1,14 +1,14 @@
 ---
-
 excalidraw-plugin: parsed
 tags: [excalidraw]
-
 ---
-==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠==
 
+==⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠==
 
 # Excalidraw Data
+
 ## Text Elements
+
 VPC ^r0vj1alz
 
 Subnet ^hYlNfKKg
@@ -26,7 +26,9 @@ Router ^FLTS5wPU
 network ACL ^GjqxjWk5
 
 %%
+
 ## Drawing
+
 ```compressed-json
 N4KAkARALgngDgUwgLgAQQQDwMYEMA2AlgCYBOuA7hADTgQBuCpAzoQPYB2KqATLZMzYBXUtiRoIACyhQ4zZAHoFAc0JRJQgEYA6bGwC2CgF7N6hbEcK4OCtptbErHALRY8RMpWdx8Q1TdIEfARcZgRmBShcZQUebQAWbR4aOiCEfQQOKGZuAG1wMFAwYuh4cXRA7CiOZWCU4shGFnYuNABGAAYAdn4SptZOADlOMW42ro6AZgBOLq6ANh5J3shC
 
@@ -104,4 +106,5 @@ GdNHIIE1KCJQX6VAG2npBkZWQfEfgwRkYysZ+gNJLzS5EEyQZf0j6SVOAqgUUuiMymfoBHAgSypBJWHu
 
 Q0wCORHOxCpZlAjYKyFaBHCHAk5Sc4VhMhNkAyEAsMx6JwHhHkZhysqVLG/GBgtiIekWX2XVEGaC05k6HPWkmEiyTT+kCo3BLDCw61y94brQfJoF+AkxsgyISLHAE9kIBvZFc/2TJyqCEBGADwbWfgF1njMTYaQCeefHqaLk4YxM04p0Kr6C8fuuIf4BPKnkzzVxdhcACPDe7BAOwfYEAH2CAA==
 ```
+
 %%

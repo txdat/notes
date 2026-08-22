@@ -28,7 +28,6 @@ Assumptions:
 
 The maximum value of the taskIds array's length is 200. You may expect at least 1 task ID to be sent in the request's payload. Only one import is allowed: express (v4.17.1).
 
-
 Example 1: Let's assume that a request with four task IDs was sent. All task IDs are recognizable by TaskRunner. The execution order of the given task was: 0, 2, 1, 3, which means that:
 
 the first completed task was the task with the first task ID from the taskIds array;
@@ -37,7 +36,6 @@ the third completed task was the task with the second task ID from the array;
 the last completed task was the task with the last task ID from the array.
 
 ![[Pasted image 20240613230738.png | 400]]
-
 
 Thus, the response should have status code 200 and the body should be an array:
 

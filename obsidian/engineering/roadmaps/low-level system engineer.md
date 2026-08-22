@@ -7,30 +7,31 @@
 
 ## Stack & Time Allocation
 
-| Language | Role | Time |
-|---|---|---|
-| C++17/20 | Memory control, lock-free structures, storage engine, performance-critical systems | ~35% |
-| Go | Systems glue, Raft consensus, HTTP proxy, network tools | ~30% |
-| Java/Spring | JVM internals, GC deep-dive, Java Memory Model, wallet project | ~20% |
-| PostgreSQL | Storage engine internals, MVCC, WAL, query planner — studied as artifact not tool | ~15% |
+| Language    | Role                                                                               | Time |
+| ----------- | ---------------------------------------------------------------------------------- | ---- |
+| C++17/20    | Memory control, lock-free structures, storage engine, performance-critical systems | ~35% |
+| Go          | Systems glue, Raft consensus, HTTP proxy, network tools                            | ~30% |
+| Java/Spring | JVM internals, GC deep-dive, Java Memory Model, wallet project                     | ~20% |
+| PostgreSQL  | Storage engine internals, MVCC, WAL, query planner — studied as artifact not tool  | ~15% |
 
 ---
 
 ## Weekly Rhythm
 
-| Day | Hours | Focus |
-|---|---|---|
-| Mon/Tue | 6 hrs | C++ or Go project work — commit + one-line dev log |
-| Wed/Thu | 6 hrs | Read book chapter / paper / source code, notes in own words |
-| Fri | 3 hrs | PostgreSQL lab — one EXPLAIN ANALYZE + one storage experiment |
-| Sat | 8 hrs | Flagship project — inject failures, write benchmarks |
-| Sun | 7 hrs | Write ADR/README for the week, plan next week |
+| Day     | Hours | Focus                                                         |
+| ------- | ----- | ------------------------------------------------------------- |
+| Mon/Tue | 6 hrs | C++ or Go project work — commit + one-line dev log            |
+| Wed/Thu | 6 hrs | Read book chapter / paper / source code, notes in own words   |
+| Fri     | 3 hrs | PostgreSQL lab — one EXPLAIN ANALYZE + one storage experiment |
+| Sat     | 8 hrs | Flagship project — inject failures, write benchmarks          |
+| Sun     | 7 hrs | Write ADR/README for the week, plan next week                 |
 
 ---
 
 ## End-State Goals
 
 ### C++17/20
+
 - [ ] Build thread-safe memory pool allocator: thread-local caches, CAS global pool, ABA protection — ASAN/UBSAN clean at 16 threads
 - [ ] Build lock-free MPSC queue with hazard pointer memory reclamation — stress test passes under valgrind
 - [ ] Build LSM-tree KV store: WAL, MemTable (skip list), SSTable, Bloom filter, leveled compaction, sharded LRU block cache, iterators
@@ -39,6 +40,7 @@
 - [ ] Use perf + flame graphs to find hotspots, vectorize with AVX2, measure with Google Benchmark
 
 ### Go
+
 - [ ] Write concurrent Go with zero data races under `-race`
 - [ ] Build HTTP reverse proxy: round-robin LB, rate limiter, graceful shutdown, pprof flame graph before/after
 - [ ] Implement Raft consensus — MIT 6.824 Labs 2A–2D pass 50 consecutive runs, ≥4 documented bugs
@@ -46,6 +48,7 @@
 - [ ] Build production services: structured logging, Prometheus metrics, gRPC streaming, context cancellation
 
 ### Java/Spring
+
 - [ ] Explain G1GC and ZGC pause models, safepoints, write barriers
 - [ ] Build digital wallet: double-entry bookkeeping, idempotency keys, Outbox pattern, failure tests all pass
 - [ ] Know Java Memory Model happens-before chain — when `volatile` is insufficient
@@ -54,6 +57,7 @@
 - [ ] Use Java 21 virtual threads; know when platform threads are still needed
 
 ### PostgreSQL
+
 - [ ] Read any `EXPLAIN (ANALYZE, BUFFERS)` and identify bottleneck within 2 minutes
 - [ ] Explain MVCC with pageinspect: xmin/xmax, tuple versions, dead tuples, VACUUM
 - [ ] Walk through WAL → checkpoint → crash recovery sequence step by step
@@ -62,6 +66,7 @@
 - [ ] Configure streaming replication, table partitioning, PgBouncer, fix top-5 slow queries via pg_stat_statements
 
 ### CS Fundamentals
+
 - [ ] Explain virtual memory, TLB, page faults, cache hierarchy (false sharing, 64-byte lines), memory ordering
 - [ ] Understand Linux CFS scheduler, VFS/inode/dentry, ext4 journaling, TCP kernel path
 - [ ] Reason about lock-free algorithms: CAS, ABA, hazard pointers, epoch-based reclamation
@@ -78,24 +83,27 @@
 
 ### Codeforces Rating Ladder
 
-| Rating | Title | Problems | Notes |
-|---|---|---|---|
-| < 1200 | Gray / Newbie | Div. 3 A | Simple loops, conditionals, basic math. Clear in 2 weeks. |
-| 1200–1399 | Green / Pupil | Div. 3 B / Div. 2 A | Greedy, sorting, prefix sums, basic BFS/DFS. Month 1 exit. |
-| 1400–1599 | Cyan / Specialist | Div. 2 B–C | Binary search on answer, graph algorithms, basic DP. Month 2 exit. |
-| 1600–1899 | Blue / Expert | Div. 2 C–D | Harder DP, Dijkstra, segment trees, DSU. Month 3–4 target. |
+| Rating    | Title                     | Problems            | Notes                                                                   |
+| --------- | ------------------------- | ------------------- | ----------------------------------------------------------------------- |
+| < 1200    | Gray / Newbie             | Div. 3 A            | Simple loops, conditionals, basic math. Clear in 2 weeks.               |
+| 1200–1399 | Green / Pupil             | Div. 3 B / Div. 2 A | Greedy, sorting, prefix sums, basic BFS/DFS. Month 1 exit.              |
+| 1400–1599 | Cyan / Specialist         | Div. 2 B–C          | Binary search on answer, graph algorithms, basic DP. Month 2 exit.      |
+| 1600–1899 | Blue / Expert             | Div. 2 C–D          | Harder DP, Dijkstra, segment trees, DSU. Month 3–4 target.              |
 | 1900–2099 | Violet / Candidate Master | Div. 1 C / Div. 2 E | Tree DP, network flow, LCA, centroid decomp. Required for Jump Trading. |
 
 ### Month 1 — Linear Structures + Search
+
 > CF target: **Pupil (1200)** | LC: ~50 problems Easy→Medium
 
 **LeetCode**
+
 - [ ] Arrays & Strings: sliding window (fixed + variable), two pointers, prefix sums, Kadane's
 - [ ] Hash Maps & Sets: frequency counting, two-sum, anagram grouping, sliding window with freq map
 - [ ] Binary Search: exact target, lower/upper bound, rotated sorted array, minimize-the-maximum
 - [ ] Linked Lists: fast/slow pointer, reverse in-place, merge sorted, remove Nth from end
 
 **Codeforces**
+
 - [ ] Register on codeforces.com, set up account, enable rating
 - [ ] Solve 30+ problems rated 800–1000: simple greedy, sorting, basic math
 - [ ] Solve 20+ problems rated 1000–1200: GCD/modular arithmetic, prime sieve, constructive
@@ -105,15 +113,18 @@
 **Exit gate:** LC medium array/string cold in <20 min. CF Div. 3 A/B solved within 10 min each.
 
 ### Month 2 — Trees + Graphs + Stack
+
 > CF target: **Specialist (1400)** | LC: ~55 problems Medium
 
 **LeetCode**
+
 - [ ] Binary Trees: recursive DFS (pre/in/post), iterative BFS, LCA, diameter, path sum, serialize/deserialize
 - [ ] Graphs: BFS shortest path, DFS connected components, topological sort (Kahn's + DFS), union-find, Dijkstra
 - [ ] Stacks & Monotonic Stack: next greater element, largest rectangle in histogram, daily temperatures
 - [ ] Intervals: merge overlapping, insert, sweep line (meeting rooms), minimum interval cover
 
 **Codeforces**
+
 - [ ] Solve 20+ problems rated 1200–1400: BFS/DFS on grids, basic number theory
 - [ ] Solve 15+ problems rated 1400–1500: constructive algorithms, binary search applications
 - [ ] Complete CF EDU: DSU (Disjoint Set Union) section (10 problems)
@@ -123,15 +134,18 @@
 **Exit gate:** LC medium graph cold in <25 min. Able to solve CF Div. 2 B within contest time.
 
 ### Month 3 — DP + Heaps + Backtracking
+
 > CF target: **Expert (1600)** | LC: ~55 problems Medium→Hard
 
 **LeetCode**
+
 - [ ] DP: 1D (house robber, coin change), 2D (grid paths, edit distance, LCS), knapsack, LIS (patience sort)
 - [ ] Heaps: top-K elements, K-way merge, sliding window maximum, find median from data stream
 - [ ] Backtracking: permutations, combinations, subsets, N-queens, Sudoku solver
 - [ ] Tries: insert/search/startsWith, word search II, autocomplete
 
 **Codeforces**
+
 - [ ] Solve 20+ problems rated 1500–1700: harder DP, Dijkstra on weighted graphs
 - [ ] Solve 15+ problems rated 1700–1900: DSU applications, segment tree point-update range-query
 - [ ] Complete Atcoder DP Contest — all 26 problems at atcoder.jp/contests/dp
@@ -141,20 +155,24 @@
 **Exit gate:** LC medium DP solved by defining subproblem first. CF Div. 2 C solved within contest time.
 
 ### Month 4 — Hard Problems + Contests + Mocks
+
 > CF target: **Expert→CM (1800–2100)** | LC: ~50 problems Hard
 
 **LeetCode**
+
 - [ ] Hard: DP bitmask, segment tree range queries, Bellman-Ford, Floyd-Warshall, SCC (Tarjan/Kosaraju)
 - [ ] LC contests: 2 per week (biweekly + weekly), 45-min max per problem
 - [ ] Company-specific: filter by target company, last 6 months, top 30 per company
 
 **Codeforces**
+
 - [ ] Solve 20+ problems rated 1900–2200: tree DP, network flow, LCA with binary lifting
 - [ ] Run 3 virtual contests per week (old Div. 2 rounds, 2-hour timer)
 - [ ] Participate in 2 live CF rounds
 - [ ] After every contest/virtual: read all editorials, update insight log
 
 **Mock Interviews**
+
 - [ ] Schedule 3 Pramp mocks per week (pramp.com — free)
 - [ ] Do 2 paid mocks on interviewing.io before applying
 - [ ] Record yourself solving problems — watch playback and note every hesitation point
@@ -163,17 +181,17 @@
 
 ### Problem Category Reference
 
-| Category | Count | Key Patterns |
-|---|---|---|
-| Arrays & Strings | 30–35 | Sliding window, two pointers, prefix sum, Kadane's, Boyer-Moore |
-| Binary Search | 15–20 | Search space reduction, lo/hi template, minimize-the-maximum |
-| Hash Maps & Sets | 20–25 | Two-sum, frequency count, sliding window with freq map |
-| Binary Trees | 25–30 | DFS (pre/in/post), BFS (level order), LCA, define return type first |
-| Graphs | 25–30 | BFS/DFS, topological sort, union-find, Dijkstra, 0-1 BFS |
-| Dynamic Programming | 30–35 | Define subproblem → recurrence → base case → memoize/tabulate |
-| Heaps | 15–20 | Top-K (min-heap size K), K-way merge, two-heap median |
-| Backtracking | 15–20 | Draw decision tree first, choose→explore→unchoose |
-| Advanced (FAANG Hard) | 20–25 | Monotonic stack, segment tree/BIT, bitmask DP, expression parsing |
+| Category              | Count | Key Patterns                                                        |
+| --------------------- | ----- | ------------------------------------------------------------------- |
+| Arrays & Strings      | 30–35 | Sliding window, two pointers, prefix sum, Kadane's, Boyer-Moore     |
+| Binary Search         | 15–20 | Search space reduction, lo/hi template, minimize-the-maximum        |
+| Hash Maps & Sets      | 20–25 | Two-sum, frequency count, sliding window with freq map              |
+| Binary Trees          | 25–30 | DFS (pre/in/post), BFS (level order), LCA, define return type first |
+| Graphs                | 25–30 | BFS/DFS, topological sort, union-find, Dijkstra, 0-1 BFS            |
+| Dynamic Programming   | 30–35 | Define subproblem → recurrence → base case → memoize/tabulate       |
+| Heaps                 | 15–20 | Top-K (min-heap size K), K-way merge, two-heap median               |
+| Backtracking          | 15–20 | Draw decision tree first, choose→explore→unchoose                   |
+| Advanced (FAANG Hard) | 20–25 | Monotonic stack, segment tree/BIT, bitmask DP, expression parsing   |
 
 ---
 
@@ -212,12 +230,14 @@
 ### Go: Core + Concurrency + Networking (Weeks 2–7, ~80 hrs)
 
 **Language core**
+
 - [ ] Complete tour.golang.org in one sitting
 - [ ] Read go.dev/doc/effective_go
 - [ ] Write 10 small concurrent programs using goroutines + channels before moving on
 - [ ] Implement concurrent pipeline (producer → transform → consumer) using only channels
 
 **Scheduler + Memory Model**
+
 - [ ] Study Go G/M/P scheduler model, work stealing, goroutine stack copying
 - [ ] Explain what happens when a goroutine calls a blocking syscall (M detached, new M spawned)
 - [ ] Read Go Memory Model spec at go.dev/ref/mem
@@ -225,11 +245,13 @@
 - [ ] Build lock-free counter using `atomic.AddInt64` — passes `go test -race`
 
 **Advanced Go**
+
 - [ ] Study `sync.Pool`, run `go build -gcflags='-m'` on proxy — find and eliminate ≥1 heap escape
 - [ ] Add context cancellation to proxy — backend requests cancel when client disconnects
 - [ ] Implement generic LRU cache `LRU[K comparable, V any]` using Go 1.18+ generics
 
 **★ Flagship: HTTP Reverse Proxy**
+
 - [ ] Implement from scratch (no `httputil.ReverseProxy`)
 - [ ] Round-robin load balancer with health checks
 - [ ] Token bucket rate limiter
@@ -266,6 +288,7 @@
 - [ ] Lab: INSERT 100k rows, DELETE 80k, check `pg_stat_user_tables.n_dead_tup`, wait for autovacuum
 
 **Phase 1 Gate**
+
 - [ ] Write concurrent Go with zero races under `-race`
 - [ ] Read EXPLAIN ANALYZE and identify bottleneck node
 - [ ] Explain false sharing, TLB, and what happens when a goroutine blocks on a syscall
@@ -337,6 +360,7 @@
 ### Java: JVM Runtime + Concurrency + Wallet (Weeks 13–20, ~90 hrs)
 
 **JVM Internals**
+
 - [ ] Study G1GC: region-based, concurrent marking, stop-the-world compaction, safepoints
 - [ ] Study ZGC: concurrent relocation via load barriers
 - [ ] Write one-page GC comparison: Go GC vs G1GC vs ZGC (design tradeoffs, pause models)
@@ -350,12 +374,14 @@
 - [ ] Benchmark wallet: virtual threads vs platform threads at 10k concurrent requests
 
 **Spring Architecture**
+
 - [ ] Study `@Transactional` AOP proxy: why same-class calls fail, `REQUIRES_NEW` behavior
 - [ ] Study hexagonal architecture: ports, adapters, domain module
 - [ ] Set up Maven multi-module project with ArchUnit enforcing no Spring imports in domain
 - [ ] Verify ArchUnit test catches Spring import in domain module and fails the build
 
 **★ Flagship: Digital Wallet & Ledger**
+
 - [ ] Implement double-entry bookkeeping with invariant tests
 - [ ] Add idempotency keys with UNIQUE constraint
 - [ ] Benchmark pessimistic vs optimistic locking with pgbench — document results
@@ -371,6 +397,7 @@
 - [ ] All failure tests pass — document results in GitHub repo with ADRs
 
 **Phase 2 Gate**
+
 - [ ] C++ allocator benchmarks documented at 1/4/8/16 threads, ASAN/UBSAN clean
 - [ ] Lock-free MPSC queue passes stress test under ASAN
 - [ ] Wallet failure tests pass, pgbench results documented
@@ -425,33 +452,39 @@
 - [ ] Draw LSM write path (WAL → MemTable → L0 SSTable → compaction) from memory
 
 **WAL + MemTable**
+
 - [ ] Implement append-only WAL file
 - [ ] Implement MemTable backed by skip list
 - [ ] `Put(key, value)`: append to WAL, insert into skip list
 - [ ] WAL crash recovery test: write 1000 entries, kill process, restart, verify all readable
 
 **SSTable**
+
 - [ ] Implement SSTable flush: sorted key-value pairs + index block at end
 - [ ] Implement `Get(key)`: check MemTable first, then SSTables newest-to-oldest
 - [ ] 100k Put / Get correctness test passes under ASAN
 
 **Bloom Filter**
+
 - [ ] Implement Bloom filter with 2 hash functions, tuned for 1% false positive rate
 - [ ] Benchmark `Get()` on absent keys before/after — target >3x speedup
 
 **Leveled Compaction**
+
 - [ ] Implement compaction thread: triggers when L0 exceeds 4 files
 - [ ] Merge + remove deleted keys (tombstones)
 - [ ] After 1M writes: Get() latency stays within 2x of fresh-start latency
 - [ ] Disk usage stays bounded
 
 **Block Cache**
+
 - [ ] Implement sharded LRU block cache (N shards to reduce lock contention)
 - [ ] Use Phase 2 allocator as backing memory
 - [ ] Benchmark with Zipf workload — cache hit rate >75% after warmup
 - [ ] Verify >10x read throughput improvement for hot keys
 
 **Iterator + Range Scans**
+
 - [ ] Implement iterator interface: `Seek(key)`, `Next()`, `Valid()`, `Key()`, `Value()`
 - [ ] Implement iterators for MemTable, SSTable, and MergingIterator
 - [ ] Range scan test: `Scan(start, end)` returns all keys in range spanning MemTable + multiple SSTable levels
@@ -459,18 +492,21 @@
 ### Distributed Patterns + PostgreSQL Advanced (Months 7–9, ~100 hrs)
 
 **Saga Pattern**
+
 - [ ] Extend wallet into booking system with choreography-based saga
 - [ ] Inject failures at each saga step
 - [ ] Verify: all 3 failure scenarios (fail at step 1, 2, 3) result in clean compensation
 - [ ] 0 resource leaks across 10k operations
 
 **Event Sourcing + CQRS**
+
 - [ ] Implement event sourcing with PostgreSQL as event store
 - [ ] Implement CQRS: separate write model (commands → events) from read model (projections)
 - [ ] Event replay produces identical state to direct query
 - [ ] Snapshot reduces replay time by >90% for long streams
 
 **PostgreSQL Advanced**
+
 - [ ] Study streaming replication: WAL shipping, replication slots
 - [ ] Lab: set up streaming replication, verify WAL shipping to standby
 - [ ] Partition wallet ledger by month
@@ -482,6 +518,7 @@
 - [ ] Configure PgBouncer in transaction mode — verify Spring works correctly
 
 **Phase 3 Gate**
+
 - [ ] Raft labs 2A–2D all pass with documented bugs
 - [ ] LSM tree handles 1M writes with bounded read latency and disk usage
 - [ ] Saga compensation passes all failure injection scenarios
@@ -508,6 +545,7 @@
 ### ★ Capstone: Distributed Metrics & KV Backend (Months 10–11, ~240 hrs)
 
 **Design**
+
 - [ ] Write 4 ADRs (one per component) justifying language choice before any code
   - [ ] Go ingestion: why Go for high-throughput I/O
   - [ ] C++ aggregation engine: why C++ for zero-overhead + SIMD
@@ -515,6 +553,7 @@
   - [ ] TimescaleDB: why time-series storage
 
 **Go gRPC Collector**
+
 - [ ] gRPC server with streaming RPCs
 - [ ] Interceptors: rate limiting + auth + logging
 - [ ] MPSC ingestion buffer between gRPC handlers and C++ engine
@@ -523,6 +562,7 @@
 - [ ] pprof shows no obvious hotspot
 
 **C++ Aggregation Engine**
+
 - [ ] In-memory ring buffer per metric
 - [ ] t-digest for p50/p95/p99 accuracy within 1% vs exact computation
 - [ ] Flush aggregated stats to TimescaleDB every 10 seconds
@@ -531,6 +571,7 @@
 - [ ] Profile with perf — fix top bottleneck, document before/after
 
 **Deployment**
+
 - [ ] Write Helm chart for all 4 components
 - [ ] HPA on Go collector (scale on CPU)
 - [ ] Grafana dashboard: ingestion rate, p99 latency, queue depth, Java GC metrics
@@ -540,6 +581,7 @@
 ### System Design Prep + Portfolio Polish + OSS (Month 12, ~80 hrs)
 
 **System Design (2 sessions/week, 45 min each)**
+
 - [ ] Practice 7-stage framework: requirements → capacity → API → data model → components → failure modes → scale
 - [ ] Design: Rate Limiter
 - [ ] Design: Distributed Cache
@@ -552,6 +594,7 @@
 - [ ] Can complete any of the 8 systems in 45 minutes hitting all 7 stages
 
 **OSS Contribution**
+
 - [ ] Pick one: `pgx` (Go PostgreSQL driver), `River` (Go job queue), `RocksDB` (C++ LSM), or Spring Data JPA
 - [ ] Read the codebase for 2 weeks
 - [ ] Find an open issue (bug with reproducible test or documented missing feature)
@@ -559,6 +602,7 @@
 - [ ] Link PR in portfolio README
 
 **Portfolio Polish**
+
 - [ ] Each flagship repo has:
   - [ ] Architecture diagram (draw.io PNG)
   - [ ] README: problem statement + design decisions + "What I'd do differently" + `docker-compose up`
@@ -568,12 +612,14 @@
 - [ ] Stranger can clone any repo and run it in under 5 minutes
 
 **Behavioral Prep (STAR format)**
+
 - [ ] Write STAR story: most complex bug debugged (Raft bug with root-cause analysis + numbers)
 - [ ] Write STAR story: performance optimization (allocator benchmarks with before/after numbers)
 - [ ] Write STAR story: technical decision under uncertainty (LSM vs B-tree ADR)
 - [ ] Write STAR story: designed for scale (capstone 100k metrics/sec)
 
 **Interview Readiness Gate**
+
 - [ ] Can walk through any of the 5 flagships and defend every decision including 10x scale changes
 - [ ] Can design a distributed KV store in 45 minutes and explain how it differs from your LSM
 - [ ] Can explain write barriers in G1GC, acquire/release in `std::atomic`, leader completeness in Raft — without notes
@@ -652,12 +698,14 @@
 ### HFT Interview Prep (Weeks 10–12, ~20 hrs)
 
 **All HFT firms**
+
 - [ ] Answer without notes: explain ABA problem and fix in your MPSC queue
 - [ ] Answer without notes: design an order book with O(1) best bid/ask
 - [ ] Answer without notes: why is your allocator faster than malloc under high contention?
 - [ ] Answer without notes: what is false sharing and how does it appear in a struct?
 
 **Jane Street specific**
+
 - [ ] Study OCaml for 4 weeks: pattern matching, immutable data, higher-order functions, type inference
 - [ ] Read "Real World OCaml" (free online at dev.realworldocaml.org)
 - [ ] Solve 20 OCaml programming problems
@@ -666,12 +714,14 @@
 - [ ] Study market making basics: bid-ask spread, adverse selection, inventory risk
 
 **Two Sigma SWE**
+
 - [ ] Walk through capstone distributed metrics backend — defend every design decision under adversarial questions
 - [ ] Answer: design a distributed time-series database
 - [ ] Answer: explain LSM write amplification tradeoff
 - [ ] Answer: how does ZGC differ from G1GC?
 
 **HFT Readiness Gate**
+
 - [ ] Order book benchmarks: p99 < 500ns on ITCH replay
 - [ ] ITCH parser: >5M messages/sec
 - [ ] Can explain NUMA topology, hyperthreading latency, DPDK kernel bypass — without notes
@@ -691,12 +741,12 @@
   Each thread allocates from a thread-local cache with no lock; it only touches the central heap — under a lock — to refill or drain in batches. ptmalloc has per-arena locks, but threads still contend on a bounded number of arenas. TCMalloc removes the lock from the common path and amortizes it over batches.
 - **What is a store buffer and why does it break visibility on non-x86?**
   A per-core FIFO holding stores before they reach coherent cache, so the core doesn't stall on cache-coherence. Another core can't see the store until it drains. x86 (TSO) only reorders StoreLoad, so it's mostly hidden; weak models (ARM/POWER) also reorder StoreStore/LoadLoad, so without a barrier another core sees writes out of order or stale.
-- **Why do two threads writing *different* variables slow each other >5x?**
+- **Why do two threads writing _different_ variables slow each other >5x?**
   The variables share one 64-byte cache line; each write invalidates the other core's copy (MESI), forcing a coherence round-trip on every access. `alignas(64)` to separate lines removes it.
 - **Why does a low-nice (high-priority) process accumulate vruntime more slowly?**
   CFS divides real runtime by the process's weight when incrementing vruntime. Higher weight → smaller vruntime step per unit of real time → it stays leftmost in the RB-tree longer → scheduled more often.
 - **Why does ext4 ordered mode prevent metadata pointing at garbage?**
-  It flushes data blocks to disk *before* committing the metadata that references them. After a crash, a file's block pointers can never reference blocks that were never written — which would otherwise expose another file's deleted/stale data (an integrity + security hole). It orders data; it doesn't journal it.
+  It flushes data blocks to disk _before_ committing the metadata that references them. After a crash, a file's block pointers can never reference blocks that were never written — which would otherwise expose another file's deleted/stale data (an integrity + security hole). It orders data; it doesn't journal it.
 
 ### Go
 
@@ -710,7 +760,7 @@
 ### PostgreSQL
 
 - **When is an Index Only Scan used instead of an Index Scan, and what enables it?**
-  When every column the query needs is in the index *and* the visibility map marks the pages all-visible — so Postgres skips the heap fetch it would otherwise need to check MVCC visibility. If recent writes cleared the VM bit, it falls back to visiting the heap.
+  When every column the query needs is in the index _and_ the visibility map marks the pages all-visible — so Postgres skips the heap fetch it would otherwise need to check MVCC visibility. If recent writes cleared the VM bit, it falls back to visiting the heap.
 - **What anomaly does each isolation level still allow?**
   Read Committed: non-repeatable reads and phantoms. Repeatable Read (snapshot in PG): prevents those but allows write skew. Serializable (SSI): detects the read/write dependency cycle behind write skew and aborts one transaction.
 - **Walk the checkpoint-to-crash-recovery sequence.**
@@ -725,7 +775,7 @@
 - **Why does making the coordinator a Raft group fix that?**
   The commit decision is replicated to a majority before it's acted on, so it survives any single crash. A new leader reads the decision from the replicated log and finishes the protocol — no single node whose death strands the cohorts.
 - **FLP says async consensus is impossible — why does Raft work?**
-  FLP assumes full asynchrony, where a slow node is indistinguishable from a dead one. Raft assumes partial synchrony and uses timeouts / randomized election timers — a stronger model FLP doesn't cover. It can sacrifice *liveness* under pathological timing (repeated elections) but never *safety*.
+  FLP assumes full asynchrony, where a slow node is indistinguishable from a dead one. Raft assumes partial synchrony and uses timeouts / randomized election timers — a stronger model FLP doesn't cover. It can sacrifice _liveness_ under pathological timing (repeated elections) but never _safety_.
 - **State the leader completeness property and why it holds.**
   Once an entry is committed, it's present in every future leader's log. It holds because an entry commits only after reaching a majority, a candidate wins only with a majority, and the RequestVote up-to-date check makes voters reject any candidate whose log is behind — so any winner already has every committed entry.
 
@@ -750,12 +800,13 @@
 ### OSTEP — ostep.org (free)
 
 **Phase 1: Virtualization/Memory (Ch. 13–23)**
+
 - [ ] **Ch. 13 — Address Spaces.** Check: state the three goals of virtualizing memory (transparency, efficiency, protection). Draw a process address space with stack/heap growth directions — this is the Phase 1 task.
 - [ ] **Ch. 14 — Memory API.** Check: name three classic malloc bugs (buffer overflow, use-after-free, leak) and which tool catches each. Why is `free()` given no size argument — where does the size live?
 - [ ] **Ch. 15 — Address Translation.** Check: how does base-and-bounds translation work and what hardware does it require? Why is it insufficient for real programs (no sparse address spaces, internal waste)?
 - [ ] **Ch. 16 — Segmentation.** Check: how do segment base/bounds pairs enable a sparse address space? What is external fragmentation and why does segmentation cause it?
 - [ ] **Ch. 17 — Free-Space Management.** Check: explain splitting and coalescing. Best-fit vs first-fit tradeoffs? How do segregated lists / slab allocation sidestep fragmentation? (Feeds directly into `memory-allocators.md`.)
-- [ ] **Ch. 18 — Paging.** Check: translate a virtual address by hand (split VPN/offset, index page table). Why does a linear page table for a 32-bit space with 4KB pages cost ~4MB *per process*?
+- [ ] **Ch. 18 — Paging.** Check: translate a virtual address by hand (split VPN/offset, index page table). Why does a linear page table for a 32-bit space with 4KB pages cost ~4MB _per process_?
 - [ ] **Ch. 19 — TLBs.** Check: walk a TLB miss end-to-end (hardware-managed vs OS-managed). What happens to the TLB on context switch, and how do ASIDs avoid a full flush? Why does row-major vs column-major array traversal change performance?
 - [ ] **Ch. 20 — Smaller Tables.** Check: how does a multi-level page table save memory and what does it cost on a TLB miss? x86-64 uses a 4-level walk — what does that imply about TLB-miss latency?
 - [ ] **Ch. 21 — Swapping: Mechanisms.** Check: narrate a page fault from present-bit trap to instruction retry. Why is the page fault handler always software even with a hardware-walked TLB?
@@ -763,6 +814,7 @@
 - [ ] **Ch. 23 — VAX/VMS Case Study.** Check: name two VMS ideas that survive in Linux today (e.g., second-chance FIFO lists, demand-zero pages, kernel mapped into every address space).
 
 **Phase 2: Concurrency (Ch. 26–32)**
+
 - [ ] **Ch. 26 — Concurrency Intro.** Check: show why `counter++` is not atomic at the instruction level. Define race condition vs data race.
 - [ ] **Ch. 28 — Locks.** Check: compare test-and-set, compare-and-swap, fetch-and-add as lock primitives. When is a spinlock the right choice vs a blocking lock?
 - [ ] **Ch. 29 — Lock-Based Data Structures.** Check: what is lock coupling (hand-over-hand)? Why does a sloppy/approximate counter scale where a single-lock counter doesn't? (Same idea as your sharded LRU cache.)
@@ -773,6 +825,7 @@
 ### What Every Programmer Should Know About Memory — Drepper 2007 (free PDF)
 
 > Read §3, §4, §6 carefully; skim §2 and §5 (§5 becomes required in Phase 5/NUMA).
+
 - [ ] **§3 — CPU Caches.** Check: define set associativity and compute which set an address maps to. Write-back vs write-through? Explain cache line bouncing between cores — connect to your false-sharing benchmark.
 - [ ] **§4 — Virtual Memory.** Check: what does a 4-level page walk cost, and how do hugepages reduce TLB pressure? (Connect to `perf stat -e dTLB-load-misses`.)
 - [ ] **§6 — What Programmers Can Do.** Check: why does sequential access beat random access even when everything fits in RAM (prefetcher)? Give two data-layout changes that improve cache use (AoS→SoA, padding to line size).
@@ -800,7 +853,7 @@
   - [ ] Freezing — Check: why does xid wraparound exist (32-bit xids) and what would happen without freezing?
 - [ ] **Part II — Buffer Cache & WAL (Ch. 9–11).**
   - [ ] Buffer cache — Check: walk clock-sweep eviction with usage counts. Why does a Seq Scan use a ring buffer instead of flooding shared_buffers?
-  - [ ] WAL — Check: what is an LSN? Why must WAL flush *before* the dirty page (the actual write-ahead rule)? What are full-page writes and why after each checkpoint?
+  - [ ] WAL — Check: what is an LSN? Why must WAL flush _before_ the dirty page (the actual write-ahead rule)? What are full-page writes and why after each checkpoint?
   - [ ] Checkpoints — Check: narrate crash recovery from the REDO pointer (your Depth Bank answer, now with LSN detail).
 - [ ] **Part III — Locks (Ch. 12–15).** Check: table-level lock modes — which conflict with what? Row locks live in tuple headers, not memory — why does that matter? What is a deadlock detection cycle in PG?
 - [ ] **Part IV — Query Execution (Ch. 16–20).** Check: cost model — what do seq_page_cost/random_page_cost encode? For each join (nested loop, hash, merge): when does the planner pick it and what makes it degrade? Why do stale statistics produce bad plans (`ANALYZE`)?
@@ -808,8 +861,9 @@
 ### Designing Data-Intensive Applications — Kleppmann (Ch. 5, 7, 8, 9)
 
 > Your highest-leverage book for Grab system design rounds. One chapter per week, notes in `design-data-intensive-applications/`.
+
 - [ ] **Ch. 5 — Replication.** Check: single-leader vs multi-leader vs leaderless — one use case each. Define read-your-writes, monotonic reads, consistent prefix, and one implementation for each. How do leaderless quorums (w + r > n) still return stale data?
-- [ ] **Ch. 7 — Transactions.** Check: define dirty write, read skew, write skew, phantom — with a concrete money example each. How does 2PL differ from SSI in *how* it prevents write skew (blocking vs abort)?
+- [ ] **Ch. 7 — Transactions.** Check: define dirty write, read skew, write skew, phantom — with a concrete money example each. How does 2PL differ from SSI in _how_ it prevents write skew (blocking vs abort)?
 - [ ] **Ch. 8 — The Trouble with Distributed Systems.** Check: why can't wall-clock time order events (NTP skew, leap smearing)? What is a fencing token and what failure does it prevent (paused process with expired lock)? Why are process pauses (GC, VM migration) indistinguishable from crashes?
 - [ ] **Ch. 9 — Consistency and Consensus.** Check: linearizability vs serializability — which is about single-object recency, which about multi-object transactions? Why is total order broadcast equivalent to consensus? Restate CAP precisely (during a partition: consistency or availability).
 
@@ -833,24 +887,24 @@
 
 ### Papers — each with checks
 
-- [ ] **Raft — Ongaro & Ousterhout 2014** (read twice). Check: why randomized election timeouts (split votes)? State the Log Matching property and how AppendEntries' prev-index/term check maintains it. Figure 8: why can a leader *not* commit a previous term's entry by counting replicas — what's the rule?
-- [ ] **Michael & Scott queue — 1996.** Check: why can `tail` lag behind the real last node, and how does "helping" fix it? Identify both linearization points. Why does dequeue read `head`, `tail`, *and* `next`?
+- [ ] **Raft — Ongaro & Ousterhout 2014** (read twice). Check: why randomized election timeouts (split votes)? State the Log Matching property and how AppendEntries' prev-index/term check maintains it. Figure 8: why can a leader _not_ commit a previous term's entry by counting replicas — what's the rule?
+- [ ] **Michael & Scott queue — 1996.** Check: why can `tail` lag behind the real last node, and how does "helping" fix it? Identify both linearization points. Why does dequeue read `head`, `tail`, _and_ `next`?
 - [ ] **Hazard Pointers — Michael 2004.** Check: walk the protocol — publish hazard pointer, validate, use. Why is validation (re-read after publish) mandatory? When does a retired node actually get freed?
 - [ ] **LSM-Tree — O'Neil 1996.** Check: define write amplification, read amplification, space amplification — and state which one leveled compaction optimizes at the cost of which. Why do sequential writes beat random even on SSDs?
 - [ ] **A Critique of ANSI SQL Isolation Levels — Berenson 1995.** Check: why were the ANSI anomaly definitions ambiguous (strict vs broad interpretation)? Define snapshot isolation and show the A5B write-skew history that proves SI ≠ serializable.
 - [ ] **Time, Clocks — Lamport 1978.** Check: define happened-before. Why do Lamport clocks give `a→b ⇒ C(a)<C(b)` but not the converse — and what do vector clocks add that fixes it?
 - [ ] **Dynamo — DeCandia 2007.** Check: why did Amazon choose availability over consistency for the cart? Sloppy quorum + hinted handoff — what guarantee is weakened? How do vector clocks surface conflicts and who resolves them? What are Merkle trees for?
-- [ ] **FLP — Fischer, Lynch, Paterson 1985.** Check (concept-level is enough): what exact model does it assume (async, deterministic, one crash)? What does "bivalent configuration" mean intuitively? What does it *not* say (consensus usually works in practice — why)?
+- [ ] **FLP — Fischer, Lynch, Paterson 1985.** Check (concept-level is enough): what exact model does it assume (async, deterministic, one crash)? What does "bivalent configuration" mean intuitively? What does it _not_ say (consensus usually works in practice — why)?
 
 ### Courses & Online
 
 - [ ] **MIT 6.824** — pdos.csail.mit.edu/6.824. Watch lectures 1–8 before/alongside labs.
   - [ ] Lec 2 (RPC/threads) — Check: why does the lab use condition variables + a mutex per Raft peer?
   - [ ] Lec 3 (GFS) — Check: what consistency does GFS actually give appends, and why was that acceptable?
-  - [ ] Lec 4 (Primary/Backup) — Check: why must the backup see *every* nondeterministic input?
+  - [ ] Lec 4 (Primary/Backup) — Check: why must the backup see _every_ nondeterministic input?
   - [ ] Lec 6–7 (Raft) — Check: answers to all Raft paper checks above, plus: why snapshot instead of infinite log?
 - [ ] **JVM Anatomy Quarks** — Shipilev, any 5 posts. Check per post: write the one-paragraph takeaway in your own words in `programming-languages/java/` notes.
-- [ ] **Brendan Gregg** — brendangregg.com. Check: explain what a flame graph's x-axis is (population, *not* time) and what off-CPU flame graphs add.
+- [ ] **Brendan Gregg** — brendangregg.com. Check: explain what a flame graph's x-axis is (population, _not_ time) and what off-CPU flame graphs add.
 - [ ] **NeetCode 150** — neetcode.io. Pattern coverage tracker for LC track.
 - [ ] **Codeforces EDU** — Binary Search, Segment Tree, DSU, Flows sections.
 - [ ] **Atcoder DP Contest** — 26 DP archetypes.

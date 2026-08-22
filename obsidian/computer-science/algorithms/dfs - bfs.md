@@ -1,4 +1,5 @@
 - [longest subsequence repeated k times](https://leetcode.com/problems/longest-subsequence-repeated-k-times)
+
 ```cpp
 class Solution {
 public:
@@ -44,6 +45,7 @@ public:
 ```
 
 - [trapping rain water ii](https://leetcode.com/problems/trapping-rain-water-ii/description)
+
 ```cpp
 constexpr int dij[4][2] = {{-1,0},{0,1},{1,0},{0,-1}};
 using pii = pair<int,int>;

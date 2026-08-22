@@ -1,15 +1,14 @@
 ---
-
 excalidraw-plugin: parsed
 tags: [excalidraw]
-
 ---
-==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠== You can decompress Drawing data with the command palette: 'Decompress current Excalidraw file'. For more info check in plugin settings under 'Saving'
 
+==⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠== You can decompress Drawing data with the command palette: 'Decompress current Excalidraw file'. For more info check in plugin settings under 'Saving'
 
 # Excalidraw Data
 
 ## Text Elements
+
 client ^GxnIm1Qb
 
 api gateway ^szdWidOj
@@ -39,7 +38,7 @@ update final values ^g3aXzuLh
 
 inc/dec/get ^3LfcFfro
 
-api gateway receives requests 
+api gateway receives requests
 and distribute them to counter services ^cOP8Lv9J
 
 each key should be processed by only 1 aggregation service (all messages of topic must be in same queue) ^39Aufmkb
@@ -49,7 +48,9 @@ aggregate logs and update final values to DB ^6ffH3zcW
 scale with number of clients ^iEPggtrV
 
 %%
+
 ## Drawing
+
 ```compressed-json
 N4KAkARALgngDgUwgLgAQQQDwMYEMA2AlgCYBOuA7hADTgQBuCpAzoQPYB2KqATLZMzYBXUtiRoIACyhQ4zZAHoFAc0JRJQgEYA6bGwC2CgF7N6hbEcK4OCtptbErHALRY8RMpWdx8Q1TdIEfARcZgRmBShcZQUebR4ABm0AVho6IIR9BA4oZm4AbXAwUDBSiBJuCAAtAFEDACEEgGtLTB59YnqADgBmBAB9ADl6gCU00shYRErA7CiOZWDxssxu
 
@@ -217,4 +218,5 @@ uFSiigDbNmz9AHmBUUmgvbPY0qsw7PgSlFUrJmzTszIDjhB0z5J04TsyrLmyIw4GPMwnsqrJqBQYmSNY
 
 DCBggevO8wtYc5M9h9AYHOgxL4oXW6jqsjIE7yvoZvXwBQgevHrzGAJvLpAiYZ3LBYg82kBlg7wepGyAhAMgzUhelBYPIRqwEAGrAgAA
 ```
+
 %%

@@ -10,35 +10,39 @@
 > Study outline grouping the questions above into 12 categories. Each category has a unifying theme and the core principle it drills.
 
 ### 1. API Design & Service Architecture
-*Boundary definition, client coupling, deployment granularity*
+
+_Boundary definition, client coupling, deployment granularity_
 
 - [[#Day 01: Decoupling Mobile from Backend Services|Day 01 — Decoupling Mobile from Backend Services]]
-- [[#Day 47: Incrementally Strangling a Monolith|Day 47 — Incrementally Strangling a Monolith]]
+- [[#Day 47: Incrementally Strangling a Monolith ⭐|Day 47 — Incrementally Strangling a Monolith ⭐]]
 - [[#Day 52: Versioning an API Without Breaking Clients|Day 52 — Versioning an API Without Breaking Clients]]
 - [[#Day 56: Tracking Long-Running Async Jobs|Day 56 — Tracking Long-Running Async Jobs]]
-- [[#Day 60: Architecting a SaaS Platform from Scratch|Day 60 — Architecting a SaaS Platform from Scratch]]
+- [[#Day 60: Architecting a SaaS Platform from Scratch ⭐|Day 60 — Architecting a SaaS Platform from Scratch ⭐]]
 
 ### 2. Database Performance & Scaling
-*Query efficiency, write cost, index/partition strategy*
+
+_Query efficiency, write cost, index/partition strategy_
 
 - [[#Day 02: Killing the N+1 Query Problem|Day 02 — Killing the N+1 Query Problem]]
 - [[#Day 05: Choosing a Database Sharding Strategy ⭐|Day 05 — Choosing a Database Sharding Strategy ⭐]]
 - [[#Day 12: Indexing a High-Ingest Table ⭐|Day 12 — Indexing a High-Ingest Table ⭐]]
 - [[#Day 13: Managing a Shared Connection Pool|Day 13 — Managing a Shared Connection Pool]]
 - [[#Day 16: Taming a Hot Partition Key ⭐|Day 16 — Taming a Hot Partition Key ⭐]]
-- [[#Day 24: Paginating Large Result Sets Efficiently|Day 24 — Paginating Large Result Sets Efficiently]]
+- [[#Day 24: Paginating Large Result Sets Efficiently ⭐|Day 24 — Paginating Large Result Sets Efficiently ⭐]]
 - [[#Day 49: Controlling Data-Warehouse Query Costs|Day 49 — Controlling Data-Warehouse Query Costs]]
 - [[#Day 53: Zero-Downtime Schema Migrations ⭐|Day 53 — Zero-Downtime Schema Migrations ⭐]]
 
 ### 3. Data Modeling: Read/Write Shape & History
-*Separating read shape from write shape; reconstructing state*
+
+_Separating read shape from write shape; reconstructing state_
 
 - [[#Day 09: Splitting Read and Write Data Models ⭐|Day 09 — Splitting Read and Write Data Models ⭐]]
 - [[#Day 23: Feed Fanout for Celebrity Accounts ⭐|Day 23 — Feed Fanout for Celebrity Accounts ⭐]]
 - [[#Day 33: Reconstructing State with Event Sourcing ⭐|Day 33 — Reconstructing State with Event Sourcing ⭐]]
 
 ### 4. Caching
-*Freshness vs speed, invalidation, thundering herds*
+
+_Freshness vs speed, invalidation, thundering herds_
 
 - [[#Day 08: Keeping Cache and Database in Sync ⭐|Day 08 — Keeping Cache and Database in Sync ⭐]]
 - [[#Day 15: Fast "Has the User Seen This?" Checks ⭐|Day 15 — Fast "Has the User Seen This?" Checks ⭐]]
@@ -47,7 +51,8 @@
 - [[#Day 43: Reliable CDN Cache Invalidation on Deploy|Day 43 — Reliable CDN Cache Invalidation on Deploy]]
 
 ### 5. Consistency & Concurrency
-*Lost updates, races, coordination, convergence*
+
+_Lost updates, races, coordination, convergence_
 
 - [[#Day 06: Safe Distributed Locks for Cron Jobs ⭐|Day 06 — Safe Distributed Locks for Cron Jobs ⭐]]
 - [[#Day 19: Read-Your-Writes with Read Replicas ⭐|Day 19 — Read-Your-Writes with Read Replicas ⭐]]
@@ -57,27 +62,30 @@
 - [[#Day 57: Consistency for Payment-Confirmation Reads ⭐|Day 57 — Consistency for Payment-Confirmation Reads ⭐]]
 
 ### 6. Messaging, Events & Async Workflows
-*Ordering, delivery guarantees, distributed transactions*
+
+_Ordering, delivery guarantees, distributed transactions_
 
 - [[#Day 07: Event Ordering in a Message Queue ⭐|Day 07 — Event Ordering in a Message Queue ⭐]]
 - [[#Day 10: Distributed Transactions Across Services ⭐|Day 10 — Distributed Transactions Across Services ⭐]]
-- [[#Day 11: Handling Webhook Retries Idempotently|Day 11 — Handling Webhook Retries Idempotently]]
+- [[#Day 11: Handling Webhook Retries Idempotently ⭐|Day 11 — Handling Webhook Retries Idempotently ⭐]]
 - [[#Day 17: Backpressure on an Overwhelmed Consumer ⭐|Day 17 — Backpressure on an Overwhelmed Consumer ⭐]]
 - [[#Day 22: Reliable Messaging Across Services ⭐|Day 22 — Reliable Messaging Across Services ⭐]]
 - [[#Day 25: Queue Backpressure Under a Traffic Spike|Day 25 — Queue Backpressure Under a Traffic Spike]]
 - [[#Day 41: Moving from Batch to Real-Time Streaming|Day 41 — Moving from Batch to Real-Time Streaming]]
 
 ### 7. Reliability & Resilience
-*Failure containment, retries, rollouts, abuse protection*
+
+_Failure containment, retries, rollouts, abuse protection_
 
 - [[#Day 03: Rate Limiting Without Boundary Bursts ⭐|Day 03 — Rate Limiting Without Boundary Bursts ⭐]]
 - [[#Day 04: Preventing Duplicate Payment Charges ⭐|Day 04 — Preventing Duplicate Payment Charges ⭐]]
-- [[#Day 14: Safely Rolling Out a Risky Change|Day 14 — Safely Rolling Out a Risky Change]]
+- [[#Day 14: Safely Rolling Out a Risky Change ⭐|Day 14 — Safely Rolling Out a Risky Change ⭐]]
 - [[#Day 20: Containing a Failing Downstream Dependency ⭐|Day 20 — Containing a Failing Downstream Dependency ⭐]]
 - [[#Day 59: Designing Idempotency Keys for Payments ⭐|Day 59 — Designing Idempotency Keys for Payments ⭐]]
 
 ### 8. Networking, Infrastructure & Multi-Region
-*Transport, storage, secrets, geography*
+
+_Transport, storage, secrets, geography_
 
 - [[#Day 21: Choosing a Real-Time Streaming Transport|Day 21 — Choosing a Real-Time Streaming Transport]]
 - [[#Day 30: Choosing a File Storage Backend|Day 30 — Choosing a File Storage Backend]]
@@ -86,20 +94,23 @@
 - [[#Day 36: Choosing HTTP/3 vs HTTP/2 at the Edge|Day 36 — Choosing HTTP/3 vs HTTP/2 at the Edge]]
 
 ### 9. Specialized Systems at Scale
-*Domain-specific data structures and engines*
 
-- [[#Day 35: Geospatial "Find Nearby Drivers" at Scale|Day 35 — Geospatial "Find Nearby Drivers" at Scale]]
+_Domain-specific data structures and engines_
+
+- [[#Day 35: Geospatial "Find Nearby Drivers" at Scale ⭐|Day 35 — Geospatial "Find Nearby Drivers" at Scale ⭐]]
 - [[#Day 45: Scaling Full-Text Search ⭐|Day 45 — Scaling Full-Text Search ⭐]]
-- [[#Day 50: Serving ML Models at High Throughput|Day 50 — Serving ML Models at High Throughput]]
+- [[#Day 50: Serving ML Models at High Throughput ⭐|Day 50 — Serving ML Models at High Throughput ⭐]]
 - [[#Day 51: Isolating Noisy Tenants in Multi-Tenant SaaS ⭐|Day 51 — Isolating Noisy Tenants in Multi-Tenant SaaS ⭐]]
 
 ### 10. Frontend
-*Main-thread and rendering concerns*
+
+_Main-thread and rendering concerns_
 
 - [[#Day 40: Offloading Heavy Work Off the Main Thread|Day 40 — Offloading Heavy Work Off the Main Thread]]
 
 ### 11. LLM / GenAI — Foundations
-*Retrieval, embeddings, model output control*
+
+_Retrieval, embeddings, model output control_
 
 - [[#Day 27: Keeping an LLM's Answers Up to Date|Day 27 — Keeping an LLM's Answers Up to Date]]
 - [[#Day 28: Choosing a Vector Store for Semantic Search|Day 28 — Choosing a Vector Store for Semantic Search]]
@@ -109,7 +120,8 @@
 - [[#Day 54: Handling Embedding Drift in RAG|Day 54 — Handling Embedding Drift in RAG]]
 
 ### 12. AI Agents — Orchestration & Operations
-*Multi-step reasoning, tool use, memory, observability*
+
+_Multi-step reasoning, tool use, memory, observability_
 
 - [[#Day 29: Coordinating a Multi-Agent Workflow|Day 29 — Coordinating a Multi-Agent Workflow]]
 - [[#Day 42: Designing Memory for an AI Agent|Day 42 — Designing Memory for an AI Agent]]
@@ -118,21 +130,25 @@
 - [[#Day 58: Observability for LLM Agent Pipelines|Day 58 — Observability for LLM Agent Pipelines]]
 
 ### Cross-Cutting Threads
-*Study these across categories — same idea at different boundaries*
+
+_Study these across categories — same idea at different boundaries_
 
 #### Idempotency
+
 - [[#Day 04: Preventing Duplicate Payment Charges ⭐|Day 04]]
-- [[#Day 11: Handling Webhook Retries Idempotently|Day 11]]
+- [[#Day 11: Handling Webhook Retries Idempotently ⭐|Day 11]]
 - [[#Day 22: Reliable Messaging Across Services ⭐|Day 22]]
 - [[#Day 59: Designing Idempotency Keys for Payments ⭐|Day 59]]
 
 #### Consistency
+
 - [[#Day 08: Keeping Cache and Database in Sync ⭐|Day 08]]
 - [[#Day 19: Read-Your-Writes with Read Replicas ⭐|Day 19]]
 - [[#Day 26: Write-Path Cache Consistency ⭐|Day 26]]
 - [[#Day 57: Consistency for Payment-Confirmation Reads ⭐|Day 57]]
 
 #### Write Amplification
+
 - [[#Day 02: Killing the N+1 Query Problem|Day 02]]
 - [[#Day 05: Choosing a Database Sharding Strategy ⭐|Day 05]]
 - [[#Day 09: Splitting Read and Write Data Models ⭐|Day 09]]
@@ -140,9 +156,10 @@
 - [[#Day 23: Feed Fanout for Celebrity Accounts ⭐|Day 23]]
 
 #### Scale ≠ Distribution
+
 - [[#Day 31: Cutting Cross-Region Latency ⭐|Day 31]]
 - [[#Day 45: Scaling Full-Text Search ⭐|Day 45]]
-- [[#Day 60: Architecting a SaaS Platform from Scratch|Day 60]]
+- [[#Day 60: Architecting a SaaS Platform from Scratch ⭐|Day 60]]
 
 ---
 
@@ -178,6 +195,7 @@
 - [ ] **B: Sliding Window Log** — mathematically perfect but stores one Redis entry per request per key. At 100k active keys = real memory pressure and p99 latency spikes. Smart engineers pick it without thinking about memory cost.
 
 > [!success] **C: Token Bucket** ✅ — each API key gets 100 tokens, refilling at ~1.66 tokens/sec. Every request takes a token; empty bucket = 429. No window resets — the 12:59:58 burst drains the bucket, and 13:00:02 finds an almost-empty bucket. O(1) memory, O(1) check, trivially distributed. What AWS API Gateway, Stripe, GitHub all run.
+
 - Token bucket doesn't eliminate burtiness, it caps the burst to the bucket size and smooths the refill
 
 - [ ] **D: Leaky Bucket** — shapes output by queuing requests at constant dispatch rate. Great for protecting a fragile downstream. Wrong for customer-facing API: adds latency to legitimate bursts. Token Bucket rejects excess; Leaky Bucket delays it. For a public API, reject > delay.
@@ -216,15 +234,16 @@
 **Scenario:** Job scheduler on 3 instances. Redis SETNX lock with 300s TTL. Instance B wins lock, starts job, gets OOM-killed at 60s. Lock still held for 4 more minutes. Instance B's pod restarts and also tries to run it. Both processing same job. Worse: GC pause makes instance A hold lock past TTL — Redis quietly gives lock to instance C. Both think they own it.
 
 > [!success] **A: SETNX + short TTL + fencing token** ✅ — every lock acquisition hands out a monotonically increasing token (42, 43, 44). Downstream resource (DB, storage) remembers the highest token seen and rejects any write with a lower token. When instance A wakes up from GC pause with token 42 and instance C is writing with token 43, A's write gets rejected by the resource itself. This is what Google's Chubby does. Only pattern on this list that's safe against process pauses.
+
 - fencing token: the lock service hands you a monotonically increasing number. the shared resouce remembers the highest token it has seen and rejects any write with lower token -> prevent a service holding lock longer than TTL
 
-```                                                                                                                                                          
-   t0  B: acquire → token 42          resource: highest_seen = 42                                                                                             
-   t1  B: writing (token 42) ✅                                                                                                                               
-   t2  B: GC pause (2 min, > TTL)                                                                                                                             
-   t3  lock expires, C: acquire → token 43   resource: highest_seen = 43                                                                                      
-   t4  C: writing (token 43) ✅                                                                                                                               
-   t5  B: wakes up, writes (token 42) → resource rejects ❌  (42 < 43)                                                                                        
+```
+   t0  B: acquire → token 42          resource: highest_seen = 42
+   t1  B: writing (token 42) ✅
+   t2  B: GC pause (2 min, > TTL)
+   t3  lock expires, C: acquire → token 43   resource: highest_seen = 43
+   t4  C: writing (token 43) ✅
+   t5  B: wakes up, writes (token 42) → resource rejects ❌  (42 < 43)
 ```
 
 - [ ] **B: Redlock** — Martin Kleppmann's 2016 post showed Redlock is unsafe in the exact GC-pause scenario. Without a fencing token, same fundamental flaw as SETNX. You're maintaining 5 Redis clusters for a problem a fencing token solves on 1.
@@ -283,7 +302,7 @@
 
 ---
 
-## Day 11: Handling Webhook Retries Idempotently
+## Day 11: Handling Webhook Retries Idempotently ⭐
 
 **Scenario:** Stripe POSTs `charge.succeeded` to `/webhooks/stripe`. Pod was mid-restart, webhook timed out. Stripe retries. Three failure modes: pod restarts mid-deploy (double processing), DB slow at peak (handler takes 12s → Stripe times out → retries while first still running), events arriving out of order (`charge.succeeded` then `charge.refunded` 200ms apart).
 
@@ -307,7 +326,8 @@
 > [!success] **D: Partial index** ✅ — `WHERE event_type = 'signup' AND created_at > now() - interval '7 days'`. Only indexes rows matching the predicate. If signup events are ~4% of stream and 7-day window covers ~5% of table, partial index covers ~0.2% of rows. Inserts that don't match the predicate cost nothing on this index. Planner uses it for any query whose WHERE is a subset of the index predicate. Catch: when dashboard wants 30 days instead of 7, you rebuild. Known cost, not hidden.
 
 - what you pay on the write path of full/partial indexes?
-	- full b-tree is updated for every single row, partial b-tree is updated row matching the predicate
+  - full b-tree is updated for every single row, partial b-tree is updated row matching the predicate
+
 ---
 
 ## Day 13: Managing a Shared Connection Pool
@@ -320,12 +340,12 @@
 
 - pgbouncer is pooler between client and postgres backend connections
 
-```                                                                                                                                                          
-   Client (worker)  →  PgBouncer  →  backend process #17:  CREATE TEMP TABLE results (...)                                                                    
-                                    COMMIT  → PgBouncer returns conn #17 to the pool                                                                          
-                                                                                                                                                              
-   Client (worker)  →  PgBouncer  →  backend process #42 (borrowed, was idle):  SELECT * FROM results                                                         
-                                    → ERROR: relation "results" does not exist                                                                                
+```
+   Client (worker)  →  PgBouncer  →  backend process #17:  CREATE TEMP TABLE results (...)
+                                    COMMIT  → PgBouncer returns conn #17 to the pool
+
+   Client (worker)  →  PgBouncer  →  backend process #42 (borrowed, was idle):  SELECT * FROM results
+                                    → ERROR: relation "results" does not exist
 ```
 
 - [ ] **C: RDS Proxy for Lambda + PgBouncer for ECS** — RDS Proxy is genuinely good for Lambda (cold-start connection storm, IAM auth, VPC integration). But doesn't fix the workers — still long-running, still need session state. Introduced second pooling product to operate, monitor, and pay for.
@@ -333,7 +353,7 @@
 
 ---
 
-## Day 14: Safely Rolling Out a Risky Change
+## Day 14: Safely Rolling Out a Risky Change ⭐
 
 **Scenario:** Shipping a rewrite of checkout write path on Friday. ~3K RPS. Change touches the line that actually charges the card — old path uses Stripe Charges API, new path uses PaymentIntents with 3DS. QA green. Load test passed. But it's checkout — if this breaks, money breaks. Can't roll back a card that already got charged.
 
@@ -345,6 +365,7 @@
 
 - rolling/blue-green/canary are deployment strategies (how new code reaches machines)
 - feature flags are a release strategy (how clients get new behavior)
+
 ---
 
 ## Day 15: Fast "Has the User Seen This?" Checks ⭐
@@ -352,6 +373,8 @@
 **Scenario:** Content recommendation feed, 50M users. Every API call asks "has this user already seen post X?" `user_seen_posts` table: 80B rows. p99 latency = 600ms. ~120K RPS peak. False positives tolerable, false negatives survivable. Target: p99 < 100ms.
 
 > [!success] **A: Bloom filter per user in Redis** ✅ — sub-millisecond "definitely not seen" check, fall through to Postgres only on hit. ~97% of feed checks are for unseen posts → Postgres never touched. Memory: 10K posts per user at 1% false-positive = 12 KB (vs 80 KB+ for Redis SET). At 50M users: Bloom = ~600 GB, SET = ~4 TB. Medium's "have you read this", Cassandra's SSTable short-circuit, Bitcoin's SPV wallets all use this.
+
+- bloom filter mathematically produces **ZERO** false negative -> "definitely not seen" is always true
 
 - [ ] **B: Redis SET per user** — same O(1) speed with perfect accuracy. Trap: memory explodes on power users. 50K posts seen = 3–4 MB per user. Top 5% blow up the Redis cluster. Rule: SET when cardinality <1K per key or false positives unacceptable. Bloom when cardinality large and "probably not" is good enough.
 - [ ] **C: Move to Cassandra** — handles wide-column data fine. But problem isn't storage (Postgres with partitioning handles 80B rows) — it's read latency under load. Still doing point lookup per recommendation, now with multi-quarter migration.
@@ -387,11 +410,11 @@
 - consumer has 2 independent processes: fetch/process. rate-limit intake/a bounded queue throttles the fetch to match process (avoid queue filling too much -> OOM). Kafka doesn't have back-pressure to talk producers slow down.
 - the excess stays in the topic as lag (Kafka keeps them on disk), is moved to `overflow` topic and processed during off-peak
 
-```                                                                                                                                                          
-   Kafka primary ──fetch (1,000/s, capped)──► [small bounded queue] ──process──► done ✅                                                                      
-                                               (flat, healthy)                                                                                                
-           │                                                                                                                                                  
-           └── excess (4,000/s) ──► events.overflow topic ──► drainer consumer (off-peak) ✅                                                                  
+```
+   Kafka primary ──fetch (1,000/s, capped)──► [small bounded queue] ──process──► done ✅
+                                               (flat, healthy)
+           │
+           └── excess (4,000/s) ──► events.overflow topic ──► drainer consumer (off-peak) ✅
 ```
 
 ---
@@ -404,7 +427,26 @@
 - [ ] **B: Probabilistic early expiry (XFetch)** — clever math but probabilistic, not guaranteed. Under exact wrong timing (low traffic right before TTL, then sudden spike) key still expires cold. For 8K req/sec 24/7, want deterministic guarantee — not good odds.
 - [ ] **C: Request coalescing** — elegant on a single server. On 50 Node.js instances behind LB, each instance coalesces independently → 50 concurrent DB queries instead of 8,000. Better, but still 50x spike at every TTL expiry. To coalesce across instances, need distributed coordination layer.
 
+- request coalescing with shared cache
+  - 1 request acquires lock to update cache, other requests are blocked
+- CDN
+
+```
+  ### Exact Behavior: Cold Cache Miss (No Stale Data)
+
+    Client 1 ──┐
+    Client 2 ──┼──► CDN Edge ──► Holds 999 connections open (paused) ──► 1 Request to Origin
+    ...        │		  │
+    Client 1000┘		  │ (Origin responds in 200ms)
+                                  ▼
+               CDN caches response & writes data to all 1,000 clients simultaneously
+
+- if request is timeout, all requests return 504 (not sending 2nd request)
+```
+
 > [!success] **D: Cache pre-warming** ✅ — background job (cron, Lambda, Sidekiq) rebuilds the cache key on a schedule shorter than TTL. Key never goes cold in production. No expiry cliff for 8,000 requests to fall off. Pair with stale-while-revalidate: serve stale while background refreshes. Netflix pre-warms content metadata. Twitter pre-builds timelines for high-follower accounts.
+
+- use Stale-While-Revalidate (SWR) to replace cache with dual TTL (refresh + return old cache (soft-ttl)/new cache (hard-ttl))
 
 ---
 
@@ -430,7 +472,32 @@
 
 > [!success] **D: Circuit Breaker + Bulkhead together** ✅ — Circuit Breaker stops hammering dead dependency: after N consecutive failures, flips OPEN, every subsequent call fails instantly with fallback. After cooldown, HALF-OPEN with single probe request. Bulkhead isolates resource pools: fraud gets dedicated 10 connections, separate from 40 for `/cart`, `/orders`, `/health`. When fraud hangs, saturates its 10, others stay free. Ship doesn't sink because one compartment flooded. Netflix wrote Hystrix specifically for this.
 
-- circuit breaker is a state machine with 3 states: CLOSED (normal operation), OPEN (fail fast with fallback), HALF-OPEN (wait single probe request. if it succeeds, got to CLOSED else OPEN)
+- circuit breaker
+
+```
+  A state machine wrapped around an external call to prevent repeated doomed network requests:
+
+                      ┌───────── Success (Reset failure count) ─────────┐
+                      ▼                                                 │
+              ┌──────────────┐     Failure rate > threshold     ┌──────────────┐
+              │    CLOSED    │ ───────────────────────────────► │     OPEN     │
+              │ (Pass calls) │                                  │ (Fail Fast)  │
+              └──────────────┘                                  └──────────────┘
+                      ▲                                                 │
+       Success        │                                                 │ Sleep window expires
+       (Reset)        │             ┌─────────────────┐                 │
+                      └──────────── │    HALF-OPEN    │ ◄───────────────┘
+                        Probe fails │  (1 Test Call)  │
+                        ──────────► └─────────────────┘
+
+  • CLOSED: Normal operation. Calls pass through.
+  • OPEN: Triggered when failure/timeout rate exceeds threshold (e.g., >50% failures in 10s). The system fails fast immediately (0ms) without making the
+  network call.
+  • HALF-OPEN: After a cooldown window (e.g., 30s), lets one probe request through:
+      • If probe succeeds → returns to CLOSED.
+      • If probe fails → resets OPEN timer.
+```
+
 - bulkhead is resource pools isolation (1 dependency cannot consume all resources) -> limit the blast radius of a slow/failing dependency
 
 ---
@@ -458,6 +525,30 @@
 
 > [!success] **D: SQS + at-least-once + idempotency key** ✅ — the only answer that accepts the impossibility and designs around it. At-least-once means message will arrive — maybe twice. Idempotency on consumer side (`payment_id:email:v1` in dedup table) makes second delivery a no-op. No missed sends, no double-sends in practice. Exactly how Stripe and AWS handle it.
 
+- at-most-once
+  - message is delivered 0 or 1 time (fire and forget)
+  - producer (no retry) -> broker -> consumer (ack) -> process
+- at-least-once
+  - message is delivered 1 or more times
+  - producer (retry / outbox) -> broker (durable log) -> consumer -> process (ack)
+- exactly-once (physically impossible) -> effectively once (at-least-once delivery + idempotent consumer)
+  - producer writes business state change + event into same local DB transaction (transactional outbox)
+  - broker-level deduplication
+    - kafka: producerId + sequenceNumber
+
+```
+
+    [ Step 1: Producer ]          [ Step 2: Broker ]               [ Step 3: Consumer ]
+     ┌─────────────────┐           ┌──────────────┐                 ┌──────────────────┐
+     │  Transactional  │ ────────► │ Deduplication│ ──────────────► │ Atomic DB Trans  │
+     │     Outbox      │           │    Window    │                 │ (State + Dedup)  │
+     └─────────────────┘           └──────────────┘                 └──────────────────┘
+                                                                             │ (If calling 3rd party)
+                                                                             ▼
+                                                                    [ Step 4: External API ]
+                                                                    (Pass Idempotency-Key)
+```
+
 ---
 
 ## Day 23: Feed Fanout for Celebrity Accounts ⭐
@@ -465,15 +556,24 @@
 **Scenario:** Feed service reading at 20ms. Celebrity with 2M followers posted. Now 4 seconds. P99 on fire. 10M users, ~50K posts/day. One account: 2M followers. Feed query fans out across 2M follower rows, sorts by timestamp, buries read replicas.
 
 - [ ] **A: Fanout on Write** — looks perfect. Reads instant. Until Cristiano Ronaldo posts and you're writing to 500M caches in parallel. At 2M followers, even 1ms per write = 2,000 seconds of write work. Cache cluster saturates. Works great at 1M users, then hits the celebrity problem already in production.
+
+- fanout-on-write (push model/precomputed feed)
+  - high write amplification (find followers and write to them)
+  - read precomputed result
+
 - [ ] **B: Fanout on Read** — 500 accounts followed = 500 queries, sorted in memory, before returning anything. Expensive computation to fill a cache that expires in 30s. Just a slow fanout-on-write with extra latency.
 
-> [!success] **C: Hybrid fanout** ✅ — fanout-on-write for regular users (<10K followers), fanout-on-read for celebrities (≥10K). At read time, fetch from two sources: precomputed cache (regular accounts) + real-time query for celebrity accounts. Merge + deduplicate. Celebrity slice is small and bounded. This is how Twitter actually solved it.
+- fanout-on-read (pull model/dynamic feed)
+  - write once (no write amplification)
+  - slow read (queries across many tables/partions for aggregation) -> limit read scalability
+
+> [!success] **C: Hybrid fanout** ✅ — fanout-on-write for regular users (<10K followers), fanout-on-read for celebrities (≥10K). At read time, fetch from two sources: precomputed cache (regular accounts) + real-time query for celebrity accounts. Merge + deduplicate. Celebrity slice is small and bounded. This is how Twitter actually solved it. (writes << reads -> optimize reads)
 
 - [ ] **D: Materialized feed table** — denormalized row per user, updated async via CDC. But celebrity post still triggers 2M row updates, just asynchronously. Haven't solved write amplification, deferred it. Plus event stream + idempotent consumers + reconciliation logic.
 
 ---
 
-## Day 24: Paginating Large Result Sets Efficiently
+## Day 24: Paginating Large Result Sets Efficiently ⭐
 
 **Scenario:** 10M orders. Frontend asks for "page 5." Offset 40, limit 10. Query time: 4.2s. PostgreSQL, 50M rows in orders, sorted by `created_at DESC`, filterable by status. At 50M, offset pagination reads and discards 40M rows to return 10. SLA: p99 < 200ms.
 
@@ -494,6 +594,25 @@
 
 > [!success] **C: Rate-limit producers at the source** ✅ — queue grows because producer is winning: 4,000 in, 200 out. Scale consumers all day and gap won't close with DB at 95% CPU. Fix is upstream: token bucket or sliding window on the emitter (not the user — user already has their ack from the write; throttle the event emitter that reads from DB and pushes to queue). Queue depth stabilizes, consumers catch up naturally. Mental model: slow the tap, don't just widen the drain.
 
+- put rate-limit to the background event emitter/outbox relay by token bucket, congestion control (resource measures), polling batch window throttling
+
+```
+  ### Architecture Overview
+
+    User Checkout ──► [ DB Transaction: Order + Outbox ] ──► Return HTTP 200 ✅
+                                    │
+                                    ▼
+                       [ Outbox Poller / Emitter ]
+                                    │
+                       ◄─── [ Rate Limiter Guard ] ◄── (Feedback: DB CPU & SQS Depth)
+                                    │ (Throttled: max 300 msg/sec)
+                                    ▼
+                           [ SQS Order Queue ]
+                                    │
+                                    ▼
+    			 [ Downstream DB / Workers ] (Healthy at 60% CPU)
+```
+
 - [ ] **D: SQS delay queues** — defer message visibility, not creation. Producer still pushes 4K msg/min. Messages pile up invisibly, then become visible in bursts when delay expires. Like covering a flooding sink with a lid and calling it fixed.
 
 ---
@@ -507,6 +626,30 @@
 - [ ] **C: Write-around** — solves stale cache by not writing to cache at all. Clean — but read-after-write broken under replica lag, and high-write workloads tank cache hit rate.
 
 > [!success] **D: Dual-write with an outbox** ✅ — the core problem isn't "which order to write in" — it's "what happens when one write succeeds and the other fails?" One atomic DB transaction: record + outbox event. A consumer updates Redis from the event. If Redis goes down and comes back, re-process the outbox. Cache update is a consequence of the DB write, not a sibling operation.
+
+- native dual write (write to DB then cache)
+  - partial failure/crash
+  - concurrent race conditions (out of order) due to network latency
+- dual write with outbox
+  - cache invalidation is subsequence of DB write (use outbox relay/CDC)
+  - during propagation window, cache read is stale (eventual consistency)
+  - race condition: permanent stale cache -> versioned cache writes
+
+```
+
+                               [ Local PostgreSQL Transaction (ACID) ]
+    Application Write ──────► ┌───────────────────────────────────────────┐
+                              │ 1. UPDATE products SET price = 99.00      │
+                              │ 2. INSERT INTO outbox_table (product_123) │
+                              └───────────────────────────────────────────┘
+                                                    │ (Committed atomically)
+                                                    ▼
+                                        [ Outbox Relay / CDC Engine ]
+                                                    │ (Guaranteed delivery + retries)
+                                                    ▼
+                                            [ Redis Invalidation ]
+                                              DEL product:123
+```
 
 ---
 
@@ -609,7 +752,7 @@
 
 ---
 
-## Day 35: Geospatial "Find Nearby Drivers" at Scale
+## Day 35: Geospatial "Find Nearby Drivers" at Scale ⭐
 
 **Scenario:** Ride-hailing. 500K active drivers updating GPS every 5 seconds. ~100K proximity queries/sec. Naive lat/lng bounding box = full table scan at scale, 800ms latency.
 
@@ -639,6 +782,8 @@
 
 - [ ] **A: Last-Write-Wins (LWW)** — highest timestamp takes record. Loser's change vanishes silently — no error, just gone. Cassandra defaults to this. Fine for append-only (metrics, event logs). For anything a human edited: silent data loss with timestamp attached.
 - [ ] **B: Vector Clocks** — track causality per replica, detect conflicting versions, surface to application for resolution. Amazon Dynamo used this. Correct and transparent. Problem: conflict resolution is now your job. Vector clocks tell you where conflicts are; they don't tell you how to fix them.
+
+- vector clock = vector of node counter. it only detects conflicts, cannot resolves them -> user intervention
 
 > [!success] **C: CRDTs (Conflict-free Replicated Data Types)** ✅ — data structures designed so any two replicas always merge mathematically without coordination. Operations are commutative, associative, idempotent. G-Counter: only increments, merge = take max. RGA/YATA (sequence CRDTs): each character gets unique ID, concurrent inserts deterministically ordered — collaborative text editing. Figma's canvas runs on CRDTs. Notion's block model is CRDT-based. Millions of concurrent writers across distributed regions converge independently — zero coordination.
 
@@ -720,6 +865,10 @@
 - [ ] **C: Anycast + long TTLs + tag-based invalidation** — tag-based (Cloudflare Cache-Tag, Fastly surrogate keys) lets you purge logical groups in one API call. Clean and surgical. Trap: long TTLs work when deploy pipeline robust, but if invalidation API call fails silently during incident, serving wrong version for hours with no TTL fallback.
 - [ ] **D: Short TTLs, no invalidation** — "short TTLs = always fresh" is most expensive misconception. Every TTL expiry is potential cache stampede. 200K RPS peak, TTL expires on hot endpoint, every PoP fires simultaneous request to origin. Zero to 200K RPS in 2 seconds. Zero control for hotfixes.
 
+- CDN
+	- unicast: 1 IP -> 1 location
+	- anycast: 1 IP -> many locations (edge PoPs). use BGP (border gateway protocol) for single IP
+
 ---
 
 ## Day 44: Syncing Offline Edits Without Data Loss ⭐
@@ -759,7 +908,7 @@
 
 ---
 
-## Day 47: Incrementally Strangling a Monolith
+## Day 47: Incrementally Strangling a Monolith ⭐
 
 **Scenario:** 6-year-old monolith, 500K lines, deploy every 3 weeks, one bad migration takes down everything. 40 engineers, 3 teams deploying to same codebase. Returns processing is bottleneck — extract it first. Can't freeze feature work.
 
@@ -795,7 +944,7 @@
 
 ---
 
-## Day 50: Serving ML Models at High Throughput
+## Day 50: Serving ML Models at High Throughput ⭐
 
 **Scenario:** PyTorch model, ~6B params, single A100 GPU (80GB VRAM). 3K inference requests/sec. P99 latency: 4.2s. GPU utilization: 23%. FastAPI calling `model.predict()` one request at a time. No batching, FP32. GPU starving — not overloaded.
 
@@ -883,7 +1032,7 @@
 
 ## Day 57: Consistency for Payment-Confirmation Reads ⭐
 
-**Scenario:** 50K writes/sec, reads 10x that. Split Postgres into primary + 2 replicas. Payment confirmation reads from replica — returned stale data 200ms after write. User saw "payment pending" when it already succeeded. Replication lag: 80–300ms under load.
+**Scenario:** 50K writes/sec, reads 10x that. Split Postgres into primary + 2 replicas. Payment confirmation reads from replica — returned stale data 200ms after write. User saw "payment pending" when it already succeeded. Replication lag: 80–300ms under load. (~ Read after write)
 
 - [ ] **A: Synchronous replication** — primary waits for replica to confirm before ACKing write. Zero lag, reads always consistent. Cost: every write = primary_write_time + network roundtrip to replica. Under load with flaky replica, write latency hostage to slowest replica. Sync replica goes down → either halt writes or fall back to async breaking guarantee. 3am decision. Serious architectural commitment for whole DB.
 - [ ] **B: Semi-sync replication** — primary waits for replica to write to relay log. Sounds like middle ground. Replica acknowledged receipt of bytes — not that data is applied and readable. Relay log is incoming queue, not applied state. Still read stale data. Protects from data loss on primary failure; does NOT protect from replication lag on reads. Different problem entirely.
@@ -918,7 +1067,7 @@
 
 ---
 
-## Day 60: Architecting a SaaS Platform from Scratch
+## Day 60: Architecting a SaaS Platform from Scratch ⭐
 
 **Scenario:** New SaaS platform. 50K req/s at launch. Multi-tenant. Real-time data. Global users. AI inference built in. 3 months, blank slate.
 

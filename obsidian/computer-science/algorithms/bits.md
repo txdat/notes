@@ -1,7 +1,10 @@
 1. [xor tricks](https://florian.github.io//xor-trick/)
 2. [number of excellent pairs](https://leetcode.com/problems/number-of-excellent-pairs/description/)
-- call `N(a)` is number of set bits of `a`, so `N(a or b) = N(a) + N(b) - N(a and b)` 
+
+- call `N(a)` is number of set bits of `a`, so `N(a or b) = N(a) + N(b) - N(a and b)`
+
 3. [apply operations on array to maximize sum of squares](https://leetcode.com/problems/apply-operations-on-array-to-maximize-sum-of-squares/description/)
+
 ```cpp
 using ll = long long;
 
@@ -33,7 +36,9 @@ public:
     }
 };
 ```
+
 4. [bitwise AND of numbers range](https://leetcode.com/problems/bitwise-and-of-numbers-range/description/)
+
 ```cpp
 // bitwise and of range is common prefix of their bits
 class Solution {
@@ -49,7 +54,9 @@ public:
     }
 };
 ```
+
 - [minimum array end](https://leetcode.com/problems/minimum-array-end/description/)
+
 ```cpp
 using ll = long long;
 
@@ -79,7 +86,9 @@ public:
     }
 };
 ```
+
 - [find the maximum sum of node values](https://leetcode.com/problems/find-the-maximum-sum-of-node-values/)
+
 ```cpp
 using ll = long long;
 
@@ -99,7 +108,9 @@ public:
     }
 };
 ```
+
 - [single number ii](https://leetcode.com/problems/single-number-ii/description/)
+
 ```cpp
 class Solution {
 public:
@@ -132,7 +143,9 @@ public:
     }
 };
 ```
+
 - [single number iii](https://leetcode.com/problems/single-number-iii/description/)
+
 ```cpp
 class Solution {
 public:
@@ -153,8 +166,10 @@ public:
     }
 };
 ```
+
 - [find xor-beauty of array](https://leetcode.com/problems/find-xor-beauty-of-array/description/)
-	- [explanation](https://leetcode.com/problems/find-xor-beauty-of-array/solutions/3015014/why-just-xor-of-all-numbers-works/)
+  - [explanation](https://leetcode.com/problems/find-xor-beauty-of-array/solutions/3015014/why-just-xor-of-all-numbers-works/)
+
 ```cpp
 class Solution {
 public:
@@ -165,7 +180,9 @@ public:
     }
 };
 ```
+
 - [patching array](https://leetcode.com/problems/patching-array/)
+
 ```cpp
 using ll = long long;
 
@@ -190,7 +207,9 @@ public:
     }
 };
 ```
+
 - [minimum number of K consecutive bit flips](https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/description/)
+
 ```cpp
 class Solution {
 public:
@@ -221,7 +240,9 @@ public:
     }
 };
 ```
+
 - [flip columns for maximum number of equal rows](https://leetcode.com/problems/flip-columns-for-maximum-number-of-equal-rows/description/)
+
 ```cpp
 // key: flip some columns equals to XOR all row values with same number K -> X = X^K^K = K or 1^K -> K = X or 1^X
 class Solution {
@@ -247,8 +268,10 @@ public:
     }
 };
 ```
+
 - [maximum product of 2 integers without common bits](https://leetcode.com/problems/maximum-product-of-two-integers-with-no-common-bits/description/)
-	- idea: `dp[i]` is maximum value of nums such that `d&i=d` (i is superset of d)
+  - idea: `dp[i]` is maximum value of nums such that `d&i=d` (i is superset of d)
+
 ```cpp
 using ll = long long;
 
@@ -275,8 +298,10 @@ public:
     }
 };
 ```
+
 - [minimum 1 bit operations to make integers zero](https://leetcode.com/problems/minimum-one-bit-operations-to-make-integers-zero)
-	- idea: convert 1XXXXXXX -> ... -> 11000000 -> 1000000 -> ... -> 0
+  - idea: convert 1XXXXXXX -> ... -> 11000000 -> 1000000 -> ... -> 0
+
 ```cpp
 class Solution {
 public:

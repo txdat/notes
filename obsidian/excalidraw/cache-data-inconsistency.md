@@ -1,15 +1,14 @@
 ---
-
 excalidraw-plugin: parsed
 tags: [excalidraw]
-
 ---
-==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠==
 
+==⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠==
 
 # Excalidraw Data
 
 ## Text Elements
+
 Client 1 ^JuxAZAsy
 
 client 2 ^a4upwbDw
@@ -59,7 +58,9 @@ write cache first ^NKXgFeDV
 write to cache operation is very fast ^cNIQe8eJ
 
 %%
+
 ## Drawing
+
 ```compressed-json
 N4KAkARALgngDgUwgLgAQQQDwMYEMA2AlgCYBOuA7hADTgQBuCpAzoQPYB2KqATLZMzYBXUtiRoIACyhQ4zZAHoFAc0JRJQgEYA6bGwC2CgF7N6hbEcK4OCtptbErHALRY8RMpWdx8Q1TdIEfARcZgRmBShcZQUebQBGOJ4aOiCEfQQOKGZuAG1wMFAwYuh4cXRA7CiOZWCU4shGFnYuNABWADZ+EqbWTgA5TjFuDoAGUYBmNp4AdjaATm7IQg5i
 
@@ -233,4 +234,5 @@ ZBm0uYKL5YHePTEoj4eAv1yRdFmPAKGgPZDQLeoaAqbBYC+v0YUNoTYDgA4ABEDkRjZaACLAMgIwmahD
 
 03pHuLfQZ4qTBXi0Et4BwSxjh+KzKIIs8KEAMIsoy6hQosqxjYOODFRzdFsEyAzi1OHKzpUQgAD1cSiVGEKynTkH1gMiMpxhK7AauAQAqgawQlQ4AY4vIUJUTQHOLF5TYCqBCARgAJg2AR0CmLFQwIH0zKAU7ElYDYDItnw4Atr1nADAbnBKC4yc8WQ5/wDkq5KeSvUKj1wycAH1QKsGEHCBOWCCEPAgAA==
 ```
+
 %%

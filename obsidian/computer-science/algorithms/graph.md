@@ -1,4 +1,5 @@
-	1. dijkstra
+    1. dijkstra
+
 ```cpp
 // g: {i: [{cost_ij, j},...]}
 int shortest_path(vector<vector<pair<int,int>>> &g, int s, int t) {
@@ -21,7 +22,9 @@ int shortest_path(vector<vector<pair<int,int>>> &g, int s, int t) {
 	return -1;
 }
 ```
+
 2. floyd-warshall
+
 ```cpp
 // find shortest path for any i, j
 // g: {i: [{cost_ij,j},...]}
@@ -42,8 +45,11 @@ vector<vector<int>> shortest_path(vector<vector<pair<int,int>>> &g) {
 	return dist;
 }
 ```
+
 3. [minimum obstacle removal to reach corner](https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner)
+
 - solved by dijkstra
+
 ```cpp
 using ia3 = array<int,3>; // {cost,x,y}
 
@@ -70,7 +76,9 @@ public:
     }
 };
 ```
+
 - using dfs
+
 ```cpp
 using pii = pair<int,int>;
 
@@ -100,7 +108,9 @@ public:
     }
 };
 ```
+
 4. [cheapest flights within k stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/)
+
 ```cpp
 using ia2 = array<int,2>;
 using ia3 = array<int,3>;
@@ -133,7 +143,9 @@ public:
     }
 };
 ```
+
 - [minimum height trees](https://leetcode.com/problems/minimum-height-trees/description/)
+
 ```cpp
 class Solution {
 public:
@@ -170,7 +182,9 @@ public:
     }
 };
 ```
+
 - [sum of distances in tree](https://leetcode.com/problems/sum-of-distances-in-tree/description/) -> 2-time dfs (with moving root)
+
 ```cpp
 class Solution {
 public:
@@ -209,7 +223,9 @@ public:
     }
 };
 ```
+
 - [distribute coins in binary tree](https://leetcode.com/problems/distribute-coins-in-binary-tree/)
+
 ```cpp
 class Solution {
 public:
@@ -222,7 +238,9 @@ public:
     }
 };
 ```
+
 - [all ancestors of a node in a DAG](https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/)
+
 ```cpp
 class Solution {
 public:
@@ -256,11 +274,11 @@ public:
 //             for (int t : a[j]) a[i].insert(t);
 //         }
 //     }
-// 
+//
 //     vector<vector<int>> getAncestors(int n, vector<vector<int>>& edges) {
 //         vector<vector<int>> g(n,vector<int>());
 //         for (auto &e : edges) g[e[1]].push_back(e[0]);
-// 
+//
 //         vector<vector<int>> ans;
 //         vector<unordered_set<int>> a(n,unordered_set<int>());
 //         vector<bool> visited(n,false);
@@ -274,8 +292,10 @@ public:
 //     }
 // };
 ```
+
 - [find minimum diameter after merging two trees](https://leetcode.com/problems/find-minimum-diameter-after-merging-two-trees/)
 - [second minimum time to reach destination](https://leetcode.com/problems/second-minimum-time-to-reach-destination)
+
 ```cpp
 using pii = pair<int,int>;
 
@@ -310,7 +330,9 @@ public:
     }
 };
 ```
+
 - [regions cut by slashes](https://leetcode.com/problems/regions-cut-by-slashes/description/)
+
 ```cpp
 class Solution {
 public:
@@ -349,7 +371,9 @@ public:
     }
 };
 ```
+
 - [map of highest peak](https://leetcode.com/problems/map-of-highest-peak)
+
 ```cpp
 constexpr int dxy[4][2] = {{-1,0}, {0,1}, {1,0}, {0,-1}};
 using pii = pair<int,int>;
@@ -383,11 +407,14 @@ public:
 ```
 
 - [flight routes](https://cses.fi/problemset/task/1196/) - k shortest paths with node revisits
-	- codeforces' note to find k shortest paths [link](https://codeforces.com/blog/entry/102085)
+  - codeforces' note to find k shortest paths [link](https://codeforces.com/blog/entry/102085)
+
 ```cpp
 
 ```
 
 - [longest flight route](https://cses.fi/problemset/task/1680/) - longest path in DAG -> topo sort
+
 ```cpp
+
 ```

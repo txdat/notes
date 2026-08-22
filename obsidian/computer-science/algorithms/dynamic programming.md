@@ -1,4 +1,5 @@
 1. [minimum moves to pick k ones](https://leetcode.com/problems/minimum-moves-to-pick-k-ones/description/)
+
 ```cpp
 using ll = long long;
 constexpr int MOD = 1e9+7;
@@ -29,7 +30,9 @@ public:
     }
 };
 ```
+
 2. [number of subsequences that satisfy the given sum condition](https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/description/)
+
 ```cpp
 using ll = long long;
 constexpr int MOD = 1e9+7;
@@ -60,7 +63,9 @@ public:
     }
 };
 ```
+
 3. [maximum number of points with cost](https://leetcode.com/problems/maximum-number-of-points-with-cost/)
+
 ```cpp
 using ll = long long;
 
@@ -89,7 +94,9 @@ public:
     }
 };
 ```
+
 - [length of the longest subsequence that sums to target](https://leetcode.com/problems/length-of-the-longest-subsequence-that-sums-to-target/)
+
 ```cpp
 class Solution {
 public:
@@ -103,7 +110,9 @@ public:
     }
 };
 ```
+
 - length of the shortest subsequence that sums to target
+
 ```cpp
 class Solution {
 public:
@@ -141,7 +150,9 @@ public:
 // {1, 100},   {5, 100},    {10, 100},   {50, 100},   {100, 1},
 // {500, 100}, {1000, 100}, {2000, 100}, {5000, 100}, {10000, 100}};
 ```
+
 - [maximum total reward using operations i](https://leetcode.com/problems/maximum-total-reward-using-operations-i/)
+
 ```cpp
 int dp[2001][4002];
 
@@ -184,11 +195,15 @@ public:
 	}
 };
 ```
+
 - [maximum total reward using operations ii](https://leetcode.com/problems/maximum-total-reward-using-operations-ii/description/)
+
 ```cpp
 
 ```
+
 - [shortest distance after road addition queries i](https://leetcode.com/problems/shortest-distance-after-road-addition-queries-i/description/)
+
 ```cpp
 class Solution {
 public:
@@ -210,7 +225,9 @@ public:
     }
 };
 ```
+
 - [maximum number of points with cost](https://leetcode.com/problems/maximum-number-of-points-with-cost/)
+
 ```cpp
 using ll = long long;
 
@@ -240,7 +257,9 @@ public:
     }
 };
 ```
+
 - [strange printer](https://leetcode.com/problems/strange-printer/)
+
 ```cpp
 class Solution {
 public:
@@ -272,7 +291,9 @@ public:
     }
 };
 ```
+
 - [length of longest increasing subsequence](https://leetcode.com/problems/longest-increasing-subsequence)
+
 ```cpp
 // O(n)
 class Solution {
@@ -306,7 +327,9 @@ public:
     }
 };
 ```
+
 - [length of the longest increasing path](https://leetcode.com/problems/length-of-the-longest-increasing-path/description/)
+
 ```cpp
 class Solution {
 public:
@@ -325,7 +348,7 @@ public:
         }
         return j; // keep the last element
     }
-    
+
     int lis2(vector<int>& nums) {
         int n = nums.size();
         if (n == 0) return 0;
@@ -340,7 +363,7 @@ public:
         }
         return q.size();
     }
-    
+
     int maxPathLength(vector<vector<int>>& a, int k) {
         int n = a.size();
         int x0 = a[k][0], y0 = a[k][1];
@@ -356,7 +379,9 @@ public:
     }
 };
 ```
+
 - [find the longest substring containing vowels in even counts](https://leetcode.com/problems/find-the-longest-substring-containing-vowels-in-even-counts)
+
 ```cpp
 class Solution {
 public:
@@ -394,7 +419,9 @@ public:
     }
 };
 ```
+
 - [painting the grid with three different colors](https://leetcode.com/problems/painting-a-grid-with-three-different-colors)
+
 ```cpp
 using ll = long long;
 constexpr int mod = 1e9+7;
@@ -424,7 +451,9 @@ public:
     }
 };
 ```
+
 - [minimum score triangulation of polygon](https://leetcode.com/problems/minimum-score-triangulation-of-polygon)
+
 ```cpp
 class Solution {
 public:

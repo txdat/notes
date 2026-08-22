@@ -1,8 +1,12 @@
 # V8
+
 - source code -> Ignition bytecode -> Sparkplug (machine code) -> Maglev/TurboFan (deoptimize to Sparkplug/Ignition if assumption fails) -> optimized code
 - optimize base on assumption of **static object shape**
-	- internal object layout - maps
-		```javascript
+  - internal object layout - maps
+    ```javascript
+
+    ```
+
 // Run with: node --allow-natives-syntax hidden-classes-demo.js
 const obj1 = {};
 const obj2 = {};
@@ -18,9 +22,11 @@ console.log(%HaveSameMap(obj1, obj2)); // true
 		![[Pasted image 20260615152905.png | 600]]
 
 # Event loop
+
 Two-layer architecture: **libuv** (native engine — I/O, timers, thread pool) + **Node scheduling rules** (microtask queues). V8 only handles JS execution and GC.
 
 ### Components
+
 - **V8**: call stack, heap, GC — no I/O or timers
 - **libuv**: epoll (linux) / kqueue (mac) / IOCP (windows); worker thread pool default 4 threads (`UV_THREADPOOL_SIZE`); serves `fs`, `crypto.pbkdf2`, `dns.lookup`, zlib
 - **C++ bindings**: bridge between V8 and libuv
@@ -28,6 +34,7 @@ Two-layer architecture: **libuv** (native engine — I/O, timers, thread pool) +
 Blocking the event loop = any long-running synchronous work on the call stack; no queued callback can interrupt it.
 
 ### Event loop phases
+
 ```
  ┌─────────────────────────────────┐
  │           timers                │  setTimeout / setInterval
@@ -52,10 +59,12 @@ Blocking the event loop = any long-running synchronous work on the call stack; n
 After **every** callback returns → drain nextTick queue → drain V8 microtask queue → advance to next phase.
 
 ### Microtask priority queues
+
 | Queue         | API                                                              | Priority | Notes                               |
 | ------------- | ---------------------------------------------------------------- | -------- | ----------------------------------- |
 | next tick     | `process.nextTick()`                                             | 1st      | "Legacy"; recursive use starves I/O |
 | V8 microtasks | Promise `.then/catch/finally`, `queueMicrotask()`, `async/await` | 2nd      |                                     |
+
 ```javascript
   [callback returns]
     1. drain ALL nextTick  (including new ones added during drain)
@@ -83,11 +92,11 @@ After **every** callback returns → drain nextTick queue → drain V8 microtask
   // microtask 2 (nested)    ← ...runs before the next microtask
 ```
 
-
 **Execution order by context**:
+
 - CJS top-level: stack → nextTick → microtasks → event-loop phases
 - Phase callback: callback → nextTick → microtasks → next phase
-- ESM top-level: module evaluation *is* a microtask — promises can run before `process.nextTick()`
+- ESM top-level: module evaluation _is_ a microtask — promises can run before `process.nextTick()`
 
 ```javascript
 console.log("1. Start");
@@ -114,10 +123,12 @@ console.log("2. End");
 ```
 
 ### `setTimeout` vs `setImmediate`
+
 - **From main script**: unpredictable — timer threshold may or may not have passed
 - **From inside I/O callback**: `setImmediate` always first — poll phase finishes, check phase is next; timer phase comes after
 
 ### What blocks the event loop
+
 - `fs.readFileSync()` and other sync APIs
 - `JSON.parse()` on large payloads
 - Regex with catastrophic backtracking
@@ -126,13 +137,15 @@ console.log("2. End");
 Worker pool (libuv threads) is shared — a slow `fs` op competes with `crypto.pbkdf2`; default 4 threads is a common bottleneck under concurrency.
 
 ### CPU-bound solutions
-| Approach | Mechanism | Use case |
-|---|---|---|
-| `setImmediate()` chunking | yields between batches, same thread | improve responsiveness without true parallelism |
-| `worker_threads` | own V8 isolate + event loop per worker | true parallelism; data cloned or transferred |
-| `cluster` | multiple Node processes sharing ports | horizontal scale across CPU cores |
+
+| Approach                  | Mechanism                              | Use case                                        |
+| ------------------------- | -------------------------------------- | ----------------------------------------------- |
+| `setImmediate()` chunking | yields between batches, same thread    | improve responsiveness without true parallelism |
+| `worker_threads`          | own V8 isolate + event loop per worker | true parallelism; data cloned or transferred    |
+| `cluster`                 | multiple Node processes sharing ports  | horizontal scale across CPU cores               |
 
 ### Monitoring event loop lag
+
 ```javascript
 // basic
 let last = Date.now();
@@ -156,9 +169,13 @@ V8 GC stop-the-world pauses are indistinguishable from blocking code and contrib
 # Stream
 
 # Async pattern
+
 ### error-first callback
+
 ### try/catch
+
 - try/catch only protects the stack that is running right now
+
 ```javascript
 try {
   fs.readFile("/nonexistent", "utf8", (err, data) => {
@@ -168,13 +185,14 @@ try {
 ```
 
 ### promise
+
 - a promise starts as pending, goes fulfilled/rejected (irreversible); tracked via internal `[[PromiseState]]` / `[[PromiseResult]]`
 - executor runs **synchronously**; `.then/.catch/.finally` handlers always deferred to microtask queue
-- **resolution vs settlement**: resolving with another promise makes the outer promise *follow* that promise's state (not wrap it); thenables go through `PromiseResolveThenableJob` — one extra microtask turn vs a plain value
+- **resolution vs settlement**: resolving with another promise makes the outer promise _follow_ that promise's state (not wrap it); thenables go through `PromiseResolveThenableJob` — one extra microtask turn vs a plain value
 - **chaining**: each `.then()` returns a **new** promise; handler return value determines next settlement
-	- normal return → fulfills next
-	- thrown error → rejects next
-	- returned promise → next follows that promise
+  - normal return → fulfills next
+  - thrown error → rejects next
+  - returned promise → next follows that promise
 - **error propagation**: rejection travels down the chain until a handler catches it; fulfillment-only handler is skipped; `.catch()` returning a value recovers the chain
 - unhandled rejection: Node v24 default `--unhandled-rejections=throw` (treats as uncaught exception); `unhandledRejection` / `rejectionHandled` process events track lifecycle
 - `util.promisify()` wraps error-first callbacks; multi-value functions need `util.promisify.custom`; `util.callbackify()` reverses direction
@@ -183,12 +201,12 @@ try {
 
 **Combinators** — operate on already-started promises; they don't cancel, retry, or limit concurrency:
 
-| Combinator | Fulfills when | Rejects when | Use case |
-|---|---|---|---|
-| `Promise.all(arr)` | **all** fulfill | first rejection | need every result; one fail = all fail |
-| `Promise.allSettled(arr)` | **all settle** (never rejects) | — | batch ops; collect all outcomes |
-| `Promise.race(arr)` | first to settle | first to settle | timeout racing; losers keep running |
-| `Promise.any(arr)` | first fulfillment | **all** reject → `AggregateError` | redundant mirrors / fallbacks |
+| Combinator                | Fulfills when                  | Rejects when                      | Use case                               |
+| ------------------------- | ------------------------------ | --------------------------------- | -------------------------------------- |
+| `Promise.all(arr)`        | **all** fulfill                | first rejection                   | need every result; one fail = all fail |
+| `Promise.allSettled(arr)` | **all settle** (never rejects) | —                                 | batch ops; collect all outcomes        |
+| `Promise.race(arr)`       | first to settle                | first to settle                   | timeout racing; losers keep running    |
+| `Promise.any(arr)`        | first fulfillment              | **all** reject → `AggregateError` | redundant mirrors / fallbacks          |
 
 ```javascript
 // all — ordered results regardless of completion sequence
@@ -209,6 +227,7 @@ const data = await Promise.any([fetch(cdn1), fetch(cdn2), fetch(cdn3)]);
 ```
 
 **Concurrency limiting**:
+
 ```javascript
 async function pMap(items, fn, concurrency) {
   const results = new Array(items.length);
@@ -219,20 +238,27 @@ async function pMap(items, fn, concurrency) {
       results[i] = await fn(items[i], i);
     }
   }
-  await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, worker));
+  await Promise.all(
+    Array.from({ length: Math.min(concurrency, items.length) }, worker),
+  );
   return results;
 }
 ```
 
 **Retry with exponential backoff**:
+
 ```javascript
-async function retry(fn, { maxRetries = 3, baseMs = 1000, shouldRetry = () => true } = {}) {
+async function retry(
+  fn,
+  { maxRetries = 3, baseMs = 1000, shouldRetry = () => true } = {},
+) {
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
-    try { return await fn(); }
-    catch (err) {
+    try {
+      return await fn();
+    } catch (err) {
       if (attempt === maxRetries || !shouldRetry(err)) throw err;
       const delay = baseMs * 2 ** attempt * (0.5 + Math.random() * 0.5);
-      await new Promise(r => setTimeout(r, delay));
+      await new Promise((r) => setTimeout(r, delay));
     }
   }
 }
@@ -241,6 +267,7 @@ async function retry(fn, { maxRetries = 3, baseMs = 1000, shouldRetry = () => tr
 ```
 
 **Timeout with AbortSignal**:
+
 ```javascript
 async function fetchWithTimeout(url, ms, options = {}) {
   const signal = options.signal
@@ -251,18 +278,21 @@ async function fetchWithTimeout(url, ms, options = {}) {
 ```
 
 ### async/await
+
 - syntactic sugar over promise chains; each `await` ≈ a `.then()` continuation
 - code **before** the first `await` runs synchronously on the caller's stack
 - at an `await`: V8 saves locals + bytecode position to heap (`JSAsyncFunctionObject`), enqueues a `PromiseReactionJob`, returns control; resumes when awaited promise settles
 - the **outer promise** (returned to caller) is the single caller-facing result across all suspension points
 
 **Execution ordering** (same rules as microtasks):
+
 ```
 // CJS: nextTick drains before V8 microtasks
 // ESM: top-level runs inside microtask drain — order may differ
 ```
 
 **`return` vs `return await` in try/catch**:
+
 ```javascript
 // BAD — rejection escapes try/catch because fn() returns before promise settles
 async function bad() {
@@ -275,19 +305,27 @@ async function good() {
 ```
 
 **Anti-patterns**:
+
 ```javascript
 // floating promise — rejection is lost
-async function bad() { doAsync(); }
+async function bad() {
+  doAsync();
+}
 
 // forEach ignores returned promises — loop ends before work completes
-urls.forEach(async url => { await fetch(url); });
+urls.forEach(async (url) => {
+  await fetch(url);
+});
 
 // accidental serialization — sequential awaits for independent work
-for (const u of users) { await sendEmail(u); } // slow!
+for (const u of users) {
+  await sendEmail(u);
+} // slow!
 // fix: await Promise.all(users.map(u => sendEmail(u)))
 ```
 
 **Memory**: suspended functions retain all in-scope locals — null out large buffers before long waits:
+
 ```javascript
 async function handle(req) {
   let body = await readBody(req);
@@ -298,6 +336,7 @@ async function handle(req) {
 ```
 
 **Bounded concurrency for large batches**:
+
 ```javascript
 for (let i = 0; i < items.length; i += 100) {
   await Promise.all(items.slice(i, i + 100).map(transform));
@@ -305,10 +344,12 @@ for (let i = 0; i < items.length; i += 100) {
 ```
 
 ### event emitter
+
 - **synchronous** listener registry — `emit()` runs listeners on the **current call stack** in registration order; slow listeners block everything that follows
 - internal `_events` uses a null-prototype object (no inherited-property collisions); single listener stored as function, multiple as array
 
 **Registration**:
+
 - `on()` / `addListener()` — append to end
 - `prependListener()` — insert at front
 - `once()` — auto-removes after first fire (but persists if event never fires)
@@ -319,6 +360,7 @@ for (let i = 0; i < items.length; i += 100) {
 **Max-listener warning** (default 10/event): signals repeated `on()` without cleanup, typically from per-request patterns on long-lived emitters
 
 **Modern integration**:
+
 ```javascript
 import { once, on } from "node:events";
 
@@ -334,24 +376,26 @@ for await (const [msg] of on(ee, "message")) {
 
 **When to use each pattern**:
 
-| Pattern | Use case |
-|---|---|
-| Callback | single result, legacy API |
-| Promise / async-await | single async result |
-| `events.once()` | wait for one event as a promise |
-| EventEmitter `.on()` | repeated push-based notifications |
-| Async iterator / `events.on()` | consumer-paced stream of events |
+| Pattern                        | Use case                          |
+| ------------------------------ | --------------------------------- |
+| Callback                       | single result, legacy API         |
+| Promise / async-await          | single async result               |
+| `events.once()`                | wait for one event as a promise   |
+| EventEmitter `.on()`           | repeated push-based notifications |
+| Async iterator / `events.on()` | consumer-paced stream of events   |
 
 ### async iterators
+
 - protocol: object exposes `[Symbol.asyncIterator]()` returning `{ next() → Promise<{value, done}> }`
 - `for await...of`: calls `next()`, awaits, loops until `done: true`; on break/throw calls iterator's `return()` for cleanup (closes file handles, destroys streams)
 - **inherently sequential** — 100 items × 500 ms = 50 s minimum
 
 **Async generators** (`async function*`):
+
 ```javascript
 async function* fetchPages(url) {
   for (let page = 1; ; page++) {
-    const data = await fetch(`${url}?page=${page}`).then(r => r.json());
+    const data = await fetch(`${url}?page=${page}`).then((r) => r.json());
     if (!data.items.length) return;
     yield data.items; // pauses until consumer calls next()
   }
@@ -362,12 +406,14 @@ async function* fetchPages(url) {
 **Readable streams** implement `Symbol.asyncIterator`; `for await...of` naturally respects backpressure — next chunk requested only after current one is processed. Early exit calls `destroy()` by default; use `readable.iterator({ destroyOnReturn: false })` to preserve the stream.
 
 **`events.on()` adapter**: buffers emitted events in an (effectively unbounded) queue for async consumption — beware memory growth if emitter outpaces consumer:
+
 ```javascript
 for await (const [msg] of on(ee, "message", { signal })) { ... }
 // use streams or custom queues with limits for high-throughput sources
 ```
 
 **Pipeline with backpressure**:
+
 ```javascript
 async function* map(source, fn) { for await (const x of source) yield fn(x); }
 async function* filter(source, pred) { for await (const x of source) if (pred(x)) yield x; }
@@ -375,11 +421,15 @@ for await (const item of filter(map(source, transform), predicate)) { ... }
 ```
 
 **Adding concurrency** inside `for await`:
+
 ```javascript
 const batch = [];
 for await (const item of source) {
   batch.push(process(item));
-  if (batch.length >= BATCH_SIZE) { await Promise.all(batch); batch.length = 0; }
+  if (batch.length >= BATCH_SIZE) {
+    await Promise.all(batch);
+    batch.length = 0;
+  }
 }
 await Promise.all(batch);
 ```

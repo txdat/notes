@@ -1,12 +1,17 @@
 - [balance a binary search tree](https://leetcode.com/problems/balance-a-binary-search-tree/)
+
 ```cpp
 
 ```
+
 - [number of good leaf node pairs](https://leetcode.com/problems/number-of-good-leaf-nodes-pairs/)
+
 ```cpp
 
 ```
+
 - [find duplicate subtrees](https://leetcode.com/problems/find-duplicate-subtrees/)
+
 ```cpp
 /**
  * Definition for a binary tree node.
@@ -27,7 +32,7 @@ public:
         if (q.find(t) == q.end()) {
             q[t] = {1, root};
         } else {
-            q[t].first++; 
+            q[t].first++;
         }
         return t;
     }
@@ -43,10 +48,15 @@ public:
     }
 };
 ```
+
 - [delete duplicate folders in system (duplicate subtrees)](https://leetcode.com/problems/delete-duplicate-folders-in-system)
+
 ```cpp
+
 ```
+
 - [number of ways to assign edge weights ii](https://leetcode.com/problems/number-of-ways-to-assign-edge-weights-ii/) - LCA + binary lifting
+
 ```cpp
 using ll = long long;
 constexpr int MOD=1e9+7;

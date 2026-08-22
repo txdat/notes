@@ -1,5 +1,6 @@
 1. [binary subarrays with sum](https://leetcode.com/problems/binary-subarrays-with-sum/)
-```cpp
+
+````cpp
 class Solution {
 public:
     int count(vector<int> &nums, int goal) {
@@ -71,8 +72,10 @@ public:
         return count(nums,k) - (k ? count(nums,k-1) : 0);
     }
 };
-```
+````
+
 - [D. Inaccurate Subsequence Search](https://codeforces.com/contest/1955/problem/D)
+
 ```cpp
 void __solve(int __test_case = 1) {
     int n, m, k;
@@ -81,7 +84,7 @@ void __solve(int __test_case = 1) {
     cin >> a >> b;
     unordered_map<int,int> am, bm;
     for (int &d : b) bm[d]++;
- 
+
     int ans = 0;
     int c = 0;
     for (int i = 0; i < m-1; i++) {

@@ -1,15 +1,14 @@
 ---
-
 excalidraw-plugin: parsed
 tags: [excalidraw]
-
 ---
-==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠== You can decompress Drawing data with the command palette: 'Decompress current Excalidraw file'. For more info check in plugin settings under 'Saving'
 
+==⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠== You can decompress Drawing data with the command palette: 'Decompress current Excalidraw file'. For more info check in plugin settings under 'Saving'
 
 # Excalidraw Data
 
 ## Text Elements
+
 client ^YPJxDyKS
 
 client ^SJYVcQLn
@@ -28,6 +27,7 @@ notify online/offline status ^zWsaZAvI
 query status ^TIb302yX
 
 in heartbeat
+
 - if user record expired or doesn't exists -> user is online, update timestamp
 - if user doesn't (re)connect (absence of heartbeat signal) after predefined time interval -> user goes offline ^Q48FnrZR
 
@@ -61,7 +61,9 @@ replication ^isuP2KKy
 replication ^vmNzT5Tb
 
 %%
+
 ## Drawing
+
 ```compressed-json
 N4KAkARALgngDgUwgLgAQQQDwMYEMA2AlgCYBOuA7hADTgQBuCpAzoQPYB2KqATLZMzYBXUtiRoIACyhQ4zZAHoFAc0JRJQgEYA6bGwC2CgF7N6hbEcK4OCtptbErHALRY8RMpWdx8Q1TdIEfARcZgRmBShcZQUebQBGOJ4aOiCEfQQOKGZuAG1wMFAwYogSbghNAEkAVigADgApZWYATgQAEQAlXABRV00hHoBNKBTiyFhEcsDsKI5lYLGSzG5n
 
@@ -257,4 +259,5 @@ QKaWvFrpb0gIvDp4thXFrJbOWhFrfT7m5NRFb4W+2tQ92GsOo1b0gSQQIgrseaNIB2eLaC0CWQfAAyJq
 
 JUGmAK23ACrar4Gtp7b02SkAbbxoiNulbloBloQAew6INnreWtIQLgCwIdGwaNOPNrhg6Ch2CIB4BFdpHQ/m+9UTxhAKAGXQHhUuAja7AceB4VISkdDgAs2nNpHRNAfNul05sWYEIBGAVuBZBA22bDCBggB9uariyE2jzh9AQ1t8QVAxXzTADAVhQ/abS5mwDirYB9qfb/W5Er3ZnIcABcg1g8IB4Z5IRsCAA===
 ```
+
 %%
