@@ -20,60 +20,74 @@
 
 # low-level design
 
-- algorithms
-  1.  token bucket
-      - a token bucket is a container that has defined capacity. tokens are put at preset rates periodically
-      - a request costs a token. if there isn't any token, the request is dropped
-      - pros:
-        - easy to implement
-        - memory efficient
-        - allow a burst of traffic for short periods
-      - cons:
-        - hard to tune 2 parameters: bucket capacity and refill rate
-  1.  leaking bucket
-      - requests are processed at fixed rate using FIFO queue. requests are pulled from queue and processed
-      - a request will be dropped if the queue is full
-      - pros:
-        - memory efficient with limited queue size
-        - suitable for use cases that stable outflow rate needed
-      - cons:
-        - a burst of traffic fills up the queue with old requests, recent requests will be rate limited
-        - hard to tune 2 parameters: bucket size (queue size), outflow rate (number of requests processed in second)
-  1.  fixed window counter
-      - divide the timeline into fix-sized time windows and assign a counter for each window
-      - a request increases the counter by one. it will be dropped if counter reaches to predefined threshold, and wait to next window
-      - pros:
-        - easy to understand
-        - memory efficient
-        - fit certain use cases when resetting quota at the end of unit time
-      - cons:
-        - a burst of traffic at the edges of time windows could cause more requests than allowed quota go through
-      - **MAJOR ISSUE:** allow to more requests at the edges of time window
-  1.  sliding window log
-      - fix major issue of fixed window counter
-      - the algorithm keep **sorted log** of requests' timestamp
-      - when new request comes, remove all outdated timestamp (older than current time window) and add request's timestamp to log (even request may be dropped later)
-      - if size of log is larger than allowed count, request will be dropped, and vice versa
-      - pros:
-        - very accurate, in any rolling window, requests cannot exceed the limit
-      - cons:
-        - consume lots of memory because it keeps dropped requests' timestamp
-  1.  sliding window counter
-      - combine fixed window counter and sliding window log
-      - the number of requests in rolling window is calculated by: `#requests_in_current_window + #requests_in_prev_window * overlap_percentage_rolling_prev_window`
-      - pros:
-        - smooth out spikes in traffic
-        - memory efficient
-      - cons:
-        - only work for not-strict look back window
-        - this algo assumes that requests are evenly distributed in previous window
+## algorithm comparison
+
+| Algorithm | Memory | Accuracy | Burst Handling | Complexity | When to Use |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Token Bucket** | $O(1)$ | High | Allows bursts up to bucket capacity | Low | General-purpose API gateways, user request throttling (e.g., Stripe, AWS). |
+| **Leaking Bucket** | $O(N)$ (queue size) | High | Smooths bursts into a constant outflow rate | Medium | E-commerce checkout, message queues, protecting downstream services requiring stable processing rates. |
+| **Fixed Window Counter** | $O(1)$ | Low (edge burst up to $2\times$) | Discards excess traffic per window | Low | Daily/monthly tier quotas where boundary burst spikes are tolerable. |
+| **Sliding Window Log** | $O(N)$ (request count) | Exact | Strictly enforces limit across any rolling window | High | High-security endpoints (e.g., auth, payment authorization) where precision is mandatory and traffic volume is moderate. |
+| **Sliding Window Counter** | $O(1)$ | High ($\approx 99\%$ accurate) | Smooths traffic across window boundaries | Medium | High-scale distributed APIs requiring low memory footprint and boundary protection. |
+
+## algorithms
+
+1. **Token Bucket**
+   - **Mechanism:** A bucket holds up to $N$ tokens and refills at a fixed rate of $r$ tokens/sec. Each request consumes 1 token. If no tokens remain, the request is dropped (HTTP 429).
+   - **Pros:**
+     - Memory efficient ($O(1)$ per key: counter + timestamp).
+     - Allows bursts of traffic for short durations.
+   - **Cons:**
+     - Requires tuning two parameters: bucket capacity and refill rate.
+   - **When to use:** General API rate limiting where bursty traffic from legitimate users is normal.
+
+2. **Leaking Bucket**
+   - **Mechanism:** Requests enter a fixed-size FIFO queue. A worker processes requests from the queue at a fixed, constant rate. If the queue is full, new requests are dropped.
+   - **Pros:**
+     - Ensures steady outflow rate and protects fragile downstream dependencies.
+     - Memory bounded by queue capacity.
+   - **Cons:**
+     - Bursts fill the queue with older requests, increasing latency for recent requests.
+     - Requires tuning queue size and outflow processing rate.
+   - **When to use:** Background job processing, payment gateways, systems that need steady traffic shaping.
+
+3. **Fixed Window Counter**
+   - **Mechanism:** Timeline is divided into fixed time windows (e.g., 1 minute). Each window maintains an integer counter. Exceeding the threshold drops requests until the next window starts.
+   - **Pros:**
+     - Simple to understand and implement.
+     - Low memory usage ($O(1)$).
+   - **Cons:**
+     - **Boundary issue:** A burst of traffic at the window boundary can allow up to $2\times$ the allowed limit within a 1-window duration.
+   - **When to use:** Simple reset quotas (e.g., reset 1,000 requests at midnight).
+
+4. **Sliding Window Log**
+   - **Mechanism:** Maintains a sorted log of request timestamps (e.g., Redis Sorted Set). On each request, removes timestamps older than `now - window_size`. Adds current timestamp. If log size $\le$ limit, request is accepted; otherwise dropped.
+   - **Pros:**
+     - 100% accurate: guarantees requests in any sliding window never exceed the limit.
+   - **Cons:**
+     - High memory consumption: stores timestamps for all requests within the active window.
+   - **When to use:** Critical security or financial limits where precision is mandatory and memory cost is acceptable.
+
+5. **Sliding Window Counter**
+   - **Mechanism:** Approximates sliding window by combining the current window count and the previous window count:
+     $$\text{Estimated Requests} = \text{Current Count} + \text{Previous Count} \times \left(1 - \frac{\text{Current Window Elapsed Time}}{\text{Window Size}}\right)$$
+   - **Pros:**
+     - Low memory usage ($O(1)$ per key).
+     - Smooths out traffic spikes at window boundaries.
+   - **Cons:**
+     - Approximation assumes requests in the previous window were distributed evenly ($\approx 0.003\%$ error in practice).
+   - **When to use:** High-throughput distributed API gateways where scale and memory efficiency matter more than 100% exact precision.
 
 # deep-dive
 
-- rate limiter is a distributed system
-- race condition
-  - happen on highly concurrent environment
-  - can be solved by lock (slow down system), or sorted set data structure in redis?
-- synchronization issue
-  - happen when using multiple rate limiter servers
-  - can be solved by using same centralized data stores like redis
+- **Distributed Rate Limiting:**
+  - Synchronize counters across stateless API servers using a centralized cache (e.g., Redis).
+- **Concurrency & Race Conditions:**
+  - Multiple concurrent requests can cause dirty reads/writes.
+  - Solutions:
+    - Redis Lua scripts (executes atomically on single thread).
+    - Redis sorted sets (`ZADD`, `ZREMRANGEBYSCORE`, `ZCARD`) for sliding logs.
+    - Redis modules (e.g., `redis-cell` implementing Generic Cell Rate Algorithm - GCRA).
+- **Performance & Fault Tolerance:**
+  - Use multi-region Redis clusters with local fallbacks if Redis is unreachable.
+  - Return informative HTTP headers: `X-Ratelimit-Limit`, `X-Ratelimit-Remaining`, `X-Ratelimit-Retry-After`.

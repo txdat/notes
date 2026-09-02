@@ -22,6 +22,23 @@
   - depends on unique id generator
   - can guess next available shortened url
 
+- how to convert url to base62 string?
+	- assign a unique auto-incrementing integer ID to url, then convert it to base62 string
+	- use bloom filter to check url existence
+```
+Incoming URL 
+   │
+   ▼
+[ Compute Hashes ]
+   │
+   ▼
+[ Check Bloom Filter (Redis / Memory) ]
+   ├── NO  ──► Generate ID -> Insert into DB -> Add to Bloom Filter -> Return Short URL
+   └── YES ──► Query DB for URL
+                 ├── Exists     ──► Return existing Short URL
+                 └── Not in DB  ──► (False Positive) Insert into DB -> Return Short URL
+```
+
 ### write path (write long url to shortened url/token)
 
 #### random id generator solution

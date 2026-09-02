@@ -86,3 +86,59 @@ public:
     }
 };
 ```
+
+- [minimum moves to clean the classroom](https://leetcode.com/problems/minimum-moves-to-clean-the-classroom) -> BFS with bitmask
+```cpp
+constexpr int dij[4][2] = {{-1,0},{0,1},{1,0},{0,-1}};
+
+class Solution {
+public:
+    int minMoves(vector<string>& grid, int e0) {
+        int m = grid.size(), n = grid[0].size();
+        int i0 = 0, j0 = 0, l_cnt = 0;
+        unordered_map<int,unordered_map<int,int>> l_map;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 'S') {
+                    i0 = i;
+                    j0 = j;
+                } else if (grid[i][j] == 'L') {
+                    l_map[i][j] = l_cnt++;
+                }
+            }
+        }
+
+        if (l_cnt == 0) return 0;
+
+        vector<vector<vector<int>>> e_max(m,vector<vector<int>>(n,vector<int>(1<<l_cnt,-1))); // maximum energy of visited state s at (i,j)
+        int mask = (1<<l_cnt)-1;
+
+        queue<array<int,4>> q;
+        q.push({i0,j0,e0,0});
+        for (int moves = 0; !q.empty(); moves++) {
+            for (int sz = q.size(); sz > 0; sz--) {
+                auto [i,j,e,s] = q.front(); q.pop();
+
+                if (grid[i][j] == 'R') {
+                    e = e0;
+                } else if (grid[i][j] == 'L') {
+                    s |= 1<<l_map[i][j];
+                    if (s == mask) return moves;
+                }
+
+                if (e <= e_max[i][j][s]) continue;
+                e_max[i][j][s] = e;
+
+                if (e == 0) continue;
+                e--;
+                for (int k = 0; k < 4; k++) {
+                    int ii = i+dij[k][0], jj = j+dij[k][1];
+                    if (ii < 0 || jj < 0 || ii == m || jj == n || grid[ii][jj] == 'X') continue;
+                    q.push({ii,jj,e,s});
+                }
+            }
+        }
+        return -1;
+    }
+};
+```

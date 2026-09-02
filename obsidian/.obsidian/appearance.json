@@ -1,12 +1,12 @@
 {
   "accentColor": "",
-  "interfaceFontFamily": "Maple Mono Normal NL NF CN",
-  "textFontFamily": "Maple Mono Normal NL NF CN",
-  "monospaceFontFamily": "Maple Mono Normal NL NF CN",
+  "interfaceFontFamily": "Maple Mono NF CN",
+  "textFontFamily": "Maple Mono NF CN",
+  "monospaceFontFamily": "Maple Mono NF CN",
   "baseFontSize": 12,
-  "nativeMenus": false,
-  "theme": "obsidian",
-  "cssTheme": "",
+  "nativeMenus": true,
+  "theme": "moonstone",
+  "cssTheme": "Minimal",
   "baseFontSizeAction": true,
   "showRibbon": true,
   "showViewHeader": false
