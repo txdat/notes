@@ -3,7 +3,7 @@ import path from "node:path"
 import { fileURLToPath } from "node:url"
 
 const excludedDirectoryNames = new Set([".obsidian", ".trash"])
-const hiddenHomeSections = new Set(["attachments"])
+const hiddenHomeSections = new Set(["attachments", "excalidraw"])
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url))
 const siteRoot = path.resolve(scriptDir, "..")
@@ -16,7 +16,20 @@ function isExcluded(relativePath) {
     return false
   }
 
-  return relativePath.split(path.sep).some((segment) => excludedDirectoryNames.has(segment))
+  const segments = relativePath.split(path.sep)
+  if (segments.some((segment) => excludedDirectoryNames.has(segment))) {
+    return true
+  }
+
+  if (segments[0] === "excalidraw" && relativePath.endsWith(".md")) {
+    return true
+  }
+
+  if (relativePath.endsWith(".excalidraw.md")) {
+    return true
+  }
+
+  return false
 }
 
 function toTitleCase(value) {

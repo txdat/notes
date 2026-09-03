@@ -9,6 +9,8 @@ configuration:
   ignorePatterns:
     - .obsidian
     - .trash
+    - "**/*.excalidraw.md"
+    - "excalidraw/**/*.md"
   theme:
     fontOrigin: googleFonts
     cdnCaching: true

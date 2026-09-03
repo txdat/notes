@@ -1,6 +1,32 @@
 [[Excalidraw/caching|caching]]
 [blog](https://newsletter.techworld-with-milan.com/p/caching-the-single-most-helpful-strategy)
 
+# cache stack
+- browser cache
+- CDN
+- reserve proxy
+- in-process cache
+- distributed cache (redis, ...)
+- buffer pool (DB)
+- page cache
+- L1/L2/L3 CPU
+
+# cache expiration/eviction/invalidation
+- expiration (TTL)
+- eviction (memory pressure)
+- invalidation (data mutation)
+
+### cache expiration
+- lazy expiration (with active cycle: samples and releases expired keys)
+- absolute expiration (expire-after-write): set EX
+- sliding expiration (expire-after-access): EX is set after each read
+- absolute point-in-time expiration (expired-at)
+- jittered expiration `actualTTL = baseTTL + random(jitter)`
+- dynamic/contextual expiration
+
+### cache invalidation
+- dual-write problem
+
 # cache strategies
 
 - read strategies
