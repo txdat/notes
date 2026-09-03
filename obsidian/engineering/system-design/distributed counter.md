@@ -87,4 +87,4 @@
 
 #### CRDT workflow
 
-[[excalidraw/distributed counter]]
+![[distributed counter.svg]]

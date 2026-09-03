@@ -1,4 +1,4 @@
-import { cp, mkdir, readdir, rm, stat, writeFile } from "node:fs/promises"
+import { cp, mkdir, readFile, readdir, rm, stat, writeFile } from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 
@@ -81,6 +81,25 @@ async function buildHomePage() {
   await writeFile(path.join(targetDir, "index.md"), homePage)
 }
 
+async function transformSvgEmbeds(dir) {
+  const entries = await readdir(dir, { withFileTypes: true, recursive: true })
+  for (const entry of entries) {
+    if (entry.isFile() && entry.name.endsWith(".md")) {
+      const parentDir = entry.parentPath ?? dir
+      const fullPath = path.join(parentDir, entry.name)
+      const content = await readFile(fullPath, "utf8")
+      const transformed = content.replace(
+        /!\[\[([^\]\n]+\.svg)(?:\|([^\]\n]+))?\]\]/g,
+        (_, target, alt) => `![${alt ?? ""}](\<${target}\>)`,
+      )
+      if (transformed !== content) {
+        await writeFile(fullPath, transformed, "utf8")
+      }
+    }
+  }
+}
+
 await ensureSourceExists()
 await copyVault()
+await transformSvgEmbeds(targetDir)
 await buildHomePage()

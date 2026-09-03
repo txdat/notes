@@ -2,7 +2,7 @@
 
 - space-efficient probabilistic data structure to check membership, return "true" if item is member of set, may be **false positive**
 
-[[excalidraw/bloom filter]]
+![[bloom filter.svg]]
 
 ### minimize false positive of bloom filter (when checking item is in set or not)
 

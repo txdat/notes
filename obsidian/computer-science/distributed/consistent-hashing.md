@@ -1,6 +1,6 @@
 # Consistent Hashing
 
-[[consistent hashing.excalidraw]]
+![[consistent-hashing-drawing.svg]]
 
 [highscalability blog](https://highscalability.com/consistent-hashing-algorithm/)
 [systemdesign.one blog](https://systemdesign.one/consistent-hashing-explained/)
