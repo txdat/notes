@@ -1,5 +1,7 @@
 # Transactional Outbox Pattern
 
+![[Pasted image 20260904170928.png | 700]]
+
 ## Problem
 
 In distributed systems, writing to a database and publishing a message to a broker (Kafka, RabbitMQ) are two separate operations. A crash between them causes:
