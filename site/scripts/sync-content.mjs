@@ -71,9 +71,7 @@ async function buildHomePage() {
   const sectionLinks = entries
     .filter(
       (entry) =>
-        entry.isDirectory() &&
-        !entry.name.startsWith(".") &&
-        !hiddenHomeSections.has(entry.name),
+        entry.isDirectory() && !entry.name.startsWith(".") && !hiddenHomeSections.has(entry.name),
     )
     .map((entry) => `- [${toTitleCase(entry.name)}](./${entry.name}/)`)
     .sort((left, right) => left.localeCompare(right))

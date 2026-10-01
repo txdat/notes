@@ -140,3 +140,94 @@ promise.then(...);
 - `await promise` makes JS wait until that promise settles and returns its result (suspends the function execution to wait and resume)
 
 # generators, advanced iterations
+
+### generator
+```javascript
+function* generatorSequence() {
+	yield 1;
+	yield 2;
+	return 3;
+}
+for (let i of generatorSequence()) { console.log(i); } // [1,2]
+```
+
+- generator for iterable
+```javascript
+let range = {
+  from: 1,
+  to: 5,
+
+  // for..of range calls this method once in the very beginning
+  [Symbol.iterator]() {
+    // ...it returns the iterator object:
+    // onward, for..of works only with that object, asking it for next values
+    return {
+      current: this.from,
+      last: this.to,
+
+      // next() is called on each iteration by the for..of loop
+      next() {
+        // it should return the value as an object {done:.., value :...}
+        if (this.current <= this.last) {
+          return { done: false, value: this.current++ };
+        } else {
+          return { done: true };
+        }
+      }
+    };
+  }
+};
+
+// iteration over range returns numbers from range.from to range.to
+alert([...range]); // 1,2,3,4,5
+```
+
+```javascript
+let range = {
+  from: 1,
+  to: 5,
+
+  *[Symbol.iterator]() { // a shorthand for [Symbol.iterator]: function*()
+    for(let value = this.from; value <= this.to; value++) {
+      yield value;
+    }
+  }
+};
+
+alert( [...range] ); // 1,2,3,4,5
+```
+
+### async generator
+```javascript
+let range = {
+  from: 1,
+  to: 5,
+
+  [Symbol.asyncIterator]() { // (1)
+    return {
+      current: this.from,
+      last: this.to,
+
+      async next() { // (2)
+
+        // note: we can use "await" inside the async next:
+        await new Promise(resolve => setTimeout(resolve, 1000)); // (3)
+
+        if (this.current <= this.last) {
+          return { done: false, value: this.current++ };
+        } else {
+          return { done: true };
+        }
+      }
+    };
+  }
+};
+
+(async () => {
+
+  for await (let value of range) { // (4)
+    alert(value); // 1,2,3,4,5
+  }
+
+})()
+```

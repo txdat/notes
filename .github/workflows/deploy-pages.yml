@@ -47,7 +47,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: site/.quartz/plugins
-          key: ${{ runner.os }}-quartz-plugins-${{ hashFiles('site/quartz.lock.json', 'site/quartz/**', 'site/quartz.config.yaml') }}
+          key: ${{ runner.os }}-quartz-plugins-${{ hashFiles('site/package-lock.json', 'site/quartz/**', 'site/quartz.config.yaml') }}
 
       - name: Install site dependencies
         working-directory: site

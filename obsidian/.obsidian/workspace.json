@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "329d7ab523c18c27",
+        "id": "1cdbc03beb78560e",
         "type": "tabs",
         "children": [
           {
-            "id": "e962072414874ac3",
+            "id": "2ecb76ccc701b7bf",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "engineering/system-design/outbox.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "outbox"
+              "title": "New tab"
             }
           }
         ]
@@ -180,8 +176,25 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "e962072414874ac3",
+  "active": "2ecb76ccc701b7bf",
   "lastOpenFiles": [
+    "engineering/projects/matching-engine-ledger.md",
+    "engineering/roadmaps/banking-trading backend engineer.md",
+    "engineering/roadmaps/low-level system engineer.md",
+    "engineering/programming-languages/javascript-typescript/javascript-info.md",
+    "Untitled 1.base",
+    "Untitled.base",
+    "engineering/roadmaps/banking-trading backend engineer.md.tmp.5473.a4eb6e63e5ab",
+    "engineering/roadmaps/banking-trading backend engineer.md.tmp.5473.c960ce1f1aa5",
+    "engineering/roadmaps/banking-trading backend engineer.md.tmp.5473.76ab04d7fb12",
+    "engineering/roadmaps/banking-trading backend engineer.md.tmp.5473.2bef14712046",
+    "engineering/roadmaps/banking-trading backend engineer.md.tmp.5473.063a2cf40a1d",
+    "engineering/roadmaps/banking-trading backend engineer.md.tmp.5473.2cf8424a769f",
+    "engineering/roadmaps/banking-trading backend engineer.md.tmp.5473.9f93f0e1a7e7",
+    "computer-science/algorithms/cache.md",
+    "engineering/projects/matching-engine-ledger.md.tmp.83388.a26d31fed13e",
+    "engineering/message-queue/kafka.md",
+    "engineering/system-design/outbox.md",
     "attachments/Pasted image 20260904170928.png",
     "engineering/system-design/distributed counter.md",
     "engineering/system-design/distributed lock.md",
@@ -204,30 +217,13 @@
     "engineering/system-design/caching.md",
     "excalidraw/distributed counter.svg",
     "excalidraw/GCP - Network endpoint group.svg",
-    "excalidraw/top-k elements.md",
     "excalidraw/top-k elements.svg",
-    "excalidraw/ticket booking.md",
     "excalidraw/ticket booking.svg",
-    "excalidraw/serverless & NAT.md",
     "excalidraw/serverless & NAT.svg",
-    "excalidraw/live presence.md",
     "excalidraw/live presence.svg",
-    "excalidraw/live comment.md",
     "excalidraw/live comment.svg",
-    "excalidraw/gossip protocol.md",
     "excalidraw/gossip protocol.svg",
     "excalidraw/consistent-hashing-drawing.svg",
-    "excalidraw/chat service.svg",
-    "engineering/system-design/60-days-of-system-design.md.tmp.41450.982c76da6e92",
-    "engineering/system-design/60-days-of-system-design.md.tmp.41450.8f0427461ca5",
-    "engineering/system-design/60-days-of-system-design.md.tmp.41450.239c775e9fea",
-    "engineering/system-design/60-days-of-system-design.md.tmp.41450.1a0a26952101",
-    "engineering/system-design/60-days-of-system-design.md.tmp.41450.762840d79c4d",
-    "engineering/system-design/60-days-of-system-design.md.tmp.41450.54592ae9dedc",
-    "engineering/system-design/60-days-of-system-design.md.tmp.41450.728bb5aaa043",
-    "english/ielts 6.5-7 roadmap.md.tmp.56581.0bf62d84426d",
-    "english/ielts 6.5-7 roadmap.md.tmp.56581.3f8a8bed54bb",
-    "english/ielts 6.5-7 roadmap.md.tmp.56581.96d2bd6fba4a",
     "Untitled.canvas"
   ]
 }
