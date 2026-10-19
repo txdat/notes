@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "1cdbc03beb78560e",
+        "id": "a8aebe7685b9b614",
         "type": "tabs",
         "children": [
           {
-            "id": "2ecb76ccc701b7bf",
+            "id": "bcdc358e0c1fc293",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -67,7 +67,10 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {},
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
               "icon": "lucide-bookmark",
               "title": "Bookmarks"
             }
@@ -176,8 +179,12 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "2ecb76ccc701b7bf",
+  "active": "bcdc358e0c1fc293",
   "lastOpenFiles": [
+    "computer-science/algorithms/counting.md",
+    "engineering/system-design/distributed-system-practitioners.md",
+    "engineering/system-design/60-days-of-system-design.md",
+    "computer-science/algorithms/dynamic programming.md",
     "engineering/projects/matching-engine-ledger.md",
     "engineering/roadmaps/banking-trading backend engineer.md",
     "engineering/roadmaps/low-level system engineer.md",
@@ -203,7 +210,6 @@
     "engineering/system-design/CAP theorem.md",
     "engineering/system-design/bloom filter.md",
     "engineering/system-design/consistent hashing.md",
-    "engineering/system-design/60-days-of-system-design.md",
     "engineering/system-design/cqrs.md",
     "computer-science/algorithms/stack.md",
     "computer-science/algorithms/sliding window.md",
@@ -212,9 +218,6 @@
     "engineering/programming-languages/javascript-typescript/asynchronous task runner.md",
     "engineering/postgresql/autovacuum.md",
     "computer-science/algorithms/misc.md",
-    "computer-science/algorithms/policy-based data structure.md",
-    "computer-science/algorithms/dynamic programming.md",
-    "engineering/system-design/caching.md",
     "excalidraw/distributed counter.svg",
     "excalidraw/GCP - Network endpoint group.svg",
     "excalidraw/top-k elements.svg",

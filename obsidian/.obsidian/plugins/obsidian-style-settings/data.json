@@ -1,0 +1,14 @@
+{
+  "minimal-style@@tabs-style": "tabs-modern",
+  "minimal-style@@image-radius": 0,
+  "minimal-style@@image-muted": 1,
+  "minimal-style@@active-line-on": false,
+  "minimal-style@@sidebar-tabs-style": "sidebar-tabs-wide",
+  "minimal-style@@sidebar-tabs-names": "tab-names-off",
+  "minimal-style@@vault-profile-display": "vault-profile-top",
+  "minimal-style@@hide-help": true,
+  "minimal-style@@hide-settings": false,
+  "minimal-style@@ribbon-style": "ribbon-hidden",
+  "minimal-style@@window-title-off": true,
+  "minimal-advanced@@mobile-toolbar-off": true
+}

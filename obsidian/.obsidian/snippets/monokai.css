@@ -1,0 +1,69 @@
+/*
+Monokai color scheme for the Minimal theme.
+
+Palette source: ~/.dotfiles/.claude/themes/2026-dark.json (classic Monokai).
+
+The `.minimal-monokai-dark` body class is applied by the Minimal Theme
+Settings plugin, which has a matching "Monokai" entry in its
+"Dark mode color scheme" dropdown (patched into
+.obsidian/plugins/obsidian-minimal-settings/main.js — a plugin update
+reverts that dropdown entry, but these colors keep working as long as
+this snippet stays enabled and the scheme is already selected).
+
+Selectors use `body.` (specificity 0,1,1) so any other Minimal scheme
+still wins if its class is left on <body>.
+*/
+
+body.minimal-monokai-dark {
+	/* Base + accent HSL, used by theme fallbacks */
+	--base-h: 70;
+	--base-s: 8%;
+	--base-l: 15%;
+	--accent-h: 190;
+	--accent-s: 81%;
+	--accent-l: 67%;
+
+	/* Backgrounds */
+	--bg1: #000000; /* main window */
+	--bg2: #0a0a09; /* sidebars, menus */
+	--bg3: rgba(73, 72, 62, 0.35); /* hovered/active */
+	--sp1: #0a0a09; /* floating panels */
+
+	/* Borders */
+	--ui1: #2e2d27;
+	--ui2: #3e3d32;
+	--ui3: #75715e;
+
+	/* Text */
+	--tx1: #f8f8f2;
+	--tx2: #cfcfc2;
+	--tx3: #9c9889;
+	--tx4: #75715e;
+
+	/* Accent (links) */
+	--ax1: #66d9ef;
+	--ax2: #8fe2f4;
+	--ax3: #47c9e2;
+
+	/* Highlights / selection */
+	--hl1: rgba(73, 72, 62, 0.5);
+	--hl2: rgba(230, 219, 116, 0.35);
+
+	/* Obsidian palette colors */
+	--color-red-rgb: 249, 38, 114;
+	--color-orange-rgb: 253, 151, 31;
+	--color-yellow-rgb: 230, 219, 116;
+	--color-green-rgb: 166, 226, 46;
+	--color-cyan-rgb: 161, 239, 228;
+	--color-blue-rgb: 102, 217, 239;
+	--color-purple-rgb: 174, 129, 255;
+	--color-pink-rgb: 249, 38, 114;
+	--color-red: #f92672;
+	--color-orange: #fd971f;
+	--color-yellow: #e6db74;
+	--color-green: #a6e22e;
+	--color-cyan: #a1efe4;
+	--color-blue: #66d9ef;
+	--color-purple: #ae81ff;
+	--color-pink: #f92672;
+}

@@ -6,8 +6,11 @@
   "baseFontSize": 12,
   "nativeMenus": true,
   "theme": "obsidian",
-  "cssTheme": "",
+  "cssTheme": "Minimal",
   "baseFontSizeAction": true,
   "showRibbon": true,
-  "showViewHeader": false
+  "showViewHeader": false,
+  "enabledCssSnippets": [
+    "monokai"
+  ]
 }
