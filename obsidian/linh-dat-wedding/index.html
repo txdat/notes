@@ -132,6 +132,12 @@
         animation: intro-out 0.8s cubic-bezier(0.7, 0, 0.3, 1) 5s forwards;
       }
 
+      /* Hold the intro until the mascots have loaded, so slow networks still see the walk. */
+      .intro:not(.is-ready),
+      .intro:not(.is-ready) * {
+        animation-play-state: paused;
+      }
+
       .stage {
         position: relative;
         width: min(100vw, 420px);
@@ -914,10 +920,6 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .intro {
-          display: none;
-        }
-
         .track-dino,
         .track svg {
           transition: none;
@@ -1157,21 +1159,19 @@
         img.addEventListener("error", markMissing)
       }
 
-      // Intro plays once per visit; tap anywhere or "Bỏ qua" to skip.
+      // Intro plays on every load once the mascots are ready; tap anywhere or "Bỏ qua" to skip.
       const intro = document.getElementById("intro")
       const endIntro = () => {
         intro.remove()
         document.body.classList.remove("intro-playing")
-        sessionStorage.setItem("intro-seen", "1")
       }
-      if (sessionStorage.getItem("intro-seen") || matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        endIntro()
-      } else {
-        intro.addEventListener("click", endIntro)
-        intro.addEventListener("animationend", (event) => {
-          if (event.animationName === "intro-out") endIntro()
-        })
-      }
+      intro.addEventListener("click", endIntro)
+      intro.addEventListener("animationend", (event) => {
+        if (event.animationName === "intro-out") endIntro()
+      })
+      const mascotsLoaded = [...intro.querySelectorAll("img")].map((img) => img.decode().catch(() => {}))
+      const loadTimeout = new Promise((resolve) => setTimeout(resolve, 3000))
+      Promise.race([Promise.all(mascotsLoaded), loadTimeout]).then(() => intro.classList.add("is-ready"))
 
       // Page turning.
       const book = document.getElementById("book")
