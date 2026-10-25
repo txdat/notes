@@ -23,7 +23,8 @@
     "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1",
     "install-plugins": "npx tsx ./quartz/plugins/loader/install-plugins.ts",
     "prebuild": "npm run sync-content && npm run install-plugins",
-    "predev": "npm run sync-content && npm run install-plugins"
+    "predev": "npm run sync-content && npm run install-plugins",
+    "postbuild": "node ./scripts/copy-raw-pages.mjs"
   },
   "engines": {
     "npm": ">=10.9.2",

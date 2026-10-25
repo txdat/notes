@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <title>Storyboard nháp · Vịt &amp; Khủng long</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 24px;
+        background: #fbf6ee;
+        color: #3a2c27;
+        font: 15px/1.55 system-ui, sans-serif;
+      }
+      h1 {
+        margin: 0 0 4px;
+        font-size: 20px;
+      }
+      .hint {
+        margin: 0 0 20px;
+        color: #7a6a62;
+      }
+      .board {
+        display: grid;
+        grid-template-columns: repeat(2, 420px);
+        gap: 24px;
+      }
+      .frame {
+        background: #fff;
+        border-radius: 16px;
+        padding: 10px 10px 14px;
+        box-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
+      }
+      .canvas {
+        position: relative;
+      }
+      .canvas svg {
+        display: block;
+        width: 400px;
+        height: 400px;
+        border-radius: 10px;
+      }
+      .bubble {
+        position: absolute;
+        max-width: 62%;
+        padding: 6px 11px;
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 2px 6px rgb(58 44 39 / 0.15);
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .bubble.dino {
+        background: #f1f8f0;
+      }
+      .note {
+        position: absolute;
+        font: 600 11px/1.2 system-ui;
+        color: #c0392b;
+        background: rgb(255 255 255 / 0.85);
+        padding: 2px 5px;
+        border-radius: 4px;
+      }
+      .chapter {
+        margin: 10px 4px 0;
+        font-size: 12px;
+        font-weight: 700;
+        color: #9e3b36;
+      }
+      h2 {
+        margin: 0 4px 4px;
+        font-size: 17px;
+      }
+      p {
+        margin: 0 4px;
+        color: #5c4d46;
+      }
+      .ask {
+        margin-top: 8px;
+        padding: 8px 10px;
+        border-radius: 8px;
+        background: #fff6e0;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Storyboard nháp: Chuyện vịt và khủng long</h1>
+    <p class="hint">Hình vẽ thô chỉ để duyệt bố cục. Truyện kể hoàn toàn bằng ảnh, không có chữ.</p>
+
+    <svg width="0" height="0" style="position: absolute">
+      <defs>
+        <!-- Duck, side view facing right -->
+        <g id="duck">
+          <g stroke="#3A2C27" stroke-width="1.6" stroke-linejoin="round">
+            <ellipse cx="38" cy="91" rx="7" ry="3.5" fill="#E8963A" />
+            <ellipse cx="56" cy="91" rx="7" ry="3.5" fill="#E8963A" />
+            <path d="M20 62 8 54l5 14z" fill="#F2C94C" />
+            <ellipse cx="44" cy="68" rx="28" ry="21" fill="#F2C94C" />
+            <ellipse cx="40" cy="66" rx="12" ry="8" fill="#E9B93A" />
+            <circle cx="64" cy="40" r="17" fill="#F2C94C" />
+            <ellipse cx="83" cy="44" rx="9" ry="4.5" fill="#E8963A" />
+          </g>
+          <circle cx="70" cy="36" r="2.4" fill="#3A2C27" />
+          <circle cx="72" cy="45" r="3.2" fill="#F4A09A" opacity=".8" />
+        </g>
+        <!-- Dino, side view facing right -->
+        <g id="dino">
+          <g stroke="#3A2C27" stroke-width="1.6" stroke-linejoin="round">
+            <ellipse cx="36" cy="90" rx="8" ry="5" fill="#8DBF8B" />
+            <ellipse cx="56" cy="90" rx="8" ry="5" fill="#8DBF8B" />
+            <path d="M24 70Q4 74 3 56q10 10 26 6z" fill="#8DBF8B" />
+            <circle cx="34" cy="44" r="5" fill="#B5D8B2" />
+            <circle cx="26" cy="52" r="5" fill="#B5D8B2" />
+            <circle cx="21" cy="61" r="4.5" fill="#B5D8B2" />
+            <ellipse cx="44" cy="68" rx="25" ry="21" fill="#8DBF8B" />
+            <ellipse cx="52" cy="72" rx="13" ry="13" fill="#F3EADB" />
+            <circle cx="54" cy="21" r="4.5" fill="#B5D8B2" />
+            <circle cx="64" cy="18" r="4.5" fill="#B5D8B2" />
+            <ellipse cx="68" cy="36" rx="21" ry="17" fill="#8DBF8B" />
+          </g>
+          <circle cx="76" cy="31" r="2.4" fill="#3A2C27" />
+          <circle cx="80" cy="40" r="3.2" fill="#F4A09A" opacity=".8" />
+          <path d="M78 45q5 3 9-1" fill="none" stroke="#3A2C27" stroke-width="1.6" stroke-linecap="round" />
+        </g>
+        <path id="hrt" d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3 4.5 6.6 4.5c2.2 0 3.6 1.2 5.4 3.2 1.8-2 3.2-3.2 5.4-3.2 3.6 0 5.7 3.8 4.2 7.2C19.5 16.4 12 21 12 21z" fill="#A8443F" stroke="#3A2C27" stroke-width="1" />
+        <g id="steam" fill="none" stroke="#c9b9a8" stroke-width="2" stroke-linecap="round">
+          <path d="M0 0q-5-8 0-16t0-16" />
+          <path d="M10 0q-5-8 0-16t0-16" />
+        </g>
+      </defs>
+    </svg>
+
+    <div class="board">
+      <!-- 1. Ramen -->
+      <div class="frame">
+        <div class="canvas">
+          <svg viewBox="0 0 400 400">
+            <rect width="400" height="400" fill="#F5EDE1" />
+            <!-- lantern -->
+            <line x1="200" y1="0" x2="200" y2="40" stroke="#3A2C27" stroke-width="1.5" />
+            <ellipse cx="200" cy="62" rx="18" ry="24" fill="#A8443F" stroke="#3A2C27" stroke-width="1.5" />
+            <!-- wall clock: time passing -->
+            <circle cx="330" cy="80" r="20" fill="#fff" stroke="#3A2C27" stroke-width="1.5" />
+            <path d="M330 80v-13M330 80l9 5" stroke="#3A2C27" stroke-width="1.8" stroke-linecap="round" />
+            <!-- duck waiting: "..." -->
+            <rect x="70" y="140" width="52" height="26" rx="13" fill="#fff" stroke="#3A2C27" stroke-width="1.2" />
+            <g fill="#3A2C27"><circle cx="85" cy="153" r="3" /><circle cx="96" cy="153" r="3" /><circle cx="107" cy="153" r="3" /></g>
+            <!-- counter -->
+            <rect x="20" y="268" width="360" height="22" rx="4" fill="#C9A77D" stroke="#3A2C27" stroke-width="1.5" />
+            <rect x="40" y="290" width="12" height="90" fill="#C9A77D" />
+            <rect x="348" y="290" width="12" height="90" fill="#C9A77D" />
+            <!-- bowls -->
+            <path d="M88 268a26 18 0 0 0 52 0z" fill="#fff" stroke="#3A2C27" stroke-width="1.5" />
+            <path d="M206 268a26 18 0 0 0 52 0z" fill="#fff" stroke="#3A2C27" stroke-width="1.5" />
+            <!-- laptop -->
+            <path d="M300 268l14-52h56l-14 52z" fill="#9aa4ab" stroke="#3A2C27" stroke-width="1.5" />
+            <rect x="282" y="264" width="80" height="6" rx="2" fill="#7d878e" />
+            <!-- duck (left, looking at dino) -->
+            <use href="#duck" transform="translate(40 168) scale(1.05)" />
+            <!-- dino (right, facing laptop) -->
+            <use href="#dino" transform="translate(178 150) scale(1.25)" />
+            <!-- sweat drop -->
+            <path d="M282 168q6 10 0 14-6-4 0-14z" fill="#BFD7E0" stroke="#3A2C27" stroke-width="1" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- 2. West Lake -->
+      <div class="frame">
+        <div class="canvas">
+          <svg viewBox="0 0 400 400">
+            <rect width="400" height="400" fill="#F5EDE1" />
+            <!-- sunset sky + sun -->
+            <rect width="400" height="170" fill="#3E4A63" />
+            <circle cx="320" cy="60" r="20" fill="#F7E7B4" />
+            <g fill="#F7E7B4"><circle cx="90" cy="40" r="1.6" /><circle cx="180" cy="70" r="1.4" /><circle cx="240" cy="30" r="1.6" /><circle cx="370" cy="110" r="1.4" /></g>
+            <g fill="#F2C94C" opacity=".8"><rect x="120" y="150" width="6" height="20" /><rect x="140" y="140" width="8" height="30" /><rect x="260" y="146" width="6" height="24" /><rect x="280" y="136" width="8" height="34" /></g>
+            <!-- lake -->
+            <rect y="170" width="400" height="80" fill="#5C6E87" />
+            <path d="M318 180v60" stroke="#F7E7B4" stroke-width="3" stroke-dasharray="6 6" opacity=".7" />
+            <path d="M40 200h40M150 220h60M260 205h50" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+            <!-- duck pedal boats -->
+            <g transform="translate(70 178)">
+              <path d="M0 18h46q-4 12-23 12T0 18z" fill="#F2C94C" stroke="#3A2C27" stroke-width="1.2" />
+              <circle cx="38" cy="10" r="8" fill="#F2C94C" stroke="#3A2C27" stroke-width="1.2" />
+              <path d="M45 10l7 2-7 2z" fill="#E8963A" />
+            </g>
+            <g transform="translate(200 190) scale(.75)">
+              <path d="M0 18h46q-4 12-23 12T0 18z" fill="#fff" stroke="#3A2C27" stroke-width="1.2" />
+              <circle cx="38" cy="10" r="8" fill="#fff" stroke="#3A2C27" stroke-width="1.2" />
+              <path d="M45 10l7 2-7 2z" fill="#E8963A" />
+            </g>
+            <!-- willow -->
+            <path d="M20 0q30 80 10 160M40 0q20 70 10 140M60 0q10 60 4 120" fill="none" stroke="#8DBF8B" stroke-width="3" stroke-linecap="round" />
+            <!-- path -->
+            <rect y="250" width="400" height="150" fill="#CDBBA0" />
+            <!-- street lamp -->
+            <rect x="196" y="150" width="4" height="110" fill="#3A2C27" />
+            <circle cx="198" cy="148" r="9" fill="#F7E7B4" stroke="#3A2C27" stroke-width="1.5" />
+            <circle cx="198" cy="148" r="26" fill="#F7E7B4" opacity=".25" />
+            <!-- duck facing right -->
+            <use href="#duck" transform="translate(50 230) scale(1.15)" />
+            <!-- dino facing left -->
+            <use href="#dino" transform="translate(360 210) scale(-1.3 1.3)" />
+            <!-- hand scratching head -->
+            <path d="M262 236q-8-14 4-22" fill="none" stroke="#3A2C27" stroke-width="5" stroke-linecap="round" />
+            <path d="M262 236q-8-14 4-22" fill="none" stroke="#8DBF8B" stroke-width="3" stroke-linecap="round" />
+            <!-- confession heart -->
+            <use href="#hrt" transform="translate(270 196) scale(1.4)" />
+            <!-- duck crossed wings -->
+            <ellipse cx="114" cy="306" rx="24" ry="8" fill="#E9B93A" stroke="#3A2C27" stroke-width="1.4" />
+            <!-- extra blush -->
+            <circle cx="248" cy="268" r="6" fill="#F4A09A" opacity=".8" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- 3. Birthday proposal -->
+      <div class="frame">
+        <div class="canvas">
+          <svg viewBox="0 0 400 400">
+            <rect width="400" height="400" fill="#F5EDE1" />
+            <!-- window + sofa: at home -->
+            <rect x="250" y="70" width="90" height="70" rx="6" fill="#BFD7E0" stroke="#3A2C27" stroke-width="1.5" />
+            <path d="M295 70v70M250 105h90" stroke="#3A2C27" stroke-width="1.2" />
+            <rect x="230" y="180" width="150" height="40" rx="12" fill="#E9D8BE" stroke="#3A2C27" stroke-width="1.5" />
+            <!-- bunting -->
+            <path d="M0 30q200 50 400 0" fill="none" stroke="#3A2C27" stroke-width="1.2" />
+            <g fill="#A8443F" stroke="#3A2C27" stroke-width="1">
+              <path d="M40 38l14 2-6 16z" /><path d="M120 50l14 1-7 16z" /><path d="M200 54l14 0-7 16z" />
+              <path d="M280 50l14-1-7 16z" /><path d="M350 40l14-2-8 16z" />
+            </g>
+            <!-- table -->
+            <rect x="20" y="230" width="150" height="14" rx="3" fill="#C9A77D" stroke="#3A2C27" stroke-width="1.5" />
+            <rect x="34" y="244" width="10" height="130" fill="#C9A77D" />
+            <rect x="146" y="244" width="10" height="130" fill="#C9A77D" />
+            <!-- cake -->
+            <rect x="40" y="196" width="64" height="34" rx="6" fill="#fff" stroke="#3A2C27" stroke-width="1.5" />
+            <path d="M40 206q8 6 16 0t16 0 16 0 16 0" fill="none" stroke="#A8443F" stroke-width="3" />
+            <g stroke="#3A2C27" stroke-width="1"><rect x="56" y="182" width="4" height="14" fill="#BFD7E0" /><rect x="70" y="182" width="4" height="14" fill="#F2C94C" /><rect x="84" y="182" width="4" height="14" fill="#8DBF8B" /></g>
+            <g fill="#F2C94C"><circle cx="58" cy="178" r="3" /><circle cx="72" cy="178" r="3" /><circle cx="86" cy="178" r="3" /></g>
+            <!-- bouquet -->
+            <path d="M120 230l12-40 12 40z" fill="#E9D8BE" stroke="#3A2C27" stroke-width="1.2" />
+            <g fill="#A8443F" stroke="#3A2C27" stroke-width="1"><circle cx="124" cy="186" r="9" /><circle cx="140" cy="184" r="9" /><circle cx="132" cy="172" r="9" /></g>
+            <!-- duck, wings on beak, facing right -->
+            <use href="#duck" transform="translate(160 200) scale(1.1)" />
+            <g fill="#F2C94C" stroke="#3A2C27" stroke-width="1.2"><ellipse cx="248" cy="252" rx="9" ry="6" /></g>
+            <path d="M236 228l4-8M244 226l6-6" stroke="#F2C94C" stroke-width="2.5" stroke-linecap="round" />
+            <use href="#hrt" transform="translate(200 186) scale(1.1)" />
+            <use href="#hrt" transform="translate(232 172) scale(1.4)" />
+            <!-- dino kneeling (lower) facing left -->
+            <use href="#dino" transform="translate(395 256) scale(-1.15 1.05)" />
+            <!-- ring box -->
+            <rect x="272" y="268" width="22" height="14" rx="3" fill="#A8443F" stroke="#3A2C27" stroke-width="1.2" />
+            <circle cx="283" cy="264" r="5" fill="none" stroke="#D9B46A" stroke-width="2.5" />
+            <path d="M283 252v-6M276 255l-4-4M290 255l4-4" stroke="#D9B46A" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- 4. Home -->
+      <div class="frame">
+        <div class="canvas">
+          <svg viewBox="0 0 400 400">
+            <rect width="400" height="400" fill="#F5EDE1" />
+            <!-- cottage -->
+            <path d="M110 160 200 90l90 70z" fill="#A8443F" stroke="#3A2C27" stroke-width="1.5" />
+            <rect x="122" y="160" width="156" height="120" fill="#E9D8BE" stroke="#3A2C27" stroke-width="1.5" />
+            <path d="M176 280v-50a24 24 0 0 1 48 0v50z" fill="#8DBF8B" stroke="#3A2C27" stroke-width="1.5" />
+            <circle cx="148" cy="200" r="14" fill="#BFD7E0" stroke="#3A2C27" stroke-width="1.5" />
+            <circle cx="252" cy="200" r="14" fill="#BFD7E0" stroke="#3A2C27" stroke-width="1.5" />
+            <!-- heart garland -->
+            <path d="M150 176q50 26 100 0" fill="none" stroke="#3A2C27" stroke-width="1" />
+            <g fill="#A8443F"><circle cx="170" cy="186" r="4" /><circle cx="200" cy="190" r="4" /><circle cx="230" cy="186" r="4" /></g>
+            <!-- ground -->
+            <rect y="280" width="400" height="120" fill="#E9D8BE" />
+            <g fill="#8DBF8B"><circle cx="100" cy="282" r="12" /><circle cx="300" cy="282" r="12" /></g>
+            <!-- couple, facing each other, close -->
+            <use href="#duck" transform="translate(96 252) scale(1.05)" />
+            <use href="#dino" transform="translate(316 236) scale(-1.2 1.2)" />
+            <path d="M190 330q12 6 22 0" fill="none" stroke="#3A2C27" stroke-width="2" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

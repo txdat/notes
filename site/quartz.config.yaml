@@ -11,6 +11,7 @@ configuration:
     - .trash
     - "**/*.excalidraw.md"
     - "excalidraw/**/*.md"
+    - "linh-dat-wedding/**"
   theme:
     fontOrigin: googleFonts
     cdnCaching: true

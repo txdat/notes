@@ -10,5 +10,9 @@
   "minimal-style@@hide-settings": false,
   "minimal-style@@ribbon-style": "ribbon-hidden",
   "minimal-style@@window-title-off": true,
-  "minimal-advanced@@mobile-toolbar-off": true
+  "minimal-advanced@@mobile-toolbar-off": true,
+  "minimal-style@@h1-color@@light": "#601D49",
+  "minimal-style@@h2-color@@light": "#BD5579",
+  "minimal-style@@h3-color@@light": "#EA9D9D",
+  "minimal-style@@h4-color@@light": "#FFEBB8"
 }
