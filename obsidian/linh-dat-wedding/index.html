@@ -104,11 +104,6 @@
         color: var(--ink);
       }
 
-      /* Images drawn on white blend into the paper colour. */
-      .blend {
-        mix-blend-mode: multiply;
-      }
-
       /* Missing images (not uploaded yet). */
       .is-missing {
         background: repeating-linear-gradient(-45deg, var(--beige) 0 10px, var(--card) 10px 20px);
@@ -574,7 +569,8 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        mask: linear-gradient(transparent, #000 10%, #000 88%, transparent);
+        -webkit-mask-image: linear-gradient(transparent, #000 10%, #000 88%, transparent);
+        mask-image: linear-gradient(transparent, #000 10%, #000 88%, transparent);
       }
 
       /* ---------- Invitation ---------- */
@@ -646,33 +642,16 @@
         color: var(--red);
       }
 
-      .cal tbody {
-        position: relative;
-        z-index: 0;
-      }
-
       .cal td {
         height: 2.4rem;
         font-size: 0.9375rem;
       }
 
+      /* Heart drawn as the cell background: iOS ignores z-index layering inside tables. */
       .cal td.is-day {
-        position: relative;
         color: #fff;
         font-weight: 700;
-      }
-
-      .cal td.is-day::before {
-        content: "";
-        position: absolute;
-        inset: 50% auto auto 50%;
-        width: 2.4rem;
-        height: 2.4rem;
-        translate: -50% -50%;
-        z-index: -1;
-        background: var(--red);
-        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s-7.5-4.6-9.6-9.1C.9 8.6 2.9 4.5 6.7 4.5c2.2 0 3.6 1.2 5.3 3.1 1.7-1.9 3.1-3.1 5.3-3.1 3.8 0 5.8 4.1 4.3 7.4C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E")
-          center / contain no-repeat;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23A8443F' d='M12 21s-7.5-4.6-9.6-9.1C.9 8.6 2.9 4.5 6.7 4.5c2.2 0 3.6 1.2 5.3 3.1 1.7-1.9 3.1-3.1 5.3-3.1 3.8 0 5.8 4.1 4.3 7.4C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E") center / 2.4rem 2.4rem no-repeat;
       }
 
       .clock {
@@ -1100,7 +1079,7 @@
 
         <section class="leaf" aria-label="Địa điểm">
           <div class="inner">
-            <img class="art blend" src="assets/map.webp" alt="Khủng long cầm bản đồ, vịt chỉ đường" loading="lazy" />
+            <img class="art" src="assets/map.webp?v=2" alt="Khủng long cầm bản đồ, vịt chỉ đường" loading="lazy" />
             <h2>Địa điểm</h2>
             <h3 class="venue-title">Trung tâm tổ chức sự kiện Âu Cơ</h3>
             <a class="place" href="https://www.google.com/maps/search/?api=1&amp;query=Trung+t%C3%A2m+t%E1%BB%95+ch%E1%BB%A9c+s%E1%BB%B1+ki%E1%BB%87n+%C3%82u+C%C6%A1+1A+Nguy%E1%BB%85n+H%E1%BB%AFu+C%E1%BA%A7u+H%E1%BA%A3i+Ph%C3%B2ng" target="_blank" rel="noopener">
@@ -1138,7 +1117,7 @@
 
         <section class="leaf thanks" aria-label="Lời cảm ơn">
           <div class="inner">
-            <img class="art blend" src="assets/thanks.webp" alt="Vịt và khủng long ôm nhau" loading="lazy" />
+            <img class="art" src="assets/thanks.webp?v=2" alt="Vịt và khủng long ôm nhau" loading="lazy" />
             <p class="script">Cảm ơn bạn</p>
             <p>Ngày vui của chúng mình sẽ trọn vẹn hơn khi có bạn.</p>
             <small>Khánh Linh &amp; Xuân Đạt</small>
