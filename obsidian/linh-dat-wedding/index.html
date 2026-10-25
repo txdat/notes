@@ -9,7 +9,10 @@
     <meta property="og:title" content="Khánh Linh &amp; Xuân Đạt - Thiệp cưới" />
     <meta property="og:description" content="Trân trọng kính mời bạn đến dự lễ cưới của Khánh Linh và Xuân Đạt." />
     <meta property="og:url" content="https://txdat.github.io/notes/linh-dat-wedding/" />
-    <meta property="og:image" content="https://txdat.github.io/notes/linh-dat-wedding/assets/og.jpg" />
+    <meta property="og:image" content="https://txdat.github.io/notes/linh-dat-wedding/assets/og.jpg?v=2" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#FBF6EE" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -624,10 +627,19 @@
         text-underline-offset: 3px;
       }
 
+      /* Swipe hint on the first page, just above the pager. */
+      .leaf--first {
+        position: relative;
+      }
+
       .hint {
-        margin-top: 1.5rem;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: calc(var(--pager-h) + env(safe-area-inset-bottom) - 0.6rem);
+        margin: 0;
         color: var(--muted);
-        font-size: 0.875rem;
+        font-size: 0.8125rem;
       }
 
       .hint-mouse {
@@ -977,11 +989,13 @@
         color: var(--red);
       }
 
-      .thanks small {
-        display: block;
-        margin-top: 1.5rem;
-        color: var(--muted);
+      /* Signed like the end of a letter. */
+      .signature {
+        margin: 1.5rem 0 0;
+        font: 400 1.75rem/1 var(--script);
+        -webkit-text-stroke: 0.02em currentColor;
       }
+
 
       /* ---------- Desktop: the card sits on the table ---------- */
       @media (min-width: 640px) and (min-height: 600px) {
@@ -1024,24 +1038,9 @@
         .couple {
           margin-bottom: 0.75rem;
         }
-
-        /* No room under the address: pin the hint just above the pager. */
-        .leaf--cover {
-          position: relative;
-        }
-
-        .hint {
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: calc(var(--pager-h) + env(safe-area-inset-bottom) - 0.6rem);
-          margin: 0;
-          font-size: 0.8125rem;
-        }
       }
 
-      /* Very short screens (small phones inside Messenger): no room for the hint;
-         the pager arrows are enough. */
+      /* Very short screens (small phones inside Messenger). */
       @media (max-height: 640px) {
         .hero {
           width: min(80vw, 300px, 36dvh);
@@ -1049,10 +1048,6 @@
 
         .kicker {
           font-size: 1.5rem;
-        }
-
-        .hint {
-          display: none;
         }
       }
 
@@ -1093,29 +1088,7 @@
 
     <div class="frame">
       <main class="book" id="book" tabindex="-1">
-        <section class="leaf leaf--cover" aria-label="Bìa thiệp">
-          <div class="inner">
-            <p class="kicker">Lễ thành hôn</p>
-            <figure class="hero">
-              <svg viewBox="0.9 4.5 22.2 16.5" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.1C.9 8.6 2.9 4.5 6.7 4.5c2.2 0 3.6 1.2 5.3 3.1 1.7-1.9 3.1-3.1 5.3-3.1 3.8 0 5.8 4.1 4.3 7.4C19.5 16.4 12 21 12 21z" /></svg>
-              <img src="assets/hero.webp?v=2" alt="Vịt vàng đội voan và khủng long xanh đeo nơ nắm tay nhau" />
-            </figure>
-            <h1 class="names">
-              <span>Khánh Linh</span>
-              <span class="amp">&amp;</span>
-              <span>Xuân Đạt</span>
-            </h1>
-            <p class="when"><span>Thứ Ba</span><strong>24.11.2026</strong><span>11:00</span></p>
-            <p class="venue-name">Trung tâm tổ chức sự kiện Âu Cơ</p>
-            <a class="place" href="https://www.google.com/maps/search/?api=1&amp;query=Trung+t%C3%A2m+t%E1%BB%95+ch%E1%BB%A9c+s%E1%BB%B1+ki%E1%BB%87n+%C3%82u+C%C6%A1+1A+Nguy%E1%BB%85n+H%E1%BB%AFu+C%E1%BA%A7u+H%E1%BA%A3i+Ph%C3%B2ng" target="_blank" rel="noopener">
-              <svg aria-hidden="true"><use href="#pin" /></svg>
-              <span>1A Nguyễn Hữu Cầu, P.&nbsp;Hải&nbsp;Dương, TP.&nbsp;Hải&nbsp;Phòng</span>
-            </a>
-            <p class="hint"><span class="hint-touch">Vuốt sang để xem tiếp</span><span class="hint-mouse">Bấm mũi tên để xem tiếp</span></p>
-          </div>
-        </section>
-
-        <section class="leaf leaf--scene" style="--top: #F5E8D8; --bottom: #F6E9D9" aria-label="Chuyện tình, cảnh 1">
+        <section class="leaf leaf--scene leaf--first" style="--top: #F5E8D8; --bottom: #F6E9D9" aria-label="Chuyện tình, cảnh 1">
           <div class="inner">
             <figure class="scene">
               <img
@@ -1124,14 +1097,15 @@
               />
             </figure>
           </div>
+          <p class="hint"><span class="hint-touch">Vuốt sang để xem tiếp</span><span class="hint-mouse">Bấm mũi tên để xem tiếp</span></p>
         </section>
 
-        <section class="leaf leaf--scene" style="--top: #2B3F5F; --bottom: #8D817B" aria-label="Chuyện tình, cảnh 2">
+        <section class="leaf leaf--scene" style="--top: #FDF2E1; --bottom: #E1C6AA" aria-label="Chuyện tình, cảnh 2">
           <div class="inner">
             <figure class="scene">
               <img
-                src="assets/story-hotay.webp"
-                alt="Buổi tối dạo Hồ Tây: khủng long đỏ mặt tỏ tình tay không, vịt khoanh cánh chưa đồng ý"
+                src="assets/story-hotay.webp?v=2"
+                alt="Dạo bờ Hồ Tây: khủng long đỏ mặt tỏ tình tay không, vịt khoanh cánh chưa đồng ý"
                 loading="lazy"
               />
             </figure>
@@ -1150,15 +1124,36 @@
           </div>
         </section>
 
-        <section class="leaf leaf--scene" style="--top: #F4E7D6; --bottom: #F4E7D5" aria-label="Chuyện tình, cảnh 4">
+        <section class="leaf leaf--scene" style="--top: #F6EBDA; --bottom: #F7ECDC" aria-label="Chuyện tình, cảnh 4">
           <div class="inner">
             <figure class="scene">
               <img
-                src="assets/story-home.webp"
-                alt="Vịt và khủng long vui vẻ cùng đi về ngôi nhà nhỏ của hai bạn"
+                src="assets/story-aisle.webp"
+                alt="Khủng long dắt tay vịt đi về phía cổng hoa lễ đường, bạn bè đứng chờ hai bên, vịt quay lại che mỏ cười"
                 loading="lazy"
               />
             </figure>
+          </div>
+        </section>
+
+        <section class="leaf leaf--cover" aria-label="Bìa thiệp">
+          <div class="inner">
+            <p class="kicker">Lễ thành hôn</p>
+            <figure class="hero">
+              <svg viewBox="0.9 4.5 22.2 16.5" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.1C.9 8.6 2.9 4.5 6.7 4.5c2.2 0 3.6 1.2 5.3 3.1 1.7-1.9 3.1-3.1 5.3-3.1 3.8 0 5.8 4.1 4.3 7.4C19.5 16.4 12 21 12 21z" /></svg>
+              <img src="assets/hero.webp?v=2" alt="Vịt vàng đội voan và khủng long xanh đeo nơ nắm tay nhau" />
+            </figure>
+            <h1 class="names">
+              <span>Khánh Linh</span>
+              <span class="amp">&amp;</span>
+              <span>Xuân Đạt</span>
+            </h1>
+            <p class="when"><span>Thứ Ba</span><strong>24.11.2026</strong><span>11:00</span></p>
+            <p class="venue-name">Trung tâm tổ chức sự kiện Âu Cơ</p>
+            <a class="place" href="https://www.google.com/maps/search/?api=1&amp;query=Trung+t%C3%A2m+t%E1%BB%95+ch%E1%BB%A9c+s%E1%BB%B1+ki%E1%BB%87n+%C3%82u+C%C6%A1+1A+Nguy%E1%BB%85n+H%E1%BB%AFu+C%E1%BA%A7u+H%E1%BA%A3i+Ph%C3%B2ng" target="_blank" rel="noopener">
+              <svg aria-hidden="true"><use href="#pin" /></svg>
+              <span>1A Nguyễn Hữu Cầu, P.&nbsp;Hải&nbsp;Dương, TP.&nbsp;Hải&nbsp;Phòng</span>
+            </a>
           </div>
         </section>
 
@@ -1260,7 +1255,7 @@
             <img class="art" src="assets/thanks.webp?v=2" alt="Vịt và khủng long ôm nhau" loading="lazy" />
             <p class="script">Cảm ơn bạn</p>
             <p>Ngày vui của chúng mình sẽ trọn vẹn hơn khi có bạn.</p>
-            <small>Khánh Linh &amp; Xuân Đạt</small>
+            <p class="signature">Linh &amp; Đạt</p>
           </div>
         </section>
       </main>
