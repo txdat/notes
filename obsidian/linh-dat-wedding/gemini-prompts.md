@@ -34,6 +34,8 @@ Làm theo số thứ tự prompt:
 | [[prompts/08-thanks]] | `thanks.png` | cuối trang |
 | [[prompts/09-duck-walk]] | `duck-walk.png` | mở màn: vịt đi vào |
 | [[prompts/10-dino-walk]] | `dino-walk.png` | mở màn: khủng long đi vào |
+| [[prompts/11-duck-walk-b]] | `duck-walk-b.png` | mở màn: vịt đổi chân |
+| [[prompts/12-dino-walk-b]] | `dino-walk-b.png` | mở màn: khủng long đổi chân |
 
 ## Sửa lỗi thường gặp
 
@@ -44,6 +46,7 @@ Gửi thêm trong cùng chat nếu cần:
 - Có chữ trong ảnh: `Absolutely no text, letters or numbers anywhere.`
 - Không vuông: `Square 1:1 image.`
 - Chân vịt thành que nâu: `Change only the duck's legs to short orange webbed duck feet, the same orange as her beak. Change nothing else.`
+- Ảnh đổi chân vẫn giống ảnh cũ: `Wrong, the legs are the same as before. Look at the feet only. The foot on the RIGHT side of the image (under the beak) is up in the air: put it down flat on the ground. The foot on the LEFT side of the image (under the tail) is on the ground: lift it up into the air behind the body. Swap only these two feet. Do not change anything else.`
 - Cảnh truyện khó hiểu: nói rõ chi tiết cần thấy, ví dụ `Make the duck look much more bored, chin resting on her wing.`
 
 ## Ảnh mở màn (`duck-walk.png`, `dino-walk.png`)
@@ -51,3 +54,4 @@ Gửi thêm trong cùng chat nếu cần:
 - Cả hai đều phải **nhìn sang phải**; trang tự lật khủng long lại.
 - **Bắt buộc xoá nền** (PNG trong suốt).
 - Cắt sát nhân vật, chân chạm mép dưới ảnh.
+- Ảnh đổi chân (11, 12): chat mới, đính kèm ảnh đi cũ (`09-duck-walk.png` / `09-dino-walk.png`, không phải reference), dán prompt. Dùng model Pro.
