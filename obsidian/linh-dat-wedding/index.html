@@ -1,0 +1,1295 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Khánh Linh &amp; Xuân Đạt - Thiệp cưới</title>
+    <meta name="description" content="Trân trọng kính mời bạn đến dự lễ cưới của Khánh Linh và Xuân Đạt." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Khánh Linh &amp; Xuân Đạt - Thiệp cưới" />
+    <meta property="og:description" content="Trân trọng kính mời bạn đến dự lễ cưới của Khánh Linh và Xuân Đạt." />
+    <meta property="og:url" content="https://txdat.github.io/notes/linh-dat-wedding/" />
+    <meta property="og:image" content="https://txdat.github.io/notes/linh-dat-wedding/assets/og.jpg" />
+    <meta name="theme-color" content="#FBF6EE" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Moon+Dance&family=Nunito:wght@400;600;700&display=swap"
+    />
+    <link rel="preload" as="image" href="assets/duck-walk.webp" />
+    <link rel="preload" as="image" href="assets/dino-walk.webp" />
+    <style>
+      :root {
+        --paper: #fbf6ee;
+        --card: #fffdf9;
+        --beige: #eadbc4;
+        --ink: #3a2c27;
+        --muted: #85706a;
+        --red: #a8443f;
+        --red-soft: #f3e2dc;
+        --serif: "Fraunces", Georgia, serif;
+        --sans: "Nunito", system-ui, sans-serif;
+        --script: "Moon Dance", cursive;
+        --pager-h: 4.25rem;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      /* The card never scrolls vertically; pages turn sideways. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        overscroll-behavior: none;
+      }
+
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font: 400 1rem/1.65 var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      button {
+        font: inherit;
+        color: inherit;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--red);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+
+      h2,
+      h3,
+      .place span {
+        text-wrap: balance;
+      }
+
+      h2 {
+        margin: 0 0 0.25rem;
+        font: 400 1.625rem/1.3 var(--serif);
+        color: var(--red);
+      }
+
+      h3 {
+        margin: 0;
+        font: 600 1.0625rem/1.4 var(--serif);
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .lede {
+        color: var(--muted);
+        margin-bottom: 1.5rem;
+      }
+
+      .lede strong {
+        color: var(--ink);
+      }
+
+      /* Images drawn on white blend into the paper colour. */
+      .blend {
+        mix-blend-mode: multiply;
+      }
+
+      /* Missing images (not uploaded yet). */
+      .is-missing {
+        background: repeating-linear-gradient(-45deg, var(--beige) 0 10px, var(--card) 10px 20px);
+      }
+
+      .photos button.is-missing {
+        background: repeating-linear-gradient(-45deg, var(--beige) 0 10px, var(--card) 10px 20px);
+        cursor: default;
+      }
+
+      .is-missing img {
+        visibility: hidden;
+      }
+
+      /* ---------- Intro: duck and dino walk to each other ---------- */
+      .intro {
+        position: fixed;
+        inset: 0;
+        z-index: 10;
+        display: grid;
+        place-content: center;
+        justify-items: center;
+        gap: 2rem;
+        background: var(--paper);
+        overflow: hidden;
+        animation: intro-out 0.8s cubic-bezier(0.7, 0, 0.3, 1) 5s forwards;
+      }
+
+      .stage {
+        position: relative;
+        width: min(100vw, 420px);
+        height: 190px;
+      }
+
+      .stage::after {
+        content: "";
+        position: absolute;
+        left: 10%;
+        right: 10%;
+        bottom: -6px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--beige);
+        z-index: -1;
+      }
+
+      .actor {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+      }
+
+      .actor img {
+        transform-origin: 50% 100%;
+        animation:
+          waddle 0.3s ease-in-out 7 alternate,
+          hop 0.45s ease-out 2.3s 2;
+      }
+
+      .actor--duck {
+        animation: walk-duck 2.1s cubic-bezier(0.3, 0.6, 0.4, 1) both;
+      }
+
+      .actor--duck img {
+        height: 140px;
+      }
+
+      .actor--dino {
+        animation: walk-dino 2.1s cubic-bezier(0.3, 0.6, 0.4, 1) both;
+      }
+
+      .actor--dino img {
+        height: 168px;
+        scale: -1 1;
+      }
+
+      .pop-heart {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 44px;
+        margin-left: -22px;
+        fill: var(--red);
+        opacity: 0;
+        animation: pop 1s ease-out 3s forwards;
+      }
+
+      .intro-title {
+        font: 400 3.25rem/1 var(--script);
+        color: var(--red);
+        opacity: 0;
+        animation: fade-up 0.7s ease-out 3.3s forwards;
+      }
+
+      .intro-skip {
+        position: absolute;
+        right: 1rem;
+        bottom: calc(1rem + env(safe-area-inset-bottom));
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--beige);
+        border-radius: 999px;
+        background: var(--card);
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 0.875rem;
+        cursor: pointer;
+      }
+
+      @keyframes walk-duck {
+        from {
+          translate: -60vw 0;
+        }
+        to {
+          translate: calc(-100% + 6px) 0;
+        }
+      }
+
+      @keyframes walk-dino {
+        from {
+          translate: 60vw 0;
+        }
+        to {
+          translate: -6px 0;
+        }
+      }
+
+      @keyframes waddle {
+        from {
+          rotate: -6deg;
+        }
+        to {
+          rotate: 6deg;
+        }
+      }
+
+      @keyframes hop {
+        50% {
+          translate: 0 -26px;
+        }
+      }
+
+      @keyframes pop {
+        0% {
+          opacity: 0;
+          scale: 0.2;
+          translate: 0 40px;
+        }
+        40% {
+          opacity: 1;
+          scale: 1.2;
+        }
+        100% {
+          opacity: 1;
+          scale: 1;
+          translate: 0 -10px;
+        }
+      }
+
+      @keyframes fade-up {
+        from {
+          opacity: 0;
+          translate: 0 12px;
+        }
+        to {
+          opacity: 1;
+          translate: 0 0;
+        }
+      }
+
+      @keyframes intro-out {
+        to {
+          translate: 0 -100%;
+        }
+      }
+
+      /* ---------- Book: one screen per page, swipe sideways ---------- */
+      .frame {
+        position: relative;
+        height: 100%;
+        margin: 0 auto;
+        max-width: 480px;
+        background: var(--paper);
+        overflow: hidden;
+      }
+
+      .book {
+        display: flex;
+        height: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+      }
+
+      .book::-webkit-scrollbar,
+      .leaf::-webkit-scrollbar {
+        display: none;
+      }
+
+      .leaf {
+        flex: 0 0 100%;
+        display: flex;
+        height: 100%;
+        padding: calc(1.5rem + env(safe-area-inset-top)) 1.75rem
+          calc(var(--pager-h) + env(safe-area-inset-bottom));
+        overflow-y: auto;
+        scrollbar-width: none;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        text-align: center;
+      }
+
+      .leaf[hidden] {
+        display: none;
+      }
+
+      /* Centres short pages; tall ones (tiny screens) stay readable from the top. */
+      .leaf > .inner {
+        width: 100%;
+        margin: auto 0;
+      }
+
+      .pager {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        height: var(--pager-h);
+        padding-bottom: env(safe-area-inset-bottom);
+        box-sizing: content-box;
+        pointer-events: none;
+      }
+
+      .pager button {
+        display: grid;
+        place-items: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        border: 1px solid var(--beige);
+        border-radius: 50%;
+        background: var(--card);
+        cursor: pointer;
+        pointer-events: auto;
+        transition: opacity 0.2s;
+      }
+
+      .pager button:disabled {
+        opacity: 0;
+        cursor: default;
+      }
+
+      .pager svg {
+        width: 1rem;
+        height: 1rem;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      /* Progress: the dino walks one step towards the duck per page. */
+      .track {
+        --p: 0;
+        position: relative;
+        width: 11.5rem;
+        height: 2.6rem;
+      }
+
+      .track::before {
+        content: "";
+        position: absolute;
+        left: 0.5rem;
+        right: 0.75rem;
+        bottom: 2px;
+        height: 4px;
+        background: radial-gradient(circle, var(--beige) 1.5px, transparent 2px) 0 50% / 8px 4px repeat-x;
+      }
+
+      .track img {
+        position: absolute;
+        bottom: 3px;
+        transform-origin: 50% 100%;
+      }
+
+      .track-dino {
+        left: calc(var(--p) * (100% - 2.85rem));
+        height: 30px;
+        transition: left 0.6s cubic-bezier(0.3, 0.6, 0.4, 1);
+      }
+
+      .track.is-walking .track-dino {
+        animation: waddle 0.15s ease-in-out 4 alternate;
+      }
+
+      .track-duck {
+        right: 0;
+        height: 26px;
+        scale: -1 1;
+      }
+
+      .track svg {
+        position: absolute;
+        right: 1rem;
+        top: -2px;
+        width: 14px;
+        height: 14px;
+        fill: var(--red);
+        opacity: 0;
+        scale: 0.3;
+        transition: opacity 0.3s 0.5s, scale 0.3s 0.5s;
+      }
+
+      .track.is-end svg {
+        opacity: 1;
+        scale: 1;
+      }
+
+      /* ---------- Cover ---------- */
+      .kicker {
+        font: italic 400 1rem var(--serif);
+        color: var(--muted);
+      }
+
+      /* Couple drawing sitting inside a big soft heart. */
+      .hero {
+        position: relative;
+        width: min(88vw, 360px, 50dvh);
+        aspect-ratio: 22.2 / 16.5;
+        margin: 0.75rem auto 1rem;
+      }
+
+      .hero svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        fill: #f1d9d1;
+      }
+
+      .hero img {
+        position: absolute;
+        left: 20%;
+        top: 11%;
+        width: 60%;
+      }
+
+      .names {
+        margin: 0;
+        font: 400 clamp(2.75rem, 7dvh, 3.5rem) / 1 var(--script);
+      }
+
+      .names span {
+        display: block;
+      }
+
+      /* Script ampersand between two fading hairlines. */
+      .names .amp {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin: -0.1rem 0 0.15rem;
+        font: 400 2.75rem/1 var(--script);
+        color: var(--red);
+      }
+
+      .names .amp::before,
+      .names .amp::after {
+        content: "";
+        width: 3.5rem;
+        height: 1px;
+        margin-top: 0.3rem;
+        background: linear-gradient(to left, var(--red), transparent);
+      }
+
+      .names .amp::after {
+        background: linear-gradient(to right, var(--red), transparent);
+      }
+
+      /* Date strip: the facts guests need, in one glance. */
+      .when {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        max-width: 320px;
+        margin: 1.25rem auto 0;
+        padding: 0.6rem 0;
+        border-block: 1px solid var(--red);
+        font: 400 1.0625rem/1.3 var(--serif);
+      }
+
+      .when strong {
+        padding: 0 0.9rem;
+        border-inline: 1px solid var(--beige);
+        color: var(--red);
+        font-weight: 600;
+        font-size: 1.625rem;
+        letter-spacing: 0.04em;
+      }
+
+      .venue-name {
+        margin-top: 0.9rem;
+        font: 600 1.0625rem/1.4 var(--serif);
+      }
+
+      .venue-name + .place {
+        margin-top: 0.15rem;
+        font-size: 0.9375rem;
+      }
+
+      .place {
+        display: block;
+        width: fit-content;
+        margin: 0.5rem auto 0;
+        color: var(--red);
+        text-decoration: none;
+        text-align: center;
+        text-wrap: balance;
+      }
+
+      .place svg {
+        display: inline-block;
+        width: 1.1em;
+        height: 1.1em;
+        margin-right: 0.2em;
+        vertical-align: -0.2em;
+        fill: currentColor;
+      }
+
+      .place span {
+        text-decoration: underline;
+        text-decoration-color: color-mix(in srgb, var(--red) 35%, transparent);
+        text-underline-offset: 3px;
+      }
+
+      .hint {
+        margin-top: 1.5rem;
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+
+      /* ---------- Story pages: picture only, edge to edge ---------- */
+      /* The page takes the picture's own top and bottom colours, so the
+         square drawing reads as a full-screen scene instead of a framed photo. */
+      .leaf--scene {
+        padding-inline: 0;
+        background: linear-gradient(var(--top) 50%, var(--bottom) 50%);
+      }
+
+      .scene {
+        width: min(100%, 72dvh);
+        margin: 0 auto;
+        aspect-ratio: 1;
+      }
+
+      .scene img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        mask: linear-gradient(transparent, #000 10%, #000 88%, transparent);
+      }
+
+      /* ---------- Invitation ---------- */
+      .families {
+        display: grid;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .family p {
+        font-size: 0.9375rem;
+        line-height: 1.5;
+      }
+
+      .couple {
+        margin-bottom: 1.25rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--beige);
+      }
+
+      .couple .role {
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+
+      .couple .child {
+        margin-bottom: 0.5rem;
+        font: 400 2rem/1.1 var(--script);
+      }
+
+      .key {
+        padding: 0.85rem 1rem;
+        border-radius: 16px;
+        background: var(--red-soft);
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+
+      .key-when {
+        color: var(--red);
+        font: 600 1.1875rem/1.4 var(--serif);
+      }
+
+      .key-where {
+        margin-top: 0.25rem;
+        color: var(--ink);
+        font-weight: 700;
+        font-size: 0.9375rem;
+      }
+
+      /* ---------- Calendar ---------- */
+      .cal {
+        width: 100%;
+        max-width: 320px;
+        margin: 1rem auto 2rem;
+        border-collapse: collapse;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .cal th {
+        padding-bottom: 0.5rem;
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 0.8125rem;
+      }
+
+      .cal th:last-child,
+      .cal td:last-child {
+        color: var(--red);
+      }
+
+      .cal tbody {
+        position: relative;
+        z-index: 0;
+      }
+
+      .cal td {
+        height: 2.4rem;
+        font-size: 0.9375rem;
+      }
+
+      .cal td.is-day {
+        position: relative;
+        color: #fff;
+        font-weight: 700;
+      }
+
+      .cal td.is-day::before {
+        content: "";
+        position: absolute;
+        inset: 50% auto auto 50%;
+        width: 2.4rem;
+        height: 2.4rem;
+        translate: -50% -50%;
+        z-index: -1;
+        background: var(--red);
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s-7.5-4.6-9.6-9.1C.9 8.6 2.9 4.5 6.7 4.5c2.2 0 3.6 1.2 5.3 3.1 1.7-1.9 3.1-3.1 5.3-3.1 3.8 0 5.8 4.1 4.3 7.4C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E")
+          center / contain no-repeat;
+      }
+
+      .clock {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        margin: 0;
+      }
+
+      .clock div {
+        display: flex;
+        flex-direction: column-reverse;
+        min-width: 4.5rem;
+        padding: 0.75rem 0.5rem;
+        border: 1px solid var(--beige);
+        border-radius: 16px;
+        background: var(--card);
+      }
+
+      .clock dd {
+        margin: 0;
+        font: 600 1.75rem/1.1 var(--serif);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .clock dt {
+        color: var(--muted);
+        font-size: 0.8125rem;
+      }
+
+      /* ---------- Programme ---------- */
+      .schedule {
+        max-width: 280px;
+        margin: 0 auto;
+        padding: 0;
+        list-style: none;
+        text-align: left;
+      }
+
+      .schedule li {
+        position: relative;
+        display: grid;
+        grid-template-columns: 4rem 1fr;
+        padding-bottom: 1.5rem;
+      }
+
+      .schedule li::before {
+        content: "";
+        position: absolute;
+        left: 3.1rem;
+        top: 0.55rem;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--red);
+      }
+
+      .schedule li:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        left: calc(3.1rem + 4px);
+        top: 1.2rem;
+        bottom: 0.1rem;
+        width: 1px;
+        background: var(--beige);
+      }
+
+      .schedule time {
+        font: 600 1rem/1.65 var(--serif);
+        color: var(--red);
+      }
+
+      .schedule strong {
+        padding-left: 1rem;
+        font-weight: 600;
+      }
+
+      .schedule .is-main time,
+      .schedule .is-main strong {
+        color: var(--red);
+      }
+
+      .schedule .is-main strong {
+        font: 600 1.25rem/1.35 var(--serif);
+      }
+
+      .schedule .is-main::before {
+        top: 0.5rem;
+        left: calc(3.1rem - 2px);
+        width: 13px;
+        height: 13px;
+        box-shadow: 0 0 0 4px var(--red-soft);
+      }
+
+      /* ---------- Venue, RSVP ---------- */
+      .art {
+        width: min(64vw, 260px, 32dvh);
+        margin: 0 auto 1rem;
+      }
+
+      .venue-title {
+        font-size: 1.3125rem;
+      }
+
+      .button {
+        display: inline-block;
+        margin-top: 1.5rem;
+        padding: 0.8rem 1.75rem;
+        border-radius: 999px;
+        background: var(--red);
+        color: #fff;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      /* ---------- Album ---------- */
+      .photos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+        width: min(100%, 56dvh);
+        margin: 0 auto;
+      }
+
+      .photos button {
+        aspect-ratio: 1;
+        padding: 0;
+        border: 0;
+        border-radius: 14px;
+        overflow: hidden;
+        background: none;
+        cursor: zoom-in;
+      }
+
+      .photos img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .lightbox {
+        width: 100vw;
+        height: 100dvh;
+        max-width: none;
+        max-height: none;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: rgb(30 22 20 / 0.92);
+      }
+
+      .lightbox[open] {
+        display: grid;
+        place-items: center;
+      }
+
+      .lightbox img {
+        max-width: 94vw;
+        max-height: 80dvh;
+        border-radius: 8px;
+      }
+
+      .lightbox button {
+        position: absolute;
+        display: grid;
+        place-items: center;
+        width: 2.75rem;
+        height: 2.75rem;
+        border: 0;
+        border-radius: 50%;
+        background: rgb(255 255 255 / 0.15);
+        color: #fff;
+        cursor: pointer;
+      }
+
+      .lightbox svg {
+        width: 1.1rem;
+        height: 1.1rem;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .lightbox .close {
+        top: calc(1rem + env(safe-area-inset-top));
+        right: 1rem;
+      }
+
+      .lightbox .prev,
+      .lightbox .next {
+        bottom: calc(1.5rem + env(safe-area-inset-bottom));
+      }
+
+      .lightbox .prev {
+        right: calc(50% + 0.5rem);
+      }
+
+      .lightbox .next {
+        left: calc(50% + 0.5rem);
+      }
+
+      /* ---------- Thanks ---------- */
+      .thanks .script {
+        font: 400 3rem/1.1 var(--script);
+        color: var(--red);
+      }
+
+      .thanks small {
+        display: block;
+        margin-top: 1.5rem;
+        color: var(--muted);
+      }
+
+      /* ---------- Desktop: the card sits on the table ---------- */
+      @media (min-width: 640px) and (min-height: 600px) {
+        body {
+          display: grid;
+          place-items: center;
+          background: var(--beige);
+        }
+
+        .frame {
+          width: 440px;
+          height: min(calc(100dvh - 3rem), 900px);
+          border-radius: 28px;
+          box-shadow: 0 24px 60px -24px rgb(58 44 39 / 0.35);
+        }
+      }
+
+      /* Short phones: tighten the cover so it fits one screen. */
+      @media (max-height: 720px) {
+        .hero {
+          width: min(80vw, 300px, 42dvh);
+          margin: 0.25rem auto 0.75rem;
+        }
+
+        .lede {
+          margin-bottom: 1rem;
+        }
+
+        .names .amp {
+          margin: -0.2rem 0 0;
+          font-size: 2.25rem;
+        }
+
+        .when {
+          margin-top: 0.75rem;
+        }
+
+        .families,
+        .couple {
+          margin-bottom: 0.75rem;
+        }
+
+        .hint {
+          display: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .intro {
+          display: none;
+        }
+
+        .track-dino,
+        .track svg {
+          transition: none;
+        }
+
+        .track.is-walking .track-dino {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="intro-playing">
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol id="pin" viewBox="0 0 24 24">
+        <path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" />
+      </symbol>
+      <symbol id="heart" viewBox="0 0 24 24">
+        <path d="M12 21s-7.5-4.6-9.6-9.1C.9 8.6 2.9 4.5 6.7 4.5c2.2 0 3.6 1.2 5.3 3.1 1.7-1.9 3.1-3.1 5.3-3.1 3.8 0 5.8 4.1 4.3 7.4C19.5 16.4 12 21 12 21z" />
+      </symbol>
+      <symbol id="chev-left" viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" /></symbol>
+      <symbol id="chev-right" viewBox="0 0 16 16"><path d="m6 3 5 5-5 5" /></symbol>
+      <symbol id="cross" viewBox="0 0 16 16"><path d="m3 3 10 10M13 3 3 13" /></symbol>
+    </svg>
+
+    <div class="intro" id="intro" aria-hidden="true">
+      <div class="stage">
+        <div class="actor actor--duck"><img src="assets/duck-walk.webp" alt="" /></div>
+        <div class="actor actor--dino"><img src="assets/dino-walk.webp" alt="" /></div>
+        <svg class="pop-heart" viewBox="0 0 24 24"><use href="#heart" /></svg>
+      </div>
+      <p class="intro-title">Mình cưới nhau nhé!</p>
+      <button class="intro-skip" type="button">Bỏ qua</button>
+    </div>
+
+    <div class="frame">
+      <main class="book" id="book" tabindex="-1">
+        <section class="leaf" aria-label="Bìa thiệp">
+          <div class="inner">
+            <p class="kicker">Thiệp mời cưới</p>
+            <figure class="hero">
+              <svg viewBox="0.9 4.5 22.2 16.5" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.1C.9 8.6 2.9 4.5 6.7 4.5c2.2 0 3.6 1.2 5.3 3.1 1.7-1.9 3.1-3.1 5.3-3.1 3.8 0 5.8 4.1 4.3 7.4C19.5 16.4 12 21 12 21z" /></svg>
+              <img src="assets/hero.webp?v=2" alt="Vịt vàng đội voan và khủng long xanh đeo nơ nắm tay nhau" />
+            </figure>
+            <h1 class="names">
+              <span>Khánh Linh</span>
+              <span class="amp">&amp;</span>
+              <span>Xuân Đạt</span>
+            </h1>
+            <p class="when"><span>Thứ Ba</span><strong>24.11.2026</strong><span>11:00</span></p>
+            <p class="venue-name">Trung tâm tổ chức sự kiện Âu Cơ</p>
+            <a class="place" href="https://www.google.com/maps/search/?api=1&amp;query=Trung+t%C3%A2m+t%E1%BB%95+ch%E1%BB%A9c+s%E1%BB%B1+ki%E1%BB%87n+%C3%82u+C%C6%A1+1A+Nguy%E1%BB%85n+H%E1%BB%AFu+C%E1%BA%A7u+H%E1%BA%A3i+Ph%C3%B2ng" target="_blank" rel="noopener">
+              <svg aria-hidden="true"><use href="#pin" /></svg>
+              <span>1A Nguyễn Hữu Cầu, P.&nbsp;Hải&nbsp;Dương, TP.&nbsp;Hải&nbsp;Phòng</span>
+            </a>
+            <p class="hint">Vuốt sang để lật trang</p>
+          </div>
+        </section>
+
+        <section class="leaf leaf--scene" style="--top: #F5E8D8; --bottom: #F6E9D9" aria-label="Chuyện tình, cảnh 1">
+          <div class="inner">
+            <figure class="scene">
+              <img
+                src="assets/story-ramen.webp"
+                alt="Lần đầu gặp ở quán ramen: khủng long mải sửa code trên laptop, vịt ngồi chờ đến chán, mì nguội dần"
+              />
+            </figure>
+          </div>
+        </section>
+
+        <section class="leaf leaf--scene" style="--top: #2B3F5F; --bottom: #8D817B" aria-label="Chuyện tình, cảnh 2">
+          <div class="inner">
+            <figure class="scene">
+              <img
+                src="assets/story-hotay.webp"
+                alt="Buổi tối dạo Hồ Tây: khủng long đỏ mặt tỏ tình tay không, vịt khoanh cánh chưa đồng ý"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+        </section>
+
+        <section class="leaf leaf--scene" style="--top: #F7EBDF; --bottom: #F1D2B3" aria-label="Chuyện tình, cảnh 3">
+          <div class="inner">
+            <figure class="scene">
+              <img
+                src="assets/story-birthday.webp"
+                alt="Sinh nhật vịt ở nhà: khủng long quỳ cầm nhẫn và bó hoa, vịt xúc động đồng ý"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+        </section>
+
+        <section class="leaf leaf--scene" style="--top: #F4E7D6; --bottom: #F4E7D5" aria-label="Chuyện tình, cảnh 4">
+          <div class="inner">
+            <figure class="scene">
+              <img
+                src="assets/story-home.webp"
+                alt="Vịt và khủng long vui vẻ cùng đi về ngôi nhà nhỏ của hai bạn"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+        </section>
+
+        <section class="leaf" aria-label="Lời mời">
+          <div class="inner">
+            <h2>Trân trọng kính mời</h2>
+            <p class="lede">bạn và gia đình đến chung vui trong ngày thành hôn của chúng mình</p>
+            <div class="families">
+              <div class="family">
+                <h3>Nhà gái</h3>
+                <p>Ông Nguyễn Minh Tuân</p>
+                <p>Bà Hồ Thị Thu Huyền</p>
+              </div>
+              <div class="family">
+                <h3>Nhà trai</h3>
+                <p>Ông Trần Xuân Kế</p>
+                <p>Bà Nguyễn Thị Thanh Xuân</p>
+              </div>
+            </div>
+            <div class="couple">
+              <p class="role">Cô dâu</p>
+              <p class="child">Nguyễn Khánh Linh</p>
+              <p class="role">Chú rể</p>
+              <p class="child">Trần Xuân Đạt</p>
+            </div>
+            <div class="key">
+              <p class="key-when">11:00, Thứ Ba, 24.11.2026</p>
+              <p>(tức ngày 16 tháng 10 năm Bính Ngọ)</p>
+              <p class="key-where">Trung tâm tổ chức sự kiện Âu Cơ</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="leaf" aria-labelledby="cal-title">
+          <div class="inner">
+            <h2 id="cal-title">Tháng 11, 2026</h2>
+            <table class="cal" id="cal"></table>
+            <dl class="clock" id="clock" aria-label="Thời gian còn lại đến lễ cưới">
+              <div><dt>ngày</dt><dd data-unit="d">0</dd></div>
+              <div><dt>giờ</dt><dd data-unit="h">0</dd></div>
+              <div><dt>phút</dt><dd data-unit="m">0</dd></div>
+            </dl>
+          </div>
+        </section>
+
+        <section class="leaf" aria-label="Chương trình">
+          <div class="inner">
+            <h2>Chương trình</h2>
+            <p class="lede">Mời bạn đến sớm một chút để chụp ảnh cùng cô dâu chú rể.</p>
+            <ol class="schedule">
+              <li><time datetime="2026-11-24T10:30+07:00">10:30</time><strong>Đón khách</strong></li>
+              <li class="is-main"><time datetime="2026-11-24T11:00+07:00">11:00</time><strong>Lễ thành hôn</strong></li>
+              <li><time datetime="2026-11-24T11:30+07:00">11:30</time><strong>Khai tiệc</strong></li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="leaf" aria-label="Địa điểm">
+          <div class="inner">
+            <img class="art blend" src="assets/map.webp" alt="Khủng long cầm bản đồ, vịt chỉ đường" loading="lazy" />
+            <h2>Địa điểm</h2>
+            <h3 class="venue-title">Trung tâm tổ chức sự kiện Âu Cơ</h3>
+            <a class="place" href="https://www.google.com/maps/search/?api=1&amp;query=Trung+t%C3%A2m+t%E1%BB%95+ch%E1%BB%A9c+s%E1%BB%B1+ki%E1%BB%87n+%C3%82u+C%C6%A1+1A+Nguy%E1%BB%85n+H%E1%BB%AFu+C%E1%BA%A7u+H%E1%BA%A3i+Ph%C3%B2ng" target="_blank" rel="noopener">
+              <svg aria-hidden="true"><use href="#pin" /></svg>
+              <span>1A Nguyễn Hữu Cầu, P.&nbsp;Hải&nbsp;Dương, TP.&nbsp;Hải&nbsp;Phòng</span>
+            </a>
+            <br />
+            <a class="button" href="https://www.google.com/maps/search/?api=1&amp;query=Trung+t%C3%A2m+t%E1%BB%95+ch%E1%BB%A9c+s%E1%BB%B1+ki%E1%BB%87n+%C3%82u+C%C6%A1+1A+Nguy%E1%BB%85n+H%E1%BB%AFu+C%E1%BA%A7u+H%E1%BA%A3i+Ph%C3%B2ng" target="_blank" rel="noopener"
+              >Mở Google Maps</a
+            >
+          </div>
+        </section>
+
+        <!-- RSVP page is hidden for now; remove `hidden` to show it again. -->
+        <section class="leaf" aria-label="Xác nhận tham dự" hidden>
+          <div class="inner">
+            <h2>Xác nhận tham dự</h2>
+            <p class="lede">Bạn báo giúp <strong>trước ngày 15.11</strong> để vịt và khủng long chuẩn bị đủ chỗ ngồi nhé.</p>
+            <a class="button" href="https://forms.gle/[form-id]" target="_blank" rel="noopener">Xác nhận tham dự</a>
+          </div>
+        </section>
+
+        <section class="leaf" aria-label="Ảnh cưới">
+          <div class="inner">
+            <h2>Ảnh cưới</h2>
+            <p class="lede">Vịt và khủng long ngoài đời thật. Chạm để xem lớn.</p>
+            <div class="photos" id="photos">
+              <button type="button"><img src="assets/photo-1.webp" alt="Ảnh cưới 1" loading="lazy" /></button>
+              <button type="button"><img src="assets/photo-2.webp" alt="Ảnh cưới 2" loading="lazy" /></button>
+              <button type="button"><img src="assets/photo-3.webp" alt="Ảnh cưới 3" loading="lazy" /></button>
+              <button type="button"><img src="assets/photo-4.webp" alt="Ảnh cưới 4" loading="lazy" /></button>
+            </div>
+          </div>
+        </section>
+
+        <section class="leaf thanks" aria-label="Lời cảm ơn">
+          <div class="inner">
+            <img class="art blend" src="assets/thanks.webp" alt="Vịt và khủng long ôm nhau" loading="lazy" />
+            <p class="script">Cảm ơn bạn</p>
+            <p>Ngày vui của chúng mình sẽ trọn vẹn hơn khi có bạn.</p>
+            <small>Khánh Linh &amp; Xuân Đạt</small>
+          </div>
+        </section>
+      </main>
+
+      <nav class="pager" aria-label="Lật trang">
+        <button type="button" id="prev" aria-label="Trang trước">
+          <svg aria-hidden="true"><use href="#chev-left" /></svg>
+        </button>
+        <div class="track" id="track" aria-hidden="true">
+          <img class="track-dino" src="assets/dino-walk.webp" alt="" />
+          <img class="track-duck" src="assets/duck-walk.webp" alt="" />
+          <svg viewBox="0 0 24 24"><use href="#heart" /></svg>
+        </div>
+        <button type="button" id="next" aria-label="Trang sau">
+          <svg aria-hidden="true"><use href="#chev-right" /></svg>
+        </button>
+      </nav>
+    </div>
+
+    <dialog class="lightbox" id="lightbox" aria-label="Ảnh cưới">
+      <img alt="" />
+      <button type="button" class="close" aria-label="Đóng"><svg aria-hidden="true"><use href="#cross" /></svg></button>
+      <button type="button" class="prev" aria-label="Ảnh trước"><svg aria-hidden="true"><use href="#chev-left" /></svg></button>
+      <button type="button" class="next" aria-label="Ảnh sau"><svg aria-hidden="true"><use href="#chev-right" /></svg></button>
+    </dialog>
+
+    <script>
+      const weddingAt = new Date("2026-11-24T11:00:00+07:00")
+
+      // Striped placeholder for images not uploaded yet.
+      for (const img of document.querySelectorAll(".book img")) {
+        const markMissing = () => (img.closest("figure, button") ?? img).classList.add("is-missing")
+        if (img.complete && img.naturalWidth === 0) markMissing()
+        img.addEventListener("error", markMissing)
+      }
+
+      // Intro plays once per visit; tap anywhere or "Bỏ qua" to skip.
+      const intro = document.getElementById("intro")
+      const endIntro = () => {
+        intro.remove()
+        document.body.classList.remove("intro-playing")
+        sessionStorage.setItem("intro-seen", "1")
+      }
+      if (sessionStorage.getItem("intro-seen") || matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        endIntro()
+      } else {
+        intro.addEventListener("click", endIntro)
+        intro.addEventListener("animationend", (event) => {
+          if (event.animationName === "intro-out") endIntro()
+        })
+      }
+
+      // Page turning.
+      const book = document.getElementById("book")
+      const leaves = book.querySelectorAll(".leaf:not([hidden])")
+      const track = document.getElementById("track")
+      const prev = document.getElementById("prev")
+      const next = document.getElementById("next")
+      const current = () => Math.round(book.scrollLeft / book.clientWidth)
+      const goTo = (index, behavior = "smooth") => {
+        const target = Math.max(0, Math.min(leaves.length - 1, index))
+        book.scrollTo({ left: target * book.clientWidth, behavior })
+      }
+      let shownPage = -1
+      let walkTimer
+      const syncPager = () => {
+        const index = current()
+        if (index === shownPage) return
+        if (shownPage !== -1) {
+          track.classList.add("is-walking")
+          clearTimeout(walkTimer)
+          walkTimer = setTimeout(() => track.classList.remove("is-walking"), 600)
+        }
+        shownPage = index
+        track.style.setProperty("--p", index / (leaves.length - 1))
+        track.classList.toggle("is-end", index === leaves.length - 1)
+        prev.disabled = index === 0
+        next.disabled = index === leaves.length - 1
+      }
+      prev.addEventListener("click", () => goTo(current() - 1))
+      next.addEventListener("click", () => goTo(current() + 1))
+      book.addEventListener("scroll", syncPager, { passive: true })
+      document.addEventListener("keydown", (event) => {
+        if (lightbox.open) return
+        if (event.key === "ArrowLeft") goTo(current() - 1)
+        if (event.key === "ArrowRight") goTo(current() + 1)
+      })
+      let page = 0
+      book.addEventListener("scrollend", () => (page = current()))
+      addEventListener("resize", () => goTo(page, "instant"))
+      syncPager()
+
+      // Wedding photos open full screen.
+      const lightbox = document.getElementById("lightbox")
+      const lightboxImg = lightbox.querySelector("img")
+      const photos = [...document.querySelectorAll("#photos img")]
+      let shown = 0
+      const show = (index) => {
+        const ready = photos.filter((img) => img.naturalWidth)
+        if (!ready.length) return
+        shown = (index + ready.length) % ready.length
+        lightboxImg.src = ready[shown].src
+        lightboxImg.alt = ready[shown].alt
+      }
+      photos.forEach((img) =>
+        img.parentElement.addEventListener("click", () => {
+          if (!img.naturalWidth) return
+          show(photos.filter((p) => p.naturalWidth).indexOf(img))
+          lightbox.showModal()
+        }),
+      )
+      lightbox.querySelector(".close").addEventListener("click", () => lightbox.close())
+      lightbox.querySelector(".prev").addEventListener("click", () => show(shown - 1))
+      lightbox.querySelector(".next").addEventListener("click", () => show(shown + 1))
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) lightbox.close()
+      })
+      lightbox.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") show(shown - 1)
+        if (event.key === "ArrowRight") show(shown + 1)
+      })
+
+      // Month calendar, weeks start on Monday.
+      const cal = document.getElementById("cal")
+      const year = 2026
+      const month = 10
+      const weddingDay = 24
+      const lead = (new Date(year, month, 1).getDay() + 6) % 7
+      const days = new Date(year, month + 1, 0).getDate()
+      let rows = "<thead><tr>" + ["T2", "T3", "T4", "T5", "T6", "T7", "CN"].map((d) => `<th>${d}</th>`).join("") + "</tr></thead><tbody><tr>"
+      for (let cell = 0; cell < Math.ceil((lead + days) / 7) * 7; cell++) {
+        const day = cell - lead + 1
+        if (cell && cell % 7 === 0) rows += "</tr><tr>"
+        const isDay = day === weddingDay
+        rows += day > 0 && day <= days ? `<td${isDay ? ' class="is-day" aria-current="date"' : ""}>${day}</td>` : "<td></td>"
+      }
+      cal.innerHTML = rows + "</tr></tbody>"
+
+      // Countdown to the ceremony.
+      const units = Object.fromEntries([...document.querySelectorAll("#clock dd")].map((el) => [el.dataset.unit, el]))
+      function tick() {
+        const ms = Math.max(0, weddingAt - Date.now())
+        units.d.textContent = Math.floor(ms / 86400000)
+        units.h.textContent = Math.floor(ms / 3600000) % 24
+        units.m.textContent = Math.floor(ms / 60000) % 60
+      }
+      tick()
+      setInterval(tick, 30000)
+    </script>
+  </body>
+</html>

@@ -1,6 +1,8 @@
 # replication
 
-# sharding
+### sync engines & local-first software
+
+# sharding (partitioning)
 
 # transactions
 

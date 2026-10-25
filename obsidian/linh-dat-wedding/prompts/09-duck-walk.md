@@ -1,0 +1,4 @@
+Using the exact same duck bride character from the attached image, same design and style: only the duck bride, full body, strict side view facing RIGHT, mid-step in a cheerful waddle, one foot lifted, wings slightly out for balance, veil fluttering behind her. Feet at the very bottom edge of the image.
+The duck always has short orange webbed duck feet, the same orange as her beak (even if the attached image shows thin line legs).
+
+Style: cute minimal kawaii illustration, flat vector look, soft rounded shapes, thin warm-brown outlines (#3A2C27), no gradients or only very subtle soft shading, small dot eyes, tiny blush cheeks, gentle and sweet expression. Palette strictly limited to: butter yellow #F2C94C, sage green #8DBF8B, champagne red #A8443F, champagne #EADBC4, warm brown #3A2C27, white. Background: plain solid white, no shadows on the ground, no text, no watermark. Centered subject with generous empty margin around it. Square image.
