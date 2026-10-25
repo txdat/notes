@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "58e9cba4cdbed135",
+        "id": "5409906c75b39689",
         "type": "tabs",
         "children": [
           {
-            "id": "593dc901af5a8a98",
+            "id": "e745c052af6ac14c",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "linh-dat-wedding/prompts/07-map.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "07-map"
+              "title": "New tab"
             }
           }
         ]
@@ -183,36 +179,44 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "593dc901af5a8a98",
+  "active": "e745c052af6ac14c",
   "lastOpenFiles": [
-    "linh-dat-wedding/sedtRmfuC",
-    "linh-dat-wedding/sedky2az2",
-    "linh-dat-wedding/index.html.tmp.12075.20d8a27c77cc",
-    "linh-dat-wedding/drafts/map-check.png",
-    "linh-dat-wedding/prompts/10-dino-walk.md",
-    "linh-dat-wedding/sedMSrw5P",
-    "linh-dat-wedding/index.html.tmp.12075.6c3c468589d2",
-    "linh-dat-wedding/assets/og.jpg",
-    "linh-dat-wedding/assets/dino-walk.webp",
-    "linh-dat-wedding/assets/duck-walk.webp",
-    "linh-dat-wedding/assets/thanks.webp",
-    "linh-dat-wedding/assets/map.webp",
+    "linh-dat-wedding/prompts/13-dino-tuxedo.md",
+    "linh-dat-wedding/assets/story-aisle-bg.webp",
+    "linh-dat-wedding/assets/story-birthday-bg.webp",
+    "linh-dat-wedding/assets/story-hotay-bg.webp",
+    "linh-dat-wedding/assets/story-ramen-bg.webp",
+    "linh-dat-wedding/prompts/04-story-hotay.md",
+    "linh-dat-wedding/prompts/06-story-aisle.md",
+    "linh-dat-wedding/assets/story-aisle.webp",
+    "linh-dat-wedding/prompts/06-story-home.md",
     "linh-dat-wedding/assets/story-home.webp",
-    "linh-dat-wedding/assets/story-birthday.webp",
-    "linh-dat-wedding/assets/story-hotay.webp",
-    "linh-dat-wedding/assets/story-ramen.webp",
-    "linh-dat-wedding/sedPKs7hK",
-    "linh-dat-wedding/gemini-prompts.md.tmp.12075.93d23e26371d",
+    "linh-dat-wedding/sedukcHpn",
+    "linh-dat-wedding/sedbFBrql",
+    "linh-dat-wedding/sedF8Yy1m",
+    "linh-dat-wedding/gemini-prompts.md",
+    "linh-dat-wedding/assets/dino-walk-b.webp",
+    "linh-dat-wedding/assets/duck-walk-b.webp",
+    "linh-dat-wedding/prompts/11-duck-walk-b.md",
+    "linh-dat-wedding/prompts/12-dino-walk-b.md",
+    "linh-dat-wedding/prompts/10-dino-walk.md",
     "linh-dat-wedding/prompts/09-duck-walk.md",
     "linh-dat-wedding/prompts/08-thanks.md",
     "linh-dat-wedding/prompts/07-map.md",
-    "linh-dat-wedding/prompts/06-story-home.md",
     "linh-dat-wedding/prompts/05-story-birthday.md",
-    "linh-dat-wedding/prompts/04-story-hotay.md",
     "linh-dat-wedding/prompts/03-story-ramen.md",
-    "linh-dat-wedding/gemini-prompts.md",
     "linh-dat-wedding/prompts/02-hero.md",
     "linh-dat-wedding/prompts/01-reference.md",
+    "linh-dat-wedding/prompts",
+    "linh-dat-wedding/index.html",
+    "linh-dat-wedding/drafts/storyboard.png",
+    "linh-dat-wedding/drafts/storyboard.md",
+    "linh-dat-wedding/drafts/storyboard.html",
+    "linh-dat-wedding/drafts/reference.png",
+    "linh-dat-wedding/drafts",
+    "linh-dat-wedding/assets",
+    "linh-dat-wedding",
+    "linh-dat-wedding/sedtRmfuC",
     "engineering/design-data-intensive-applications/ddia-2.md",
     "engineering/design-data-intensive-applications/part 2. distributed data.md",
     "engineering/design-data-intensive-applications/part 1. foundations.md",
@@ -222,15 +226,6 @@
     "computer-science/algorithms/graph.md",
     "computer-science/algorithms/policy-based data structure.md",
     "computer-science/algorithms/dynamic programming.md",
-    "engineering/system-design/cqrs.md",
-    "engineering/system-design/key-value store.md",
-    "engineering/system-design/real-time presence status.md",
-    "engineering/system-design/live comment.md",
-    "engineering/postgresql/query-optimization.md",
-    "Untitled 1.base",
-    "Untitled.base",
-    "engineering/roadmaps/banking-trading backend engineer.md.tmp.5473.a4eb6e63e5ab",
-    "engineering/roadmaps/banking-trading backend engineer.md.tmp.5473.c960ce1f1aa5",
     "Untitled.canvas"
   ]
 }

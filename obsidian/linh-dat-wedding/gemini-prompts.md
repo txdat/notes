@@ -36,6 +36,7 @@ Làm theo số thứ tự prompt:
 | [[prompts/10-dino-walk]] | `dino-walk.png` | mở màn: khủng long đi vào |
 | [[prompts/11-duck-walk-b]] | `duck-walk-b.png` | mở màn: vịt đổi chân |
 | [[prompts/12-dino-walk-b]] | `dino-walk-b.png` | mở màn: khủng long đổi chân |
+| [[prompts/13-dino-tuxedo]] | `dino-tuxedo.png` | khủng long mặc tuxedo |
 
 ## Sửa lỗi thường gặp
 
