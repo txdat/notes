@@ -29,7 +29,7 @@ Làm theo số thứ tự prompt:
 | [[prompts/03-story-ramen]] | `story-ramen.png` | truyện 1: lần đầu gặp |
 | [[prompts/04-story-hotay]] | `story-hotay.png` | truyện 2: tỏ tình |
 | [[prompts/05-story-birthday]] | `story-birthday.png` | truyện 3: cầu hôn |
-| [[prompts/06-story-home]] | `story-home.png` | truyện 4: về chung nhà |
+| [[prompts/06-story-aisle]] | `story-aisle.png` | truyện 4: cùng đến lễ đường |
 | [[prompts/07-map]] | `map.png` | địa điểm |
 | [[prompts/08-thanks]] | `thanks.png` | cuối trang |
 | [[prompts/09-duck-walk]] | `duck-walk.png` | mở màn: vịt đi vào |
