@@ -2,13 +2,13 @@ import { cp, rm } from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 
-// Standalone HTML pages served verbatim. Quartz strips `.html` from content
-// assets and must ignore these folders (see ignorePatterns in quartz.config.yaml).
+// Standalone HTML pages served verbatim. They live in pages/, outside the Obsidian
+// vault, so Quartz never sees them (it would strip `.html` and render the notes).
 const rawPageDirs = ["linh-dat-wedding"]
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url))
 const siteRoot = path.resolve(scriptDir, "..")
-const sourceDir = path.resolve(siteRoot, "..", "obsidian")
+const sourceDir = path.resolve(siteRoot, "..", "pages")
 const outputDir = path.join(siteRoot, "public")
 
 for (const dir of rawPageDirs) {
