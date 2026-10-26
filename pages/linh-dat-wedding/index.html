@@ -4,12 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Khánh Linh &amp; Xuân Đạt - Thiệp cưới</title>
-    <meta name="description" content="Trân trọng kính mời bạn đến dự lễ cưới của Khánh Linh và Xuân Đạt." />
+    <meta name="description" content="Trân trọng kính mời bạn đến dự lễ thành hôn của Khánh Linh và Xuân Đạt, 11:00 Thứ Ba, 24.11.2026." />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Khánh Linh &amp; Xuân Đạt - Thiệp cưới" />
-    <meta property="og:description" content="Trân trọng kính mời bạn đến dự lễ cưới của Khánh Linh và Xuân Đạt." />
+    <meta property="og:description" content="Trân trọng kính mời bạn đến dự lễ thành hôn của Khánh Linh và Xuân Đạt, 11:00 Thứ Ba, 24.11.2026." />
     <meta property="og:url" content="https://txdat.github.io/notes/linh-dat-wedding/" />
-    <meta property="og:image" content="https://txdat.github.io/notes/linh-dat-wedding/assets/og.jpg?v=2" />
+    <meta property="og:image" content="https://txdat.github.io/notes/linh-dat-wedding/assets/og.jpg?v=3" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -81,8 +81,11 @@
         border-radius: 4px;
       }
 
+      /* Even line lengths, so short paragraphs never leave one word alone. */
       h2,
       h3,
+      .lede,
+      #thanks-note,
       .place span {
         text-wrap: balance;
       }
@@ -129,6 +132,7 @@
       .intro {
         --duck: #e8973a;
         --dino: #86b07a;
+        --heart: #d4776f;
         position: fixed;
         inset: 0;
         z-index: 10;
@@ -455,7 +459,7 @@
 
       @keyframes redden {
         to {
-          color: var(--red);
+          color: var(--heart);
         }
       }
 
@@ -496,7 +500,7 @@
         translate: var(--hx) var(--hy);
         rotate: var(--hr);
         scale: var(--hs);
-        color: var(--red);
+        color: var(--heart);
         animation: none;
       }
 
@@ -678,30 +682,43 @@
         -webkit-text-stroke: 0.02em currentColor;
       }
 
+      /* Arch, names and date strip sit together as one block, centred on the screen. */
+      .leaf--cover > .inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
       /* Couple standing under a flowered wedding arch, the title set into its crown. */
+      /* Slightly taller than wide; the SVG's long legs are cut off by the fade. */
       .hero {
+        --w: min(100vw - 2.5rem, 400px, 46dvh);
         position: relative;
-        width: min(92vw, 380px, 56dvh);
-        aspect-ratio: 222 / 210;
-        margin: 0 auto 0.75rem;
+        width: var(--w);
+        height: calc(var(--w) * 1.15);
+        flex: none;
+        margin: 0;
+        overflow: hidden;
+        container-type: inline-size;
+        /* A wedding arch whose feet fade into the paper. */
+        -webkit-mask-image: linear-gradient(#000 80%, transparent);
+        mask-image: linear-gradient(#000 80%, transparent);
       }
 
       .hero .kicker {
         position: absolute;
-        top: 22%;
+        top: 20.5cqw;
         left: 0;
         right: 0;
       }
 
       .hero svg {
         position: absolute;
-        inset: 0;
+        top: 0;
+        left: 0;
         width: 100%;
-        height: 100%;
+        height: auto;
         fill: #f1d9d1;
-        /* A wedding arch whose feet fade into the paper. */
-        -webkit-mask-image: linear-gradient(#000 80%, transparent);
-        mask-image: linear-gradient(#000 80%, transparent);
       }
 
       .hero .hero-arch-line {
@@ -714,13 +731,15 @@
       .hero img {
         position: absolute;
         left: 21%;
-        top: 37%;
+        /* The couple stands where the arch starts fading out. */
+        bottom: 19%;
         width: 58%;
       }
 
       .names {
-        margin: 0;
-        font: 400 clamp(2.75rem, 7dvh, 3.5rem) / 1 var(--script);
+        margin: 0.25rem 0 1.25rem;
+        width: min(100%, 290px);
+        font: 400 clamp(2.75rem, 8dvh, 4rem) / 0.95 var(--script);
         color: var(--red);
         /* Moon Dance has no bold; a same-colour stroke thickens it evenly. */
         -webkit-text-stroke: 0.025em currentColor;
@@ -730,23 +749,33 @@
         display: block;
       }
 
+      /* Bride's name leans left, groom's leans right, the ampersand ties them. */
+      .names span:first-child {
+        text-align: left;
+      }
+
+      .names span:last-child {
+        text-align: right;
+      }
+
       /* Script ampersand between two fading hairlines. */
       .names .amp {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 0.75rem;
-        margin: -0.1rem 0 0.15rem;
-        font: 400 2.75rem/1 var(--script);
+        margin: -0.2rem 0 -0.05rem;
+        /* Same script "&" as the signature on the thanks page. */
+        font: 400 1.75rem/1 var(--script);
         color: var(--red);
+        -webkit-text-stroke: 0.02em currentColor;
       }
 
       .names .amp::before,
       .names .amp::after {
         content: "";
-        width: 3.5rem;
+        width: 4.5rem;
         height: 1px;
-        margin-top: 0.3rem;
         background: linear-gradient(to left, var(--red), transparent);
       }
 
@@ -759,11 +788,34 @@
         display: grid;
         grid-template-columns: 1fr auto 1fr;
         align-items: center;
-        max-width: 320px;
-        margin: 1.25rem auto 0;
-        padding: 0.6rem 0;
-        border-block: 1px solid var(--red);
+        width: min(100%, 320px);
+        margin: 0;
+        position: relative;
+        padding: 1.4rem 0;
         font: 400 1.0625rem/1.3 var(--serif);
+      }
+
+      /* Faint garlands, borrowed from the arch, frame the date above and below. */
+      .when::before,
+      .when::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 16px;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='14' viewBox='0 0 48 14'%3E%3Cpath d='M0 7q12-2.5 24 0t24 0' fill='none' stroke='%23a9c393' stroke-width='.7'/%3E%3Cpath d='M0 0c2.4-3 2.4-7.5 0-10.5-2.4 3-2.4 7.5 0 10.5z' fill='%23a9c393' transform='translate(5 7) rotate(-62) scale(.55)'/%3E%3Cpath d='M0 0c2.4-3 2.4-7.5 0-10.5-2.4 3-2.4 7.5 0 10.5z' fill='%23a9c393' transform='translate(25 7) rotate(-120) scale(.55)'/%3E%3Cpath d='M0 0c2.4-3 2.4-7.5 0-10.5-2.4 3-2.4 7.5 0 10.5z' fill='%23a9c393' transform='translate(27 7) rotate(58) scale(.5)'/%3E%3Cg transform='translate(14 7) scale(0.46)'%3E%3Cellipse cy='-4.2' rx='3.1' ry='4' transform='rotate(0)' fill='%23f2bdb1'/%3E%3Cellipse cy='-4.2' rx='3.1' ry='4' transform='rotate(72)' fill='%23f2bdb1'/%3E%3Cellipse cy='-4.2' rx='3.1' ry='4' transform='rotate(144)' fill='%23f2bdb1'/%3E%3Cellipse cy='-4.2' rx='3.1' ry='4' transform='rotate(216)' fill='%23f2bdb1'/%3E%3Cellipse cy='-4.2' rx='3.1' ry='4' transform='rotate(288)' fill='%23f2bdb1'/%3E%3Ccircle r='1.9' fill='%23e0a34a'/%3E%3C/g%3E%3Cg transform='translate(37 7) scale(0.38)'%3E%3Cellipse cy='-4.2' rx='3.1' ry='4' transform='rotate(0)' fill='%23fffaf3' stroke='%23e5b5a9' stroke-width='.6'/%3E%3Cellipse cy='-4.2' rx='3.1' ry='4' transform='rotate(72)' fill='%23fffaf3' stroke='%23e5b5a9' stroke-width='.6'/%3E%3Cellipse cy='-4.2' rx='3.1' ry='4' transform='rotate(144)' fill='%23fffaf3' stroke='%23e5b5a9' stroke-width='.6'/%3E%3Cellipse cy='-4.2' rx='3.1' ry='4' transform='rotate(216)' fill='%23fffaf3' stroke='%23e5b5a9' stroke-width='.6'/%3E%3Cellipse cy='-4.2' rx='3.1' ry='4' transform='rotate(288)' fill='%23fffaf3' stroke='%23e5b5a9' stroke-width='.6'/%3E%3Ccircle r='1.9' fill='%23e8b85a'/%3E%3C/g%3E%3C/svg%3E") center / auto 100% repeat-x;
+        opacity: 0.9;
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent);
+        mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent);
+      }
+
+      .when::before {
+        top: 0;
+      }
+
+      .when::after {
+        bottom: 0;
+        scale: -1 1;
       }
 
       .when strong {
@@ -773,16 +825,6 @@
         font-weight: 600;
         font-size: 1.625rem;
         letter-spacing: 0.04em;
-      }
-
-      .venue-name {
-        margin-top: 0.9rem;
-        font: 600 1.0625rem/1.4 var(--serif);
-      }
-
-      .venue-name + .place {
-        margin-top: 0.15rem;
-        font-size: 0.9375rem;
       }
 
       .place {
@@ -898,33 +940,36 @@
         -webkit-text-stroke: 0.025em currentColor;
       }
 
-      .key {
-        padding: 0.85rem 1rem;
-        border-radius: 16px;
-        background: var(--red-soft);
-        color: var(--muted);
-        font-size: 0.875rem;
-      }
-
-      .key-when {
-        color: var(--red);
-        font: 600 1.1875rem/1.4 var(--serif);
-      }
-
-      .key-where {
-        margin-top: 0.25rem;
-        color: var(--ink);
-        font-weight: 700;
-        font-size: 0.9375rem;
-      }
-
       /* ---------- Calendar ---------- */
       .cal {
         width: 100%;
         max-width: 320px;
-        margin: 1rem auto 2rem;
+        margin: 0 auto;
         border-collapse: collapse;
+        table-layout: fixed;
         font-variant-numeric: tabular-nums;
+      }
+
+      .cal-date {
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+
+      .cal-head {
+        margin-top: 1rem;
+      }
+
+      /* The wedding week stands out; the weeks either side sit small and faint,
+         as if the calendar had been scrolled to it. */
+      .cal-weeks {
+        max-width: 320px;
+        margin: 0.25rem auto 1.75rem;
+      }
+
+      .cal tr.is-near td {
+        height: 1.9rem;
+        font-size: 0.8125rem;
+        opacity: 0.28;
       }
 
       .cal th {
@@ -941,6 +986,7 @@
 
       .cal td {
         height: 2.4rem;
+        padding: 0;
         font-size: 0.9375rem;
       }
 
@@ -999,7 +1045,7 @@
         line-height: 1.1;
       }
 
-      /* ---------- Programme ---------- */
+      /* ---------- Programme (shares the calendar page) ---------- */
       .schedule {
         max-width: 280px;
         margin: 0 auto;
@@ -1055,6 +1101,12 @@
         font: 600 1.25rem/1.35 var(--serif);
       }
 
+      .schedule-note {
+        margin: -0.5rem auto 1.75rem;
+        max-width: 18rem;
+        font-size: 0.875rem;
+      }
+
       .schedule .is-main::before {
         top: 0.5rem;
         left: calc(3.1rem - 2px);
@@ -1077,11 +1129,139 @@
         display: inline-block;
         margin-top: 1.5rem;
         padding: 0.8rem 1.75rem;
+        border: 0;
         border-radius: 999px;
         background: var(--red);
         color: #fff;
         font-weight: 700;
         text-decoration: none;
+        cursor: pointer;
+      }
+
+      .button:disabled {
+        opacity: 0.7;
+        cursor: progress;
+      }
+
+      .button--quiet {
+        background: var(--red-soft);
+        color: var(--red);
+      }
+
+      /* RSVP: answers go to Google Form in the background, then the book turns to the thanks page. */
+      .rsvp {
+        display: grid;
+        gap: 0.9rem;
+        width: min(100%, 20rem);
+        margin: 0 auto;
+        text-align: left;
+      }
+
+      .field {
+        display: grid;
+        gap: 0.3rem;
+      }
+
+      .field > span,
+      .choices legend {
+        padding: 0;
+        color: var(--muted);
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      /* 16px text stops iOS zooming in on focus. */
+      .field input,
+      .field textarea {
+        width: 100%;
+        padding: 0.6rem 0.9rem;
+        border: 1px solid var(--beige);
+        border-radius: 0.75rem;
+        background: var(--card);
+        color: var(--ink);
+        font: inherit;
+        font-size: 1rem;
+        resize: none;
+      }
+
+      .field input:focus-visible,
+      .field textarea:focus-visible {
+        outline-offset: 0;
+        border-radius: 0.75rem;
+      }
+
+      .field input[aria-invalid="true"],
+      .choices[aria-invalid="true"] span {
+        border-color: var(--red);
+      }
+
+      .choices {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+
+      .choices legend {
+        margin-bottom: 0.3rem;
+      }
+
+      .choices label {
+        position: relative;
+      }
+
+      /* The radio stays focusable but invisible; its pill shows the state. */
+      .choices input {
+        position: absolute;
+        inset: 0;
+        margin: 0;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      .choices span {
+        display: block;
+        min-width: 3rem;
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--beige);
+        border-radius: 999px;
+        background: var(--card);
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .choices input:checked + span {
+        border-color: var(--red);
+        background: var(--red-soft);
+        color: var(--red);
+      }
+
+      .choices input:focus-visible + span {
+        outline: 2px solid var(--red);
+        outline-offset: 2px;
+      }
+
+      .rsvp[hidden],
+      .choices[hidden] {
+        display: none;
+      }
+
+      .rsvp-error {
+        min-height: 1.4em;
+        margin: -0.4rem 0 -0.6rem;
+        color: var(--red);
+        font-size: 0.875rem;
+      }
+
+      .rsvp .button {
+        justify-self: center;
+        margin-top: 0;
+      }
+
+      .rsvp-done .button {
+        margin-top: 1rem;
       }
 
       /* ---------- Album ---------- */
@@ -1206,8 +1386,20 @@
          framed card is 3rem shorter than the window, hence the second query. */
       @media (max-height: 720px), (min-width: 640px) and (max-height: 800px) {
         .hero {
-          width: min(80vw, 300px, 42dvh);
-          margin: 0.25rem auto 0.75rem;
+          --w: min(88vw, 340px, 42dvh);
+        }
+
+        .rsvp {
+          gap: 0.6rem;
+        }
+
+        .field input,
+        .field textarea {
+          padding: 0.45rem 0.8rem;
+        }
+
+        .choices span {
+          padding: 0.3rem 0.9rem;
         }
 
         .lede {
@@ -1215,12 +1407,7 @@
         }
 
         .names .amp {
-          margin: -0.2rem 0 0;
-          font-size: 2.25rem;
-        }
-
-        .when {
-          margin-top: 0.75rem;
+          font-size: 1.5rem;
         }
 
         .families,
@@ -1232,11 +1419,52 @@
       /* Very short screens (small phones inside Messenger). */
       @media (max-height: 640px) {
         .hero {
-          width: min(80vw, 300px, 36dvh);
+          --w: min(80vw, 300px, 37dvh);
         }
 
         .kicker {
           font-size: 1.5rem;
+        }
+      }
+
+      /* Small iPhones with the browser bars showing (about 375×550). */
+      @media (max-height: 600px) {
+        .cal tr.is-near {
+          display: none;
+        }
+
+        .cal-weeks,
+        .schedule-note {
+          margin-bottom: 1rem;
+        }
+
+        .clock div {
+          min-width: 4rem;
+          padding: 0.4rem 0.5rem;
+        }
+
+        .clock dd {
+          font-size: 1.375rem;
+        }
+
+        .lede {
+          margin-bottom: 0.75rem;
+        }
+
+        .leaf {
+          padding-top: calc(0.75rem + env(safe-area-inset-top));
+        }
+
+        .rsvp {
+          gap: 0.3rem;
+        }
+
+        .field textarea {
+          line-height: 1.35;
+        }
+
+        .rsvp .button {
+          padding-block: 0.6rem;
         }
       }
 
@@ -1303,7 +1531,7 @@
             <figure class="scene">
               <img
                 src="assets/story-ramen.webp"
-                alt="Lần đầu gặp ở quán ramen: khủng long mải sửa code trên laptop, vịt ngồi chờ đến chán, mì nguội dần"
+                alt="Lần đầu gặp ở quán ramen: Khủng Long mải sửa code trên laptop, Vịt ngồi chờ đến chán, mì nguội dần"
               />
             </figure>
           </div>
@@ -1315,7 +1543,7 @@
             <figure class="scene scene--fade">
               <img
                 src="assets/story-hotay.webp?v=2"
-                alt="Dạo bờ Hồ Tây: khủng long đỏ mặt tỏ tình tay không, vịt khoanh cánh chưa đồng ý"
+                alt="Dạo bờ Hồ Tây: Khủng Long đỏ mặt tỏ tình tay không, Vịt khoanh cánh chưa đồng ý"
                 loading="lazy"
               />
             </figure>
@@ -1327,7 +1555,7 @@
             <figure class="scene">
               <img
                 src="assets/story-birthday.webp"
-                alt="Sinh nhật vịt ở nhà: khủng long quỳ cầm nhẫn và bó hoa, vịt xúc động đồng ý"
+                alt="Sinh nhật Vịt ở nhà: Khủng Long quỳ cầm nhẫn và bó hoa, Vịt xúc động đồng ý"
                 loading="lazy"
               />
             </figure>
@@ -1339,7 +1567,7 @@
             <figure class="scene">
               <img
                 src="assets/story-aisle.webp"
-                alt="Khủng long dắt tay vịt đi về phía cổng hoa lễ đường, bạn bè đứng chờ hai bên, vịt quay lại che mỏ cười"
+                alt="Khủng Long dắt tay Vịt đi về phía cổng hoa lễ đường, bạn bè đứng chờ hai bên, Vịt quay lại che mỏ cười"
                 loading="lazy"
               />
             </figure>
@@ -1349,33 +1577,33 @@
         <section class="leaf leaf--cover" aria-label="Bìa thiệp">
           <div class="inner">
             <figure class="hero">
-              <svg viewBox="0 0 222 210" aria-hidden="true">
-                <path d="M30 210V100a81 81 0 0 1 162 0v110z" />
-                <path class="hero-arch-line" d="M41 210V100a70 70 0 0 1 140 0v110" />
-                <use href="#leaf" transform="translate(31.8 83.2) rotate(-28) scale(0.9)" />
-                <use href="#leaf" transform="translate(35.9 69.7) rotate(-118) scale(0.9)" />
-                <use href="#leaf" transform="translate(43.8 54.7) rotate(-6) scale(0.9)" />
-                <use href="#leaf" transform="translate(70.5 29.9) rotate(-80) scale(0.9)" />
-                <use href="#leaf" transform="translate(86.0 23.0) rotate(32) scale(0.9)" />
-                <use href="#leaf" transform="translate(151.5 29.9) rotate(-20) scale(0.9)" />
-                <use href="#leaf" transform="translate(165.2 39.8) rotate(92) scale(0.9)" />
-                <use href="#leaf" transform="translate(182.5 62.0) rotate(12) scale(0.9)" />
-                <use href="#leaf" transform="translate(30.0 118.0) rotate(50) scale(0.85)" />
-                <use href="#leaf" transform="translate(30.0 138.0) rotate(-50) scale(0.85)" />
-                <use href="#leaf" transform="translate(192.0 128.0) rotate(-50) scale(0.85)" />
-                <use href="#blossom-a" transform="translate(39.5 62.0) rotate(0) scale(1.15)" />
-                <use href="#blossom-b" transform="translate(50.8 45.8) rotate(20) scale(0.8)" />
-                <use href="#blossom-a" transform="translate(61.1 36.2) rotate(40) scale(1.0)" />
-                <use href="#blossom-b" transform="translate(33.5 76.3) rotate(10) scale(0.7)" />
-                <use href="#blossom-b" transform="translate(99.7 19.8) rotate(0) scale(0.6)" />
-                <use href="#blossom-a" transform="translate(160.9 36.2) rotate(15) scale(0.95)" />
-                <use href="#blossom-b" transform="translate(173.0 47.9) rotate(30) scale(0.7)" />
-                <use href="#blossom-a" transform="translate(188.9 77.7) rotate(0) scale(0.6)" />
-                <use href="#blossom-b" transform="translate(30.0 128.0) rotate(10) scale(0.7)" />
-                <use href="#blossom-a" transform="translate(192.0 140.0) rotate(25) scale(0.6)" />
+              <svg viewBox="0 0 222 340" aria-hidden="true">
+                <path d="M30 340V100a81 81 0 0 1 162 0v240z" />
+                <path class="hero-arch-line" d="M41 340V100a70 70 0 0 1 140 0v240" />
+                <use href="#leaf" transform="translate(31.8 83.2) rotate(-28) scale(1.03)" />
+                <use href="#leaf" transform="translate(35.9 69.7) rotate(-118) scale(1.03)" />
+                <use href="#leaf" transform="translate(43.8 54.7) rotate(-6) scale(1.03)" />
+                <use href="#leaf" transform="translate(70.5 29.9) rotate(-80) scale(1.03)" />
+                <use href="#leaf" transform="translate(86.0 23.0) rotate(32) scale(1.03)" />
+                <use href="#leaf" transform="translate(151.5 29.9) rotate(-20) scale(1.03)" />
+                <use href="#leaf" transform="translate(165.2 39.8) rotate(92) scale(1.03)" />
+                <use href="#leaf" transform="translate(182.5 62.0) rotate(12) scale(1.03)" />
+                <use href="#leaf" transform="translate(30.0 118.0) rotate(50) scale(0.98)" />
+                <use href="#leaf" transform="translate(30.0 138.0) rotate(-50) scale(0.98)" />
+                <use href="#leaf" transform="translate(192.0 128.0) rotate(-50) scale(0.98)" />
+                <use href="#blossom-a" transform="translate(39.5 62.0) rotate(0) scale(1.55)" />
+                <use href="#blossom-b" transform="translate(50.8 45.8) rotate(20) scale(1.08)" />
+                <use href="#blossom-a" transform="translate(61.1 36.2) rotate(40) scale(1.35)" />
+                <use href="#blossom-b" transform="translate(33.5 76.3) rotate(10) scale(0.94)" />
+                <use href="#blossom-b" transform="translate(99.7 19.8) rotate(0) scale(0.81)" />
+                <use href="#blossom-a" transform="translate(160.9 36.2) rotate(15) scale(1.28)" />
+                <use href="#blossom-b" transform="translate(173.0 47.9) rotate(30) scale(0.94)" />
+                <use href="#blossom-a" transform="translate(188.9 77.7) rotate(0) scale(0.81)" />
+                <use href="#blossom-b" transform="translate(30.0 128.0) rotate(10) scale(0.94)" />
+                <use href="#blossom-a" transform="translate(192.0 140.0) rotate(25) scale(0.81)" />
               </svg>
               <p class="kicker">Lễ thành hôn</p>
-              <img src="assets/hero.webp?v=2" alt="Vịt vàng đội voan và khủng long xanh đeo nơ nắm tay nhau" />
+              <img src="assets/hero.webp?v=2" alt="Vịt vàng đội voan và Khủng Long xanh đeo nơ nắm tay nhau" />
             </figure>
             <h1 class="names">
               <span>Khánh Linh</span>
@@ -1383,11 +1611,6 @@
               <span>Xuân Đạt</span>
             </h1>
             <p class="when"><span>Thứ Ba</span><strong>24.11.2026</strong><span>11:00</span></p>
-            <p class="venue-name">Trung tâm tổ chức sự kiện Âu Cơ</p>
-            <a class="place" href="https://www.google.com/maps/search/?api=1&amp;query=Trung+t%C3%A2m+t%E1%BB%95+ch%E1%BB%A9c+s%E1%BB%B1+ki%E1%BB%87n+%C3%82u+C%C6%A1+1A+Nguy%E1%BB%85n+H%E1%BB%AFu+C%E1%BA%A7u+H%E1%BA%A3i+Ph%C3%B2ng" target="_blank" rel="noopener">
-              <svg aria-hidden="true"><use href="#pin" /></svg>
-              <span>1A Nguyễn Hữu Cầu, P.&nbsp;Hải&nbsp;Dương, TP.&nbsp;Hải&nbsp;Phòng</span>
-            </a>
           </div>
         </section>
 
@@ -1413,18 +1636,21 @@
               <p class="role">Chú rể</p>
               <p class="child">Trần Xuân Đạt</p>
             </div>
-            <div class="key">
-              <p class="key-when">11:00, Thứ Ba, 24.11.2026</p>
-              <p>(tức ngày 16 tháng 10 năm Bính Ngọ)</p>
-              <p class="key-where">Trung tâm tổ chức sự kiện Âu Cơ</p>
-            </div>
           </div>
         </section>
 
         <section class="leaf" aria-labelledby="cal-title">
           <div class="inner">
             <h2 id="cal-title">Tháng 11, 2026</h2>
-            <table class="cal" id="cal"></table>
+            <p class="cal-date">Ngày 16 tháng 10 năm Bính Ngọ</p>
+            <table class="cal cal-head" id="cal-head" aria-hidden="true"></table>
+            <div class="cal-weeks"><table class="cal" id="cal" aria-label="Lịch tháng 11, quanh tuần lễ cưới"></table></div>
+            <ol class="schedule" aria-label="Chương trình">
+              <li><time datetime="2026-11-24T10:30+07:00">10:30</time><strong>Đón khách</strong></li>
+              <li class="is-main"><time datetime="2026-11-24T11:00+07:00">11:00</time><strong>Lễ thành hôn</strong></li>
+              <li><time datetime="2026-11-24T11:30+07:00">11:30</time><strong>Khai tiệc</strong></li>
+            </ol>
+            <p class="lede schedule-note">Mời bạn đến sớm một chút để chụp ảnh cùng cô dâu chú rể.</p>
             <dl class="clock" id="clock" aria-label="Thời gian còn lại đến lễ cưới">
               <div><dt>ngày</dt><dd data-unit="d">0</dd></div>
               <div><dt>giờ</dt><dd data-unit="h">0</dd></div>
@@ -1434,21 +1660,9 @@
           </div>
         </section>
 
-        <section class="leaf" aria-label="Chương trình">
-          <div class="inner">
-            <h2>Chương trình</h2>
-            <p class="lede">Mời bạn đến sớm một chút để chụp ảnh cùng cô dâu chú rể.</p>
-            <ol class="schedule">
-              <li><time datetime="2026-11-24T10:30+07:00">10:30</time><strong>Đón khách</strong></li>
-              <li class="is-main"><time datetime="2026-11-24T11:00+07:00">11:00</time><strong>Lễ thành hôn</strong></li>
-              <li><time datetime="2026-11-24T11:30+07:00">11:30</time><strong>Khai tiệc</strong></li>
-            </ol>
-          </div>
-        </section>
-
         <section class="leaf" aria-label="Địa điểm">
           <div class="inner">
-            <img class="art" src="assets/map.webp?v=2" alt="Khủng long cầm bản đồ, vịt chỉ đường" loading="lazy" />
+            <img class="art" src="assets/map.webp?v=2" alt="Khủng Long cầm bản đồ, Vịt chỉ đường" loading="lazy" />
             <h2>Địa điểm</h2>
             <h3 class="venue-title">Trung tâm tổ chức sự kiện Âu Cơ</h3>
             <a class="place" href="https://www.google.com/maps/search/?api=1&amp;query=Trung+t%C3%A2m+t%E1%BB%95+ch%E1%BB%A9c+s%E1%BB%B1+ki%E1%BB%87n+%C3%82u+C%C6%A1+1A+Nguy%E1%BB%85n+H%E1%BB%AFu+C%E1%BA%A7u+H%E1%BA%A3i+Ph%C3%B2ng" target="_blank" rel="noopener">
@@ -1462,34 +1676,61 @@
           </div>
         </section>
 
-        <!-- RSVP page is hidden for now; remove `hidden` to show it again. -->
-        <section class="leaf" aria-label="Xác nhận tham dự" hidden>
+        <!-- Answers are posted to Google Form "Tham dự Đám cưới Linh & Đạt"; entry.* names and the
+             radio values must match its questions exactly, or Google drops the answer silently. -->
+        <section class="leaf" aria-label="Xác nhận tham dự">
           <div class="inner">
             <h2>Xác nhận tham dự</h2>
-            <p class="lede">Bạn báo giúp <strong>trước ngày 15.11</strong> để vịt và khủng long chuẩn bị đủ chỗ ngồi nhé.</p>
-            <a class="button" href="https://forms.gle/[form-id]" target="_blank" rel="noopener">Xác nhận tham dự</a>
-          </div>
-        </section>
-
-        <section class="leaf" aria-label="Ảnh cưới">
-          <div class="inner">
-            <h2>Ảnh cưới</h2>
-            <p class="lede">Vịt và khủng long ngoài đời thật. Chạm để xem lớn.</p>
-            <div class="photos" id="photos">
-              <button type="button"><img src="assets/photo-1.webp" alt="Ảnh cưới 1" loading="lazy" /></button>
-              <button type="button"><img src="assets/photo-2.webp" alt="Ảnh cưới 2" loading="lazy" /></button>
-              <button type="button"><img src="assets/photo-3.webp" alt="Ảnh cưới 3" loading="lazy" /></button>
-              <button type="button"><img src="assets/photo-4.webp" alt="Ảnh cưới 4" loading="lazy" /></button>
+            <p class="lede">Bạn <strong>báo sớm</strong> giúp chúng&nbsp;mình để Vịt và Khủng&nbsp;Long chuẩn&nbsp;bị chỗ ngồi chu đáo nhé.</p>
+            <form class="rsvp" id="rsvp" action="https://docs.google.com/forms/d/e/1FAIpQLSfynOYzppDGv-35_hJpbilykOQlU91gRGQ9mTHqpCz9QiK70g/formResponse" method="post" novalidate>
+              <label class="field">
+                <span>Tên của bạn</span>
+                <input name="entry.708023101" autocomplete="name" maxlength="80" required aria-describedby="rsvp-error" />
+              </label>
+              <fieldset class="choices" id="rsvp-attend">
+                <legend>Bạn sẽ tham dự chứ?</legend>
+                <label><input type="radio" name="entry.696420221" value="Tất nhiên rồi" required /><span>Tất nhiên rồi</span></label>
+                <label><input type="radio" name="entry.696420221" value="Mình bận mất rồi" /><span>Mình bận mất rồi</span></label>
+              </fieldset>
+              <fieldset class="choices" id="rsvp-party">
+                <legend>Bạn đi mấy người (tính cả bạn)?</legend>
+                <label><input type="radio" name="entry.532501918" value="1" /><span>1</span></label>
+                <label><input type="radio" name="entry.532501918" value="2" /><span>2</span></label>
+                <label><input type="radio" name="entry.532501918" value="3+" /><span>3+</span></label>
+              </fieldset>
+              <label class="field">
+                <span>Lời chúc gửi chúng mình (không bắt buộc)</span>
+                <textarea name="entry.2011435420" rows="2" maxlength="500"></textarea>
+              </label>
+              <p class="rsvp-error" id="rsvp-error" role="alert"></p>
+              <button class="button" type="submit">Xác nhận</button>
+            </form>
+            <div class="rsvp-done" id="rsvp-done" hidden>
+              <p id="rsvp-done-text">Bạn đã xác nhận rồi, cảm ơn nhé!</p>
+              <button class="button button--quiet" type="button" id="rsvp-again">Gửi lại</button>
             </div>
           </div>
         </section>
 
         <section class="leaf thanks" aria-label="Lời cảm ơn">
           <div class="inner">
-            <img class="art" src="assets/thanks.webp?v=2" alt="Vịt và khủng long ôm nhau" loading="lazy" />
+            <img class="art" src="assets/thanks.webp?v=2" alt="Vịt và Khủng Long ôm nhau" loading="lazy" />
             <p class="script">Cảm ơn bạn</p>
-            <p>Ngày vui của chúng mình sẽ trọn vẹn hơn khi có bạn.</p>
+            <p id="thanks-note">Ngày vui của chúng mình sẽ trọn vẹn hơn khi có bạn.</p>
             <p class="signature">Linh &amp; Đạt</p>
+          </div>
+        </section>
+
+        <section class="leaf" aria-label="Ảnh cưới">
+          <div class="inner">
+            <h2>Ảnh cưới</h2>
+            <p class="lede">Vịt và Khủng Long ngoài đời thật. Bấm vào ảnh để xem lớn hơn.</p>
+            <div class="photos" id="photos">
+              <button type="button"><img src="assets/photo-1.webp" alt="Ảnh cưới 1" loading="lazy" /></button>
+              <button type="button"><img src="assets/photo-2.webp" alt="Ảnh cưới 2" loading="lazy" /></button>
+              <button type="button"><img src="assets/photo-3.webp" alt="Ảnh cưới 3" loading="lazy" /></button>
+              <button type="button"><img src="assets/photo-4.webp" alt="Ảnh cưới 4" loading="lazy" /></button>
+            </div>
           </div>
         </section>
       </main>
@@ -1540,11 +1781,12 @@
         const size = stage.clientWidth
         const unit = (size * 0.94) / 32
         const center = size / 2
-        // Classic heart curve; its box spans y -17..11.9, so shift by 2.54 to centre it.
+        // Classic heart curve; its box spans y -17..11.9, so shifting by 2.54 would centre it.
+        // It sits 1.6 units lower than centre so its lobes hug the couple's heads.
         const heartX = (t) => 16 * Math.sin(t) ** 3
         const heartY = (t) => 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)
-        const toStage = (x, y) => [center + unit * x, center - unit * (y + 2.54)]
-        const ground = toStage(0, -8)[1]
+        const toStage = (x, y) => [center + unit * x, center - unit * (y + 2.54 - 1.6)]
+        const ground = toStage(0, -6.4)[1]
         intro.style.setProperty("--walk", `${walk}px`)
         stage.style.setProperty("--ground", `${size - ground}px`)
 
@@ -1648,7 +1890,7 @@
       next.addEventListener("click", () => goTo(current() + 1))
       book.addEventListener("scroll", syncPager, { passive: true })
       document.addEventListener("keydown", (event) => {
-        if (lightbox.open) return
+        if (lightbox.open || event.target.closest("input, textarea")) return
         if (event.key === "ArrowLeft") goTo(current() - 1)
         if (event.key === "ArrowRight") goTo(current() + 1)
       })
@@ -1656,6 +1898,84 @@
       book.addEventListener("scrollend", () => (page = current()))
       addEventListener("resize", () => goTo(page, "instant"))
       syncPager()
+
+      // RSVP: post to Google Form in the background (no-cors, so success can't be read back),
+      // remember the answer on this device, then turn to the thanks page.
+      const rsvp = document.getElementById("rsvp")
+      const rsvpError = document.getElementById("rsvp-error")
+      const rsvpDone = document.getElementById("rsvp-done")
+      const rsvpParty = document.getElementById("rsvp-party")
+      const rsvpKey = "linh-dat-rsvp"
+      const declined = "Mình bận mất rồi"
+      const thanksPage = [...leaves].findIndex((leaf) => leaf.classList.contains("thanks"))
+      const saved = (() => {
+        try {
+          return JSON.parse(localStorage.getItem(rsvpKey))
+        } catch {
+          return null
+        }
+      })()
+      const showAnswer = (answer) => {
+        const away = answer.attend === declined
+        document.getElementById("rsvp-done-text").textContent = away
+          ? "Bạn đã báo không đi được rồi, cảm ơn nhé!"
+          : "Bạn đã xác nhận tham dự rồi, cảm ơn nhé!"
+        document.getElementById("thanks-note").textContent = away
+          ? "Tiếc là lần này chưa gặp được bạn, hẹn bạn dịp khác nhé."
+          : "Ngày vui của chúng mình sẽ trọn vẹn hơn khi có bạn."
+        rsvp.hidden = true
+        rsvpDone.hidden = false
+      }
+      if (saved) showAnswer(saved)
+      document.getElementById("rsvp-again").addEventListener("click", () => {
+        rsvpDone.hidden = true
+        rsvp.hidden = false
+        rsvp.elements["entry.708023101"].focus()
+      })
+      rsvp.addEventListener("input", () => {
+        const attend = rsvp.elements["entry.696420221"].value
+        rsvpParty.hidden = attend === declined
+        // Clear a flagged field as soon as it's filled in.
+        if (rsvp.elements["entry.708023101"].value.trim()) rsvp.elements["entry.708023101"].removeAttribute("aria-invalid")
+        if (attend) document.getElementById("rsvp-attend").removeAttribute("aria-invalid")
+        if (!rsvp.querySelector('[aria-invalid="true"]')) rsvpError.textContent = ""
+      })
+      rsvp.addEventListener("submit", async (event) => {
+        event.preventDefault()
+        const name = rsvp.elements["entry.708023101"]
+        const attend = rsvp.elements["entry.696420221"].value
+        name.value = name.value.trim()
+        name.setAttribute("aria-invalid", !name.value)
+        document.getElementById("rsvp-attend").setAttribute("aria-invalid", !attend)
+        if (!name.value || !attend) {
+          rsvpError.textContent = !name.value ? "Bạn điền tên giúp mình nhé." : "Bạn chọn có tham dự không giúp mình nhé."
+          return
+        }
+        rsvpError.textContent = ""
+        const data = new FormData(rsvp)
+        if (attend === declined) data.delete("entry.532501918")
+        const button = rsvp.querySelector("button")
+        button.disabled = true
+        button.textContent = "Đang gửi…"
+        try {
+          // The short pause keeps "Đang gửi…" readable and stops double taps.
+          await Promise.all([
+            fetch(rsvp.action, { method: "POST", mode: "no-cors", body: new URLSearchParams(data) }),
+            new Promise((resolve) => setTimeout(resolve, 600)),
+          ])
+          const answer = { name: name.value, attend }
+          try {
+            localStorage.setItem(rsvpKey, JSON.stringify(answer))
+          } catch {}
+          showAnswer(answer)
+          goTo(thanksPage)
+        } catch {
+          rsvpError.textContent = "Chưa gửi được, bạn kiểm tra mạng rồi thử lại nhé."
+        } finally {
+          button.disabled = false
+          button.textContent = "Xác nhận"
+        }
+      })
 
       // Wedding photos open full screen.
       const lightbox = document.getElementById("lightbox")
@@ -1687,21 +2007,21 @@
         if (event.key === "ArrowRight") show(shown + 1)
       })
 
-      // Month calendar, weeks start on Monday.
-      const cal = document.getElementById("cal")
-      const year = 2026
-      const month = 10
-      const weddingDay = 24
-      const lead = (new Date(year, month, 1).getDay() + 6) % 7
-      const days = new Date(year, month + 1, 0).getDate()
-      let rows = "<thead><tr>" + ["T2", "T3", "T4", "T5", "T6", "T7", "CN"].map((d) => `<th>${d}</th>`).join("") + "</tr></thead><tbody><tr>"
-      for (let cell = 0; cell < Math.ceil((lead + days) / 7) * 7; cell++) {
-        const day = cell - lead + 1
-        if (cell && cell % 7 === 0) rows += "</tr><tr>"
-        const isDay = day === weddingDay
-        rows += day > 0 && day <= days ? `<td${isDay ? ' class="is-day" aria-current="date"' : ""}>${day}</td>` : "<td></td>"
-      }
-      cal.innerHTML = rows + "</tr></tbody>"
+      // The wedding week between the weeks before and after (Monday first).
+      const weddingDay = new Date(2026, 10, 24)
+      const monday = weddingDay.getDate() - ((weddingDay.getDay() + 6) % 7)
+      const weekRow = (offset) =>
+        (offset ? '<tr class="is-near">' : "<tr>") +
+        Array.from({ length: 7 }, (_, i) => {
+          const date = new Date(2026, 10, monday + offset * 7 + i)
+          return offset === 0 && date.getDate() === weddingDay.getDate()
+            ? `<td class="is-day" aria-current="date">${date.getDate()}</td>`
+            : `<td>${date.getDate()}</td>`
+        }).join("") +
+        "</tr>"
+      document.getElementById("cal-head").innerHTML =
+        "<thead><tr>" + ["T2", "T3", "T4", "T5", "T6", "T7", "CN"].map((d) => `<th>${d}</th>`).join("") + "</tr></thead>"
+      document.getElementById("cal").innerHTML = "<tbody>" + [-1, 0, 1].map(weekRow).join("") + "</tbody>"
 
       // Countdown to the ceremony; on the day a greeting, afterwards days married (Vietnam time).
       const clock = document.getElementById("clock")
