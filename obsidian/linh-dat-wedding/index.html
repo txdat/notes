@@ -24,6 +24,8 @@
     <link rel="preload" as="image" href="assets/dino-walk.webp" />
     <link rel="preload" as="image" href="assets/duck-walk-b.webp" />
     <link rel="preload" as="image" href="assets/dino-walk-b.webp" />
+    <link rel="preload" as="image" href="assets/couple-front.webp" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23A8443F' d='M12 21s-7.5-4.6-9.6-9.1C.9 8.6 2.9 4.5 6.7 4.5c2.2 0 3.6 1.2 5.3 3.1 1.7-1.9 3.1-3.1 5.3-3.1 3.8 0 5.8 4.1 4.3 7.4C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E" />
     <style>
       :root {
         --paper: #fbf6ee;
@@ -123,18 +125,20 @@
         visibility: hidden;
       }
 
-      /* ---------- Intro: duck and dino walk to each other ---------- */
+      /* ---------- Intro: duck and dino walk to each other, their footprints become a heart ---------- */
       .intro {
+        --duck: #e8973a;
+        --dino: #86b07a;
         position: fixed;
         inset: 0;
         z-index: 10;
         display: grid;
         place-content: center;
         justify-items: center;
-        gap: 2rem;
+        gap: 1.25rem;
         background: var(--paper);
         overflow: hidden;
-        animation: intro-out 0.8s cubic-bezier(0.7, 0, 0.3, 1) 5s forwards;
+        animation: intro-out 0.8s cubic-bezier(0.7, 0, 0.3, 1) 6.4s forwards;
       }
 
       /* Hold the intro until the mascots have loaded, so slow networks still see the walk. */
@@ -145,10 +149,12 @@
         animation-play-state: paused !important;
       }
 
+      /* Square stage holding the heart; JS sets --ground (feet line) and the print positions. */
       .stage {
+        --ground: 128px;
         position: relative;
-        width: min(100vw, 420px);
-        height: 190px;
+        width: min(340px, 100vw - 16px);
+        aspect-ratio: 1;
       }
 
       .stage::after {
@@ -156,7 +162,7 @@
         position: absolute;
         left: 10%;
         right: 10%;
-        bottom: -6px;
+        bottom: calc(var(--ground) - 6px);
         height: 12px;
         border-radius: 50%;
         background: var(--beige);
@@ -165,8 +171,9 @@
 
       .actor {
         position: absolute;
-        bottom: 0;
+        bottom: var(--ground);
         left: 50%;
+        z-index: 1;
         display: grid;
       }
 
@@ -175,52 +182,100 @@
         grid-area: 1 / 1;
         transform-origin: 50% 100%;
         animation:
-          stride-lift 0.35s ease-in-out 6,
-          hop 0.5s ease-out 2.3s,
-          step-a 0.7s step-end 3;
+          stride-lift var(--stride) ease-in-out var(--steps),
+          hop 0.5s ease-out 2.85s,
+          step-a calc(var(--stride) * 2) step-end calc(var(--steps) / 2);
       }
 
       .actor img.step-b {
         opacity: 0;
         animation:
-          stride-lift 0.35s ease-in-out 6,
-          hop 0.5s ease-out 2.3s,
-          step-b 0.7s step-end 3;
+          stride-lift var(--stride) ease-in-out var(--steps),
+          hop 0.5s ease-out 2.85s,
+          step-b calc(var(--stride) * 2) step-end calc(var(--steps) / 2);
       }
 
+      /* At the heartbeat's peak both turn to face the guest. */
       .actor--duck {
-        animation: walk-duck 2.1s ease-in-out both;
+        --stride: 0.28s;
+        --steps: 10;
+        animation:
+          walk-duck 2.8s ease-in-out both,
+          vanish 0.01s step-start 4.6s forwards;
       }
 
       .actor--duck img {
-        height: 140px;
+        height: 100px;
       }
 
       .actor--dino {
-        animation: walk-dino 2.1s ease-in-out both;
+        --stride: 0.4s;
+        --steps: 7;
+        animation:
+          walk-dino 2.8s ease-in-out both,
+          vanish 0.01s step-start 4.6s forwards;
+      }
+
+      .actor-front {
+        position: absolute;
+        bottom: calc(var(--ground) - 2px);
+        left: 50%;
+        z-index: 1;
+        height: 126px;
+        translate: -45% 0;
+        transform-origin: 45% 100%;
+        opacity: 0;
+        animation: turn-front 0.45s ease-out 4.6s forwards;
       }
 
       .actor--dino img {
-        height: 168px;
+        height: 120px;
         scale: -1 1;
       }
 
-      .pop-heart {
+      /* Each print lands where a foot was planted, then flies to its place on the heart. */
+      .prints {
         position: absolute;
-        left: 50%;
+        inset: 0;
+        animation: beat 0.5s ease-in-out 4.45s;
+      }
+
+      .print {
+        position: absolute;
+        left: 0;
         top: 0;
-        width: 44px;
-        margin-left: -22px;
-        fill: var(--red);
+        width: 22px;
+        height: 22px;
+        margin: -11px 0 0 -11px;
+        fill: currentColor;
         opacity: 0;
-        animation: pop 1s ease-out 3s forwards;
+        translate: var(--gx) var(--gy);
+        rotate: var(--gr);
+        scale: 0.55 1;
+        animation:
+          print-in 0.15s ease-out var(--t) forwards,
+          fly 0.75s cubic-bezier(0.5, 0, 0.3, 1) var(--d) forwards,
+          redden 0.4s ease-in-out 4.5s forwards;
+      }
+
+      .print--duck {
+        color: var(--duck);
+      }
+
+      .print--dino {
+        width: 24px;
+        height: 24px;
+        margin: -12px 0 0 -12px;
+        color: var(--dino);
       }
 
       .intro-title {
-        font: 400 3.25rem/1 var(--script);
+        margin: 0;
+        font: 400 1.75rem/1.2 var(--script);
         color: var(--red);
+        text-align: center;
         opacity: 0;
-        animation: fade-up 0.7s ease-out 3.3s forwards;
+        animation: fade-up 0.7s ease-out 4.9s forwards;
       }
 
       .intro-skip {
@@ -237,35 +292,42 @@
         cursor: pointer;
       }
 
-      /* Six strides, each eased like a page turn (ease-in-out per segment).
-         The walk is capped so wide screens get short steps; the first step fades in. */
+      /* Each mascot keeps its own pace so they never step in unison: the duck takes ten quick
+         short steps, the dino seven long slow ones, and both arrive at 2.8s. Each step is eased
+         like a page turn. JS sets --walk so wide screens get short steps; the first step fades in. */
       @keyframes walk-duck {
         0% {
-          translate: calc(-1 * min(60vw, 320px) - 100%) 0;
           opacity: 0;
+          translate: calc(-100% + 6px - (var(--walk) + 6px) * 1) 0;
         }
-
-        16.67% {
+        10% {
           opacity: 1;
-          translate: calc((-1 * min(60vw, 320px) - 100%) * 0.8333 + (-100% + 6px) * 0.1667) 0;
+          translate: calc(-100% + 6px - (var(--walk) + 6px) * 0.9) 0;
         }
-
-        33.33% {
-          translate: calc((-1 * min(60vw, 320px) - 100%) * 0.6667 + (-100% + 6px) * 0.3333) 0;
+        20% {
+          translate: calc(-100% + 6px - (var(--walk) + 6px) * 0.8) 0;
         }
-
+        30% {
+          translate: calc(-100% + 6px - (var(--walk) + 6px) * 0.7) 0;
+        }
+        40% {
+          translate: calc(-100% + 6px - (var(--walk) + 6px) * 0.6) 0;
+        }
         50% {
-          translate: calc((-1 * min(60vw, 320px) - 100%) * 0.5 + (-100% + 6px) * 0.5) 0;
+          translate: calc(-100% + 6px - (var(--walk) + 6px) * 0.5) 0;
         }
-
-        66.67% {
-          translate: calc((-1 * min(60vw, 320px) - 100%) * 0.3333 + (-100% + 6px) * 0.6667) 0;
+        60% {
+          translate: calc(-100% + 6px - (var(--walk) + 6px) * 0.4) 0;
         }
-
-        83.33% {
-          translate: calc((-1 * min(60vw, 320px) - 100%) * 0.1667 + (-100% + 6px) * 0.8333) 0;
+        70% {
+          translate: calc(-100% + 6px - (var(--walk) + 6px) * 0.3) 0;
         }
-
+        80% {
+          translate: calc(-100% + 6px - (var(--walk) + 6px) * 0.2) 0;
+        }
+        90% {
+          translate: calc(-100% + 6px - (var(--walk) + 6px) * 0.1) 0;
+        }
         100% {
           translate: calc(-100% + 6px) 0;
         }
@@ -273,31 +335,28 @@
 
       @keyframes walk-dino {
         0% {
-          translate: min(60vw, 320px) 0;
           opacity: 0;
+          translate: calc(-6px + (var(--walk) + 6px) * 1) 0;
         }
-
-        16.67% {
+        14.29% {
           opacity: 1;
-          translate: calc(min(60vw, 320px) * 0.8333 + -6px * 0.1667) 0;
+          translate: calc(-6px + (var(--walk) + 6px) * 0.8571) 0;
         }
-
-        33.33% {
-          translate: calc(min(60vw, 320px) * 0.6667 + -6px * 0.3333) 0;
+        28.57% {
+          translate: calc(-6px + (var(--walk) + 6px) * 0.7143) 0;
         }
-
-        50% {
-          translate: calc(min(60vw, 320px) * 0.5 + -6px * 0.5) 0;
+        42.86% {
+          translate: calc(-6px + (var(--walk) + 6px) * 0.5714) 0;
         }
-
-        66.67% {
-          translate: calc(min(60vw, 320px) * 0.3333 + -6px * 0.6667) 0;
+        57.14% {
+          translate: calc(-6px + (var(--walk) + 6px) * 0.4286) 0;
         }
-
-        83.33% {
-          translate: calc(min(60vw, 320px) * 0.1667 + -6px * 0.8333) 0;
+        71.43% {
+          translate: calc(-6px + (var(--walk) + 6px) * 0.2857) 0;
         }
-
+        85.71% {
+          translate: calc(-6px + (var(--walk) + 6px) * 0.1429) 0;
+        }
         100% {
           translate: -6px 0;
         }
@@ -342,20 +401,61 @@
         }
       }
 
-      @keyframes pop {
-        0% {
+      @keyframes vanish {
+        to {
           opacity: 0;
-          scale: 0.2;
-          translate: 0 40px;
         }
-        40% {
+      }
+
+      /* Pops in stretched from the turn, then settles with the beat. */
+      @keyframes turn-front {
+        0% {
           opacity: 1;
-          scale: 1.2;
+          scale: 0.94 1.08;
+        }
+        50% {
+          opacity: 1;
+          scale: 1.04 0.97;
         }
         100% {
           opacity: 1;
           scale: 1;
-          translate: 0 -10px;
+        }
+      }
+
+      @keyframes print-in {
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* From flat on the ground, up in an arc, onto the heart. */
+      @keyframes fly {
+        0% {
+          translate: var(--gx) var(--gy);
+          rotate: var(--gr);
+          scale: 0.55 1;
+        }
+        50% {
+          translate: var(--mx) var(--my);
+        }
+        100% {
+          translate: var(--hx) var(--hy);
+          rotate: var(--hr);
+          scale: var(--hs);
+        }
+      }
+
+      /* One heartbeat; the two colours turn red at its peak. */
+      @keyframes beat {
+        35% {
+          scale: 1.12;
+        }
+      }
+
+      @keyframes redden {
+        to {
+          color: var(--red);
         }
       }
 
@@ -368,6 +468,36 @@
           opacity: 1;
           translate: 0 0;
         }
+      }
+
+      /* Reduced motion: hold the finished heart still for 1.5s, then fade out. */
+      .intro--short {
+        animation-name: intro-fade;
+        animation-delay: 1.5s;
+      }
+
+      .intro--short .actor,
+      .intro--short .actor img {
+        display: none;
+      }
+
+      .intro--short .actor-front,
+      .intro--short .intro-title {
+        opacity: 1;
+        animation: none;
+      }
+
+      .intro--short .prints {
+        animation: none;
+      }
+
+      .intro--short .print {
+        opacity: 1;
+        translate: var(--hx) var(--hy);
+        rotate: var(--hr);
+        scale: var(--hs);
+        color: var(--red);
+        animation: none;
       }
 
       @keyframes intro-out {
@@ -548,12 +678,19 @@
         -webkit-text-stroke: 0.02em currentColor;
       }
 
-      /* Couple drawing sitting inside a big soft heart. */
+      /* Couple standing under a flowered wedding arch, the title set into its crown. */
       .hero {
         position: relative;
-        width: min(88vw, 360px, 50dvh);
-        aspect-ratio: 22.2 / 16.5;
-        margin: 0.75rem auto 1rem;
+        width: min(92vw, 380px, 56dvh);
+        aspect-ratio: 222 / 210;
+        margin: 0 auto 0.75rem;
+      }
+
+      .hero .kicker {
+        position: absolute;
+        top: 22%;
+        left: 0;
+        right: 0;
       }
 
       .hero svg {
@@ -562,13 +699,23 @@
         width: 100%;
         height: 100%;
         fill: #f1d9d1;
+        /* A wedding arch whose feet fade into the paper. */
+        -webkit-mask-image: linear-gradient(#000 80%, transparent);
+        mask-image: linear-gradient(#000 80%, transparent);
+      }
+
+      .hero .hero-arch-line {
+        fill: none;
+        stroke: var(--red);
+        stroke-opacity: 0.35;
+        stroke-width: 1.5;
       }
 
       .hero img {
         position: absolute;
-        left: 20%;
-        top: 11%;
-        width: 60%;
+        left: 21%;
+        top: 37%;
+        width: 58%;
       }
 
       .names {
@@ -704,6 +851,12 @@
         width: min(100%, 72dvh);
         margin: 0 auto;
         aspect-ratio: 1;
+      }
+
+      /* For art whose bottom edge isn't one flat colour: dissolve it into --bottom. */
+      .scene--fade img {
+        -webkit-mask-image: linear-gradient(#000 78%, transparent);
+        mask-image: linear-gradient(#000 78%, transparent);
       }
 
       .scene img {
@@ -1097,6 +1250,12 @@
           animation: none;
         }
       }
+
+      @keyframes intro-fade {
+        to {
+          opacity: 0;
+        }
+      }
     </style>
   </head>
   <body class="intro-playing">
@@ -1107,18 +1266,33 @@
       <symbol id="heart" viewBox="0 0 24 24">
         <path d="M12 21s-7.5-4.6-9.6-9.1C.9 8.6 2.9 4.5 6.7 4.5c2.2 0 3.6 1.2 5.3 3.1 1.7-1.9 3.1-3.1 5.3-3.1 3.8 0 5.8 4.1 4.3 7.4C19.5 16.4 12 21 12 21z" />
       </symbol>
+      <symbol id="print-duck" viewBox="0 0 24 24">
+        <path d="M12 23c-1.6 0-2.6-1.2-2.4-2.7l.6-4.3L4.2 7.4c-.9-1.4.8-2.9 2.1-1.9l3.4 2.6.9-5.2c.3-1.6 2.5-1.6 2.8 0l.9 5.2 3.4-2.6c1.3-1 3 .5 2.1 1.9L13.8 16l.6 4.3c.2 1.5-.8 2.7-2.4 2.7z" />
+      </symbol>
+      <symbol id="print-dino" viewBox="0 0 24 24">
+        <ellipse cx="12" cy="16" rx="6.2" ry="5.8" />
+        <ellipse cx="5.4" cy="8.6" rx="2.3" ry="3" transform="rotate(-25 5.4 8.6)" />
+        <ellipse cx="12" cy="5.2" rx="2.4" ry="3.1" />
+        <ellipse cx="18.6" cy="8.6" rx="2.3" ry="3" transform="rotate(25 18.6 8.6)" />
+      </symbol>
+      <defs>
+        <g id="blossom-a"><ellipse cy="-4.2" rx="3.1" ry="4" transform="rotate(0)" fill="#f2bdb1" /><ellipse cy="-4.2" rx="3.1" ry="4" transform="rotate(72)" fill="#f2bdb1" /><ellipse cy="-4.2" rx="3.1" ry="4" transform="rotate(144)" fill="#f2bdb1" /><ellipse cy="-4.2" rx="3.1" ry="4" transform="rotate(216)" fill="#f2bdb1" /><ellipse cy="-4.2" rx="3.1" ry="4" transform="rotate(288)" fill="#f2bdb1" /><circle r="1.9" fill="#e0a34a" /></g>
+        <g id="blossom-b"><ellipse cy="-4.2" rx="3.1" ry="4" transform="rotate(0)" fill="#fffaf3" stroke="#e5b5a9" stroke-width=".6" /><ellipse cy="-4.2" rx="3.1" ry="4" transform="rotate(72)" fill="#fffaf3" stroke="#e5b5a9" stroke-width=".6" /><ellipse cy="-4.2" rx="3.1" ry="4" transform="rotate(144)" fill="#fffaf3" stroke="#e5b5a9" stroke-width=".6" /><ellipse cy="-4.2" rx="3.1" ry="4" transform="rotate(216)" fill="#fffaf3" stroke="#e5b5a9" stroke-width=".6" /><ellipse cy="-4.2" rx="3.1" ry="4" transform="rotate(288)" fill="#fffaf3" stroke="#e5b5a9" stroke-width=".6" /><circle r="1.8" fill="#e8b85a" /></g>
+        <path id="leaf" d="M0 0c2.4-3 2.4-7.5 0-10.5-2.4 3-2.4 7.5 0 10.5z" fill="#a9c393" />
+      </defs>
       <symbol id="chev-left" viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" /></symbol>
       <symbol id="chev-right" viewBox="0 0 16 16"><path d="m6 3 5 5-5 5" /></symbol>
       <symbol id="cross" viewBox="0 0 16 16"><path d="m3 3 10 10M13 3 3 13" /></symbol>
     </svg>
 
-    <div class="intro" id="intro" aria-hidden="true">
-      <div class="stage">
+    <div class="intro" id="intro">
+      <div class="stage" aria-hidden="true">
         <div class="actor actor--duck"><img src="assets/duck-walk.webp" alt="" /><img class="step-b" src="assets/duck-walk-b.webp" alt="" /></div>
         <div class="actor actor--dino"><img src="assets/dino-walk.webp" alt="" /><img class="step-b" src="assets/dino-walk-b.webp" alt="" /></div>
-        <svg class="pop-heart" viewBox="0 0 24 24"><use href="#heart" /></svg>
+        <img class="actor-front" src="assets/couple-front.webp" alt="" />
+        <div class="prints"></div>
       </div>
-      <p class="intro-title">Mình cưới nhau nhé!</p>
+      <p class="intro-title">Chào mừng bạn đến với<br />câu chuyện của chúng mình</p>
       <button class="intro-skip" type="button">Bỏ qua</button>
     </div>
 
@@ -1136,9 +1310,9 @@
           <p class="hint"><span class="hint-touch">Vuốt sang để xem tiếp</span><span class="hint-mouse">Bấm mũi tên để xem tiếp</span></p>
         </section>
 
-        <section class="leaf leaf--scene" style="--top: #FDF2E1; --bottom: #E1C6AA" aria-label="Chuyện tình, cảnh 2">
+        <section class="leaf leaf--scene" style="--top: #FDF2E1; --bottom: #E4CAAE" aria-label="Chuyện tình, cảnh 2">
           <div class="inner">
-            <figure class="scene">
+            <figure class="scene scene--fade">
               <img
                 src="assets/story-hotay.webp?v=2"
                 alt="Dạo bờ Hồ Tây: khủng long đỏ mặt tỏ tình tay không, vịt khoanh cánh chưa đồng ý"
@@ -1174,9 +1348,33 @@
 
         <section class="leaf leaf--cover" aria-label="Bìa thiệp">
           <div class="inner">
-            <p class="kicker">Lễ thành hôn</p>
             <figure class="hero">
-              <svg viewBox="0.9 4.5 22.2 16.5" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.1C.9 8.6 2.9 4.5 6.7 4.5c2.2 0 3.6 1.2 5.3 3.1 1.7-1.9 3.1-3.1 5.3-3.1 3.8 0 5.8 4.1 4.3 7.4C19.5 16.4 12 21 12 21z" /></svg>
+              <svg viewBox="0 0 222 210" aria-hidden="true">
+                <path d="M30 210V100a81 81 0 0 1 162 0v110z" />
+                <path class="hero-arch-line" d="M41 210V100a70 70 0 0 1 140 0v110" />
+                <use href="#leaf" transform="translate(31.8 83.2) rotate(-28) scale(0.9)" />
+                <use href="#leaf" transform="translate(35.9 69.7) rotate(-118) scale(0.9)" />
+                <use href="#leaf" transform="translate(43.8 54.7) rotate(-6) scale(0.9)" />
+                <use href="#leaf" transform="translate(70.5 29.9) rotate(-80) scale(0.9)" />
+                <use href="#leaf" transform="translate(86.0 23.0) rotate(32) scale(0.9)" />
+                <use href="#leaf" transform="translate(151.5 29.9) rotate(-20) scale(0.9)" />
+                <use href="#leaf" transform="translate(165.2 39.8) rotate(92) scale(0.9)" />
+                <use href="#leaf" transform="translate(182.5 62.0) rotate(12) scale(0.9)" />
+                <use href="#leaf" transform="translate(30.0 118.0) rotate(50) scale(0.85)" />
+                <use href="#leaf" transform="translate(30.0 138.0) rotate(-50) scale(0.85)" />
+                <use href="#leaf" transform="translate(192.0 128.0) rotate(-50) scale(0.85)" />
+                <use href="#blossom-a" transform="translate(39.5 62.0) rotate(0) scale(1.15)" />
+                <use href="#blossom-b" transform="translate(50.8 45.8) rotate(20) scale(0.8)" />
+                <use href="#blossom-a" transform="translate(61.1 36.2) rotate(40) scale(1.0)" />
+                <use href="#blossom-b" transform="translate(33.5 76.3) rotate(10) scale(0.7)" />
+                <use href="#blossom-b" transform="translate(99.7 19.8) rotate(0) scale(0.6)" />
+                <use href="#blossom-a" transform="translate(160.9 36.2) rotate(15) scale(0.95)" />
+                <use href="#blossom-b" transform="translate(173.0 47.9) rotate(30) scale(0.7)" />
+                <use href="#blossom-a" transform="translate(188.9 77.7) rotate(0) scale(0.6)" />
+                <use href="#blossom-b" transform="translate(30.0 128.0) rotate(10) scale(0.7)" />
+                <use href="#blossom-a" transform="translate(192.0 140.0) rotate(25) scale(0.6)" />
+              </svg>
+              <p class="kicker">Lễ thành hôn</p>
               <img src="assets/hero.webp?v=2" alt="Vịt vàng đội voan và khủng long xanh đeo nơ nắm tay nhau" />
             </figure>
             <h1 class="names">
@@ -1328,16 +1526,92 @@
         img.addEventListener("error", markMissing)
       }
 
-      // Intro plays on every load once the mascots are ready; tap anywhere or "Bỏ qua" to skip.
+      // One print per step for each mascot, placed where the foot lands, then flown onto a heart
+      // around the couple: duck prints make the left half, dino prints the right, bottom tip first.
+      // Paces must match .actor--duck / .actor--dino (--stride, --steps) and the image sizes.
+      function layoutFootprints() {
+        const stage = intro.querySelector(".stage")
+        const prints = intro.querySelector(".prints")
+        const walkers = {
+          duck: { steps: 10, stride: 0.28, foot: (100 * 591) / 700 / 2, scale: 1.6, mirror: -1 },
+          dino: { steps: 7, stride: 0.4, foot: (120 * 550) / 700 / 2, scale: 1.95, mirror: 1 },
+        }
+        const walk = Math.min(innerWidth * 0.6, 320)
+        const size = stage.clientWidth
+        const unit = (size * 0.94) / 32
+        const center = size / 2
+        // Classic heart curve; its box spans y -17..11.9, so shift by 2.54 to centre it.
+        const heartX = (t) => 16 * Math.sin(t) ** 3
+        const heartY = (t) => 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)
+        const toStage = (x, y) => [center + unit * x, center - unit * (y + 2.54)]
+        const ground = toStage(0, -8)[1]
+        intro.style.setProperty("--walk", `${walk}px`)
+        stage.style.setProperty("--ground", `${size - ground}px`)
+
+        // Right half from the bottom tip (t = π) up to the top dip (t = 0), sampled by arc length.
+        const samples = []
+        let length = 0
+        for (let i = 0, prev; i <= 400; i++) {
+          const t = Math.PI * (1 - i / 400)
+          const point = toStage(heartX(t), heartY(t))
+          if (prev) length += Math.hypot(point[0] - prev[0], point[1] - prev[1])
+          samples.push({ point, length })
+          prev = point
+        }
+        const along = (fraction) => {
+          const index = samples.findIndex((sample) => sample.length >= fraction * length)
+          const [x, y] = samples[index].point
+          const [nx, ny] = samples[Math.min(index + 1, samples.length - 1)].point
+          return { x, y, angle: (Math.atan2(nx - x, -(ny - y)) * 180) / Math.PI }
+        }
+
+        const html = []
+        for (const [side, { steps, stride, foot, scale, mirror }] of Object.entries(walkers)) {
+          for (let k = 1; k <= steps; k++) {
+            // Newest print (under the couple) goes to the bottom tip, oldest up by the dip.
+            const fraction = 0.07 + ((steps - k) * 0.83) / (steps - 1)
+            const slot = along(fraction)
+            const left = (walk + 6) * (1 - k / steps)
+            const gx = center + mirror * (left - 6 + foot)
+            const gy = ground + (k % 2 ? 4 : -2)
+            const gr = 90 * -mirror
+            const hx = center + (slot.x - center) * mirror
+            let hr = slot.angle * mirror
+            while (hr - gr > 180) hr -= 360
+            while (hr - gr < -180) hr += 360
+            const vars = {
+              gx: `${gx}px`,
+              gy: `${gy}px`,
+              gr: `${gr}deg`,
+              hx: `${hx}px`,
+              hy: `${slot.y}px`,
+              hr: `${hr}deg`,
+              mx: `${(gx + hx) / 2}px`,
+              my: `${Math.min(gy, slot.y) - 30}px`,
+              hs: scale,
+              t: `${k * stride - 0.1}s`,
+              d: `${3.2 + fraction * 0.55}s`,
+            }
+            const style = Object.entries(vars).map(([name, value]) => `--${name}:${value}`).join(";")
+            html.push(`<svg class="print print--${side}" viewBox="0 0 24 24" style="${style}"><use href="#print-${side}" /></svg>`)
+          }
+        }
+        prints.innerHTML = html.join("")
+      }
+
+      // The intro plays on every load once the mascots are ready; reduced-motion users get the
+      // finished heart for 1.5s instead. Tap anywhere or "Bỏ qua" to skip.
       const intro = document.getElementById("intro")
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) intro.classList.add("intro--short")
       const endIntro = () => {
         intro.remove()
         document.body.classList.remove("intro-playing")
       }
       intro.addEventListener("click", endIntro)
       intro.addEventListener("animationend", (event) => {
-        if (event.animationName === "intro-out") endIntro()
+        if (event.target === intro && ["intro-out", "intro-fade"].includes(event.animationName)) endIntro()
       })
+      layoutFootprints()
       const mascotsLoaded = [...intro.querySelectorAll("img")].map((img) => img.decode().catch(() => {}))
       const loadTimeout = new Promise((resolve) => setTimeout(resolve, 3000))
       Promise.race([Promise.all(mascotsLoaded), loadTimeout]).then(() => intro.classList.add("is-ready"))
