@@ -1267,28 +1267,93 @@
       }
 
       /* ---------- Album ---------- */
+      /* Four prints laid on the table: uncropped, each at its own height, tilted a little, the second
+         column dropped half a step. The stage takes the height the leaf has left and container units
+         size the prints from it, so all four fit without scrolling. The print width --w assumes 2:3
+         portraits (the photos' ratio): a print is 1.1w wide and 1.6w tall with its mat. */
+      .leaf--album > .inner {
+        display: flex;
+        flex-direction: column;
+        align-self: stretch;
+        margin: 0;
+      }
+
       .photos {
+        flex: 1;
+        min-height: 0;
+        container-type: size;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.5rem;
-        width: min(100%, 56dvh);
-        margin: 0 auto;
+        place-items: center;
       }
 
-      .photos button {
-        aspect-ratio: 1;
-        padding: 0;
+      .collage {
+        /* Two columns: 2 × 1.1w + gap wide, 2 × 1.6w + gap + drop tall, plus room for the tilt. */
+        --w: min(100cqw / 2.5, 100cqh / 3.95);
+        --drop: calc(var(--w) * 0.4);
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        gap: calc(var(--w) * 0.14);
+        padding-bottom: var(--drop);
+      }
+
+      /* Wide, short stage (landscape phones): one zig-zag row, which gives bigger prints than two
+         columns once the stage is wider than about 5:4. */
+      @container (aspect-ratio > 5/4) {
+        .collage {
+          --w: min(100cqw / 5, 100cqh / 2.1);
+          --drop: calc(var(--w) * 0.3);
+          grid-template-columns: repeat(4, auto);
+        }
+      }
+
+      .collage button {
+        width: calc(var(--w) * 1.1);
+        padding: calc(var(--w) * 0.05);
         border: 0;
-        border-radius: 14px;
-        overflow: hidden;
-        background: none;
+        border-radius: 6px;
+        background: var(--card);
+        box-shadow:
+          0 0 0 1px rgb(58 44 39 / 0.06),
+          0 12px 24px -14px rgb(58 44 39 / 0.5);
         cursor: zoom-in;
+        transform: translateY(var(--dy, 0)) rotate(var(--tilt));
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
       }
 
-      .photos img {
+      .collage button:nth-child(1) {
+        --tilt: -3deg;
+      }
+
+      .collage button:nth-child(2) {
+        --tilt: 2.5deg;
+        --dy: var(--drop);
+      }
+
+      .collage button:nth-child(3) {
+        --tilt: 2deg;
+      }
+
+      .collage button:nth-child(4) {
+        --tilt: -2.5deg;
+        --dy: var(--drop);
+      }
+
+      .collage img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        height: auto;
+        border-radius: 3px;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .collage button:hover {
+          z-index: 1;
+          transform: translateY(var(--dy, 0)) rotate(0deg) scale(1.04);
+          box-shadow:
+            0 0 0 1px rgb(58 44 39 / 0.06),
+            0 18px 30px -14px rgb(58 44 39 / 0.55);
+        }
       }
 
       .lightbox {
@@ -1300,6 +1365,8 @@
         padding: 0;
         border: 0;
         background: rgb(30 22 20 / 0.92);
+        /* Sideways swipes change the photo (script below) instead of panning. */
+        touch-action: none;
       }
 
       .lightbox[open] {
@@ -1723,15 +1790,17 @@
           </div>
         </section>
 
-        <section class="leaf" aria-label="Ảnh cưới">
+        <section class="leaf leaf--album" aria-label="Ảnh cưới">
           <div class="inner">
             <h2>Ảnh cưới</h2>
             <p class="lede">Vịt và Khủng Long ngoài đời thật. Bấm vào ảnh để xem lớn hơn.</p>
             <div class="photos" id="photos">
-              <button type="button"><img src="assets/photo-1.webp" alt="Ảnh cưới 1" loading="lazy" /></button>
-              <button type="button"><img src="assets/photo-2.webp" alt="Ảnh cưới 2" loading="lazy" /></button>
-              <button type="button"><img src="assets/photo-3.webp" alt="Ảnh cưới 3" loading="lazy" /></button>
-              <button type="button"><img src="assets/photo-4.webp" alt="Ảnh cưới 4" loading="lazy" /></button>
+              <div class="collage">
+                <button type="button"><img src="assets/photo-1.webp" alt="Ảnh cưới 1" width="1067" height="1600" loading="lazy" /></button>
+                <button type="button"><img src="assets/photo-2.webp" alt="Ảnh cưới 2" width="1067" height="1600" loading="lazy" /></button>
+                <button type="button"><img src="assets/photo-3.webp" alt="Ảnh cưới 3" width="1067" height="1600" loading="lazy" /></button>
+                <button type="button"><img src="assets/photo-4.webp" alt="Ảnh cưới 4" width="1067" height="1600" loading="lazy" /></button>
+              </div>
             </div>
           </div>
         </section>
@@ -2033,8 +2102,30 @@
       lightbox.querySelector(".close").addEventListener("click", () => lightbox.close())
       lightbox.querySelector(".prev").addEventListener("click", () => show(shown - 1))
       lightbox.querySelector(".next").addEventListener("click", () => show(shown + 1))
+      // Swipe left or right to change photo. A swipe also ends in a click, which must not close the
+      // viewer when it started on the dark backdrop.
+      let swipeX = null
+      let swiped = false
+      lightbox.addEventListener("pointerdown", (event) => {
+        swipeX = { x: event.clientX, y: event.clientY }
+        swiped = false
+      })
+      lightbox.addEventListener("pointerup", (event) => {
+        if (!swipeX) return
+        const dx = event.clientX - swipeX.x
+        const dy = event.clientY - swipeX.y
+        swipeX = null
+        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return
+        swiped = true
+        show(dx < 0 ? shown + 1 : shown - 1)
+      })
+      lightbox.addEventListener("pointercancel", () => (swipeX = null))
+      // Without this Chrome still treats a fast swipe as a fling and swallows the next tap to stop it.
+      lightbox.addEventListener("touchmove", (event) => event.preventDefault(), { passive: false })
+      lightboxImg.draggable = false
       lightbox.addEventListener("click", (event) => {
-        if (event.target === lightbox) lightbox.close()
+        if (swiped) swiped = false
+        else if (event.target === lightbox) lightbox.close()
       })
       lightbox.addEventListener("keydown", (event) => {
         if (event.key === "ArrowLeft") show(shown - 1)
