@@ -1796,10 +1796,10 @@
             <p class="lede">Vịt và Khủng Long ngoài đời thật. Bấm vào ảnh để xem lớn hơn.</p>
             <div class="photos" id="photos">
               <div class="collage">
-                <button type="button"><img src="assets/photo-1.webp" alt="Ảnh cưới 1" width="1067" height="1600" loading="lazy" /></button>
-                <button type="button"><img src="assets/photo-2.webp" alt="Ảnh cưới 2" width="1067" height="1600" loading="lazy" /></button>
-                <button type="button"><img src="assets/photo-3.webp" alt="Ảnh cưới 3" width="1067" height="1600" loading="lazy" /></button>
-                <button type="button"><img src="assets/photo-4.webp" alt="Ảnh cưới 4" width="1067" height="1600" loading="lazy" /></button>
+                <button type="button"><img src="assets/photo-1.webp" data-full="assets/photo-1.jpg" alt="Ảnh cưới 1" width="1067" height="1600" loading="lazy" /></button>
+                <button type="button"><img src="assets/photo-2.webp" data-full="assets/photo-2.jpg" alt="Ảnh cưới 2" width="1067" height="1600" loading="lazy" /></button>
+                <button type="button"><img src="assets/photo-3.webp" data-full="assets/photo-3.jpg" alt="Ảnh cưới 3" width="1067" height="1600" loading="lazy" /></button>
+                <button type="button"><img src="assets/photo-4.webp" data-full="assets/photo-4.jpg" alt="Ảnh cưới 4" width="1067" height="1600" loading="lazy" /></button>
               </div>
             </div>
           </div>
@@ -2089,8 +2089,15 @@
         const ready = photos.filter((img) => img.naturalWidth)
         if (!ready.length) return
         shown = (index + ready.length) % ready.length
-        lightboxImg.src = ready[shown].src
-        lightboxImg.alt = ready[shown].alt
+        const photo = ready[shown]
+        lightboxImg.src = photo.src
+        lightboxImg.alt = photo.alt
+        // The viewer shows the original photo: the thumbnail stands in until it has loaded.
+        const full = new Image()
+        full.onload = () => {
+          if (ready[shown] === photo) lightboxImg.src = full.src
+        }
+        full.src = photo.dataset.full
       }
       photos.forEach((img) =>
         img.parentElement.addEventListener("click", () => {
