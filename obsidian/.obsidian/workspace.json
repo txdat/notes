@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "5409906c75b39689",
+        "id": "afad50b0c541da8f",
         "type": "tabs",
         "children": [
           {
-            "id": "e745c052af6ac14c",
+            "id": "793251f245971d14",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -179,8 +179,22 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "e745c052af6ac14c",
+  "active": "793251f245971d14",
   "lastOpenFiles": [
+    "engineering/message-queue/rabbitmq.md",
+    "engineering/design-patterns/creational - singleton.md",
+    "engineering/programming-languages/javascript-typescript/nodejs design patterns.md",
+    "engineering/postgresql/streaming-replication.md",
+    "engineering/postgresql/mvcc.md",
+    "engineering/postgresql/buffer-manager.md",
+    "engineering/design-patterns/behavioral - strategy.md",
+    "engineering/design-data-intensive-applications/part 2. distributed data.md",
+    "engineering/roadmaps/banking-trading backend engineer.md",
+    "engineering/programming-languages/javascript-typescript/nodebook.md",
+    "engineering/programming-languages/javascript-typescript/nodejs event loop.md",
+    "engineering/programming-languages/javascript-typescript/asynchronous task runner.md",
+    "engineering/roadmaps/low-level system engineer.md",
+    "engineering/design-data-intensive-applications/ddia-2.md",
     "linh-dat-wedding/prompts/13-dino-tuxedo.md",
     "linh-dat-wedding/assets/story-aisle-bg.webp",
     "linh-dat-wedding/assets/story-birthday-bg.webp",
@@ -204,28 +218,15 @@
     "linh-dat-wedding/prompts/08-thanks.md",
     "linh-dat-wedding/prompts/07-map.md",
     "linh-dat-wedding/prompts/05-story-birthday.md",
-    "linh-dat-wedding/prompts/03-story-ramen.md",
-    "linh-dat-wedding/prompts/02-hero.md",
-    "linh-dat-wedding/prompts/01-reference.md",
     "linh-dat-wedding/prompts",
     "linh-dat-wedding/index.html",
     "linh-dat-wedding/drafts/storyboard.png",
-    "linh-dat-wedding/drafts/storyboard.md",
     "linh-dat-wedding/drafts/storyboard.html",
     "linh-dat-wedding/drafts/reference.png",
     "linh-dat-wedding/drafts",
     "linh-dat-wedding/assets",
     "linh-dat-wedding",
     "linh-dat-wedding/sedtRmfuC",
-    "engineering/design-data-intensive-applications/ddia-2.md",
-    "engineering/design-data-intensive-applications/part 2. distributed data.md",
-    "engineering/design-data-intensive-applications/part 1. foundations.md",
-    "engineering/message-queue/kafka.md",
-    "engineering/message-queue/rabbitmq.md",
-    "computer-science/algorithms/topology sorting.md",
-    "computer-science/algorithms/graph.md",
-    "computer-science/algorithms/policy-based data structure.md",
-    "computer-science/algorithms/dynamic programming.md",
     "Untitled.canvas"
   ]
 }
