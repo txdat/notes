@@ -2,7 +2,7 @@
 <html lang="vi">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
     <title>Khánh Linh &amp; Xuân Đạt - Thiệp cưới</title>
     <meta name="description" content="Trân trọng kính mời bạn đến dự lễ thành hôn của Khánh Linh và Xuân Đạt, 11:00 Thứ Ba, 24.11.2026." />
     <meta property="og:type" content="website" />
@@ -52,6 +52,8 @@
         margin: 0;
         overflow: hidden;
         overscroll-behavior: none;
+        /* Pinch and double-tap zoom are off: the card is laid out for one screen. */
+        touch-action: pan-x pan-y;
       }
 
       body {
@@ -1520,7 +1522,7 @@
         <img class="actor-front" src="assets/couple-front.webp" alt="" />
         <div class="prints"></div>
       </div>
-      <p class="intro-title">Chào mừng bạn đến với<br />câu chuyện của chúng mình</p>
+      <p class="intro-title">Chào mừng <span class="guest">bạn</span> đến với<br />câu chuyện của chúng mình</p>
       <button class="intro-skip" type="button">Bỏ qua</button>
     </div>
 
@@ -1617,7 +1619,7 @@
         <section class="leaf" aria-label="Lời mời">
           <div class="inner">
             <h2>Trân trọng kính mời</h2>
-            <p class="lede">bạn và gia đình đến chung vui trong ngày thành hôn của chúng mình</p>
+            <p class="lede"><span class="guest" data-guest="start">bạn</span><span class="household"> và gia đình</span> đến chung vui trong ngày thành hôn của chúng mình</p>
             <div class="families">
               <div class="family">
                 <h3>Nhà gái</h3>
@@ -1650,7 +1652,7 @@
               <li class="is-main"><time datetime="2026-11-24T11:00+07:00">11:00</time><strong>Lễ thành hôn</strong></li>
               <li><time datetime="2026-11-24T11:30+07:00">11:30</time><strong>Khai tiệc</strong></li>
             </ol>
-            <p class="lede schedule-note">Mời bạn đến sớm một chút để chụp ảnh cùng cô dâu chú rể.</p>
+            <p class="lede schedule-note">Mời <span class="guest">bạn</span> đến sớm một chút để chụp ảnh cùng cô dâu chú rể.</p>
             <dl class="clock" id="clock" aria-label="Thời gian còn lại đến lễ cưới">
               <div><dt>ngày</dt><dd data-unit="d">0</dd></div>
               <div><dt>giờ</dt><dd data-unit="h">0</dd></div>
@@ -1681,7 +1683,7 @@
         <section class="leaf" aria-label="Xác nhận tham dự">
           <div class="inner">
             <h2>Xác nhận tham dự</h2>
-            <p class="lede">Bạn <strong>báo sớm</strong> giúp chúng&nbsp;mình để Vịt và Khủng&nbsp;Long chuẩn&nbsp;bị chỗ ngồi chu đáo nhé.</p>
+            <p class="lede"><span class="guest" data-guest="start">Bạn</span> <strong>báo sớm</strong> giúp chúng&nbsp;mình để Vịt và Khủng&nbsp;Long chuẩn&nbsp;bị chỗ ngồi chu đáo nhé.</p>
             <form class="rsvp" id="rsvp" action="https://docs.google.com/forms/d/e/1FAIpQLSfynOYzppDGv-35_hJpbilykOQlU91gRGQ9mTHqpCz9QiK70g/formResponse" method="post" novalidate>
               <label class="field">
                 <span>Tên của bạn</span>
@@ -1715,8 +1717,8 @@
         <section class="leaf thanks" aria-label="Lời cảm ơn">
           <div class="inner">
             <img class="art" src="assets/thanks.webp?v=2" alt="Vịt và Khủng Long ôm nhau" loading="lazy" />
-            <p class="script">Cảm ơn bạn</p>
-            <p id="thanks-note">Ngày vui của chúng mình sẽ trọn vẹn hơn khi có bạn.</p>
+            <p class="script">Cảm ơn <span class="guest">bạn</span></p>
+            <p id="thanks-note">Ngày vui của chúng mình sẽ trọn vẹn hơn khi có <span class="guest">bạn</span>.</p>
             <p class="signature">Linh &amp; Đạt</p>
           </div>
         </section>
@@ -1759,6 +1761,38 @@
 
     <script>
       const weddingAt = new Date("2026-11-24T11:00:00+07:00")
+
+      // Zoom stays off. touch-action covers Android; Safari needs the gesture and two-finger taps
+      // stopped by hand.
+      for (const type of ["gesturestart", "gesturechange", "gestureend"])
+        document.addEventListener(type, (event) => event.preventDefault(), { passive: false })
+      document.addEventListener(
+        "touchmove",
+        (event) => {
+          if (event.touches.length > 1) event.preventDefault()
+        },
+        { passive: false },
+      )
+
+      // The invitee's name comes from the link (?to=Chị Hoa, also ?name= or ?guest=); without one
+      // the card keeps the plain "bạn" written in the markup.
+      const guest = (() => {
+        const params = new URLSearchParams(location.search)
+        const raw = (params.get("to") ?? params.get("name") ?? params.get("guest") ?? "")
+          .replace(/\s+/g, " ")
+          .trim()
+        if (!raw) return { start: "Bạn", mid: "bạn", name: "" }
+        const name = raw.slice(0, 40)
+        return { start: name, mid: name[0].toLocaleLowerCase("vi") + name.slice(1), name }
+      })()
+      if (guest.name) {
+        for (const el of document.querySelectorAll(".guest"))
+          el.textContent = el.dataset.guest === "start" ? guest.start : guest.mid
+        // A named guest replaces the whole "bạn và gia đình": one friend gets "Chị Hoa", a
+        // household is invited with ?to=Gia đình chị Hoa.
+        for (const el of document.querySelectorAll(".household")) el.hidden = true
+        document.querySelector('#rsvp input[name="entry.708023101"]').value = guest.name
+      }
 
       // Striped placeholder for images not uploaded yet.
       for (const img of document.querySelectorAll(".book img")) {
@@ -1918,11 +1952,11 @@
       const showAnswer = (answer) => {
         const away = answer.attend === declined
         document.getElementById("rsvp-done-text").textContent = away
-          ? "Bạn đã báo không đi được rồi, cảm ơn nhé!"
-          : "Bạn đã xác nhận tham dự rồi, cảm ơn nhé!"
+          ? `${guest.start} đã báo không đi được rồi, cảm ơn nhé!`
+          : `${guest.start} đã xác nhận tham dự rồi, cảm ơn nhé!`
         document.getElementById("thanks-note").textContent = away
-          ? "Tiếc là lần này chưa gặp được bạn, hẹn bạn dịp khác nhé."
-          : "Ngày vui của chúng mình sẽ trọn vẹn hơn khi có bạn."
+          ? `Tiếc là lần này chưa gặp được ${guest.mid}, hẹn ${guest.mid} dịp khác nhé.`
+          : `Ngày vui của chúng mình sẽ trọn vẹn hơn khi có ${guest.mid}.`
         rsvp.hidden = true
         rsvpDone.hidden = false
       }
