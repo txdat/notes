@@ -8,7 +8,7 @@
       name="description"
       content="Trân trọng kính mời bạn đến dự lễ thành hôn của Khánh Linh và Xuân Đạt, 11:00 Thứ Ba, 24.11.2026."
     />
-    <meta name="theme-color" content="#d8ccb8" />
+    <meta name="theme-color" content="#e7dfd1" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Khánh Linh &amp; Xuân Đạt - Thiệp cưới" />
     <meta
@@ -93,27 +93,12 @@
         margin: 0;
         color: var(--ink);
         font: 400 1.0625rem/1.5 var(--serif);
-        background: #e4dacb;
+        /* Cream cotton paper (assets/cotton.webp, drafts/bake-cotton.sh), a seamless tile that
+           scrolls with the cards, so the pieces stay put on it. */
+        background: #e7dfd1 url(assets/cotton.webp) 0 0 / 512px;
         -webkit-tap-highlight-color: transparent;
         /* Pinch and double-tap zoom are off for the card; the photo viewer zooms on its own. */
         touch-action: pan-x pan-y;
-      }
-
-      /* The linen stays put behind the cards; a fixed layer works on iOS, where a fixed background
-         does not. It is sized to the largest viewport, so it doesn't rescale and jump when the
-         browser's address bar shows or hides during a swipe. */
-      body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 100vh;
-        height: 100lvh;
-        z-index: -1;
-        background:
-          radial-gradient(ellipse at 50% 45%, transparent 50%, rgb(40 28 18 / 0.1) 100%),
-          #e4dacb url(assets/linen.webp) center / cover;
       }
 
       [hidden] {
@@ -167,7 +152,7 @@
       }
 
       /* Positions inside are laid out on a 100 × 184.6 cqw board; --t and --h are where a screen's pieces start
-         and end on that board, so no empty linen is left between screens. */
+         and end on that board, so no empty paper is left between screens. */
       .stage {
         --t: 0;
         --h: 184.6;
@@ -206,22 +191,25 @@
         background: url(assets/monogram-wine.webp) center / contain no-repeat;
       }
 
-      /* Paper: one still image with the cotton colour, grain, light fall-off and shadow already baked in
-         (assets/card-sheet.webp), so the browser draws a plain picture. CSS filters, masks and blend
-         modes here made mobile browsers drop the paper now and then while scrolling. The image has
-         120px of shadow margin around a 1000 × 1396 sheet, hence the negative inset. */
+      /* Paper: a flat cotton sheet with a punched paper-lace edge. The edge and its shadow are one
+         still image (assets/lace.webp, drafts/bake-lace.py) drawn as a 9-slice: corners stay put and
+         the scallops repeat along the sides, so every card size keeps round holes. No filters,
+         masks or blend modes: they made mobile browsers flicker or drop the paper while scrolling.
+         The image is drawn at 11.7px per cqw; its shadow margin (30 95 135 70 px) lies outside the
+         card, and the slices (120 185 225 160 px) reach just past the lace into plain paper. */
       .card {
-        --sheet: url(assets/card-sheet.webp);
-        --bleed: -8.6% -12%;
         isolation: isolate;
       }
 
       .card::before {
         content: "";
         position: absolute;
-        inset: var(--bleed);
+        inset: -2.564cqw -8.12cqw -11.538cqw -5.983cqw;
         z-index: -1;
-        background: var(--sheet) center / 100% 100% no-repeat;
+        border-style: solid;
+        border-width: 10.256cqw 15.812cqw 19.231cqw 13.675cqw;
+        border-image: url(assets/lace.webp) 120 185 225 160 round;
+        background: #fcfbf8 padding-box;
       }
 
       /* A photo printed with a cream border, wider at the bottom, matt and a little faded. */
@@ -232,6 +220,19 @@
         /* box-shadow, not drop-shadow filters: it stays steady while the page scrolls and the
            prints settle, where filters were re-rendered frame by frame and flickered. */
         box-shadow: var(--shadow-box);
+      }
+
+      /* A print lying on a card sits right on the paper: a short, tight shadow, not the long soft
+         one it throws on the table, which made it look like it hovered over the card. */
+      .p3 .print,
+      .p4 .print,
+      .p6 .print {
+        box-shadow:
+          0 0 0 0.5px rgb(30 20 12 / 0.1),
+          0 0 2px rgb(30 20 12 / 0.18),
+          0.5px 1px 0.5px rgb(30 20 12 / 0.3),
+          1px 3px 4px rgb(30 20 12 / 0.2),
+          2px 7px 10px rgb(30 20 12 / 0.14);
       }
 
       .print img {
@@ -312,8 +313,8 @@
         display: grid;
         place-content: start center;
         justify-items: center;
-        padding-top: 27%;
-        gap: 0.5em;
+        padding-top: 17%;
+        gap: 0;
         text-align: center;
         opacity: 0;
         /* Hidden below the envelope's bottom edge (62.4% down the card) as it slides out; the clip
@@ -321,8 +322,23 @@
         clip-path: inset(-20% -15% 37.6% -15%);
       }
 
+      /* The names fill the part of the card that shows above the envelope. */
+      .envelope .letter > .caps:first-child {
+        margin-bottom: 0.9em;
+      }
+
       .envelope .letter b {
-        font: 400 1.45em/1.1 var(--serif);
+        font: 400 2.1em/1.05 var(--serif);
+      }
+
+      .envelope .letter .amp {
+        margin: 0.05em 0;
+        color: var(--gold-ink);
+        font: italic 400 1.5em/1 var(--serif);
+      }
+
+      .envelope .letter .rule {
+        margin: 0.9em auto 0.8em;
       }
 
       .envelope .closed {
@@ -463,7 +479,7 @@
       /* ── 3 · Trân trọng kính mời ──────────────────────────────── */
       .p3 .stage {
         --t: 18;
-        --h: 185;
+        --h: 178;
       }
 
       .p3 .card {
@@ -544,7 +560,8 @@
 
       .p3 .print {
         left: 65cqw;
-        top: 141cqw;
+        /* tucked onto the card's bottom corner, not hanging below it */
+        top: 134cqw;
         width: 31cqw;
         padding: 2cqw 2cqw 6.5cqw;
         rotate: 6deg;
@@ -830,8 +847,6 @@
         display: flex;
         flex-direction: column;
         padding: 9cqw 9cqw 8cqw;
-        --sheet: url(assets/card-landscape-sheet.webp);
-        --bleed: -12% -8.6%;
         font-size: 3.6cqw;
       }
 
@@ -1063,8 +1078,6 @@
         top: 3cqw;
         width: 88cqw;
         aspect-ratio: 1396 / 1000;
-        --sheet: url(assets/card-landscape-sheet.webp);
-        --bleed: -12% -8.6%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1105,6 +1118,52 @@
         white-space: nowrap;
       }
 
+      /* ── Music ─────────────────────────────────────────────────────
+         A single note in the corner: it sways while the song plays, and stands still, dimmed,
+         when it is muted. Only its rotation animates, so the page beneath is never repainted. */
+      .note {
+        position: fixed;
+        right: max(14px, env(safe-area-inset-right));
+        bottom: max(14px, env(safe-area-inset-bottom));
+        z-index: 5;
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-items: center;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: #fcfbf8;
+        color: var(--wine);
+        box-shadow:
+          0 0 0 0.5px rgb(30 20 12 / 0.12),
+          0.5px 1px 1px rgb(30 20 12 / 0.25),
+          1px 4px 8px rgb(30 20 12 / 0.18);
+        cursor: pointer;
+      }
+
+      .note svg {
+        width: 22px;
+        height: 22px;
+        opacity: 0.5;
+        transform-origin: 40% 85%;
+        transition: opacity 0.3s;
+      }
+
+      .note.is-playing svg {
+        opacity: 1;
+        animation: sway 1.4s ease-in-out infinite alternate;
+      }
+
+      @keyframes sway {
+        from {
+          rotate: -14deg;
+        }
+        to {
+          rotate: 14deg;
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
         *,
         *::before,
@@ -1132,7 +1191,10 @@
             <img class="back" src="assets/envelope-open.webp" alt="" />
             <span class="letter card">
               <span class="caps press">Lễ thành hôn</span>
-              <b class="press">Khánh Linh &amp; Xuân Đạt</b>
+              <b class="press">Khánh Linh</b>
+              <i class="amp press">&amp;</i>
+              <b class="press">Xuân Đạt</b>
+              <span class="rule"></span>
               <span class="caps press">24 · 11 · 2026</span>
             </span>
             <img class="pocket" src="assets/envelope-pocket.webp" alt="" />
@@ -1296,6 +1358,14 @@
       </section>
     </main>
 
+    <audio id="music" src="assets/music.m4a" loop preload="none"></audio>
+    <button class="note" id="note" type="button" aria-label="Bật nhạc" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <ellipse cx="9" cy="18" rx="3.6" ry="2.8" transform="rotate(-20 9 18)" fill="currentColor" />
+        <path fill="currentColor" d="M11 3h1.8c.4 2.4 1.9 3.6 3.4 4.8 1.9 1.5 3.1 3.6 2.1 6.6-.4-2.5-2.2-4.1-3.9-4.6l-1.6-.5V18H11z" />
+      </svg>
+    </button>
+
     <dialog class="lightbox" id="lightbox" aria-label="Ảnh cưới">
       <figure><img alt="" /></figure>
       <div class="nav">
@@ -1382,8 +1452,47 @@
         envelope.classList.add("is-open")
         envelope.setAttribute("aria-label", "Xem thiệp")
         screens[0].classList.add("is-open")
+        if (musicWanted()) playMusic()
         const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches
         setTimeout(() => goTo(screens[1]), reduced ? 300 : 3000)
+      })
+
+      // Music: starts with the envelope (a tap, so browsers allow sound) unless the guest muted it
+      // before on this device; the note toggles it. It pauses while the page is in the background.
+      const music = document.getElementById("music")
+      const note = document.getElementById("note")
+      const musicKey = "linh-dat-music"
+      const musicWanted = () => {
+        try {
+          return localStorage.getItem(musicKey) !== "off"
+        } catch {
+          return true
+        }
+      }
+      const rememberMusic = (on) => {
+        try {
+          on ? localStorage.removeItem(musicKey) : localStorage.setItem(musicKey, "off")
+        } catch {}
+      }
+      const playMusic = () => music.play().catch(showMusic)
+      const showMusic = () => {
+        const on = !music.paused
+        note.classList.toggle("is-playing", on)
+        note.setAttribute("aria-pressed", String(on))
+        note.setAttribute("aria-label", on ? "Tắt nhạc" : "Bật nhạc")
+      }
+      music.addEventListener("play", showMusic)
+      music.addEventListener("pause", showMusic)
+      note.addEventListener("click", () => {
+        rememberMusic(music.paused)
+        music.paused ? playMusic() : music.pause()
+      })
+      let resumeMusic = false
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          resumeMusic = !music.paused
+          music.pause()
+        } else if (resumeMusic) playMusic()
       })
 
       // RSVP: post to the Google Form in the background (no-cors, so success can't be read back),
