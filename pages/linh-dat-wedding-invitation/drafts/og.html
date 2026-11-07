@@ -59,18 +59,18 @@
         color: var(--ink);
         font-family: var(--serif);
         background:
-          radial-gradient(ellipse at 50% 45%, transparent 40%, rgb(40 28 18 / 0.22) 100%),
-          linear-gradient(rgb(60 44 30 / 0.12), rgb(60 44 30 / 0.12)),
-          #d8ccb8 url(../assets/linen.webp) center / cover;
+          radial-gradient(ellipse at 50% 45%, transparent 45%, rgb(40 28 18 / 0.12) 100%),
+          #e7dfd1 url(../assets/cotton.webp) 0 0 / 512px;
       }
       img { display: block; }
       /* The open envelope as on page 1: back with the flap up, the card pulled out, then the front pocket. */
       .envelope {
         position: absolute;
         left: 260px;
-        top: 178px;
+        /* small enough that the whole envelope, flap and all, fits in the frame */
+        top: 238px;
         width: 680px;
-        scale: 0.8;
+        scale: 0.62;
         transform-origin: 50% 0;
         aspect-ratio: 900 / 670;
       }
@@ -82,26 +82,31 @@
       .card {
         left: 6%;
         width: 88%;
-        top: -140px;
-        aspect-ratio: 1396 / 1000;
+        top: -178px;
+        /* tall enough that its foot stays inside the pocket */
+        aspect-ratio: 5 / 4;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-top: 32px;
+        padding-top: 70px;
         text-align: center;
         isolation: isolate;
         text-shadow: 0 1px 0 rgb(255 255 255 / 0.75);
       }
+      /* The page's lace-edged sheet (assets/lace.webp, a 9-slice), drawn at 1.75 image px per px. */
       .card::before {
         content: "";
         position: absolute;
-        inset: -12% -8.6%;
+        inset: -17.1px -54.3px -77.1px -40px;
         z-index: -1;
-        background: url(../assets/card-landscape-sheet.webp) center / 100% 100% no-repeat;
+        border-style: solid;
+        border-width: 68.6px 105.7px 128.6px 91.4px;
+        border-image: url(../assets/lace.webp) 120 185 225 160 round;
+        background: #fcfbf8 padding-box;
       }
       .caps { font-size: 19px; letter-spacing: 0.3em; text-transform: uppercase; }
       .kicker { color: var(--gold-ink); }
-      .names { margin: 10px 0 0; font: 400 54px/1.05 var(--serif); }
+      .names { margin: 10px 0 0; font: 400 50px/1.05 var(--serif); }
       .amp { color: var(--wine); font-style: italic; }
       .rule { width: 60px; height: 1px; margin: 20px 0; background: var(--gold-ink); opacity: 0.6; }
       .when { margin: 0; font-size: 29px; letter-spacing: 0.04em; }
