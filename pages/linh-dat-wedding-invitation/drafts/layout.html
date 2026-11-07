@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Bản nháp bố cục · Thiệp cưới Khánh Linh &amp; Xuân Đạt</title>
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Be+Vietnam+Pro:wght@300;400&display=swap&subset=vietnamese"
+      rel="stylesheet"
+    />
+    <style>
+      /* Layout draft: five phone-height screens, real photos, minimal styling. */
+      :root {
+        --paper: #f6f0e6;
+        --ink: #3b2a20;
+        --ink-soft: #6e5a4a;
+        --gold: #a8844f;
+        --line: rgb(168 132 79 / 0.45);
+        --serif: "Cormorant Garamond", serif;
+        --sans: "Be Vietnam Pro", system-ui, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-snap-type: y proximity;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font: 300 0.9375rem/1.6 var(--sans);
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .screen {
+        position: relative;
+        min-height: 100svh;
+        max-width: 480px;
+        margin: 0 auto;
+        overflow: hidden;
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .kicker {
+        margin: 0;
+        font: 400 0.6875rem/1.4 var(--sans);
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+
+      .serif {
+        font-family: var(--serif);
+        font-weight: 500;
+      }
+
+      .center {
+        text-align: center;
+      }
+
+      /* 1 · Envelope: tap to open, then the page glides to the cover. */
+      .env-screen {
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 1.5rem;
+      }
+
+      .envelope {
+        position: relative;
+        width: min(100%, 360px);
+        aspect-ratio: 10 / 7;
+        margin-top: 18svh;
+        padding: 0;
+        border: 1px solid var(--line);
+        background: #ede3d1;
+        box-shadow: 0 18px 40px -16px rgb(59 42 32 / 0.4);
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .envelope .letter {
+        position: absolute;
+        inset: 6% 5% 4%;
+        z-index: 1;
+        display: grid;
+        place-content: center;
+        gap: 0.35rem;
+        background: #fbf8f2;
+        border: 1px solid var(--line);
+        outline: 1px solid var(--line);
+        outline-offset: -6px;
+        transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.4s;
+      }
+
+      .envelope .letter b {
+        font: 500 1.75rem/1 var(--serif);
+      }
+
+      .envelope .pocket,
+      .envelope .flap {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        overflow: visible;
+      }
+
+      .envelope .pocket {
+        z-index: 2;
+        height: 100%;
+      }
+
+      .envelope .flap {
+        z-index: 4;
+        height: 58%;
+        transform-origin: top;
+        transition:
+          transform 0.7s cubic-bezier(0.5, 0, 0.3, 1),
+          z-index 0s 0.35s;
+        filter: drop-shadow(0 2px 2px rgb(59 42 32 / 0.14));
+      }
+
+      .envelope .front {
+        position: absolute;
+        z-index: 3;
+        left: 0;
+        right: 0;
+        bottom: 8%;
+        margin: 0;
+        text-align: center;
+      }
+
+      .envelope .front .title {
+        display: block;
+        font: 500 1.375rem/1.2 var(--serif);
+        letter-spacing: 0.06em;
+      }
+
+      .envelope .front .to {
+        display: block;
+        font: italic 400 1rem/1.3 var(--serif);
+        color: var(--ink-soft);
+      }
+
+      .seal {
+        position: absolute;
+        z-index: 5;
+        left: 50%;
+        top: 56%;
+        width: 68px;
+        height: 68px;
+        margin: -34px 0 0 -34px;
+        display: grid;
+        place-items: center;
+        border-radius: 47% 53% 50% 50% / 52% 48% 52% 48%;
+        background:
+          radial-gradient(circle at 35% 30%, rgb(255 255 255 / 0.22), transparent 45%),
+          radial-gradient(circle, #8e3039 55%, #7a2630 70%, #5e1b24 100%);
+        box-shadow:
+          0 2px 4px rgb(0 0 0 / 0.25),
+          inset 0 0 0 5px rgb(0 0 0 / 0.08);
+        color: #e8cfa0;
+        font: 500 1.25rem/1 var(--serif);
+        transition:
+          opacity 0.35s,
+          transform 0.35s;
+      }
+
+      .envelope.is-open .seal {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      .envelope.is-open .flap {
+        transform: rotateX(180deg);
+        z-index: 0;
+      }
+
+      .envelope.is-open .letter {
+        transform: translateY(-58%);
+      }
+
+      .env-screen .hint {
+        margin: 2.5rem 0 0;
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+      }
+
+      /* 2 · Cover: full-bleed photo, ivory fades top and bottom for the type. */
+      /* The photo starts below the title so the couple never sits under the type. */
+      .cover img {
+        position: absolute;
+        inset: 27% 0 0;
+        width: 100%;
+        height: 73%;
+        object-fit: cover;
+        object-position: 50% 30%;
+      }
+
+      .cover::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 1;
+      }
+
+      .cover::before {
+        top: 0;
+        height: 46%;
+        background: linear-gradient(var(--paper) 52%, rgb(246 240 230 / 0.6) 72%, transparent);
+      }
+
+
+      .cover .top,
+      .cover .bottom {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+      }
+
+      .cover .top {
+        padding-top: 7svh;
+      }
+
+      .cover h1 {
+        margin: 0.6rem 0 0.4rem;
+        font: 500 2.6rem/1.05 var(--serif);
+      }
+
+      .cover h1 i {
+        display: block;
+        font-weight: 400;
+        font-size: 0.55em;
+        color: var(--gold);
+      }
+
+      .cover .date {
+        font: 500 1.125rem/1 var(--serif);
+        letter-spacing: 0.25em;
+      }
+
+      .cover .bottom {
+        margin-top: auto;
+        padding-bottom: 5svh;
+        color: #fff;
+        font: italic 400 1.0625rem/1.4 var(--serif);
+      }
+
+      .cover .bottom b {
+        display: block;
+        font: normal 500 1.375rem/1.3 var(--serif);
+      }
+
+      .cue {
+        display: block;
+        margin: 0.75rem auto 0;
+        width: 1px;
+        height: 28px;
+        background: currentColor;
+        opacity: 0.7;
+      }
+
+      /* 3 · Invitation: photo in an arch, then the facts. */
+      .invite {
+        justify-content: center;
+        padding: 6svh 1.5rem;
+        text-align: center;
+      }
+
+      .arch {
+        width: min(62%, 38svh * 0.75);
+        margin: 0 auto 1.5rem;
+        padding: 6px;
+        border: 1px solid var(--line);
+        border-radius: 999px 999px 0 0;
+      }
+
+      .arch img {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        border-radius: 999px 999px 0 0;
+      }
+
+      .families {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        font-size: 0.8125rem;
+        line-height: 1.5;
+        color: var(--ink-soft);
+      }
+
+      .families p {
+        margin: 0.2rem 0 0;
+      }
+
+      .invite .lede {
+        margin: 1.25rem 0;
+        font: italic 400 1.125rem/1.45 var(--serif);
+        color: var(--ink-soft);
+      }
+
+      .invite .couple {
+        margin: 0;
+        font: 500 1.625rem/1.25 var(--serif);
+      }
+
+      .invite .couple i {
+        color: var(--gold);
+        font-weight: 400;
+      }
+
+      /* 4 · When & where: photo on top, facts on paper below (no type over faces). */
+      .when .photo {
+        position: relative;
+        height: 40svh;
+      }
+
+      .when .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 28%;
+      }
+
+      .when .photo::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 45%;
+        background: linear-gradient(transparent, var(--paper));
+      }
+
+      .when .facts {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 1.5rem 5svh;
+        text-align: center;
+      }
+
+      .when .time {
+        margin: 0.5rem 0 0;
+        font: 500 3.25rem/1 var(--serif);
+      }
+
+      .when .day {
+        margin: 0.5rem 0 0;
+        font: 400 1.25rem/1.3 var(--serif);
+        letter-spacing: 0.12em;
+      }
+
+      .when .lunar {
+        margin: 0.25rem 0 0;
+        font: italic 400 1rem/1.3 var(--serif);
+        color: var(--ink-soft);
+      }
+
+      .when hr {
+        width: 48px;
+        margin: 1.5rem auto;
+        border: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .when .venue {
+        margin: 0;
+        font: 500 1.375rem/1.3 var(--serif);
+      }
+
+      .when .addr {
+        margin: 0.35rem 0 0;
+        font-size: 0.875rem;
+        color: var(--ink-soft);
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+
+      .btn {
+        padding: 0.7rem 1.1rem;
+        border: 1px solid currentColor;
+        background: transparent;
+        color: inherit;
+        font: 400 0.6875rem/1 var(--sans);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+
+      .btn.solid {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: var(--paper);
+      }
+
+      /* 5 · Gallery: editorial grid, no text. */
+      .gallery {
+        justify-content: center;
+        padding: 3svh 0.75rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        grid-template-rows: 1fr 1fr 0.85fr;
+        grid-template-areas:
+          "a b"
+          "a c"
+          "d d";
+        gap: 0.5rem;
+        height: min(88svh, 760px);
+      }
+
+      .grid img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .grid .a { grid-area: a; }
+      .grid .b { grid-area: b; }
+      .grid .c { grid-area: c; }
+      .grid .d { grid-area: d; }
+
+      /* 6 · RSVP & farewell. */
+      .rsvp .photo {
+        position: relative;
+        height: 38svh;
+      }
+
+      .rsvp .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 40%;
+      }
+
+      .rsvp .photo::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 40%;
+        background: linear-gradient(transparent, var(--paper));
+      }
+
+      .rsvp form {
+        display: grid;
+        gap: 0.75rem;
+        padding: 0.5rem 1.75rem 0;
+        text-align: center;
+      }
+
+      .rsvp input[type="text"],
+      .rsvp select {
+        width: 100%;
+        padding: 0.7rem 0.25rem;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        background: transparent;
+        color: var(--ink);
+        font: 400 1.0625rem/1.2 var(--serif);
+        text-align: center;
+      }
+
+      .choice {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+      }
+
+      .choice label {
+        padding: 0.65rem 0.25rem;
+        border: 1px solid var(--line);
+        font-size: 0.8125rem;
+      }
+
+      .choice input {
+        display: none;
+      }
+
+      .choice input:checked + span {
+        color: var(--gold);
+        font-weight: 400;
+      }
+
+      .rsvp .sign {
+        margin: auto 0 0;
+        padding: 1.5rem 0 4svh;
+        text-align: center;
+        font: italic 500 1.75rem/1 var(--serif);
+        color: var(--gold);
+      }
+
+      /* Position dots. */
+      .dots {
+        position: fixed;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: grid;
+        gap: 10px;
+        z-index: 10;
+      }
+
+      .dots a {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        border: 1px solid var(--gold);
+        background: rgb(246 240 230 / 0.6);
+      }
+
+      .dots a.on {
+        background: var(--gold);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="dots" aria-label="Các phần của thiệp">
+      <a href="#s1" class="on" aria-label="Phong bì"></a>
+      <a href="#s2" aria-label="Lễ thành hôn"></a>
+      <a href="#s3" aria-label="Lời mời"></a>
+      <a href="#s4" aria-label="Thời gian và địa điểm"></a>
+      <a href="#s5" aria-label="Ảnh cưới"></a>
+      <a href="#s6" aria-label="Xác nhận tham dự"></a>
+    </nav>
+
+    <!-- 1 · Envelope -->
+    <section class="screen env-screen" id="s1">
+      <button class="envelope" id="envelope" type="button" aria-label="Mở thiệp">
+        <span class="letter"><span class="kicker">Lễ thành hôn</span><b>Linh &amp; Đạt</b><span class="kicker">24 · 11 · 2026</span></span>
+        <svg class="pocket" viewBox="0 0 100 70" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 0L47 38Q50 40 53 38L100 0V70H0z" fill="#e6dac5" />
+          <path d="M0 70L44 33Q50 29 56 33L100 70z" fill="#ebe1cf" stroke="rgb(168 132 79 / .35)" stroke-width=".25" vector-effect="non-scaling-stroke" />
+        </svg>
+        <span class="front">
+          <span class="title">Thiệp mời</span>
+          <span class="to" id="to" hidden>Kính gửi <b class="guest"></b></span>
+        </span>
+        <svg class="flap" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 0H100L53 96Q50 100 47 96z" fill="#e9dec9" stroke="rgb(168 132 79 / .4)" stroke-width="1" vector-effect="non-scaling-stroke" />
+        </svg>
+        <span class="seal">L·Đ</span>
+      </button>
+      <p class="hint">Chạm để mở thiệp</p>
+    </section>
+
+    <!-- 2 · Cover -->
+    <section class="screen cover" id="s2">
+      <img src="../assets/cover.webp" alt="Khánh Linh và Xuân Đạt" />
+      <div class="top">
+        <p class="kicker">Lễ thành hôn</p>
+        <h1>Khánh Linh<i>&amp;</i>Xuân Đạt</h1>
+        <p class="date">24 · 11 · 2026</p>
+      </div>
+    </section>
+
+    <!-- 3 · Invitation -->
+    <section class="screen invite" id="s3">
+      <div class="arch"><img src="../assets/p9566.webp" alt="" /></div>
+      <div class="families">
+        <div>
+          <p class="kicker">Nhà trai</p>
+          <p>Ông Trần Xuân Kế<br />Bà Nguyễn Thị Thanh Xuân</p>
+        </div>
+        <div>
+          <p class="kicker">Nhà gái</p>
+          <p>Ông Nguyễn Minh Tuân<br />Bà Hồ Thị Thu Huyền</p>
+        </div>
+      </div>
+      <p class="lede">Trân trọng kính mời <span class="guest">Quý khách</span><br />đến dự lễ thành hôn của</p>
+      <p class="couple">Xuân Đạt <i>&amp;</i> Khánh Linh</p>
+    </section>
+
+    <!-- 4 · When & where -->
+    <section class="screen when" id="s4">
+      <div class="photo"><img src="../assets/p9170.webp" alt="" /></div>
+      <div class="facts">
+        <p class="kicker">Thứ Ba</p>
+        <p class="time">11:00</p>
+        <p class="day">24 · 11 · 2026</p>
+        <p class="lunar">16 tháng 10 năm Bính Ngọ</p>
+        <hr />
+        <p class="venue">Trung tâm sự kiện Âu Cơ</p>
+        <p class="addr">1A Nguyễn Hữu Cầu, P. Hải Dương, TP. Hải Phòng</p>
+        <div class="buttons">
+          <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Trung+t%C3%A2m+t%E1%BB%95+ch%E1%BB%A9c+s%E1%BB%B1+ki%E1%BB%87n+%C3%82u+C%C6%A1+1A+Nguy%E1%BB%85n+H%E1%BB%AFu+C%E1%BA%A7u+H%E1%BA%A3i+Ph%C3%B2ng" target="_blank" rel="noopener">Chỉ đường</a>
+          <a class="btn" href="#">Lưu vào lịch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 · Gallery -->
+    <section class="screen gallery" id="s5">
+      <div class="grid">
+        <img class="a" src="../assets/p9333.webp" alt="" />
+        <img class="b" src="../assets/p9620.webp" alt="" />
+        <img class="c" src="../assets/p9459.webp" alt="" />
+        <img class="d" src="../assets/p9049.webp" alt="" />
+      </div>
+    </section>
+
+    <!-- 6 · RSVP & farewell -->
+    <section class="screen rsvp" id="s6">
+      <div class="photo"><img src="../assets/p9746.webp" alt="" /></div>
+      <form onsubmit="return false">
+        <p class="kicker">Xác nhận tham dự</p>
+        <input type="text" name="name" placeholder="Tên của Quý khách" />
+        <div class="choice">
+          <label><input type="radio" name="attend" checked /><span>Sẽ tham dự</span></label>
+          <label><input type="radio" name="attend" /><span>Rất tiếc không thể</span></label>
+        </div>
+        <select name="count">
+          <option>1 người</option>
+          <option>2 người</option>
+          <option>3 người</option>
+          <option>4 người trở lên</option>
+        </select>
+        <button class="btn solid" type="submit">Gửi xác nhận</button>
+      </form>
+      <p class="sign">Linh &amp; Đạt</p>
+    </section>
+
+    <script>
+      const to = new URLSearchParams(location.search).get("to")?.trim().slice(0, 60)
+      if (to) {
+        for (const el of document.querySelectorAll(".guest")) el.textContent = to
+        document.getElementById("to").hidden = false
+        document.querySelector('input[name="name"]').value = to
+      }
+
+      // Opening the envelope plays once, then glides to the cover.
+      const envelope = document.getElementById("envelope")
+      envelope.addEventListener("click", () => {
+        if (envelope.classList.contains("is-open")) return document.getElementById("s2").scrollIntoView({ behavior: "smooth" })
+        envelope.classList.add("is-open")
+        const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches
+        setTimeout(() => document.getElementById("s2").scrollIntoView({ behavior: "smooth" }), reduce ? 0 : 1500)
+      })
+
+      const dots = [...document.querySelectorAll(".dots a")]
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries)
+            if (e.isIntersecting)
+              dots.forEach((d) => d.classList.toggle("on", d.getAttribute("href") === "#" + e.target.id))
+        },
+        { threshold: 0.55 },
+      )
+      document.querySelectorAll(".screen").forEach((s) => io.observe(s))
+    </script>
+  </body>
+</html>

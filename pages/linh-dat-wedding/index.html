@@ -1365,8 +1365,10 @@
         padding: 0;
         border: 0;
         background: rgb(30 22 20 / 0.92);
-        /* Sideways swipes change the photo (script below) instead of panning. */
+        /* All gestures on the viewer are handled by the script below (pinch, drag, swipe). */
         touch-action: none;
+        /* clip keeps a zoomed photo from ever scrolling the viewer. */
+        overflow: clip;
       }
 
       .lightbox[open] {
@@ -1378,6 +1380,29 @@
         max-width: 94vw;
         max-height: 80dvh;
         border-radius: 8px;
+        /* Zoom and pan live in custom properties so the script only sets numbers. */
+        transform: translate(var(--px, 0px), var(--py, 0px)) scale(var(--zoom, 1));
+        transition: transform 0.18s ease;
+        cursor: zoom-in;
+        touch-action: none;
+        user-select: none;
+        -webkit-user-drag: none;
+        -webkit-touch-callout: none;
+      }
+
+      /* Fingers on the photo: no easing, the photo follows them. */
+      .lightbox img.is-gesturing {
+        transition: none;
+      }
+
+      .lightbox.is-zoomed img {
+        cursor: grab;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .lightbox img {
+          transition: none;
+        }
       }
 
       .lightbox button {
@@ -1831,8 +1856,8 @@
     <script>
       const weddingAt = new Date("2026-11-24T11:00:00+07:00")
 
-      // Zoom stays off. touch-action covers Android; Safari needs the gesture and two-finger taps
-      // stopped by hand.
+      // Zoom stays off for the card. touch-action covers Android; Safari needs the gesture and
+      // two-finger taps stopped by hand. The photo viewer below keeps its own zoom.
       for (const type of ["gesturestart", "gesturechange", "gestureend"])
         document.addEventListener(type, (event) => event.preventDefault(), { passive: false })
       document.addEventListener(
@@ -1852,7 +1877,10 @@
           .trim()
         if (!raw) return { start: "Bạn", mid: "bạn", name: "" }
         const name = raw.slice(0, 40)
-        return { start: name, mid: name[0].toLocaleLowerCase("vi") + name.slice(1), name }
+        // Only a leading form of address is lowercased mid-sentence ("chị Hoa"); a bare name keeps its capital.
+        const lower = name[0].toLocaleLowerCase("vi") + name.slice(1)
+        const address = /^(anh|chị|em|bạn|cô|chú|dì|cậu|mợ|thím|bác|ông|bà|thầy|sếp|gia đình|vợ chồng|cả nhà|nhà|các|hai)(\s|$)/
+        return { start: name, mid: address.test(lower.toLocaleLowerCase("vi")) ? lower : name, name }
       })()
       if (guest.name) {
         for (const el of document.querySelectorAll(".guest"))
@@ -2090,6 +2118,7 @@
         if (!ready.length) return
         shown = (index + ready.length) % ready.length
         const photo = ready[shown]
+        resetZoom()
         lightboxImg.src = photo.src
         lightboxImg.alt = photo.alt
         // The viewer shows the original photo: the thumbnail stands in until it has loaded.
@@ -2109,34 +2138,170 @@
       lightbox.querySelector(".close").addEventListener("click", () => lightbox.close())
       lightbox.querySelector(".prev").addEventListener("click", () => show(shown - 1))
       lightbox.querySelector(".next").addEventListener("click", () => show(shown + 1))
+      // The photo zooms freely: pinch it, scroll on it, or double tap (double click) it. While it's
+      // bigger than the screen it can be dragged around, and a drag then looks around instead of
+      // changing the photo.
+      const MAX_ZOOM = 5
+      let zoom = 1
+      let panX = 0
+      let panY = 0
+      const applyZoom = () => {
+        lightboxImg.style.setProperty("--zoom", zoom)
+        lightboxImg.style.setProperty("--px", `${panX}px`)
+        lightboxImg.style.setProperty("--py", `${panY}px`)
+        lightbox.classList.toggle("is-zoomed", zoom > 1)
+      }
+      const clampPan = () => {
+        // The photo slides until its edge meets the screen edge, no further.
+        const maxX = Math.max(0, (lightboxImg.offsetWidth * zoom - lightbox.clientWidth) / 2)
+        const maxY = Math.max(0, (lightboxImg.offsetHeight * zoom - lightbox.clientHeight) / 2)
+        panX = Math.min(maxX, Math.max(-maxX, panX))
+        panY = Math.min(maxY, Math.max(-maxY, panY))
+      }
+      // Zoom around a screen point, so the spot under the finger or the cursor stays put.
+      const zoomTo = (next, clientX, clientY) => {
+        const box = lightbox.getBoundingClientRect()
+        const x = clientX - (box.left + box.width / 2)
+        const y = clientY - (box.top + box.height / 2)
+        const onPhotoX = (x - panX) / zoom
+        const onPhotoY = (y - panY) / zoom
+        zoom = Math.min(MAX_ZOOM, Math.max(1, next))
+        panX = x - zoom * onPhotoX
+        panY = y - zoom * onPhotoY
+        clampPan()
+        applyZoom()
+      }
+      function resetZoom() {
+        zoom = 1
+        panX = 0
+        panY = 0
+        lightboxImg.classList.add("is-gesturing")
+        applyZoom()
+        requestAnimationFrame(() => lightboxImg.classList.remove("is-gesturing"))
+      }
+      const zoomAtCenter = (factor) => {
+        const box = lightbox.getBoundingClientRect()
+        zoomTo(zoom * factor, box.left + box.width / 2, box.top + box.height / 2)
+      }
+      // Two fingers: distance for the zoom, midpoint for both the anchor and a two-finger drag.
+      const pointers = new Map()
+      let pinch = null
+      const pinchOf = () => {
+        const box = lightbox.getBoundingClientRect()
+        const [a, b] = [...pointers.values()]
+        return {
+          distance: Math.hypot(a.x - b.x, a.y - b.y),
+          x: (a.x + b.x) / 2 - (box.left + box.width / 2),
+          y: (a.y + b.y) / 2 - (box.top + box.height / 2),
+          zoom,
+          panX,
+          panY,
+        }
+      }
       // Swipe left or right to change photo. A swipe also ends in a click, which must not close the
       // viewer when it started on the dark backdrop.
-      let swipeX = null
-      let swiped = false
+      let swipeFrom = null
+      let moved = false
+      let lastTap = 0
+      let lastTapX = 0
+      let lastTapY = 0
       lightbox.addEventListener("pointerdown", (event) => {
-        swipeX = { x: event.clientX, y: event.clientY }
-        swiped = false
+        moved = false
+        // The buttons stay buttons: no gesture starts on them.
+        if (event.target.closest("button")) return
+        pointers.set(event.pointerId, { x: event.clientX, y: event.clientY })
+        lightboxImg.classList.add("is-gesturing")
+        if (pointers.size === 1) {
+          swipeFrom = { x: event.clientX, y: event.clientY }
+          pinch = null
+        } else {
+          swipeFrom = null
+          pinch = pinchOf()
+        }
       })
-      lightbox.addEventListener("pointerup", (event) => {
-        if (!swipeX) return
-        const dx = event.clientX - swipeX.x
-        const dy = event.clientY - swipeX.y
-        swipeX = null
-        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return
-        swiped = true
+      lightbox.addEventListener("pointermove", (event) => {
+        const last = pointers.get(event.pointerId)
+        if (!last) return
+        pointers.set(event.pointerId, { x: event.clientX, y: event.clientY })
+        if (pointers.size >= 2 && pinch) {
+          const now = pinchOf()
+          const onPhotoX = (pinch.x - pinch.panX) / pinch.zoom
+          const onPhotoY = (pinch.y - pinch.panY) / pinch.zoom
+          zoom = pinch.distance ? pinch.zoom * (now.distance / pinch.distance) : pinch.zoom
+          zoom = Math.min(MAX_ZOOM, Math.max(1, zoom))
+          panX = now.x - zoom * onPhotoX
+          panY = now.y - zoom * onPhotoY
+          clampPan()
+          applyZoom()
+          moved = true
+          return
+        }
+        if (pointers.size !== 1) return
+        if (swipeFrom && Math.hypot(event.clientX - swipeFrom.x, event.clientY - swipeFrom.y) > 6) moved = true
+        if (zoom === 1) return
+        panX += event.clientX - last.x
+        panY += event.clientY - last.y
+        clampPan()
+        applyZoom()
+      })
+      const endGesture = (event) => {
+        pointers.delete(event.pointerId)
+        if (pointers.size < 2) pinch = null
+        if (!pointers.size) lightboxImg.classList.remove("is-gesturing")
+        if (!swipeFrom || pointers.size) return
+        const dx = event.clientX - swipeFrom.x
+        const dy = event.clientY - swipeFrom.y
+        swipeFrom = null
+        // Zoomed in, a sideways drag pans the photo instead of turning the page.
+        if (zoom > 1 || Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return
+        moved = true
         show(dx < 0 ? shown + 1 : shown - 1)
+      }
+      lightbox.addEventListener("pointerup", endGesture)
+      lightbox.addEventListener("pointercancel", (event) => {
+        pointers.delete(event.pointerId)
+        if (pointers.size < 2) pinch = null
+        if (pointers.size) return
+        swipeFrom = null
+        lightboxImg.classList.remove("is-gesturing")
       })
-      lightbox.addEventListener("pointercancel", () => (swipeX = null))
       // Without this Chrome still treats a fast swipe as a fling and swallows the next tap to stop it.
       lightbox.addEventListener("touchmove", (event) => event.preventDefault(), { passive: false })
+      lightbox.addEventListener(
+        "wheel",
+        (event) => {
+          event.preventDefault()
+          const step = Math.min(2, Math.max(0.5, Math.exp(-event.deltaY / 400)))
+          zoomTo(zoom * step, event.clientX, event.clientY)
+        },
+        { passive: false },
+      )
       lightboxImg.draggable = false
       lightbox.addEventListener("click", (event) => {
-        if (swiped) swiped = false
-        else if (event.target === lightbox) lightbox.close()
+        if (moved) {
+          moved = false
+          return
+        }
+        if (event.target === lightboxImg) {
+          // Double tap (or double click) zooms in under the finger, and back out again.
+          const doubled =
+            Date.now() - lastTap < 320 &&
+            Math.hypot(event.clientX - lastTapX, event.clientY - lastTapY) < 40
+          lastTap = doubled ? 0 : Date.now()
+          lastTapX = event.clientX
+          lastTapY = event.clientY
+          if (doubled) zoomTo(zoom > 1 ? 1 : 2.5, event.clientX, event.clientY)
+        } else if (event.target === lightbox) {
+          lightbox.close()
+        }
       })
       lightbox.addEventListener("keydown", (event) => {
         if (event.key === "ArrowLeft") show(shown - 1)
         if (event.key === "ArrowRight") show(shown + 1)
+        // Keyboard zoom for the same range of motion the fingers get.
+        if (event.key === "+" || event.key === "=") zoomAtCenter(1.5)
+        if (event.key === "-" || event.key === "_") zoomAtCenter(1 / 1.5)
+        if (event.key === "0") resetZoom()
       })
 
       // The wedding week between the weeks before and after (Monday first).

@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Bản mẫu thiết kế · Thiệp cưới Khánh Linh &amp; Xuân Đạt</title>
+    <meta name="robots" content="noindex" />
+    <!-- Draft only: the final page self-hosts subsetted fonts. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Be+Vietnam+Pro:wght@300;400;500&display=swap&subset=vietnamese"
+      rel="stylesheet"
+    />
+    <style>
+      /* ── Design tokens ─────────────────────────────────────────── */
+      :root {
+        --paper: #f6f0e6;
+        --paper-deep: #ede3d1;
+        --card: #fbf8f2;
+        --ink: #3b2a20;
+        --ink-soft: #6e5a4a;
+        --gold: #a8844f;
+        --gold-soft: #c9ab7a;
+        --line: rgb(168 132 79 / 0.45);
+        --wax: #7a2630;
+
+        --serif: "Cormorant Garamond", "Times New Roman", serif;
+        --sans: "Be Vietnam Pro", system-ui, sans-serif;
+        --cjk: "Noto Serif CJK SC", "Noto Serif SC", "Songti SC", serif;
+
+        --sheet-max: 440px;
+        --space: clamp(1.25rem, 5vw, 2rem);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        font: 300 0.9375rem/1.7 var(--sans);
+        background-color: var(--paper);
+        /* Faint paper grain, generated in-line so it costs no request. */
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .38 0 0 0 0 .3 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+
+      /* ── Draft scaffolding (not part of the invitation) ───────── */
+      .doc {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 2.5rem var(--space) 5rem;
+      }
+
+      .doc > header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .doc h1,
+      .doc h2.doc-title {
+        font: 500 1.75rem/1.2 var(--serif);
+        margin: 0 0 0.25rem;
+      }
+
+      .doc h2.doc-title {
+        font-size: 1.375rem;
+        margin: 4rem 0 1.25rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .doc .note {
+        color: var(--ink-soft);
+        font-size: 0.8125rem;
+        margin: 0;
+      }
+
+      .swatches {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 0.75rem;
+      }
+
+      .swatch {
+        border: 1px solid var(--line);
+        background: var(--card);
+        font-size: 0.75rem;
+      }
+
+      .swatch i {
+        display: block;
+        height: 64px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .swatch span {
+        display: block;
+        padding: 0.4rem 0.6rem;
+      }
+
+      .type-samples > div {
+        padding: 1rem 0;
+        border-bottom: 1px dashed var(--line);
+      }
+
+      .type-samples small {
+        display: block;
+        color: var(--ink-soft);
+        font-size: 0.6875rem;
+        letter-spacing: 0.06em;
+      }
+
+      .motifs {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 0.75rem;
+      }
+
+      .motifs figure {
+        margin: 0;
+        padding: 1.25rem 0.75rem 0.75rem;
+        background: var(--card);
+        border: 1px solid var(--line);
+        text-align: center;
+        color: var(--gold);
+      }
+
+      .motifs svg {
+        width: 100%;
+        height: 80px;
+      }
+
+      .motifs figcaption {
+        color: var(--ink-soft);
+        font-size: 0.75rem;
+        margin-top: 0.5rem;
+      }
+
+      .samples {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2.5rem;
+        align-items: flex-start;
+      }
+
+      /* ── Invitation components ─────────────────────────────────── */
+
+      /* A sheet is one "page" of the card: ivory stock, double gold rule. */
+      .sheet {
+        position: relative;
+        width: 100%;
+        max-width: var(--sheet-max);
+        padding: calc(var(--space) + 0.75rem) clamp(1.1rem, 4.5vw, 2rem);
+        background: var(--card);
+        border: 1px solid var(--line);
+        outline: 1px solid var(--line);
+        outline-offset: -8px;
+        box-shadow:
+          0 1px 2px rgb(59 42 32 / 0.06),
+          0 12px 32px -12px rgb(59 42 32 / 0.18);
+        text-align: center;
+      }
+
+      .kicker {
+        margin: 0;
+        font: 400 0.6875rem/1.4 var(--sans);
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+
+      .names {
+        margin: 0.75rem 0 0;
+        font: 500 2.75rem/1 var(--serif);
+        letter-spacing: 0.01em;
+      }
+
+      .names .amp {
+        display: block;
+        margin: 0.35rem 0;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 0.6em;
+        color: var(--gold);
+      }
+
+      .date-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.9rem;
+        margin: 1.25rem 0 0;
+        font: 400 0.75rem/1 var(--sans);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+      }
+
+      .date-row strong {
+        padding: 0.55rem 0.9rem;
+        border-block: 1px solid var(--line);
+        font: 500 1.375rem/1 var(--serif);
+        letter-spacing: 0.08em;
+        color: var(--ink);
+      }
+
+      .divider {
+        display: block;
+        width: 140px;
+        height: 14px;
+        margin: 1.5rem auto;
+        color: var(--gold);
+      }
+
+      .monogram {
+        display: block;
+        width: 54px;
+        height: 64px;
+        margin: 0 auto 1rem;
+        color: var(--gold);
+      }
+
+      /* Photo in an arch, with a hairline arch drawn just outside it. */
+      .arch-frame {
+        position: relative;
+        width: 78%;
+        margin: 1.5rem auto 0;
+        padding: 7px;
+        border: 1px solid var(--line);
+        border-radius: 999px 999px 0 0;
+      }
+
+      .arch-frame img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 2 / 3;
+        object-fit: cover;
+        object-position: 50% 35%;
+        border-radius: 999px 999px 0 0;
+      }
+
+      .sprig {
+        position: absolute;
+        width: 64px;
+        height: 96px;
+        color: var(--gold);
+      }
+
+      .sprig.left {
+        left: -34px;
+        bottom: -10px;
+      }
+
+      .sprig.right {
+        right: -34px;
+        bottom: -10px;
+        transform: scaleX(-1);
+      }
+
+      .hy {
+        display: block;
+        margin: 0 auto 0.75rem;
+        font: 400 2rem/1 var(--cjk);
+        color: var(--wax);
+        opacity: 0.85;
+      }
+
+      /* Stacked so each parent's name stays on one line; the sheet is too narrow for two columns. */
+      .families {
+        display: grid;
+        gap: 1rem;
+        margin-top: 1.25rem;
+      }
+
+      .families::before {
+        content: "";
+        order: 1;
+        width: 40px;
+        height: 1px;
+        margin: 0 auto;
+        background: var(--line);
+      }
+
+      .families > div:last-child {
+        order: 2;
+      }
+
+      .families h3 {
+        margin: 0 0 0.35rem;
+        font: 400 0.6875rem/1.4 var(--sans);
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+
+      .families p {
+        margin: 0;
+        font: 500 1.125rem/1.45 var(--serif);
+      }
+
+      .lede {
+        margin: 0;
+        font: italic 400 1.125rem/1.5 var(--serif);
+        color: var(--ink-soft);
+      }
+
+      .couple {
+        margin: 1rem 0;
+        display: grid;
+        gap: 0.25rem;
+      }
+
+      .couple .role {
+        font: 400 0.6875rem/1.4 var(--sans);
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+
+      .couple .person {
+        font: 500 1.75rem/1.15 var(--serif);
+      }
+
+      .couple .amp {
+        font: italic 400 1.25rem/1 var(--serif);
+        color: var(--gold);
+        margin: 0.4rem 0;
+      }
+
+      .when {
+        margin: 0;
+        font-size: 0.875rem;
+      }
+
+      .when strong {
+        display: block;
+        margin: 0.35rem 0;
+        font: 500 1.25rem/1.3 var(--serif);
+      }
+
+      .when small {
+        display: block;
+        color: var(--ink-soft);
+        font-style: italic;
+        font-family: var(--serif);
+        font-size: 0.9375rem;
+      }
+
+      .venue {
+        margin: 1rem 0 0;
+        font-size: 0.875rem;
+      }
+
+      .venue strong {
+        display: block;
+        font: 500 1.125rem/1.3 var(--serif);
+      }
+
+      .closing {
+        margin: 1.5rem 0 0;
+        font: italic 400 1rem/1.5 var(--serif);
+        color: var(--ink-soft);
+      }
+
+      .signature {
+        margin: 0.5rem 0 0;
+        font: italic 500 1.5rem/1 var(--serif);
+        color: var(--gold);
+      }
+
+      .button {
+        display: inline-block;
+        margin-top: 1.25rem;
+        padding: 0.7rem 1.6rem;
+        border: 1px solid var(--ink);
+        color: var(--ink);
+        background: transparent;
+        font: 400 0.6875rem/1 var(--sans);
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          background 0.3s,
+          color 0.3s;
+      }
+
+      .button:hover,
+      .button:focus-visible {
+        background: var(--ink);
+        color: var(--card);
+      }
+
+      /* ── Envelope ──────────────────────────────────────────────── */
+      .envelope-wrap {
+        width: 100%;
+        max-width: var(--sheet-max);
+        text-align: center;
+      }
+
+      .envelope {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 10 / 7;
+        margin-top: 45%;
+        background: var(--paper-deep);
+        border: 1px solid var(--line);
+        box-shadow: 0 16px 36px -14px rgb(59 42 32 / 0.35);
+        cursor: pointer;
+        perspective: 1200px;
+        appearance: none;
+        padding: 0;
+        font: inherit;
+        color: inherit;
+      }
+
+      /* The card waits inside the envelope and rises when it opens. */
+      .envelope .letter {
+        position: absolute;
+        inset: 6% 5% 4%;
+        z-index: 1;
+        display: grid;
+        place-content: center;
+        gap: 0.4rem;
+        background: var(--card);
+        border: 1px solid var(--line);
+        outline: 1px solid var(--line);
+        outline-offset: -6px;
+        transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.45s;
+      }
+
+      .envelope .letter b {
+        font: 500 1.75rem/1 var(--serif);
+      }
+
+      .envelope .letter span {
+        font: 400 0.6875rem/1 var(--sans);
+        letter-spacing: 0.24em;
+        color: var(--gold);
+      }
+
+      /* Front pocket and flap are SVG shapes stretched over the envelope. */
+      .envelope .pocket,
+      .envelope .flap {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        overflow: visible;
+      }
+
+      .envelope .pocket {
+        z-index: 2;
+        top: 0;
+        height: 100%;
+      }
+
+      .envelope .to {
+        position: absolute;
+        z-index: 3;
+        left: 0;
+        right: 0;
+        bottom: 7%;
+        margin: 0;
+        font: italic 400 1rem/1.3 var(--serif);
+        color: var(--ink-soft);
+      }
+
+      .envelope .to b {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 1.125rem;
+        color: var(--ink);
+      }
+
+      .envelope .flap {
+        z-index: 4;
+        top: 0;
+        height: 58%;
+        transform-origin: top;
+        transition:
+          transform 0.7s cubic-bezier(0.5, 0, 0.3, 1),
+          z-index 0s 0.35s;
+        filter: drop-shadow(0 2px 2px rgb(59 42 32 / 0.14));
+      }
+
+      .seal {
+        position: absolute;
+        z-index: 5;
+        left: 50%;
+        top: 56%;
+        width: 74px;
+        height: 74px;
+        margin: -37px 0 0 -37px;
+        display: grid;
+        place-items: center;
+        border-radius: 47% 53% 50% 50% / 52% 48% 52% 48%;
+        background:
+          radial-gradient(circle at 35% 30%, rgb(255 255 255 / 0.22), transparent 45%),
+          radial-gradient(circle, #8e3039 55%, var(--wax) 70%, #5e1b24 100%);
+        box-shadow:
+          0 2px 4px rgb(0 0 0 / 0.25),
+          inset 0 0 0 5px rgb(0 0 0 / 0.08);
+        color: #e8cfa0;
+        transition:
+          opacity 0.35s,
+          transform 0.35s;
+      }
+
+      .seal svg {
+        width: 44px;
+        height: 52px;
+      }
+
+      .envelope.is-open .seal {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      .envelope.is-open .flap {
+        transform: rotateX(180deg);
+        z-index: 0;
+      }
+
+      .envelope.is-open .letter {
+        transform: translateY(-58%);
+      }
+
+      .envelope-wrap .hint {
+        margin: 1rem 0 0;
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        color: var(--ink-soft);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          transition-duration: 0s !important;
+          transition-delay: 0s !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Ornament library: every motif is a symbol drawn in currentColor. -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <defs>
+        <symbol id="monogram" viewBox="0 0 120 140">
+          <path d="M8 138V60a52 52 0 0 1 104 0v78z" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <path d="M15 131V60a45 45 0 0 1 90 0v71z" fill="none" stroke="currentColor" stroke-width=".75" />
+          <text x="60" y="94" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="40" font-weight="500" fill="currentColor">L<tspan font-style="italic" font-size="24" dx="2" dy="-2">&amp;</tspan><tspan dx="2" dy="2">Đ</tspan></text>
+          <path d="M44 114h32" stroke="currentColor" stroke-width=".75" />
+          <path d="M60 110l4 4-4 4-4-4z" fill="currentColor" />
+        </symbol>
+
+        <symbol id="arch" viewBox="0 0 120 160">
+          <path d="M6 158V62a54 54 0 0 1 108 0v96" fill="none" stroke="currentColor" stroke-width="1.25" />
+          <path d="M14 158V62a46 46 0 0 1 92 0v96" fill="none" stroke="currentColor" stroke-width=".6" />
+          <path d="M60 4l3 3-3 3-3-3z" fill="currentColor" />
+        </symbol>
+
+        <symbol id="divider" viewBox="0 0 140 14">
+          <path d="M0 7h56M84 7h56" stroke="currentColor" stroke-width=".75" />
+          <path d="M70 1l6 6-6 6-6-6z" fill="none" stroke="currentColor" stroke-width=".9" />
+          <circle cx="70" cy="7" r="1.6" fill="currentColor" />
+          <circle cx="60" cy="7" r="1" fill="currentColor" />
+          <circle cx="80" cy="7" r="1" fill="currentColor" />
+        </symbol>
+
+        <symbol id="sprig" viewBox="0 0 64 96">
+          <g fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round">
+            <path d="M8 94C20 70 30 44 52 6" />
+            <path d="M15 78c-9-2-13-9-12-16 8 1 13 8 12 16z" />
+            <path d="M19 70c8-5 15-4 19 1-6 5-13 5-19-1z" />
+            <path d="M25 56c-9-3-12-10-10-17 8 2 12 9 10 17z" />
+            <path d="M30 48c8-6 15-5 19 0-6 5-13 6-19 0z" />
+            <path d="M37 34c-7-4-9-11-6-17 7 3 9 10 6 17z" />
+            <path d="M41 28c7-6 13-6 17-2-5 5-11 6-17 2z" />
+          </g>
+          <circle cx="52" cy="6" r="1.8" fill="currentColor" />
+        </symbol>
+
+        <symbol id="corner" viewBox="0 0 48 48">
+          <path d="M2 46V2h44" fill="none" stroke="currentColor" stroke-width="1" />
+          <path d="M8 46V8h38" fill="none" stroke="currentColor" stroke-width=".6" />
+          <path d="M8 8l5 5" stroke="currentColor" stroke-width=".6" />
+          <circle cx="14" cy="14" r="1.6" fill="currentColor" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <main class="doc">
+      <header>
+        <p class="kicker">Bản mẫu thiết kế · v1</p>
+        <h1>Thiệp cưới Khánh Linh &amp; Xuân Đạt</h1>
+        <p class="note">Màu, chữ, họa tiết và ba tờ thiệp mẫu. Mở trên điện thoại để xem đúng tỉ lệ.</p>
+      </header>
+
+      <h2 class="doc-title">1 · Bảng màu</h2>
+      <div class="swatches">
+        <div class="swatch"><i style="background: var(--paper)"></i><span>Giấy ngà · #F6F0E6</span></div>
+        <div class="swatch"><i style="background: var(--card)"></i><span>Tờ thiệp · #FBF8F2</span></div>
+        <div class="swatch"><i style="background: var(--paper-deep)"></i><span>Phong bì · #EDE3D1</span></div>
+        <div class="swatch"><i style="background: var(--ink)"></i><span>Chữ nâu đậm · #3B2A20</span></div>
+        <div class="swatch"><i style="background: var(--ink-soft)"></i><span>Chữ phụ · #6E5A4A</span></div>
+        <div class="swatch"><i style="background: var(--gold)"></i><span>Nhũ vàng · #A8844F</span></div>
+        <div class="swatch"><i style="background: var(--wax)"></i><span>Sáp đỏ · #7A2630</span></div>
+      </div>
+
+      <h2 class="doc-title">2 · Chữ</h2>
+      <div class="type-samples">
+        <div>
+          <small>TÊN · Cormorant Garamond 500</small>
+          <span style="font: 500 2.5rem/1.1 var(--serif)">Khánh Linh &amp; Xuân Đạt</span>
+        </div>
+        <div>
+          <small>LỜI MỜI · Cormorant Garamond nghiêng</small>
+          <span class="lede">Trân trọng kính mời Quý khách đến dự buổi tiệc chung vui cùng gia đình chúng tôi</span>
+        </div>
+        <div>
+          <small>NHÃN · Be Vietnam Pro, chữ hoa giãn rộng</small>
+          <span class="kicker">Lễ thành hôn · Nhà trai · Nhà gái</span>
+        </div>
+        <div>
+          <small>NỘI DUNG · Be Vietnam Pro 300</small>
+          <span>Hôn lễ được cử hành vào hồi 11 giờ, Thứ Ba, ngày 24 tháng 11 năm 2026.</span>
+        </div>
+      </div>
+
+      <h2 class="doc-title">3 · Họa tiết</h2>
+      <div class="motifs">
+        <figure><svg><use href="#monogram" /></svg><figcaption>Monogram trong vòm</figcaption></figure>
+        <figure><svg><use href="#arch" /></svg><figcaption>Khung vòm</figcaption></figure>
+        <figure><svg><use href="#divider" /></svg><figcaption>Đường phân cách</figcaption></figure>
+        <figure><svg><use href="#sprig" /></svg><figcaption>Cành lá</figcaption></figure>
+        <figure><svg><use href="#corner" /></svg><figcaption>Góc viền</figcaption></figure>
+        <figure>
+          <span class="hy" style="font-size: 3.5rem; line-height: 80px; margin: 0">囍</span>
+          <figcaption>Song Hỷ</figcaption>
+        </figure>
+      </div>
+
+      <h2 class="doc-title">4 · Thiệp mẫu</h2>
+      <div class="samples">
+        <!-- 4a. Envelope: tap to open. -->
+        <div class="envelope-wrap">
+          <button class="envelope" id="envelope" type="button" aria-label="Mở thiệp">
+            <span class="letter"><span>THIỆP MỜI CƯỚI</span><b>Linh &amp; Đạt</b><span>24 · 11 · 2026</span></span>
+            <svg class="pocket" viewBox="0 0 100 70" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0 0L47 38Q50 40 53 38L100 0V70H0z" fill="#e6dac5" />
+              <path d="M0 70L44 33Q50 29 56 33L100 70z" fill="#ebe1cf" stroke="rgb(168 132 79 / .35)" stroke-width=".25" vector-effect="non-scaling-stroke" />
+            </svg>
+            <p class="to">Kính gửi<br /><b id="guest">Quý khách</b></p>
+            <svg class="flap" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0 0H100L53 96Q50 100 47 96z" fill="#e9dec9" stroke="rgb(168 132 79 / .4)" stroke-width="1" vector-effect="non-scaling-stroke" />
+            </svg>
+            <span class="seal"><svg><use href="#monogram" /></svg></span>
+          </button>
+          <p class="hint">Chạm để mở thiệp · thêm <code>?to=Chị Hoa</code> vào link để đổi tên</p>
+        </div>
+
+        <!-- 4b. Cover. -->
+        <section class="sheet">
+          <svg class="monogram"><use href="#monogram" /></svg>
+          <p class="kicker">Lễ thành hôn</p>
+          <h2 class="names">Khánh Linh<span class="amp">&amp;</span>Xuân Đạt</h2>
+          <div class="arch-frame">
+            <img src="../assets/cover.webp" alt="Khánh Linh và Xuân Đạt" width="1000" height="1500" />
+            <svg class="sprig left"><use href="#sprig" /></svg>
+            <svg class="sprig right"><use href="#sprig" /></svg>
+          </div>
+          <p class="date-row"><span>Thứ Ba</span><strong>24.11.2026</strong><span>11:00</span></p>
+        </section>
+
+        <!-- 4c. Announcement. -->
+        <section class="sheet">
+          <span class="hy" aria-hidden="true">囍</span>
+          <p class="kicker">Thư báo hỷ</p>
+          <div class="families">
+            <div>
+              <h3>Nhà trai</h3>
+              <p>Ông Trần Xuân Kế</p>
+              <p>Bà Nguyễn Thị Thanh Xuân</p>
+            </div>
+            <div>
+              <h3>Nhà gái</h3>
+              <p>Ông Nguyễn Minh Tuân</p>
+              <p>Bà Hồ Thị Thu Huyền</p>
+            </div>
+          </div>
+          <svg class="divider"><use href="#divider" /></svg>
+          <p class="lede">Trân trọng báo tin lễ thành hôn<br />của con chúng tôi</p>
+          <div class="couple">
+            <span class="role">Chú rể</span>
+            <span class="person">Trần Xuân Đạt</span>
+            <span class="amp">&amp;</span>
+            <span class="role">Cô dâu</span>
+            <span class="person">Nguyễn Khánh Linh</span>
+          </div>
+          <svg class="divider"><use href="#divider" /></svg>
+          <p class="when">
+            Hôn lễ được cử hành vào hồi
+            <strong>11 giờ, Thứ Ba, 24.11.2026</strong>
+            <small>tức ngày 16 tháng 10 năm Bính Ngọ</small>
+          </p>
+          <p class="venue">
+            tại
+            <strong>Trung tâm tổ chức sự kiện Âu Cơ</strong>
+            1A Nguyễn Hữu Cầu, P. Hải Dương, TP. Hải Phòng
+          </p>
+          <p class="closing">Sự hiện diện của Quý khách là niềm vinh hạnh<br />cho gia đình chúng tôi.</p>
+          <p class="signature">Linh &amp; Đạt</p>
+          <a class="button" href="#">Xác nhận tham dự</a>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const to = new URLSearchParams(location.search).get("to")?.trim().slice(0, 60)
+      if (to) document.getElementById("guest").textContent = to
+
+      const envelope = document.getElementById("envelope")
+      envelope.addEventListener("click", () => envelope.classList.toggle("is-open"))
+    </script>
+  </body>
+</html>
