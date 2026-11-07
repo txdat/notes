@@ -14,6 +14,8 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#FBF6EE" />
+    <!-- A private card: keep it and its photos out of search engines. -->
+    <meta name="robots" content="noindex, nofollow, noimageindex" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -63,9 +65,15 @@
         -webkit-font-smoothing: antialiased;
       }
 
+      /* No "Save image" on long press, no right-click menu (see the script), no dragging out.
+         A deterrent only: anything shown can still be captured. */
       img {
         display: block;
         max-width: 100%;
+        -webkit-touch-callout: none;
+        -webkit-user-drag: none;
+        user-select: none;
+        -webkit-user-select: none;
       }
 
       a {
@@ -2141,7 +2149,9 @@
       // The photo zooms freely: pinch it, scroll on it, or double tap (double click) it. While it's
       // bigger than the screen it can be dragged around, and a drag then looks around instead of
       // changing the photo.
-      const MAX_ZOOM = 5
+      // The large photos are 1200 × 1800 (enough for a phone screen, not for print), so zoom stops
+      // at 1.5x, before they go soft.
+      const MAX_ZOOM = 1.5
       let zoom = 1
       let panX = 0
       let panY = 0
@@ -2277,6 +2287,10 @@
         { passive: false },
       )
       lightboxImg.draggable = false
+      document.querySelectorAll("img").forEach((img) => (img.draggable = false))
+      document.addEventListener("contextmenu", (event) => {
+        if (event.target.closest("img, .lightbox")) event.preventDefault()
+      })
       lightbox.addEventListener("click", (event) => {
         if (moved) {
           moved = false
@@ -2290,7 +2304,7 @@
           lastTap = doubled ? 0 : Date.now()
           lastTapX = event.clientX
           lastTapY = event.clientY
-          if (doubled) zoomTo(zoom > 1 ? 1 : 2.5, event.clientX, event.clientY)
+          if (doubled) zoomTo(zoom > 1 ? 1 : MAX_ZOOM, event.clientX, event.clientY)
         } else if (event.target === lightbox) {
           lightbox.close()
         }
