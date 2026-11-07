@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url"
 
 // Standalone HTML pages served verbatim. They live in pages/, outside the Obsidian
 // vault, so Quartz never sees them (it would strip `.html` and render the notes).
-const rawPageDirs = ["linh-dat-wedding"]
+const rawPageDirs = ["linh-dat-wedding", "linh-dat-wedding-invitation"]
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url))
 const siteRoot = path.resolve(scriptDir, "..")

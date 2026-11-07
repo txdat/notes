@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Thử chất liệu · trang 1 và 3</title>
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Be+Vietnam+Pro:wght@300;400&display=swap&subset=vietnamese"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #2f241c;
+        --ink-soft: #6e5a4a;
+        --wine: #6e1a26;
+        --gold: #a8844f;
+        --serif: "Cormorant Garamond", serif;
+        --sans: "Be Vietnam Pro", system-ui, sans-serif;
+        /* Three layers: a tight contact line, a near shadow, and a soft far one, all falling
+           down-right from the upper-left light, so paper reads as lying on the cloth. */
+        --shadow: drop-shadow(0.5px 1px 0.5px rgb(30 20 12 / 0.35)) drop-shadow(1px 4px 5px rgb(30 20 12 / 0.22))
+          drop-shadow(4px 18px 24px rgb(30 20 12 / 0.3));
+        --paper-lift: brightness(1.04) contrast(1.02);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        font: 300 0.9375rem/1.6 var(--sans);
+        /* Linen a shade darker than the paper, with a soft vignette, so the stationery stands off it. */
+        background:
+          radial-gradient(ellipse at 50% 45%, transparent 40%, rgb(40 28 18 / 0.22) 100%),
+          linear-gradient(rgb(60 44 30 / 0.12), rgb(60 44 30 / 0.12)),
+          #d8ccb8 url(../assets/linen.webp) center / cover fixed;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .screen {
+        position: relative;
+        max-width: 480px;
+        height: 100svh;
+        min-height: 620px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+
+      .caps {
+        font: 400 0.625rem/1.4 var(--sans);
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+      }
+
+      /* Ink pressed into cotton: a hairline of light under each stroke. */
+      .press {
+        text-shadow: 0 1px 0 rgb(255 255 255 / 0.75);
+      }
+
+      .monogram {
+        display: block;
+        background: var(--wine);
+        -webkit-mask: url(../assets/monogram.webp) center / contain no-repeat;
+        mask: url(../assets/monogram.webp) center / contain no-repeat;
+      }
+
+      /* ── 1 · Envelope ─────────────────────────────────────────── */
+      .p1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .envelope {
+        position: relative;
+        width: 86%;
+        aspect-ratio: 900 / 670;
+        margin-top: 14svh;
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: pointer;
+        transform: rotate(-2deg);
+        font: inherit;
+        color: inherit;
+      }
+
+      .envelope > * {
+        position: absolute;
+        left: 0;
+        width: 100%;
+      }
+
+      /* Open state layers: back (with flap up), the card, then the front pocket. */
+      .envelope .back,
+      .envelope .pocket {
+        top: 0;
+        transform: translateY(-39.55%); /* body of the open image starts 460/1163 down */
+        opacity: 0;
+      }
+
+      .envelope .back {
+        filter: var(--paper-lift) var(--shadow);
+      }
+
+      .envelope .letter {
+        left: 9%;
+        width: 82%;
+        top: 4%;
+        aspect-ratio: 1000 / 1396;
+        display: grid;
+        place-content: start center;
+        padding-top: 14%;
+        gap: 0.35rem;
+        text-align: center;
+        background: url(src/card.webp) center / 100% 100% no-repeat;
+        transform: translateY(0);
+        opacity: 0;
+      }
+
+      .envelope .letter .monogram {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 0.5rem;
+      }
+
+      .envelope .letter b {
+        font: 500 1.5rem/1.1 var(--serif);
+      }
+
+      .envelope .closed {
+        top: 0;
+        filter: var(--paper-lift) var(--shadow);
+        transition: opacity 0.35s 0.35s;
+      }
+
+      .envelope .front {
+        top: 24%;
+        text-align: center;
+        transition: opacity 0.3s;
+      }
+
+      .envelope .front .title {
+        display: block;
+        font: 500 1.25rem/1.15 var(--serif);
+        letter-spacing: 0.04em;
+      }
+
+      .envelope .front .to {
+        display: block;
+        font: italic 400 1rem/1.3 var(--serif);
+        color: var(--ink-soft);
+      }
+
+      .envelope .seal {
+        /* Just above the flap tip (measured at 50.2% across, 74.2% down the envelope), so the
+           seal holds the flap down; the seal is 20% of the width (27.4% of the height). */
+        left: 40.2%;
+        top: 57%;
+        width: 20%;
+        filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.3));
+        transition:
+          opacity 0.3s,
+          transform 0.3s;
+      }
+
+      .envelope.is-open .seal {
+        opacity: 0;
+        transform: scale(1.1) rotate(8deg);
+      }
+
+      .envelope.is-open .front,
+      .envelope.is-open .closed {
+        opacity: 0;
+      }
+
+      .envelope.is-open .back,
+      .envelope.is-open .pocket {
+        opacity: 1;
+        transition: opacity 0.35s 0.35s;
+      }
+
+      .envelope.is-open .letter {
+        opacity: 1;
+        transform: translateY(-62%);
+        transition:
+          opacity 0.01s 0.7s,
+          transform 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.75s;
+      }
+
+      .p1 .hint {
+        margin: 9svh 0 0;
+        color: var(--ink-soft);
+        animation: breathe 2.4s ease-in-out infinite;
+      }
+
+      @keyframes breathe {
+        50% {
+          opacity: 0.45;
+        }
+      }
+
+      /* ── 3 · Invitation card ──────────────────────────────────── */
+      .p3 .card {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: min(88%, calc((100svh - 64px) * 1000 / 1396));
+        aspect-ratio: 1000 / 1396;
+        transform: translate(-50%, -50%);
+        background: url(src/card.webp) center / 100% 100% no-repeat;
+        filter: var(--paper-lift) var(--shadow);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10% 9%;
+        text-align: center;
+        font-size: clamp(0.8125rem, 3.8vw, 1rem);
+      }
+
+      .p3 .card .monogram {
+        width: 4.6em;
+        height: 4.6em;
+      }
+
+      .p3 .lede {
+        margin: 1.1em 0 0;
+        font: italic 400 1.45em/1.2 var(--serif);
+      }
+
+      .p3 .guest-line {
+        margin: 0.5em 0 0;
+        font: 400 1.05em/1.45 var(--serif);
+        color: var(--ink-soft);
+      }
+
+      .p3 .guest-line b {
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      .p3 .rule {
+        width: 3em;
+        height: 1px;
+        margin: 1.1em auto;
+        background: var(--gold);
+        opacity: 0.6;
+      }
+
+      .p3 .families {
+        display: grid;
+        gap: 0.9em;
+        font: 500 1.02em/1.4 var(--serif);
+      }
+
+      .p3 .families .caps,
+      .p3 .couple .caps {
+        display: block;
+        margin-bottom: 0.2em;
+        color: var(--gold);
+        font-size: 0.6em;
+      }
+
+      .p3 .couple {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5em;
+        margin-top: 1.3em;
+        font: 500 1.15em/1.15 var(--serif);
+        white-space: nowrap;
+      }
+
+      .p3 .sprig {
+        position: absolute;
+        left: -4%;
+        top: 3svh;
+        width: 40%;
+        transform: rotate(-28deg);
+        filter: drop-shadow(0 4px 5px rgb(40 28 18 / 0.3));
+        z-index: 2;
+      }
+
+      .p3 .print {
+        position: absolute;
+        right: 3%;
+        bottom: 3svh;
+        width: 36%;
+        padding: 7px 7px 22px;
+        background: #fdfbf6;
+        transform: rotate(6deg);
+        filter: var(--shadow);
+        z-index: 2;
+      }
+
+      .p3 .print img {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        filter: contrast(0.94) saturate(0.92) brightness(1.02);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          transition-duration: 0s !important;
+          transition-delay: 0s !important;
+          animation: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="screen p1" id="s1">
+      <button class="envelope" id="envelope" type="button" aria-label="Mở thiệp">
+        <img class="back" src="../assets/envelope-open.webp" alt="" />
+        <span class="letter">
+          <span class="monogram"></span>
+          <span class="caps press">Lễ thành hôn</span>
+          <b class="press">Khánh Linh &amp; Xuân Đạt</b>
+          <span class="caps press">24 · 11 · 2026</span>
+        </span>
+        <img class="pocket" src="../assets/envelope-pocket.webp" alt="" />
+        <img class="closed" src="../assets/envelope-closed.webp" alt="" />
+        <span class="front press">
+          <span class="title">Thiệp mời</span>
+          <span class="to" id="to" hidden>Gửi <b data-guest="start"></b></span>
+        </span>
+        <img class="seal" src="../assets/seal.webp" alt="" />
+      </button>
+      <p class="hint caps">Chạm để mở</p>
+    </section>
+
+    <section class="screen p3" id="s3">
+      <img class="sprig" src="src/sprig.webp" alt="" />
+      <div class="card press">
+        <span class="monogram"></span>
+        <p class="lede">Trân trọng kính mời</p>
+        <p class="guest-line">
+          <b data-guest="start">Bạn</b><span class="household"> và gia đình</span><br />đến chung vui trong ngày thành hôn của chúng&nbsp;mình
+        </p>
+        <span class="rule"></span>
+        <div class="families">
+          <div><span class="caps">Nhà gái</span>Ông Nguyễn Minh Tuân<br />Bà Hồ Thị Thu Huyền</div>
+          <div><span class="caps">Nhà trai</span>Ông Trần Xuân Kế<br />Bà Nguyễn Thị Thanh Xuân</div>
+        </div>
+        <div class="couple">
+          <div><span class="caps">Cô dâu</span>Nguyễn Khánh Linh</div>
+          <div><span class="caps">Chú rể</span>Trần Xuân Đạt</div>
+        </div>
+      </div>
+      <figure class="print" style="margin: 0"><img src="../assets/photos/9566.webp" alt="" /></figure>
+    </section>
+
+    <script>
+      // Guest name from the link, same rules as the old card (?to=, ?name=, ?guest=).
+      const raw = (() => {
+        const q = new URLSearchParams(location.search)
+        return (q.get("to") ?? q.get("name") ?? q.get("guest") ?? "").replace(/\s+/g, " ").trim().slice(0, 40)
+      })()
+      if (raw) {
+        for (const el of document.querySelectorAll('[data-guest="start"]')) el.textContent = raw
+        for (const el of document.querySelectorAll(".household")) el.hidden = true
+        document.getElementById("to").hidden = false
+      }
+
+      const envelope = document.getElementById("envelope")
+      envelope.addEventListener("click", () => envelope.classList.add("is-open"))
+    </script>
+  </body>
+</html>
