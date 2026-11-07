@@ -1103,7 +1103,7 @@
         <div class="stage">
           <span class="under card lay" style="--i: 0"></span>
           <button class="print lay" style="--i: 1" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9302-s.webp" data-full="assets/photos/9302.webp" alt="Khánh Linh và Xuân Đạt" loading="lazy" />
+            <img src="assets/photos/9302-s.webp" data-full="assets/photos/9302.jpg" alt="Khánh Linh và Xuân Đạt" loading="lazy" />
           </button>
           <div class="vellum lay press" style="--i: 3">
             <span class="caps">Lễ thành hôn</span>
@@ -1134,7 +1134,7 @@
             </div>
           </div>
           <button class="print lay" style="--i: 2" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9566-s.webp" data-full="assets/photos/9566.webp" alt="Khánh Linh và Xuân Đạt" loading="lazy" />
+            <img src="assets/photos/9566-s.webp" data-full="assets/photos/9566.jpg" alt="Khánh Linh và Xuân Đạt" loading="lazy" />
           </button>
         </div>
       </section>
@@ -1164,7 +1164,7 @@
             >
           </div>
           <button class="print lay" style="--i: 1" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9170-s.webp" data-full="assets/photos/9170.webp" alt="Khánh Linh và Xuân Đạt" loading="lazy" />
+            <img src="assets/photos/9170-s.webp" data-full="assets/photos/9170.jpg" alt="Khánh Linh và Xuân Đạt" loading="lazy" />
           </button>
         </div>
       </section>
@@ -1173,19 +1173,19 @@
       <section class="screen p5" id="s5" aria-label="Ảnh cưới">
         <div class="stage" id="photos">
           <button class="print a lay" style="--i: 0" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9333-s.webp" data-full="assets/photos/9333.webp" alt="Ảnh cưới" loading="lazy" />
+            <img src="assets/photos/9333-s.webp" data-full="assets/photos/9333.jpg" alt="Ảnh cưới" loading="lazy" />
           </button>
           <button class="print b lay" style="--i: 1" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9620-s.webp" data-full="assets/photos/9620.webp" alt="Ảnh cưới" loading="lazy" />
+            <img src="assets/photos/9620-s.webp" data-full="assets/photos/9620.jpg" alt="Ảnh cưới" loading="lazy" />
           </button>
           <button class="print c wide lay" style="--i: 2" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9049-s.webp" data-full="assets/photos/9049.webp" alt="Ảnh cưới" loading="lazy" />
+            <img src="assets/photos/9049-s.webp" data-full="assets/photos/9049.jpg" alt="Ảnh cưới" loading="lazy" />
           </button>
           <button class="print d lay" style="--i: 3" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9513-s.webp" data-full="assets/photos/9513.webp" alt="Cô dâu" loading="lazy" />
+            <img src="assets/photos/9513-s.webp" data-full="assets/photos/9513.jpg" alt="Cô dâu" loading="lazy" />
           </button>
           <button class="print e lay" style="--i: 4" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9364-s.webp" data-full="assets/photos/9364.webp" alt="Chú rể" loading="lazy" />
+            <img src="assets/photos/9364-s.webp" data-full="assets/photos/9364.jpg" alt="Chú rể" loading="lazy" />
           </button>
         </div>
       </section>
@@ -1233,7 +1233,7 @@
             <img class="stamp" id="stamp" src="assets/seal.webp" alt="" hidden />
           </div>
           <button class="print lay" style="--i: 1" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9711-s.webp" data-full="assets/photos/9711.webp" alt="Khánh Linh và Xuân Đạt" loading="lazy" />
+            <img src="assets/photos/9711-s.webp" data-full="assets/photos/9711.jpg" alt="Khánh Linh và Xuân Đạt" loading="lazy" />
           </button>
         </div>
       </section>
@@ -1437,7 +1437,8 @@
         shown = (index + photos.length) % photos.length
         const photo = photos[shown]
         resetZoom()
-        // The thumbnail stands in until the full photo has loaded.
+        // The thumbnail stands in until the full photo (2048×3072 JPEG from the original) has loaded;
+        // full photos load only when the viewer opens.
         lightboxImg.src = photo.currentSrc || photo.src
         lightboxImg.alt = photo.alt
         const full = new Image()
