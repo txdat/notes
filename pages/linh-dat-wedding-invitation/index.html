@@ -70,11 +70,11 @@
         --gold-ink: #85622f; /* gold dark enough for small type on white paper */
         --print: #fbfaf7;
         --serif: "EB Garamond", Georgia, serif;
-        /* Three layers: a tight contact line, a near shadow and a soft far one, all falling
-           down-right from the upper-left light, so paper reads as lying on the cloth. */
-        --shadow: drop-shadow(0.5px 1px 0.5px rgb(30 20 12 / 0.35)) drop-shadow(1px 4px 5px rgb(30 20 12 / 0.22))
-          drop-shadow(4px 18px 24px rgb(30 20 12 / 0.3));
-        --paper-lift: brightness(1.04) contrast(1.02);
+        /* A faint line on every edge, so a print lying on another one shows its top and left
+           edges instead of melting into the print beneath; then a tight contact line, a near
+           shadow and a soft far one, falling down-right from the upper-left light. */
+        --shadow-box: 0 0 0 0.5px rgb(30 20 12 / 0.1), 0 0 2px rgb(30 20 12 / 0.18),
+          0.5px 1px 0.5px rgb(30 20 12 / 0.3), 1px 4px 5px rgb(30 20 12 / 0.2), 4px 18px 24px rgb(30 20 12 / 0.28);
         /* Width of a screen's stage (see .stage). */
         --stage: min(100vw, 480px, 100vh * 390 / 720);
         -webkit-text-size-adjust: 100%;
@@ -99,11 +99,17 @@
         touch-action: pan-x pan-y;
       }
 
-      /* The linen stays put behind the cards; a fixed layer works on iOS, where a fixed background does not. */
+      /* The linen stays put behind the cards; a fixed layer works on iOS, where a fixed background
+         does not. It is sized to the largest viewport, so it doesn't rescale and jump when the
+         browser's address bar shows or hides during a swipe. */
       body::before {
         content: "";
         position: fixed;
-        inset: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100vh;
+        height: 100lvh;
         z-index: -1;
         background:
           radial-gradient(ellipse at 50% 45%, transparent 50%, rgb(40 28 18 / 0.1) 100%),
@@ -129,12 +135,17 @@
          or narrow screens, and everything inside is sized in cqw, so the layout scales without cropping. */
       /* The envelope fills the first screen; after it the pieces follow one another down the table,
          each screen only as tall as what lies on it. */
+      /* Pieces leaning past the sides are trimmed once for the whole page, never top or bottom:
+         clipping each screen cut the shadows falling into the next one where overflow: clip is
+         unsupported (iOS before 16 falls back to hidden). */
+      main {
+        overflow-x: hidden;
+        overflow-x: clip;
+      }
+
       .screen {
         position: relative;
         padding-top: calc(var(--stage) * 0.16);
-        overflow: hidden;
-        overflow-x: clip;
-        overflow-y: visible;
       }
 
       .screen:last-of-type {
@@ -188,12 +199,11 @@
         font-family: var(--serif);
       }
 
+      /* Wine ink with its hairline of light baked in (from drafts/src/monogram.webp, see
+         drafts/bake-envelope.sh): a filtered mask flickered while the page scrolled. */
       .monogram {
         display: block;
-        filter: drop-shadow(0 1px 0 rgb(255 255 255 / 0.7));
-        background: var(--wine);
-        -webkit-mask: url(assets/monogram.webp) center / contain no-repeat;
-        mask: url(assets/monogram.webp) center / contain no-repeat;
+        background: url(assets/monogram-wine.webp) center / contain no-repeat;
       }
 
       /* Paper: one still image with the cotton colour, grain, light fall-off and shadow already baked in
@@ -219,33 +229,34 @@
         margin: 0;
         padding: 2.4cqw 2.4cqw 8cqw;
         background: var(--print);
-        filter: var(--shadow);
+        /* box-shadow, not drop-shadow filters: it stays steady while the page scrolls and the
+           prints settle, where filters were re-rendered frame by frame and flickered. */
+        box-shadow: var(--shadow-box);
       }
 
       .print img {
         width: 100%;
         aspect-ratio: 2 / 3;
         object-fit: cover;
-        filter: contrast(0.94) saturate(0.9) brightness(1.02);
+        /* The matt, faded print tone is baked into the -s.webp thumbnails. */
       }
 
       .print.wide img {
         aspect-ratio: 3 / 2;
       }
 
-      /* Set down: each piece arrives slightly large and above its spot, then settles, one after another. */
+      /* Set down: each piece drops softly onto its spot, one after another, as its screen comes in.
+         Only opacity and position move: scaling made text and shadows re-render and shimmer. */
       .lay {
         transition:
-          opacity 0.5s ease-out,
-          translate 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
-          scale 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
-        transition-delay: calc(var(--i, 0) * 120ms + 100ms);
+          opacity 0.45s ease-out,
+          translate 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+        transition-delay: calc(var(--i, 0) * 80ms);
       }
 
       .js .screen:not(.is-in) .lay {
         opacity: 0;
-        translate: 0 -3cqw;
-        scale: 1.05;
+        translate: 0 -2cqw;
       }
 
       /* ── 1 · Envelope ──────────────────────────────────────────── */
@@ -265,22 +276,32 @@
         position: absolute;
         left: 0;
         width: 100%;
+        /* the baked shadow margins make some images wider than the envelope */
+        max-width: none;
       }
 
-      /* Open state layers: back (with the flap up), the card, then the front pocket. */
+      /* Open state layers: back (with the flap up), the card, then the front pocket. The open
+         image's body starts 460/1163 down and is 703 px tall against the closed image's 670, so it
+         is moved up and pressed by 670/703 to sit exactly on the closed envelope.
+         The paper-lift and shadows are baked into the images (drafts/bake-envelope.sh): filters
+         were re-rendered while the page scrolled and flickered on phones. The back and closed
+         images carry 110px of shadow margin around the 900px envelope, hence the offsets. */
       .envelope .back,
       .envelope .pocket {
         top: 0;
-        transform: translateY(-39.55%); /* the body of the open image starts 460/1163 down */
+        transform-origin: 0 0;
+        transform: translateY(-37.69%) scaleY(0.9531);
         opacity: 0;
       }
 
+      /* The flap opens from its fold: the part above the body is revealed upwards. */
       .envelope .back {
-        filter: var(--paper-lift) var(--shadow);
-      }
-
-      .envelope .pocket {
-        filter: var(--paper-lift);
+        left: -12.222%;
+        width: 124.444%;
+        /* (438.33 + 110 × 0.9531) / 1383 */
+        transform: translateY(-39.275%) scaleY(0.9531);
+        /* the fold, (460 + 110) / 1383 down */
+        clip-path: inset(41.215% 0 0 0);
       }
 
       .envelope .letter {
@@ -295,6 +316,9 @@
         gap: 0.5em;
         text-align: center;
         opacity: 0;
+        /* Hidden below the envelope's bottom edge (62.4% down the card) as it slides out; the clip
+           moves with the same timing as the slide, so its edge stays on the envelope's edge. */
+        clip-path: inset(-20% -15% 37.6% -15%);
       }
 
       .envelope .letter b {
@@ -302,9 +326,10 @@
       }
 
       .envelope .closed {
-        top: 0;
-        filter: var(--paper-lift) var(--shadow);
-        transition: opacity 0.35s 0.35s;
+        left: -12.222%;
+        top: -16.418%;
+        width: 124.444%;
+        transition: opacity 0.3s 0.25s;
       }
 
       .envelope .seal {
@@ -312,8 +337,9 @@
            holds the flap down. */
         left: 40.2%;
         top: 57%;
-        width: 20%;
-        filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.3));
+        /* the image's 24px shadow margin, 7.5% of its width */
+        margin: -1.5%;
+        width: 23%;
         transition:
           opacity 0.3s,
           transform 0.3s;
@@ -332,18 +358,29 @@
         opacity: 0;
       }
 
+      /* Seal off, then the open envelope is already under the closed one as that fades, the flap
+         folds up, and the card slides out. */
       .envelope.is-open .back,
       .envelope.is-open .pocket {
         opacity: 1;
-        transition: opacity 0.35s 0.35s;
+        transition: opacity 0s 0.25s;
+      }
+
+      .envelope.is-open .back {
+        clip-path: inset(0);
+        transition:
+          opacity 0s 0.25s,
+          clip-path 0.45s cubic-bezier(0.3, 0.6, 0.3, 1) 0.3s;
       }
 
       .envelope.is-open .letter {
         opacity: 1;
         transform: translateY(-62%);
+        clip-path: inset(-20% -15% -24.4% -15%);
         transition:
-          opacity 0.01s 0.7s,
-          transform 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.75s;
+          opacity 0s 0.6s,
+          transform 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.65s,
+          clip-path 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.65s;
       }
 
       .p1 .hint {
@@ -402,9 +439,9 @@
         justify-items: center;
         gap: 0.55em;
         text-align: center;
-        background: rgb(250 247 240 / 0.66);
-        -webkit-backdrop-filter: blur(3px) saturate(0.85);
-        backdrop-filter: blur(3px) saturate(0.85);
+        /* No backdrop-filter: blurring what scrolls beneath it re-rendered every frame and
+           flickered on phones. A denser sheet keeps the type readable over the photo. */
+        background: rgb(250 247 240 / 0.8);
         box-shadow:
           inset 0 0 0 1px rgb(255 255 255 / 0.45),
           0 1px 1px rgb(30 20 12 / 0.12),
@@ -626,6 +663,13 @@
       .p5 .stage {
         --t: 8;
         --h: 176;
+      }
+
+      /* The prints overlap, so the stack settles as one piece: fading each print on its own let
+         the shadows beneath show through and flicker on phones. (On the stage itself cqw is not
+         the stage's own, hence --stage.) */
+      .js .p5:not(.is-in) .stage.lay {
+        translate: 0 calc(var(--stage) * -0.02);
       }
 
       button.print {
@@ -985,11 +1029,12 @@
       /* Once sent, a small wax seal is pressed onto the corner of the card. */
       .p6 .stamp {
         position: absolute;
-        right: -2cqw;
-        bottom: -5cqw;
-        width: 19cqw;
+        /* 19cqw of seal plus its baked shadow margin (24/320 of it on each side) */
+        right: -3.425cqw;
+        bottom: -6.425cqw;
+        width: 21.85cqw;
+        max-width: none;
         rotate: 12deg;
-        filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.3));
       }
 
       .p6 .stamp[hidden] {
@@ -1103,7 +1148,7 @@
         <div class="stage">
           <span class="under card lay" style="--i: 0"></span>
           <button class="print lay" style="--i: 1" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9302-s.webp" data-full="assets/photos/9302.jpg" alt="Khánh Linh và Xuân Đạt" loading="lazy" />
+            <img src="assets/photos/9302-s.webp" data-full="assets/photos/9302.jpg" alt="Khánh Linh và Xuân Đạt" fetchpriority="low" />
           </button>
           <div class="vellum lay press" style="--i: 3">
             <span class="caps">Lễ thành hôn</span>
@@ -1134,7 +1179,7 @@
             </div>
           </div>
           <button class="print lay" style="--i: 2" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9566-s.webp" data-full="assets/photos/9566.jpg" alt="Khánh Linh và Xuân Đạt" loading="lazy" />
+            <img src="assets/photos/9566-s.webp" data-full="assets/photos/9566.jpg" alt="Khánh Linh và Xuân Đạt" fetchpriority="low" />
           </button>
         </div>
       </section>
@@ -1164,28 +1209,28 @@
             >
           </div>
           <button class="print lay" style="--i: 1" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9170-s.webp" data-full="assets/photos/9170.jpg" alt="Khánh Linh và Xuân Đạt" loading="lazy" />
+            <img src="assets/photos/9170-s.webp" data-full="assets/photos/9170.jpg" alt="Khánh Linh và Xuân Đạt" fetchpriority="low" />
           </button>
         </div>
       </section>
 
       <!-- 5 · Ảnh cưới -->
       <section class="screen p5" id="s5" aria-label="Ảnh cưới">
-        <div class="stage" id="photos">
-          <button class="print a lay" style="--i: 0" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9333-s.webp" data-full="assets/photos/9333.jpg" alt="Ảnh cưới" loading="lazy" />
+        <div class="stage lay" id="photos">
+          <button class="print a" type="button" aria-label="Xem ảnh">
+            <img src="assets/photos/9333-s.webp" data-full="assets/photos/9333.jpg" alt="Ảnh cưới" fetchpriority="low" />
           </button>
-          <button class="print b lay" style="--i: 1" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9620-s.webp" data-full="assets/photos/9620.jpg" alt="Ảnh cưới" loading="lazy" />
+          <button class="print b" type="button" aria-label="Xem ảnh">
+            <img src="assets/photos/9620-s.webp" data-full="assets/photos/9620.jpg" alt="Ảnh cưới" fetchpriority="low" />
           </button>
-          <button class="print c wide lay" style="--i: 2" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9049-s.webp" data-full="assets/photos/9049.jpg" alt="Ảnh cưới" loading="lazy" />
+          <button class="print c wide" type="button" aria-label="Xem ảnh">
+            <img src="assets/photos/9049-s.webp" data-full="assets/photos/9049.jpg" alt="Ảnh cưới" fetchpriority="low" />
           </button>
-          <button class="print d lay" style="--i: 3" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9513-s.webp" data-full="assets/photos/9513.jpg" alt="Cô dâu" loading="lazy" />
+          <button class="print d" type="button" aria-label="Xem ảnh">
+            <img src="assets/photos/9513-s.webp" data-full="assets/photos/9513.jpg" alt="Cô dâu" fetchpriority="low" />
           </button>
-          <button class="print e lay" style="--i: 4" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9364-s.webp" data-full="assets/photos/9364.jpg" alt="Chú rể" loading="lazy" />
+          <button class="print e" type="button" aria-label="Xem ảnh">
+            <img src="assets/photos/9364-s.webp" data-full="assets/photos/9364.jpg" alt="Chú rể" fetchpriority="low" />
           </button>
         </div>
       </section>
@@ -1233,7 +1278,7 @@
             <img class="stamp" id="stamp" src="assets/seal.webp" alt="" hidden />
           </div>
           <button class="print lay" style="--i: 1" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9711-s.webp" data-full="assets/photos/9711.jpg" alt="Khánh Linh và Xuân Đạt" loading="lazy" />
+            <img src="assets/photos/9711-s.webp" data-full="assets/photos/9711.jpg" alt="Khánh Linh và Xuân Đạt" fetchpriority="low" />
           </button>
         </div>
       </section>
@@ -1326,7 +1371,7 @@
               settle.unobserve(entry.target)
             }
         },
-        { rootMargin: "0px 0px -25% 0px" },
+        { rootMargin: "0px 0px -8% 0px" },
       )
       screens.forEach((screen) => settle.observe(screen))
 
