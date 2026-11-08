@@ -18,49 +18,68 @@
       content="Trân trọng kính mời bạn đến dự lễ thành hôn của Khánh Linh và Xuân Đạt, 11:00 Thứ Ba, 24.11.2026."
     />
     <meta property="og:url" content="https://txdat.github.io/notes/linh-dat-wedding-invitation/" />
-    <meta property="og:image" content="https://txdat.github.io/notes/linh-dat-wedding-invitation/assets/og.jpg?v=3" />
+    <meta property="og:image" content="https://txdat.github.io/notes/linh-dat-wedding-invitation/assets/og.jpg?v=4" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
     <link rel="preload" href="assets/envelope-closed.webp" as="image" />
-    <link rel="preload" href="assets/fonts/eb-garamond-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/cormorant-garamond-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
     <style>
-      /* Fonts are self-hosted subsets (latin + vietnamese); the browser loads only the ranges a page uses. */
+      /* Fonts are self-hosted subsets (latin + vietnamese); the browser loads only the ranges a page uses.
+         Cormorant Garamond for the text, Great Vibes for the names and the few handwritten lines. */
       @font-face {
-        font-family: "EB Garamond";
+        font-family: "Cormorant Garamond";
         font-style: normal;
-        font-weight: 400 800;
+        font-weight: 400 700;
         font-display: swap;
-        src: url(assets/fonts/eb-garamond-normal-vietnamese.woff2) format("woff2");
+        src: url(assets/fonts/cormorant-garamond-normal-vietnamese.woff2) format("woff2");
         unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301,
           U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
       }
       @font-face {
-        font-family: "EB Garamond";
+        font-family: "Cormorant Garamond";
         font-style: normal;
-        font-weight: 400 800;
+        font-weight: 400 700;
         font-display: swap;
-        src: url(assets/fonts/eb-garamond-normal-latin.woff2) format("woff2");
+        src: url(assets/fonts/cormorant-garamond-normal-latin.woff2) format("woff2");
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
           U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
       }
       @font-face {
-        font-family: "EB Garamond";
+        font-family: "Cormorant Garamond";
         font-style: italic;
-        font-weight: 400;
+        font-weight: 400 700;
         font-display: swap;
-        src: url(assets/fonts/eb-garamond-italic-vietnamese.woff2) format("woff2");
+        src: url(assets/fonts/cormorant-garamond-italic-vietnamese.woff2) format("woff2");
         unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301,
           U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
       }
       @font-face {
-        font-family: "EB Garamond";
+        font-family: "Cormorant Garamond";
         font-style: italic;
+        font-weight: 400 700;
+        font-display: swap;
+        src: url(assets/fonts/cormorant-garamond-italic-latin.woff2) format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+          U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: "Great Vibes";
+        font-style: normal;
         font-weight: 400;
         font-display: swap;
-        src: url(assets/fonts/eb-garamond-italic-latin.woff2) format("woff2");
+        src: url(assets/fonts/great-vibes-vietnamese.woff2) format("woff2");
+        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301,
+          U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+      }
+      @font-face {
+        font-family: "Great Vibes";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(assets/fonts/great-vibes-latin.woff2) format("woff2");
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
           U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
       }
@@ -71,7 +90,8 @@
         --gold: #a8844f;
         --gold-ink: #85622f; /* gold dark enough for small type on white paper */
         --print: #fbfaf7;
-        --serif: "EB Garamond", Georgia, serif;
+        --serif: "Cormorant Garamond", Georgia, serif;
+        --script: "Great Vibes", "Cormorant Garamond", cursive;
         /* A faint line on every edge, so a print lying on another one shows its top and left
            edges instead of melting into the print beneath; then a tight contact line, a near
            shadow and a soft far one, falling down-right from the upper-left light. */
@@ -91,10 +111,18 @@
         box-sizing: border-box;
       }
 
+      /* Cormorant's default old-style figures make 11:00 read as II:OO. Important, as every `font:`
+         shorthand on a piece resets the numeric variant. */
+      *,
+      ::before,
+      ::after {
+        font-variant-numeric: lining-nums !important;
+      }
+
       body {
         margin: 0;
         color: var(--ink);
-        font: 400 1.0625rem/1.5 var(--serif);
+        font: 500 1.0625rem/1.5 var(--serif);
         /* Cream cotton paper (assets/cotton.webp, drafts/bake-cotton.sh), a seamless tile that
            scrolls with the cards, so the pieces stay put on it. */
         background: #e7dfd1 url(assets/cotton.webp) 0 0 / 512px;
@@ -178,7 +206,7 @@
       }
 
       .caps {
-        font: 400 0.72em/1.4 var(--serif);
+        font: 500 0.72em/1.4 var(--serif);
         letter-spacing: 0.28em;
         text-transform: uppercase;
       }
@@ -255,16 +283,25 @@
       }
 
       /* Set down: each piece drops softly onto its spot, one after another, as its screen comes in.
-         Only opacity and position move: scaling made text and shadows re-render and shimmer. */
+         Only opacity and position move: scaling made text and shadows re-render and shimmer.
+         The screen's pieces fade in together as one layer: faded one by one, a half-clear photo
+         showed the lace of the card under it. */
+      .stage,
       .lay {
         transition:
           opacity 0.45s ease-out,
           translate 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+
+      .lay {
         transition-delay: calc(var(--i, 0) * 80ms);
       }
 
-      .js .screen:not(.is-in) .lay {
+      .js .screen:not(.is-in) .stage {
         opacity: 0;
+      }
+
+      .js .screen:not(.is-in) .lay {
         translate: 0 -2cqw;
       }
 
@@ -336,13 +373,13 @@
       }
 
       .envelope .letter b {
-        font: 400 2.1em/1.05 var(--serif);
+        font: 400 2.6em/1.15 var(--script);
       }
 
       .envelope .letter .amp {
         margin: 0.05em 0;
         color: var(--gold-ink);
-        font: italic 400 1.5em/1 var(--serif);
+        font: 400 1.6em/1 var(--script);
       }
 
       .envelope .letter .rule {
@@ -425,6 +462,27 @@
         animation: none;
       }
 
+      /* Fresh peonies by the envelope (drafts/bake-peony.sh, shadows baked in): the spray lies under
+         it, so the card slides out over the blooms; the bud lies across its corner. Neither takes taps. */
+      .p1 .peony {
+        max-width: none;
+        pointer-events: none;
+      }
+
+      .p1 .spray {
+        left: -17cqw;
+        top: 8cqw;
+        width: 74cqw;
+        rotate: -8deg;
+      }
+
+      .p1 .bud {
+        /* tilted 10deg in the bake, so its shadow still falls down and right */
+        left: 57.8cqw;
+        top: 96.2cqw;
+        width: 48.4cqw;
+      }
+
       @keyframes breathe {
         50% {
           opacity: 0.6;
@@ -434,7 +492,7 @@
       /* ── 2 · Lễ thành hôn ─────────────────────────────────────── */
       .p2 .stage {
         --t: 13;
-        --h: 146;
+        --h: 147.5;
       }
 
       .p2 .under {
@@ -480,7 +538,7 @@
       }
 
       .p2 .vellum b {
-        font: 400 1.75em/1.1 var(--serif);
+        font: 400 2em/1.15 var(--script);
         white-space: nowrap;
       }
 
@@ -510,13 +568,13 @@
 
       .p3 .lede {
         margin: 0.5em 0 0;
-        font: italic 400 1.7em/1.2 var(--serif);
+        font: 400 2.1em/1.2 var(--script);
       }
 
       .p3 .guest-line {
         margin: 0.5em 0 0;
         text-wrap: balance;
-        font: 400 1.08em/1.45 var(--serif);
+        font: 500 1.08em/1.45 var(--serif);
         color: var(--ink-soft);
       }
 
@@ -545,7 +603,7 @@
       .p3 .families {
         display: grid;
         gap: 0.9em;
-        font: 400 1.04em/1.4 var(--serif);
+        font: 500 1.04em/1.4 var(--serif);
       }
 
       .p3 .families .caps,
@@ -562,7 +620,7 @@
         justify-content: center;
         gap: 1.6em;
         margin-top: 1.3em;
-        font: 400 1.1em/1.15 var(--serif);
+        font: 500 1.1em/1.15 var(--serif);
         white-space: nowrap;
       }
 
@@ -593,6 +651,16 @@
         z-index: 1;
       }
 
+      /* the page 1 bud, mirrored, across the card's free top corner */
+      .p4 .bud {
+        left: 56cqw;
+        top: 46cqw;
+        width: 46cqw;
+        max-width: none;
+        pointer-events: none;
+        z-index: 1;
+      }
+
       .p4 .card {
         left: 9cqw;
         top: 62cqw;
@@ -613,13 +681,13 @@
 
       .p4 .time {
         margin: 0.05em 0 0;
-        font: 400 3.6em/1 var(--serif);
+        font: 500 3.6em/1 var(--serif);
         letter-spacing: 0.02em;
       }
 
       .p4 .date {
         margin: 0.35em 0 0;
-        font: 400 1.25em/1.2 var(--serif);
+        font: 500 1.25em/1.2 var(--serif);
         letter-spacing: 0.12em;
       }
 
@@ -643,7 +711,7 @@
 
       .p4 .schedule b {
         display: block;
-        font: 400 1.25em/1.2 var(--serif);
+        font: 500 1.25em/1.2 var(--serif);
         color: var(--ink);
       }
 
@@ -653,12 +721,12 @@
 
       .p4 .venue {
         margin: 0;
-        font: 400 1.22em/1.25 var(--serif);
+        font: 500 1.22em/1.25 var(--serif);
       }
 
       .p4 .address {
         margin: 0.3em 0 0;
-        font: 400 1.02em/1.35 var(--serif);
+        font: 500 1.02em/1.35 var(--serif);
         color: var(--ink-soft);
       }
 
@@ -674,7 +742,7 @@
           #efe5d3;
         clip-path: polygon(0.7em 0, 100% 0, 100% 100%, 0.7em 100%, 0 50%);
         color: var(--wine);
-        font: 400 0.76em/1.4 var(--serif);
+        font: 500 0.76em/1.4 var(--serif);
         letter-spacing: 0.18em;
         text-transform: uppercase;
         text-decoration: none;
@@ -815,7 +883,7 @@
         border-radius: 50%;
         background: rgb(0 0 0 / 0.2);
         color: #f6efe3;
-        font: 400 1.25rem/1 var(--serif);
+        font: 500 1.25rem/1 var(--serif);
         cursor: pointer;
       }
 
@@ -965,7 +1033,7 @@
         border: 1px solid rgb(110 90 74 / 0.45);
         text-align: center;
         border-radius: 999px;
-        font: 400 1.05em/1.2 var(--serif);
+        font: 500 1.05em/1.2 var(--serif);
         transition:
           background-color 0.2s,
           border-color 0.2s,
@@ -1012,7 +1080,7 @@
         border-radius: 999px;
         background: var(--wine);
         color: #f8f1e6;
-        font: 400 0.8em/1.4 var(--serif);
+        font: 500 0.8em/1.4 var(--serif);
         letter-spacing: 0.28em;
         text-transform: uppercase;
         cursor: pointer;
@@ -1040,7 +1108,7 @@
 
       .rsvp-done .done {
         margin: 0;
-        font: 400 1.3em/1.3 var(--serif);
+        font: 500 1.3em/1.3 var(--serif);
       }
 
       .rsvp-done .note {
@@ -1078,7 +1146,7 @@
       /* ── 7 · Lời cảm ơn ───────────────────────────────────────── */
       .p7 .stage {
         --t: 3;
-        --h: 66;
+        --h: 72.5;
       }
 
       .p7 .thanks {
@@ -1096,6 +1164,15 @@
         text-wrap: balance;
       }
 
+      /* one open peony on the card's corner, answering the flowers by the envelope */
+      .p7 .bloom {
+        left: -6cqw;
+        top: -22cqw;
+        width: 46cqw;
+        max-width: none;
+        pointer-events: none;
+      }
+
       .p7 .monogram {
         width: 2.8em;
         height: 2.8em;
@@ -1103,18 +1180,18 @@
 
       .p7 .script {
         margin: 0.5em 0 0;
-        font: italic 400 1.75em/1.15 var(--serif);
+        font: 400 2.1em/1.15 var(--script);
       }
 
       .p7 #thanks-note {
         margin: 0.45em 0 0;
-        font: 400 1.1em/1.45 var(--serif);
+        font: 500 1.1em/1.45 var(--serif);
       }
 
       .p7 .signature {
         margin: 0.7em 0 0;
         color: var(--wine);
-        font: italic 400 1.6em/1 var(--serif);
+        font: 400 2em/1 var(--script);
       }
 
       .visually-hidden {
@@ -1195,6 +1272,7 @@
       <!-- 1 · Envelope -->
       <section class="screen p1" id="s1" aria-label="Phong bì">
         <div class="stage">
+          <img class="peony spray lay" src="assets/peony-spray.webp" alt="" />
           <button class="envelope lay" id="envelope" type="button" aria-label="Mở thiệp">
             <img class="back" src="assets/envelope-open.webp" alt="" />
             <span class="letter card">
@@ -1210,6 +1288,7 @@
             <img class="seal" src="assets/seal.webp" alt="" />
           </button>
           <p class="hint caps">Chạm để mở</p>
+          <img class="peony bud lay" src="assets/peony-bud.webp" alt="" />
         </div>
       </section>
 
@@ -1278,6 +1357,7 @@
               >Mở Google Maps</a
             >
           </div>
+          <img class="bud lay" style="--i: 2" src="assets/peony-bud-2.webp" alt="" />
           <button class="print lay" style="--i: 1" type="button" aria-label="Xem ảnh">
             <img src="assets/photos/9170-s.webp" data-full="assets/photos/9170.jpg" alt="Khánh Linh và Xuân Đạt" fetchpriority="low" />
           </button>
@@ -1362,6 +1442,7 @@
             <p id="thanks-note">Ngày vui của chúng mình sẽ trọn vẹn hơn khi có <span class="guest">bạn</span>.</p>
             <p class="signature">Linh &amp; Đạt</p>
           </div>
+          <img class="bloom lay" style="--i: 1" src="assets/peony-bloom.webp" alt="" />
         </div>
       </section>
     </main>

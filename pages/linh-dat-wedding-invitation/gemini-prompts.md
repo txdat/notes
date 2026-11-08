@@ -20,7 +20,7 @@ Chất liệu cho thiệp hướng B · Thiệp giấy, xem [[plan]]. Mỗi file
 
 1. **03** (phong bì đóng): chat mới, không đính kèm. Chọn kỹ, vì 04–08 đều dựa vào ảnh này.
 2. **04** (phong bì mở): chat mới, **đính kèm ảnh 03**. Phải giống hệt phong bì.
-3. **05–08** (con dấu, thiệp, ruy băng, hoa khô): mỗi prompt một chat mới, **đính kèm ảnh 03**. Riêng **05b** đính kèm hai ảnh theo đúng thứ tự: ảnh 03 trước, `DL.jpg` sau. Ảnh 03 chỉ dùng làm tham chiếu phong cách, prompt đã dặn Gemini không chép lại phong bì.
+3. **05–11** (con dấu, thiệp, ruy băng, hoa khô, mẫu đơn): mỗi prompt một chat mới, **đính kèm ảnh 03**. Riêng **05b** đính kèm hai ảnh theo đúng thứ tự: ảnh 03 trước, `DL.jpg` sau. Ảnh 03 chỉ dùng làm tham chiếu phong cách, prompt đã dặn Gemini không chép lại phong bì.
 4. **01, 02** (vải, giấy): chat mới, không đính kèm. Đây chỉ là vân chất liệu, màu sẽ chỉnh khi hậu kỳ.
 
 Không đính kèm ảnh cưới làm tham chiếu, vì Gemini dễ chép luôn người hoặc đồ vật vào ảnh.
@@ -36,6 +36,9 @@ Không đính kèm ảnh cưới làm tham chiếu, vì Gemini dễ chép luôn 
 | [[prompts/06-card-deckle]] | `drafts/ai/card.png` | Thiệp trang 2, 3, 4, 6 · đính kèm 03 |
 | [[prompts/07-ribbon]] | `drafts/ai/ribbon.png` | Trang 2 · đính kèm 03 |
 | [[prompts/08-dried-sprig]] | `drafts/ai/sprig.png` | Trang 3 · đính kèm 03 |
+| [[prompts/09-peony-spray]] | `drafts/ai/peony-spray.png` | Trang 1, bó 3 bông góc trên trái phong bì · đính kèm 03 |
+| [[prompts/10-peony-bud]] | `drafts/ai/peony-bud.png` | Trang 1, nhánh nụ góc dưới phải · đính kèm 03 · cùng chat với 09 để khớp màu |
+| [[prompts/11-peony-bloom]] | `drafts/ai/peony-bloom.png` | Trang cuối, góc thẻ cảm ơn · đính kèm 03 · cùng chat với 09 nếu còn |
 
 ## Sửa nhanh khi ảnh chưa đạt
 
@@ -46,5 +49,7 @@ Nhắn tiếp trong cùng chat:
 - Bị nhìn xiên: "Make it perfectly top-down and square to the camera, no perspective."
 - Có bóng đổ lên nền: "Remove the cast shadow on the background; keep the plain flat background."
 - Phong bì mở khác phong bì đóng: "Match the attached envelope exactly: same paper colour, texture, size and flap shape."
-- Gemini chép lại phong bì vào ảnh 05–08: "Do not include the envelope. Show only the [seal / card / ribbon / sprig] on the plain background."
+- Gemini chép lại phong bì vào ảnh 05–11: "Do not include the envelope. Show only the [seal / card / ribbon / sprig / peonies] on the plain background."
 - Ánh sáng khác ảnh 03: "Match the lighting of the attached image: soft daylight from the upper left, same softness and colour grading."
+- Mẫu đơn ra quá nhiều bông: "Exactly three peonies only: one open, one half-open, one closed bud. Remove the rest."
+- Cuống hoa quá ngắn (10, 11): "Make the stem about twice as long, extending diagonally toward the bottom left, with the leaves along it. Keep the flower, the leaves, the lighting and the cobalt blue background identical, and keep a generous margin on every side."
