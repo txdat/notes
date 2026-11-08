@@ -115,7 +115,7 @@ Mỗi trang là một món, nên khách hiểu ngay đang xem gì mà không c�
 
 ### Trang 3 · Trân trọng kính mời
 
-- **Bố cục:** một thiệp mời mép xé đứng giữa, chiếm khoảng 85% chiều rộng, thẳng. Ảnh in nhỏ `9566` (sân thượng mái vòm) cài ở góc dưới phải, nghiêng +6°. Một cành hoa khô đặt ở góc trên trái.
+- **Bố cục:** một thiệp mời mép xé đứng giữa, chiếm khoảng 85% chiều rộng, thẳng. Ảnh in nhỏ `9732` (nắm tay, cắt sát) cài ở góc dưới phải, nghiêng +6°. Một cành hoa khô đặt ở góc trên trái.
 - **Chữ trên thiệp** (in nổi, lấy từ thiệp cũ), từ trên xuống:
   - Monogram DL màu đỏ rượu vang
   - *Trân trọng kính mời*
