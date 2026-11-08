@@ -2288,8 +2288,14 @@
       )
       lightboxImg.draggable = false
       document.querySelectorAll("img").forEach((img) => (img.draggable = false))
-      document.addEventListener("contextmenu", (event) => {
-        if (event.target.closest("img, .lightbox")) event.preventDefault()
+      // Inspect stays off: no right-click menu anywhere, and no devtools or view-source shortcuts.
+      // Only a deterrent: the browser's own menu still opens the tools.
+      document.addEventListener("contextmenu", (event) => event.preventDefault())
+      document.addEventListener("keydown", (event) => {
+        const mod = event.ctrlKey || event.metaKey
+        const tools = (mod && (event.shiftKey || event.altKey) && ["KeyI", "KeyJ", "KeyC"].includes(event.code)) ||
+          (mod && event.code === "KeyU") || (event.metaKey && event.altKey && event.code === "KeyU")
+        if (event.key === "F12" || tools) event.preventDefault()
       })
       lightbox.addEventListener("click", (event) => {
         if (moved) {
