@@ -162,6 +162,9 @@
       main {
         overflow-x: hidden;
         overflow-x: clip;
+        /* The body's cotton again, so it travels with the cards while goTo() glides the page by
+           transform. */
+        background: #e7dfd1 url(assets/cotton.webp) 0 0 / 512px;
       }
 
       .screen {
@@ -248,10 +251,10 @@
         background: #fcfbf8 padding-box;
       }
 
-      /* A photo printed with a cream border, wider at the bottom, matt and a little faded. */
+      /* A photo printed with a thin cream border, a little wider at the bottom, matt and a little faded. */
       .print {
         margin: 0;
-        padding: 2.4cqw 2.4cqw 8cqw;
+        padding: 1.6cqw 1.6cqw 5cqw;
         background: var(--print);
         /* box-shadow, not drop-shadow filters: it stays steady while the page scrolls and the
            prints settle, where filters were re-rendered frame by frame and flickered. */
@@ -331,8 +334,21 @@
          is moved up and pressed by 670/703 to sit exactly on the closed envelope.
          The paper-lift and shadows are baked into the images (drafts/bake-envelope.sh): filters
          were re-rendered while the page scrolled and flickered on phones. The back and closed
-         images carry 110px of shadow margin around the 900px envelope, hence the offsets. */
+         images carry 110px of shadow margin around the 900px envelope, hence the offsets.
+         Everything that moves here moves by transform or opacity on its own layer: clip-path wipes
+         were repainted every frame and stuttered on phones. */
       .envelope .back,
+      .envelope .flap,
+      .envelope .pocket,
+      .envelope .closed,
+      .envelope .seal,
+      .envelope .letter,
+      .envelope .snap {
+        will-change: transform, opacity;
+      }
+
+      .envelope .back,
+      .envelope .flap,
       .envelope .pocket {
         top: 0;
         transform-origin: 0 0;
@@ -340,40 +356,62 @@
         opacity: 0;
       }
 
-      /* The flap opens from its fold: the part above the body is revealed upwards. */
-      .envelope .back {
+      /* The open image is shown twice, cut at the fold, (460 + 110) / 1383 down: the body, and the
+         flap, which unfolds upwards from the fold. Both cuts are fixed; only the flap's scale moves. */
+      .envelope .back,
+      .envelope .flap {
         left: -12.222%;
         width: 124.444%;
         /* (438.33 + 110 × 0.9531) / 1383 */
         transform: translateY(-39.275%) scaleY(0.9531);
-        /* the fold, (460 + 110) / 1383 down */
+      }
+
+      .envelope .back {
         clip-path: inset(41.215% 0 0 0);
       }
 
+      .envelope .flap {
+        /* a hair past the fold, so no seam shows */
+        clip-path: inset(0 0 58.6% 0);
+        transform: translateY(-39.275%) scaleY(0.9531) translateY(41.215%) scaleY(0.001) translateY(-41.215%);
+      }
+
+      /* The card slides inside a fixed window that ends at the envelope's bottom edge, so the part
+         still in the envelope stays hidden without re-cutting the card every frame. The window
+         reaches 150% of the envelope's height above it and 10% of its width to each side, room for
+         the card's shadow; the card's box below is set against the window. */
+      .envelope .slot {
+        left: -10%;
+        right: -10%;
+        width: auto;
+        top: -150%;
+        bottom: 0;
+        overflow: hidden;
+      }
+
       .envelope .letter {
-        left: 9%;
-        width: 82%;
-        top: 4%;
+        position: absolute;
+        /* 9%, 82% and 17% of the envelope's width, 4% of its height, in the window's terms */
+        left: 15.833%;
+        width: 68.333%;
+        top: 61.6%;
         aspect-ratio: 1000 / 1396;
         display: grid;
         place-content: start center;
         justify-items: center;
-        padding-top: 17%;
+        padding-top: 10%;
         gap: 0;
         text-align: center;
         opacity: 0;
-        /* Hidden below the envelope's bottom edge (62.4% down the card) as it slides out; the clip
-           moves with the same timing as the slide, so its edge stays on the envelope's edge. */
-        clip-path: inset(-20% -15% 37.6% -15%);
       }
 
       /* The names fill the part of the card that shows above the envelope. */
       .envelope .letter > .caps:first-child {
-        margin-bottom: 0.9em;
+        margin-bottom: 0.6em;
       }
 
       .envelope .letter b {
-        font: 400 2.6em/1.15 var(--script);
+        font: 400 2.2em/1.1 var(--script);
       }
 
       .envelope .letter .amp {
@@ -383,7 +421,39 @@
       }
 
       .envelope .letter .rule {
-        margin: 0.9em auto 0.8em;
+        margin: 0.6em auto 0.55em;
+      }
+
+      /* A landscape print tucked in front of the card: it rides up with the card and stops with
+         its foot still in the pocket, below the date, both faces clear of the pocket's V. */
+      .envelope .snap {
+        left: 21%;
+        top: 40%;
+        width: 58%;
+        padding: 1.1cqw 1.1cqw 3.2cqw;
+        background: var(--print);
+        box-shadow:
+          0 0 0 0.5px rgb(30 20 12 / 0.1),
+          0 0 2px rgb(30 20 12 / 0.18),
+          0.5px 1px 0.5px rgb(30 20 12 / 0.3),
+          1px 3px 4px rgb(30 20 12 / 0.2),
+          2px 7px 10px rgb(30 20 12 / 0.14);
+        opacity: 0;
+      }
+
+      .envelope .snap img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+      }
+
+      .envelope.is-open .snap {
+        opacity: 1;
+        transform: translateY(-23cqw) rotate(-2deg);
+        transition:
+          opacity 0s 0.6s,
+          transform 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.8s;
       }
 
       .envelope .closed {
@@ -427,21 +497,20 @@
         transition: opacity 0s 0.25s;
       }
 
-      .envelope.is-open .back {
-        clip-path: inset(0);
+      .envelope.is-open .flap {
+        opacity: 1;
+        transform: translateY(-39.275%) scaleY(0.9531) translateY(41.215%) scaleY(1) translateY(-41.215%);
         transition:
-          opacity 0s 0.25s,
-          clip-path 0.45s cubic-bezier(0.3, 0.6, 0.3, 1) 0.3s;
+          opacity 0s 0.3s,
+          transform 0.45s cubic-bezier(0.3, 0.6, 0.3, 1) 0.3s;
       }
 
       .envelope.is-open .letter {
         opacity: 1;
         transform: translateY(-62%);
-        clip-path: inset(-20% -15% -24.4% -15%);
         transition:
           opacity 0s 0.6s,
-          transform 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.65s,
-          clip-path 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.65s;
+          transform 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.65s;
       }
 
       .p1 .hint {
@@ -1275,14 +1344,16 @@
           <img class="peony spray lay" src="assets/peony-spray.webp" alt="" />
           <button class="envelope lay" id="envelope" type="button" aria-label="Mở thiệp">
             <img class="back" src="assets/envelope-open.webp" alt="" />
-            <span class="letter card">
+            <img class="flap" src="assets/envelope-open.webp" alt="" />
+            <span class="slot"><span class="letter card">
               <span class="caps press">Lễ thành hôn</span>
               <b class="press">Khánh Linh</b>
               <i class="amp press">&amp;</i>
               <b class="press">Xuân Đạt</b>
               <span class="rule"></span>
               <span class="caps press">24 · 11 · 2026</span>
-            </span>
+            </span></span>
+            <span class="snap"><img src="assets/photos/9124-s.webp" alt="" fetchpriority="low" /></span>
             <img class="pocket" src="assets/envelope-pocket.webp" alt="" />
             <img class="closed" src="assets/envelope-closed.webp" alt="" />
             <img class="seal" src="assets/seal.webp" alt="" />
@@ -1371,7 +1442,7 @@
             <img src="assets/photos/9333-s.webp" data-full="assets/photos/9333.jpg" alt="Ảnh cưới" fetchpriority="low" />
           </button>
           <button class="print b" type="button" aria-label="Xem ảnh">
-            <img src="assets/photos/9620-s.webp" data-full="assets/photos/9620.jpg" alt="Ảnh cưới" fetchpriority="low" />
+            <img src="assets/photos/9222-s.webp" data-full="assets/photos/9222.jpg" alt="Ảnh cưới" fetchpriority="low" />
           </button>
           <button class="print c wide" type="button" aria-label="Xem ảnh">
             <img src="assets/photos/9049-s.webp" data-full="assets/photos/9049.jpg" alt="Ảnh cưới" fetchpriority="low" />
@@ -1501,24 +1572,32 @@
 
       const screens = [...document.querySelectorAll(".screen")]
       // A slow, eased glide to a screen; native smooth scrolling is too quick after the envelope opens.
-      // Any touch, wheel or key from the guest stops it.
+      // The page glides by a transform on <main>, which the compositor runs on its own: scrolling
+      // frame by frame from script stuttered on phones (iOS above all). When the glide ends, or the
+      // guest touches, scrolls or presses a key, the transform is swapped for the real scroll
+      // position in one frame.
+      const main = document.querySelector("main")
       const goTo = (screen, ms = 1600) => {
         const from = scrollY
-        const to = screen.getBoundingClientRect().top + scrollY
-        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return scrollTo(0, to)
-        let stop = false
-        const cancel = () => (stop = true)
+        const to = Math.min(screen.getBoundingClientRect().top + scrollY, document.documentElement.scrollHeight - innerHeight)
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches || to === from) return scrollTo(0, to)
         const events = ["touchstart", "wheel", "keydown"]
-        events.forEach((type) => addEventListener(type, cancel, { once: true, passive: true }))
-        const start = performance.now()
-        const step = (now) => {
-          const t = Math.min(1, (now - start) / ms)
-          const ease = t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2
-          if (!stop) scrollTo(0, from + (to - from) * ease)
-          if (!stop && t < 1) requestAnimationFrame(step)
-          else events.forEach((type) => removeEventListener(type, cancel))
+        const finish = () => {
+          const shift = new DOMMatrixReadOnly(getComputedStyle(main).transform).m42
+          main.style.transition = main.style.transform = main.style.willChange = ""
+          scrollTo(0, from - shift)
+          events.forEach((type) => removeEventListener(type, finish))
+          main.removeEventListener("transitionend", ended)
         }
-        requestAnimationFrame(step)
+        // the cards' own transitions bubble up here too
+        const ended = (event) => event.target === main && finish()
+        events.forEach((type) => addEventListener(type, finish, { once: true, passive: true }))
+        main.addEventListener("transitionend", ended)
+        main.style.willChange = "transform"
+        main.style.transform = "translateY(0)"
+        getComputedStyle(main).transform // start from here
+        main.style.transition = `transform ${ms}ms cubic-bezier(0.65, 0, 0.35, 1)`
+        main.style.transform = `translateY(${from - to}px)`
       }
 
       // Pieces settle onto the table the first time their screen comes into view.
@@ -1536,6 +1615,13 @@
 
       // Opening the envelope: seal off, flap up, the card slides out, then on to the next screen.
       const envelope = document.getElementById("envelope")
+      // Decode the open envelope's images and the card's lace now, not on the tap, where a
+      // decode would stall the first frames of the opening.
+      addEventListener("load", () => {
+        const lace = new Image()
+        lace.src = "assets/lace.webp"
+        for (const img of [...envelope.querySelectorAll("img"), lace]) img.decode().catch(() => {})
+      })
       envelope.addEventListener("click", () => {
         if (envelope.classList.contains("is-open")) return goTo(screens[1])
         envelope.classList.add("is-open")
@@ -1845,8 +1931,14 @@
       )
       lightboxImg.draggable = false
       document.querySelectorAll("img").forEach((img) => (img.draggable = false))
-      document.addEventListener("contextmenu", (event) => {
-        if (event.target.closest("img, .print, .lightbox")) event.preventDefault()
+      // Inspect stays off: no right-click menu anywhere, and no devtools or view-source shortcuts.
+      // Only a deterrent: the browser's own menu still opens the tools.
+      document.addEventListener("contextmenu", (event) => event.preventDefault())
+      document.addEventListener("keydown", (event) => {
+        const mod = event.ctrlKey || event.metaKey
+        const tools = (mod && (event.shiftKey || event.altKey) && ["KeyI", "KeyJ", "KeyC"].includes(event.code)) ||
+          (mod && event.code === "KeyU") || (event.metaKey && event.altKey && event.code === "KeyU")
+        if (event.key === "F12" || tools) event.preventDefault()
       })
       lightbox.addEventListener("click", (event) => {
         if (moved) {
