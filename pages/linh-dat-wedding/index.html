@@ -1622,7 +1622,7 @@
         <img class="actor-front" src="assets/couple-front.webp" alt="" />
         <div class="prints"></div>
       </div>
-      <p class="intro-title">Chào mừng <span class="guest">bạn</span> đến với<br />câu chuyện của chúng mình</p>
+      <p class="intro-title">Chào mừng <span class="guest">bạn</span> đến với<br />câu chuyện của <span class="we" data-we="mid">chúng mình</span></p>
       <button class="intro-skip" type="button">Bỏ qua</button>
     </div>
 
@@ -1719,7 +1719,7 @@
         <section class="leaf" aria-label="Lời mời">
           <div class="inner">
             <h2>Trân trọng kính mời</h2>
-            <p class="lede"><span class="guest" data-guest="start">bạn</span><span class="household"> và gia đình</span> đến chung vui trong ngày thành hôn của chúng mình</p>
+            <p class="lede"><span class="guest" data-guest="start">bạn</span><span class="household"> và người thương</span> đến chung vui trong ngày thành hôn của <span class="we" data-we="mid">chúng mình</span></p>
             <div class="families">
               <div class="family">
                 <h3>Nhà gái</h3>
@@ -1801,7 +1801,7 @@
                 <label><input type="radio" name="entry.532501918" value="3+" /><span>3+</span></label>
               </fieldset>
               <label class="field">
-                <span>Lời chúc gửi chúng mình (không bắt buộc)</span>
+                <span>Lời chúc gửi <span class="we" data-we="mid">chúng mình</span> (không bắt buộc)</span>
                 <textarea name="entry.2011435420" rows="2" maxlength="500"></textarea>
               </label>
               <p class="rsvp-error" id="rsvp-error" role="alert"></p>
@@ -1818,7 +1818,7 @@
           <div class="inner">
             <img class="art" src="assets/thanks.webp?v=2" alt="Vịt và Khủng Long ôm nhau" loading="lazy" />
             <p class="script">Cảm ơn <span class="guest">bạn</span></p>
-            <p id="thanks-note">Ngày vui của chúng mình sẽ trọn vẹn hơn khi có <span class="guest">bạn</span>.</p>
+            <p id="thanks-note">Ngày vui của <span class="we" data-we="mid">chúng mình</span> sẽ trọn vẹn hơn khi có <span class="guest">bạn</span>.</p>
             <p class="signature">Linh &amp; Đạt</p>
           </div>
         </section>
@@ -1890,6 +1890,13 @@
         const address = /^(anh|chị|em|bạn|cô|chú|dì|cậu|mợ|thím|bác|ông|bà|thầy|sếp|gia đình|vợ chồng|cả nhà|nhà|các|hai)(\s|$)/
         return { start: name, mid: address.test(lower.toLocaleLowerCase("vi")) ? lower : name, name }
       })()
+      // ?from= sets how the card refers to the couple ("chúng mình" by default); plain text, like ?to=.
+      const fromRaw = (new URLSearchParams(location.search).get("from") ?? "").replace(/\s+/g, " ").trim().slice(0, 40)
+      const we = (start) => {
+        if (!fromRaw) return start ? "Chúng mình" : "chúng mình"
+        return (start ? fromRaw[0].toLocaleUpperCase("vi") : fromRaw[0].toLocaleLowerCase("vi")) + fromRaw.slice(1)
+      }
+      for (const el of document.querySelectorAll(".we")) el.textContent = we(el.dataset.we === "start")
       if (guest.name) {
         for (const el of document.querySelectorAll(".guest"))
           el.textContent = el.dataset.guest === "start" ? guest.start : guest.mid
@@ -2061,7 +2068,7 @@
           : `${guest.start} đã xác nhận tham dự rồi, cảm ơn nhé!`
         document.getElementById("thanks-note").textContent = away
           ? `Tiếc là lần này chưa gặp được ${guest.mid}, hẹn ${guest.mid} dịp khác nhé.`
-          : `Ngày vui của chúng mình sẽ trọn vẹn hơn khi có ${guest.mid}.`
+          : `Ngày vui của ${we(false)} sẽ trọn vẹn hơn khi có ${guest.mid}.`
         rsvp.hidden = true
         rsvpDone.hidden = false
       }

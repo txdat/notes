@@ -1385,8 +1385,8 @@
             <span class="caps kicker">Lễ thành hôn</span>
             <p class="lede">Trân trọng kính mời</p>
             <p class="guest-line">
-              <span class="addressee"><b class="guest" data-guest="start">Bạn</b><span class="household"> và gia đình</span></span>đến
-              chung vui trong ngày <span style="white-space: nowrap">thành hôn của chúng mình</span>
+              <span class="addressee"><b class="guest" data-guest="start">Bạn</b><span class="household"> và người thương</span></span>đến
+              chung vui trong ngày <span style="white-space: nowrap">thành hôn của <span class="we" data-we="mid">chúng mình</span></span>
             </p>
             <span class="rule"></span>
             <div class="families">
@@ -1486,7 +1486,7 @@
                 <label><input type="radio" name="entry.532501918" value="3+" /><span>3+</span></label>
               </fieldset>
               <label class="field">
-                <span>Lời chúc gửi chúng mình (không bắt buộc)</span>
+                <span>Lời chúc gửi <span class="we" data-we="mid">chúng mình</span> (không bắt buộc)</span>
                 <textarea name="entry.2011435420" rows="1" maxlength="500"></textarea>
               </label>
               <p class="rsvp-error" id="rsvp-error" role="alert"></p>
@@ -1510,7 +1510,7 @@
           <div class="thanks card press lay" style="--i: 0">
             <span class="monogram"></span>
             <p class="script">Cảm ơn <span class="guest">bạn</span></p>
-            <p id="thanks-note">Ngày vui của chúng mình sẽ trọn vẹn hơn khi có <span class="guest">bạn</span>.</p>
+            <p id="thanks-note">Ngày vui của <span class="we" data-we="mid">chúng mình</span> sẽ trọn vẹn hơn khi có <span class="guest">bạn</span>.</p>
             <p class="signature">Linh &amp; Đạt</p>
           </div>
           <img class="bloom lay" style="--i: 1" src="assets/peony-bloom.webp" alt="" />
@@ -1551,6 +1551,13 @@
         const params = new URLSearchParams(location.search)
         return addressee(params.get("to") ?? params.get("name") ?? params.get("guest") ?? "")
       })()
+      // ?from= sets how the card refers to the couple ("chúng mình" by default); plain text, like ?to=.
+      const fromRaw = (new URLSearchParams(location.search).get("from") ?? "").replace(/\s+/g, " ").trim().slice(0, 40)
+      const we = (start) => {
+        if (!fromRaw) return start ? "Chúng mình" : "chúng mình"
+        return (start ? fromRaw[0].toLocaleUpperCase("vi") : fromRaw[0].toLocaleLowerCase("vi")) + fromRaw.slice(1)
+      }
+      for (const el of document.querySelectorAll(".we")) el.textContent = we(el.dataset.we === "start")
       if (guest.name) {
         for (const el of document.querySelectorAll(".guest"))
           el.textContent = el.dataset.guest === "start" ? guest.start : guest.mid
@@ -1683,10 +1690,10 @@
         const away = answer.attend === declined
         // A shared link has no name, so the thanks uses the name the guest typed.
         const who = guest.name ? guest : addressee(answer.name ?? "")
-        document.getElementById("rsvp-done-text").textContent = "Chúng mình đã nhận được hồi âm."
+        document.getElementById("rsvp-done-text").textContent = `${we(true)} đã nhận được hồi âm.`
         document.getElementById("thanks-note").textContent = away
           ? `Tiếc là lần này chưa gặp được ${who.mid}, hẹn ${who.mid} dịp khác nhé.`
-          : `Ngày vui của chúng mình sẽ trọn vẹn hơn khi có ${who.mid}.`
+          : `Ngày vui của ${we(false)} sẽ trọn vẹn hơn khi có ${who.mid}.`
         for (const el of document.querySelectorAll(".p7 .guest")) el.textContent = who.mid
         rsvp.hidden = true
         rsvpDone.hidden = false
@@ -1728,7 +1735,7 @@
         name.setAttribute("aria-invalid", !name.value)
         document.getElementById("rsvp-attend").setAttribute("aria-invalid", !attend)
         if (!name.value || !attend) {
-          rsvpError.textContent = !name.value ? "Điền tên giúp chúng mình nhé." : "Chọn tham dự hay không giúp chúng mình nhé."
+          rsvpError.textContent = !name.value ? `Điền tên giúp ${we(false)} nhé.` : `Chọn tham dự hay không giúp ${we(false)} nhé.`
           return
         }
         rsvpError.textContent = ""
